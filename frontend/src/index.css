@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Bridge Tailwind tokens to our theme.ts via CSS variables */
+:root {
+  /* Core Colors (RGB channels) - Vibrant Rose & Slate Theme */
+  --color-background: 255 255 255;
+  --color-foreground: 15 23 42; /* Slate 900 */
+  
+  --color-primary: 244 63 94; /* Rose 500 - Vibrant Fashion Pink */
+  --color-primary-foreground: 255 255 255;
+  
+  /* Semantic Tokens (RGB) */
+  --color-secondary: 255 228 230; /* Rose 100 */
+  --color-secondary-foreground: 136 19 55; /* Rose 900 */
+  
+  --color-muted: 241 245 249; /* Slate 100 */
+  --color-muted-foreground: 100 116 139; /* Slate 500 */
+  
+  --color-accent: 255 241 242; /* Rose 50 */
+  --color-accent-foreground: 15 23 42;
+  
+  --color-approve: 34 197 94;  /* green-500 */
+  --color-approve-foreground: 255 255 255;
+  
+  --color-pending: 234 179 8; /* yellow-500 */
+  --color-pending-foreground: 255 255 255;
+  
+  --color-destructive: 239 68 68; /* red-500 */
+  --color-destructive-foreground: 255 255 255;
+
+  --color-info: 59 130 246; /* blue-500 */
+  --color-info-foreground: 255 255 255;
+
+  --color-card: 255 255 255;
+  --color-card-foreground: 15 23 42;
+  
+  --color-popover: 255 255 255;
+  --color-popover-foreground: 15 23 42;
+  
+  --color-border: 226 232 240; /* Slate 200 */
+  --color-input: 226 232 240; /* Slate 200 */
+  --color-ring: 244 63 94; /* Match Primary */
+
+  /* Legacy Semantic mapping for backward compatibility if needed */
+  --color-success: 34 197 94;
+  --color-error: 239 68 68;
+  --color-warning: 245 158 11;
+
+  /* Grayscale Palette */
+  --color-white: 255 255 255;
+  --color-black: 0 0 0;
+  --color-gray-50: 249 250 251;
+  --color-gray-100: 243 244 246;
+  --color-gray-200: 229 231 235;
+  --color-gray-300: 209 213 219;
+  --color-gray-400: 156 163 175;
+  --color-gray-500: 107 114 128;
+  --color-gray-600: 75 85 99;
+  --color-gray-700: 55 65 81;
+  --color-gray-800: 31 41 55;
+  --color-gray-900: 17 24 39;
+  --color-gray-950: 3 7 18;
+
+  /* Red Palette */
+  --color-red-50: 254 242 242;
+  --color-red-100: 254 226 226;
+  --color-red-200: 254 202 202;
+  --color-red-400: 248 113 113;
+  --color-red-500: 239 68 68;
+  --color-red-600: 220 38 38;
+
+  /* Green/Emerald Palette */
+  --color-green-50: 240 253 244;
+  --color-green-100: 220 252 231;
+  --color-green-400: 74 222 128;
+  --color-green-500: 34 197 94;
+  --color-green-600: 22 163 74;
+  --color-green-700: 21 128 61;
+  
+  --color-emerald-400: 52 211 153;
+  --color-emerald-500: 16 185 129;
+
+  /* Blue Palette */
+  --color-blue-100: 219 234 254;
+  --color-blue-500: 59 130 246;
+  --color-blue-600: 37 99 235;
+  --color-blue-700: 29 78 216;
+
+  /* Yellow/Amber Palette */
+  --color-yellow-100: 254 249 195;
+  --color-yellow-400: 250 204 21;
+  --color-yellow-500: 234 179 8;
+  --color-yellow-700: 161 98 7;
+
+  /* Purple Palette */
+  --color-purple-100: 243 232 255;
+  --color-purple-700: 126 34 206;
+  --color-purple-900: 88 28 135;
+
+  /* Indigo Palette */
+  --color-indigo-900: 49 46 129;
+
+  /* Design Studio Palettes (Keep Hex for specific paint logic or convert if needed - leaving as Hex for now as they are used in JS logic mostly, but better safe to convert for consistency if used in CSS classes) */
+  /* Monochromatic */
+  --palette-mono-1: 0 0 0;
+  --palette-mono-2: 51 51 51;
+  --palette-mono-3: 102 102 102;
+  --palette-mono-4: 153 153 153;
+  
+  /* Complementary */
+  --palette-comp-1: 212 163 115;
+  --palette-comp-2: 40 54 24;
+  --palette-comp-3: 254 250 224;
+  --palette-comp-4: 188 108 37;
+
+  /* Analogous */
+  --palette-anal-1: 168 123 80;
+  --palette-anal-2: 212 163 115;
+  --palette-anal-3: 233 196 106;
+  --palette-anal-4: 244 162 97;
+
+  /* Earth Tones */
+  --palette-earth-1: 168 123 80;
+  --palette-earth-2: 88 47 14;
+  --palette-earth-3: 127 79 36;
+  --palette-earth-4: 147 102 57;
+
+  --font-family-heading: 'Outfit', sans-serif;
+  --font-family-body: 'Inter', sans-serif;
+
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 3rem;
+
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2.5rem;
+  --font-size-3xl: 3.5rem;
+}
+
+body {
+  @apply bg-background text-foreground antialiased;
+}
+
+
+
+
+
+

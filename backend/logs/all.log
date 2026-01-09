@@ -1,0 +1,598 @@
+2025-12-19 00:55:35:5535 [31merror[39m: [31mFailed to start server password authentication failed for user "postgres"[39m
+2025-12-19 00:55:35:5535 [31merror[39m: [31mFailed to start server password authentication failed for user "postgres"[39m
+2025-12-19 00:55:42:5542 [31merror[39m: [31mFailed to start server password authentication failed for user "postgres"[39m
+2025-12-19 00:55:42:5542 [31merror[39m: [31mFailed to start server password authentication failed for user "postgres"[39m
+2025-12-19 00:55:50:5550 [31merror[39m: [31mFailed to start server password authentication failed for user "postgres"[39m
+2025-12-19 00:55:50:5550 [31merror[39m: [31mFailed to start server password authentication failed for user "postgres"[39m
+2025-12-19 00:55:56:5556 [31merror[39m: [31mFailed to start server password authentication failed for user "postgres"[39m
+2025-12-19 00:55:57:5557 [31merror[39m: [31mFailed to start server password authentication failed for user "postgres"[39m
+2025-12-19 00:56:01:561 [31merror[39m: [31mFailed to start server password authentication failed for user "postgres"[39m
+2025-12-19 00:56:01:561 [31merror[39m: [31mFailed to start server password authentication failed for user "postgres"[39m
+2025-12-19 00:56:08:568 [31merror[39m: [31mFailed to start server password authentication failed for user "postgres"[39m
+2025-12-19 00:56:08:568 [31merror[39m: [31mFailed to start server password authentication failed for user "postgres"[39m
+2025-12-22 12:46:26:4626 [31merror[39m: [31mFailed to start server password authentication failed for user "postgres"[39m
+2025-12-22 13:45:47:4547 [31merror[39m: [31mFailed to start server password authentication failed for user "postgres"[39m
+2025-12-22 13:49:51:4951 [31merror[39m: [31mFailed to start server getaddrinfo EAI_AGAIN aws-1-eu-north-1.pooler.supabase.com[39m
+2025-12-22 13:55:57:5557 [32minfo[39m: [32mAPI server listening on http://localhost:5000[39m
+2025-12-22 14:06:04:64 [31merror[39m: [31mError handler caught: relation "users" does not exist[39m
+2025-12-22 14:06:04:64 [35mhttp[39m: [35mPOST /api/auth/register 500 47 - 920.778 ms[39m
+2025-12-22 14:06:14:614 [31merror[39m: [31mError handler caught: relation "users" does not exist[39m
+2025-12-22 14:06:14:614 [35mhttp[39m: [35mPOST /api/auth/register 500 47 - 1827.496 ms[39m
+2025-12-22 14:06:22:622 [31merror[39m: [31mError handler caught: relation "users" does not exist[39m
+2025-12-22 14:06:22:622 [35mhttp[39m: [35mPOST /api/auth/register 500 47 - 978.566 ms[39m
+2025-12-22 14:07:46:746 [32minfo[39m: [32mAPI server listening on http://localhost:5000[39m
+2025-12-22 14:08:11:811 [32minfo[39m: [32mDatabase connection established successfully[39m
+2025-12-22 14:08:11:811 [32minfo[39m: [32mAPI server listening on http://localhost:5000[39m
+2025-12-22 14:09:08:98 [31merror[39m: [31mError handler caught: relation "users" does not exist[39m
+2025-12-22 14:09:08:98 [35mhttp[39m: [35mPOST /api/auth/register 500 47 - 251.503 ms[39m
+2025-12-22 14:09:43:943 [32minfo[39m: [32mDatabase connection established successfully[39m
+2025-12-22 14:09:43:943 [32minfo[39m: [32mAPI server listening on http://localhost:5000[39m
+2025-12-22 14:10:01:101 [32minfo[39m: [32mDatabase connection established successfully[39m
+2025-12-22 14:10:01:101 [32minfo[39m: [32mAPI server listening on http://localhost:5000[39m
+2025-12-22 14:10:38:1038 [32minfo[39m: [32mStarting database migrations...[39m
+2025-12-22 14:10:38:1038 [32minfo[39m: [32mCreating users table...[39m
+2025-12-22 14:10:40:1040 [32minfo[39m: [32m✓ Users table created successfully[39m
+2025-12-22 14:10:40:1040 [32minfo[39m: [32mCreating items table...[39m
+2025-12-22 14:10:40:1040 [32minfo[39m: [32m✓ Items table created successfully[39m
+2025-12-22 14:28:04:284 [32minfo[39m: [32mDatabase connection established successfully[39m
+2025-12-22 14:28:04:284 [32minfo[39m: [32mAPI server listening on http://localhost:5000[39m
+2025-12-22 14:28:40:2840 [35mhttp[39m: [35mPOST /api/auth/register 201 64 - 1401.852 ms[39m
+2025-12-22 14:29:04:294 [31merror[39m: [31mError handler caught: Please verify your email before logging in.[39m
+2025-12-22 14:29:04:294 [35mhttp[39m: [35mPOST /api/auth/login 403 57 - 274.745 ms[39m
+2025-12-22 14:31:29:3129 [31merror[39m: [31mError handler caught: Please verify your email before logging in.[39m
+2025-12-22 14:31:29:3129 [35mhttp[39m: [35mPOST /api/auth/login 403 57 - 278.645 ms[39m
+2025-12-22 14:38:29:3829 [32minfo[39m: [32mDatabase connection established successfully[39m
+2025-12-22 14:38:29:3829 [32minfo[39m: [32mAPI server listening on http://localhost:5000[39m
+2025-12-22 14:38:41:3841 [32minfo[39m: [32mDatabase connection established successfully[39m
+2025-12-22 14:38:41:3841 [32minfo[39m: [32mAPI server listening on http://localhost:5000[39m
+2025-12-22 14:38:54:3854 [32minfo[39m: [32mDatabase connection established successfully[39m
+2025-12-22 14:38:54:3854 [32minfo[39m: [32mAPI server listening on http://localhost:5000[39m
+2025-12-22 14:39:06:396 [32minfo[39m: [32mDatabase connection established successfully[39m
+2025-12-22 14:39:06:396 [32minfo[39m: [32mAPI server listening on http://localhost:5000[39m
+2025-12-22 14:41:03:413 [31merror[39m: [31mError handler caught: Please verify your email before logging in.[39m
+2025-12-22 14:41:03:413 [35mhttp[39m: [35mPOST /api/auth/login 403 57 - 346.817 ms[39m
+2025-12-22 14:41:15:4115 [35mhttp[39m: [35mPOST /api/auth/resend-verification 200 74 - 449.797 ms[39m
+2025-12-22 14:41:52:4152 [35mhttp[39m: [35mPOST /api/auth/verify-email 200 42 - 860.793 ms[39m
+2025-12-22 14:41:56:4156 [31merror[39m: [31mError handler caught: Invalid verification token.[39m
+2025-12-22 14:41:56:4156 [35mhttp[39m: [35mPOST /api/auth/verify-email 400 41 - 4500.629 ms[39m
+2025-12-22 14:42:06:426 [35mhttp[39m: [35mPOST /api/auth/login 200 605 - 1730.456 ms[39m
+2025-12-22 14:43:12:4312 [33mwarn[39m: [33mAuth rate limit exceeded for IP: ::1[39m
+2025-12-22 14:43:12:4312 [35mhttp[39m: [35mGET /api/auth/me 429 78 - 2.523 ms[39m
+2025-12-22 14:43:12:4312 [33mwarn[39m: [33mAuth rate limit exceeded for IP: ::1[39m
+2025-12-22 14:43:12:4312 [35mhttp[39m: [35mPOST /api/auth/verify-email 429 78 - 1.835 ms[39m
+2025-12-22 14:43:12:4312 [33mwarn[39m: [33mAuth rate limit exceeded for IP: ::1[39m
+2025-12-22 14:43:12:4312 [35mhttp[39m: [35mPOST /api/auth/verify-email 429 78 - 2.646 ms[39m
+2025-12-22 14:43:12:4312 [33mwarn[39m: [33mAuth rate limit exceeded for IP: ::1[39m
+2025-12-22 14:43:12:4312 [35mhttp[39m: [35mGET /api/auth/me 429 78 - 1.698 ms[39m
+2025-12-22 14:43:14:4314 [33mwarn[39m: [33mAuth rate limit exceeded for IP: ::1[39m
+2025-12-22 14:43:14:4314 [35mhttp[39m: [35mPOST /api/auth/verify-email 429 78 - 2.546 ms[39m
+2025-12-22 14:43:14:4314 [33mwarn[39m: [33mAuth rate limit exceeded for IP: ::1[39m
+2025-12-22 14:43:14:4314 [35mhttp[39m: [35mPOST /api/auth/verify-email 429 78 - 2.945 ms[39m
+2025-12-22 15:14:19:1419 [32minfo[39m: [32mDatabase connection established successfully[39m
+2025-12-22 15:14:19:1419 [32minfo[39m: [32mAPI server listening on http://localhost:5000[39m
+2025-12-22 15:14:56:1456 [32minfo[39m: [32mDatabase connection established successfully[39m
+2025-12-22 15:14:56:1456 [32minfo[39m: [32mAPI server listening on http://localhost:5000[39m
+2025-12-22 15:15:19:1519 [32minfo[39m: [32mDatabase connection established successfully[39m
+2025-12-22 15:15:19:1519 [32minfo[39m: [32mAPI server listening on http://localhost:5000[39m
+2025-12-22 16:04:14:414 [32minfo[39m: [32mDatabase connection established successfully[39m
+2025-12-22 16:04:14:414 [32minfo[39m: [32mAPI server listening on http://localhost:5000[39m
+2025-12-22 16:06:04:64 [32minfo[39m: [32mDatabase connection established successfully[39m
+2025-12-22 16:06:04:64 [32minfo[39m: [32mAPI server listening on http://localhost:5000[39m
+2025-12-22 16:09:11:911 [32minfo[39m: [32mDatabase connection established successfully[39m
+2025-12-22 16:09:11:911 [32minfo[39m: [32mAPI server listening on http://localhost:5000[39m
+2025-12-22 16:10:50:1050 [35mhttp[39m: [35mPOST /api/auth/register 201 64 - 2489.051 ms[39m
+2025-12-23 01:33:27:3327 [32minfo[39m: [32mDatabase connection established successfully[39m
+2025-12-23 01:33:27:3327 [32minfo[39m: [32mAPI server listening on http://localhost:5000[39m
+2026-01-06 11:18:14:1814 [32minfo[39m: [32mStarting database migrations...[39m
+2026-01-06 11:18:14:1814 [32minfo[39m: [32mCreating users table...[39m
+2026-01-06 11:18:14:1814 [31merror[39m: [31mMigration failed: getaddrinfo EAI_AGAIN aws-1-eu-north-1.pooler.supabase.com[39m
+2026-01-06 11:18:38:1838 [32minfo[39m: [32mStarting database migrations...[39m
+2026-01-06 11:18:38:1838 [32minfo[39m: [32mCreating users table...[39m
+2026-01-06 11:18:39:1839 [31merror[39m: [31mMigration failed: Tenant or user not found[39m
+2026-01-06 11:41:49:4149 [32minfo[39m: [32mStarting database migrations...[39m
+2026-01-06 11:41:49:4149 [32minfo[39m: [32mCreating users table...[39m
+2026-01-06 11:41:49:4149 [31merror[39m: [31mMigration failed: Tenant or user not found[39m
+2026-01-06 23:11:10:1110 [33mwarn[39m: [33mDNS resolution failed (attempt 1/5), retrying in 2000ms...[39m
+2026-01-06 23:11:12:1112 [33mwarn[39m: [33mDNS resolution failed (attempt 2/5), retrying in 4000ms...[39m
+2026-01-06 23:11:16:1116 [33mwarn[39m: [33mDNS resolution failed (attempt 3/5), retrying in 8000ms...[39m
+2026-01-06 23:11:24:1124 [33mwarn[39m: [33mDNS resolution failed (attempt 4/5), retrying in 10000ms...[39m
+2026-01-06 23:11:44:1144 [31merror[39m: [31mDatabase connection failed Connection terminated due to connection timeout[39m
+2026-01-06 23:13:47:1347 [31merror[39m: [31mDatabase connection failed Connection terminated due to connection timeout[39m
+2026-01-06 23:29:44:2944 [31merror[39m: [31mDatabase connection failed Connection terminated due to connection timeout[39m
+2026-01-07 11:46:04:464 [33mwarn[39m: [33mDNS resolution failed (attempt 1/5), retrying in 2000ms...[39m
+2026-01-07 11:46:06:466 [33mwarn[39m: [33mDNS resolution failed (attempt 2/5), retrying in 4000ms...[39m
+2026-01-07 11:46:11:4611 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-07 11:46:11:4611 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-07 11:49:58:4958 [35mhttp[39m: [35mPOST /api/auth/register 201 64 - 3589.743 ms[39m
+2026-01-07 11:52:31:5231 [31merror[39m: [31mError handler caught: Please verify your email before logging in.[39m
+2026-01-07 11:52:31:5231 [35mhttp[39m: [35mPOST /api/auth/login 403 57 - 713.035 ms[39m
+2026-01-07 11:52:41:5241 [35mhttp[39m: [35mPOST /api/auth/resend-verification 200 74 - 2569.005 ms[39m
+2026-01-07 11:59:18:5918 [35mhttp[39m: [35mPOST /api/auth/resend-verification 200 74 - 2402.211 ms[39m
+2026-01-07 12:06:57:657 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-07 12:06:57:657 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-07 12:15:15:1515 [31merror[39m: [31mError handler caught: Please verify your email before logging in.[39m
+2026-01-07 12:15:15:1515 [35mhttp[39m: [35mPOST /api/auth/login 403 57 - 711.344 ms[39m
+2026-01-07 12:15:21:1521 [35mhttp[39m: [35mPOST /api/auth/resend-verification 200 74 - 924.654 ms[39m
+2026-01-07 12:15:54:1554 [35mhttp[39m: [35mPOST /api/auth/verify-email 200 42 - 465.729 ms[39m
+2026-01-07 12:16:00:160 [31merror[39m: [31mError handler caught: Invalid verification token.[39m
+2026-01-07 12:16:00:160 [35mhttp[39m: [35mPOST /api/auth/verify-email 400 41 - 6266.758 ms[39m
+2026-01-07 12:16:22:1622 [35mhttp[39m: [35mPOST /api/payments/create-checkout-session 401 54 - 5.087 ms[39m
+2026-01-07 12:16:25:1625 [35mhttp[39m: [35mPOST /api/payments/create-checkout-session 401 54 - 1.198 ms[39m
+2026-01-07 12:16:29:1629 [35mhttp[39m: [35mPOST /api/payments/create-checkout-session 401 54 - 1.121 ms[39m
+2026-01-07 12:16:50:1650 [35mhttp[39m: [35mPOST /api/auth/login 200 606 - 944.359 ms[39m
+2026-01-07 12:16:50:1650 [32minfo[39m: [32mUser 3 connected with socket iytpBb4jfFWFMZovAAAB[39m
+2026-01-07 12:17:02:172 [31merror[39m: [31mError handler caught: relation "user_payment_profiles" does not exist[39m
+2026-01-07 12:17:02:172 [35mhttp[39m: [35mPOST /api/payments/create-checkout-session 500 63 - 241.852 ms[39m
+2026-01-07 12:17:07:177 [31merror[39m: [31mError handler caught: relation "user_payment_profiles" does not exist[39m
+2026-01-07 12:17:07:177 [35mhttp[39m: [35mPOST /api/payments/create-checkout-session 500 63 - 304.114 ms[39m
+2026-01-07 12:17:13:1713 [31merror[39m: [31mError handler caught: Request failed with status code 401[39m
+2026-01-07 12:17:13:1713 [35mhttp[39m: [35mPOST /api/payments/create-checkout-session 500 49 - 1036.084 ms[39m
+2026-01-07 12:18:11:1811 [31merror[39m: [31mError fetching conversations: relation "conversations" does not exist[39m
+2026-01-07 12:18:11:1811 [35mhttp[39m: [35mGET /api/chat/conversations 500 35 - 4334.872 ms[39m
+2026-01-07 12:18:14:1814 [31merror[39m: [31mError fetching conversations: relation "conversations" does not exist[39m
+2026-01-07 12:18:14:1814 [35mhttp[39m: [35mGET /api/chat/conversations 500 35 - 2699.378 ms[39m
+2026-01-07 12:19:19:1919 [31merror[39m: [31mError fetching conversations: relation "conversations" does not exist[39m
+2026-01-07 12:19:19:1919 [35mhttp[39m: [35mGET /api/chat/conversations 500 35 - 3130.089 ms[39m
+2026-01-07 12:19:22:1922 [31merror[39m: [31mError fetching conversations: relation "conversations" does not exist[39m
+2026-01-07 12:19:22:1922 [35mhttp[39m: [35mGET /api/chat/conversations 500 35 - 2857.587 ms[39m
+2026-01-07 12:22:00:220 [31merror[39m: [31mError handler caught: Invalid API Key provided: sk_test_...[39m
+2026-01-07 12:22:00:220 [35mhttp[39m: [35mPOST /api/payments/create-checkout-session 401 51 - 3728.830 ms[39m
+2026-01-07 12:22:00:220 [33mwarn[39m: [33mAuth rate limit exceeded for IP: ::1[39m
+2026-01-07 12:22:00:220 [35mhttp[39m: [35mPOST /api/auth/refresh 429 78 - 12.234 ms[39m
+2026-01-07 12:22:06:226 [35mhttp[39m: [35mPOST /api/payments/create-checkout-session 401 54 - 1.344 ms[39m
+2026-01-07 12:22:14:2214 [35mhttp[39m: [35mPOST /api/payments/create-checkout-session 401 54 - 1.268 ms[39m
+2026-01-07 12:22:17:2217 [35mhttp[39m: [35mPOST /api/payments/create-checkout-session 401 54 - 1.127 ms[39m
+2026-01-07 12:22:19:2219 [32minfo[39m: [32mSocket iytpBb4jfFWFMZovAAAB disconnected[39m
+2026-01-07 12:22:32:2232 [33mwarn[39m: [33mAuth rate limit exceeded for IP: ::1[39m
+2026-01-07 12:22:32:2232 [35mhttp[39m: [35mPOST /api/auth/login 429 78 - 2.155 ms[39m
+2026-01-07 12:25:25:2525 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-07 12:25:25:2525 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-07 12:26:52:2652 [35mhttp[39m: [35mPOST /api/auth/login 200 606 - 972.968 ms[39m
+2026-01-07 12:26:52:2652 [32minfo[39m: [32mUser 3 connected with socket nQmLMOIkz4CBxTzZAAAB[39m
+2026-01-07 12:27:01:271 [31merror[39m: [31mError handler caught: Invalid API Key provided: sk_test_...[39m
+2026-01-07 12:27:01:271 [35mhttp[39m: [35mPOST /api/payments/create-checkout-session 401 51 - 817.418 ms[39m
+2026-01-07 12:27:02:272 [35mhttp[39m: [35mPOST /api/auth/refresh 200 395 - 1028.011 ms[39m
+2026-01-07 12:27:02:272 [31merror[39m: [31mError handler caught: Invalid API Key provided: sk_test_...[39m
+2026-01-07 12:27:02:272 [35mhttp[39m: [35mPOST /api/payments/create-checkout-session 401 51 - 402.681 ms[39m
+2026-01-07 12:27:14:2714 [35mhttp[39m: [35mGET /api/chat/conversations 200 2 - 326.052 ms[39m
+2026-01-07 12:27:14:2714 [35mhttp[39m: [35mGET /api/chat/conversations 304 - - 290.151 ms[39m
+2026-01-07 12:27:36:2736 [35mhttp[39m: [35mGET /api/chat/conversations 304 - - 207.878 ms[39m
+2026-01-07 12:27:36:2736 [35mhttp[39m: [35mGET /api/chat/conversations 304 - - 237.352 ms[39m
+2026-01-07 12:28:32:2832 [32minfo[39m: [32mSocket nQmLMOIkz4CBxTzZAAAB disconnected[39m
+2026-01-07 12:29:07:297 [35mhttp[39m: [35mPOST /api/auth/register 201 64 - 955.398 ms[39m
+2026-01-07 12:29:26:2926 [35mhttp[39m: [35mPOST /api/auth/verify-email 200 42 - 431.560 ms[39m
+2026-01-07 12:29:28:2928 [31merror[39m: [31mError handler caught: Invalid verification token.[39m
+2026-01-07 12:29:28:2928 [35mhttp[39m: [35mPOST /api/auth/verify-email 400 41 - 2057.850 ms[39m
+2026-01-07 12:30:00:300 [35mhttp[39m: [35mPOST /api/auth/login 200 608 - 808.333 ms[39m
+2026-01-07 12:30:00:300 [32minfo[39m: [32mUser 4 connected with socket qWEKlNI0MS-yFK9pAAAD[39m
+2026-01-07 12:33:06:336 [35mhttp[39m: [35mPOST /api/auth/login 200 611 - 1073.321 ms[39m
+2026-01-07 12:33:06:336 [32minfo[39m: [32mUser 4 connected with socket IP0Pq4fckqQDB0BOAAAF[39m
+2026-01-07 12:33:06:336 [35mhttp[39m: [35mGET /api/admin/stats 200 77 - 4.925 ms[39m
+2026-01-07 12:33:25:3325 [35mhttp[39m: [35mPOST /api/auth/login 200 611 - 704.803 ms[39m
+2026-01-07 12:33:25:3325 [35mhttp[39m: [35mGET /api/admin/stats 200 77 - 4.272 ms[39m
+2026-01-07 12:33:25:3325 [32minfo[39m: [32mUser 4 connected with socket TRe9-RsVw2GM3XJFAAAH[39m
+2026-01-07 12:33:34:3334 [32minfo[39m: [32mSocket TRe9-RsVw2GM3XJFAAAH disconnected[39m
+2026-01-07 12:33:41:3341 [32minfo[39m: [32mSocket qWEKlNI0MS-yFK9pAAAD disconnected[39m
+2026-01-07 12:33:52:3352 [35mhttp[39m: [35mPOST /api/auth/login 200 611 - 824.921 ms[39m
+2026-01-07 12:33:52:3352 [32minfo[39m: [32mUser 4 connected with socket UauATETPyl3Lqxh3AAAJ[39m
+2026-01-07 12:33:52:3352 [35mhttp[39m: [35mGET /api/admin/stats 304 - - 7.362 ms[39m
+2026-01-07 12:35:25:3525 [35mhttp[39m: [35mGET /api/admin/stats 304 - - 4.030 ms[39m
+2026-01-07 12:35:34:3534 [35mhttp[39m: [35mGET /api/chat/conversations 304 - - 323.118 ms[39m
+2026-01-07 12:35:34:3534 [35mhttp[39m: [35mGET /api/chat/conversations 304 - - 231.735 ms[39m
+2026-01-07 14:32:48:3248 [33mwarn[39m: [33mDNS resolution failed (attempt 1/5), retrying in 2000ms...[39m
+2026-01-07 23:39:22:3922 [33mwarn[39m: [33mDNS resolution failed (attempt 1/5), retrying in 2000ms...[39m
+2026-01-07 23:39:24:3924 [33mwarn[39m: [33mDNS resolution failed (attempt 2/5), retrying in 4000ms...[39m
+2026-01-07 23:39:29:3929 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-07 23:39:29:3929 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-07 23:39:49:3949 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-07 23:39:49:3949 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-07 23:39:55:3955 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-07 23:39:55:3955 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-07 23:44:16:4416 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-07 23:44:16:4416 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-07 23:44:39:4439 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-07 23:44:39:4439 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-07 23:44:55:4455 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-07 23:44:55:4455 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-07 23:45:21:4521 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-07 23:45:21:4521 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-07 23:45:39:4539 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-07 23:45:39:4539 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-07 23:45:51:4551 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-07 23:45:51:4551 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-07 23:46:05:465 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-07 23:46:05:465 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-07 23:47:03:473 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-07 23:47:03:473 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-07 23:52:39:5239 [35mhttp[39m: [35mGET /api/auth/me 401 39 - 10.930 ms[39m
+2026-01-07 23:52:39:5239 [35mhttp[39m: [35mGET /api/auth/me 401 39 - 2.582 ms[39m
+2026-01-07 23:52:39:5239 [35mhttp[39m: [35mGET /api/items/public?search=&minPrice=0&maxPrice=1000&limit=20 200 57 - 551.020 ms[39m
+2026-01-07 23:52:40:5240 [35mhttp[39m: [35mPOST /api/auth/refresh 200 397 - 1102.276 ms[39m
+2026-01-07 23:52:40:5240 [35mhttp[39m: [35mPOST /api/auth/refresh 200 397 - 1385.361 ms[39m
+2026-01-07 23:52:41:5241 [35mhttp[39m: [35mGET /api/auth/me 200 195 - 176.890 ms[39m
+2026-01-07 23:52:41:5241 [32minfo[39m: [32mUser 4 connected with socket yWKIcKt7oLmLLpS6AAAB[39m
+2026-01-07 23:52:41:5241 [35mhttp[39m: [35mGET /api/auth/me 304 - - 177.484 ms[39m
+2026-01-07 23:52:52:5252 [35mhttp[39m: [35mGET /api/admin/stats 304 - - 4.078 ms[39m
+2026-01-07 23:53:00:530 [35mhttp[39m: [35mGET /api/chat/conversations 304 - - 187.835 ms[39m
+2026-01-07 23:53:00:530 [35mhttp[39m: [35mGET /api/chat/conversations 304 - - 193.366 ms[39m
+2026-01-07 23:53:12:5312 [35mhttp[39m: [35mGET /api/items/public?search=&category=Dresses&minPrice=0&maxPrice=1000&limit=20 200 57 - 360.829 ms[39m
+2026-01-07 23:53:14:5314 [35mhttp[39m: [35mGET /api/items/public?search=&category=Tops&minPrice=0&maxPrice=1000&limit=20 200 57 - 515.619 ms[39m
+2026-01-07 23:53:15:5315 [35mhttp[39m: [35mGET /api/items/public?search=&category=Bottoms&minPrice=0&maxPrice=1000&limit=20 200 57 - 357.140 ms[39m
+2026-01-07 23:53:15:5315 [35mhttp[39m: [35mGET /api/items/public?search=&category=Shoes&minPrice=0&maxPrice=1000&limit=20 200 57 - 354.709 ms[39m
+2026-01-07 23:53:16:5316 [35mhttp[39m: [35mGET /api/items/public?search=&category=Accessories&minPrice=0&maxPrice=1000&limit=20 200 57 - 372.995 ms[39m
+2026-01-07 23:53:17:5317 [35mhttp[39m: [35mGET /api/items/public?search=&category=Outerwear&minPrice=0&maxPrice=1000&limit=20 200 57 - 357.484 ms[39m
+2026-01-07 23:54:35:5435 [35mhttp[39m: [35mGET /api/items/public?isTrending=true&limit=10 200 57 - 367.964 ms[39m
+2026-01-07 23:54:42:5442 [35mhttp[39m: [35mGET /api/items/public?search=&minPrice=0&maxPrice=1000&limit=20 304 - - 350.397 ms[39m
+2026-01-07 23:56:07:567 [35mhttp[39m: [35mGET /api/items/public?search=&minPrice=0&maxPrice=1000&limit=20 304 - - 373.252 ms[39m
+2026-01-07 23:58:05:585 [35mhttp[39m: [35mGET /api/items/public?isTrending=true&limit=10 304 - - 374.709 ms[39m
+2026-01-07 23:58:12:5812 [35mhttp[39m: [35mGET /api/items/public?search=&minPrice=0&maxPrice=1000&limit=20 304 - - 370.954 ms[39m
+2026-01-08 00:00:17:017 [35mhttp[39m: [35mGET /api/items/public?isTrending=true&limit=10 304 - - 356.069 ms[39m
+2026-01-08 00:00:22:022 [35mhttp[39m: [35mGET /api/items/public?search=&minPrice=0&maxPrice=1000&limit=20 304 - - 347.340 ms[39m
+2026-01-08 00:01:55:155 [35mhttp[39m: [35mGET /api/items/public?search=&minPrice=0&maxPrice=1000&limit=20 304 - - 348.477 ms[39m
+2026-01-08 00:02:53:253 [35mhttp[39m: [35mGET /api/items/public?isTrending=true&limit=10 304 - - 353.446 ms[39m
+2026-01-08 00:03:08:38 [35mhttp[39m: [35mGET /api/items/public?search=&category=Dresses&minPrice=0&maxPrice=1000&limit=20 304 - - 349.016 ms[39m
+2026-01-08 00:03:09:39 [35mhttp[39m: [35mGET /api/items/public?search=&category=Tops&minPrice=0&maxPrice=1000&limit=20 304 - - 339.949 ms[39m
+2026-01-08 00:03:11:311 [35mhttp[39m: [35mGET /api/items/public?search=&minPrice=0&maxPrice=1000&limit=20 304 - - 355.120 ms[39m
+2026-01-08 00:03:12:312 [35mhttp[39m: [35mGET /api/items/public?search=&category=Bottoms&minPrice=0&maxPrice=1000&limit=20 304 - - 346.453 ms[39m
+2026-01-08 00:03:13:313 [35mhttp[39m: [35mGET /api/items/public?search=&category=Shoes&minPrice=0&maxPrice=1000&limit=20 304 - - 423.820 ms[39m
+2026-01-08 00:10:00:100 [35mhttp[39m: [35mGET /api/items/public?isTrending=true&limit=10 304 - - 429.367 ms[39m
+2026-01-08 00:10:55:1055 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-08 00:10:55:1055 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-08 00:11:07:117 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-08 00:11:07:117 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-08 00:11:12:1112 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-08 00:11:12:1112 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-08 00:11:23:1123 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-08 00:11:23:1123 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-08 00:11:28:1128 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-08 00:11:28:1128 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-08 00:11:50:1150 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-08 00:11:50:1150 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-08 00:11:56:1156 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-08 00:11:56:1156 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-08 00:12:20:1220 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-08 00:12:20:1220 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-08 00:12:35:1235 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-08 00:12:35:1235 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-08 00:12:40:1240 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-08 00:12:40:1240 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-08 00:14:09:149 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-08 00:14:09:149 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-08 00:14:14:1414 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-08 00:14:14:1414 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-08 00:14:22:1422 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-08 00:14:22:1422 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-08 00:14:27:1427 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-08 00:14:27:1427 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-08 00:14:37:1437 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-08 00:14:37:1437 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-08 00:14:43:1443 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-08 00:14:43:1443 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-08 00:15:13:1513 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-08 00:15:13:1513 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-08 00:15:19:1519 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-08 00:15:19:1519 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-08 00:15:30:1530 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-08 00:15:30:1530 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-08 00:15:36:1536 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-08 00:15:36:1536 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-08 00:16:48:1648 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-08 00:16:48:1648 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-08 00:17:00:170 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-08 00:17:00:170 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-08 00:20:25:2025 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-08 00:20:25:2025 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-08 00:25:49:2549 [35mhttp[39m: [35mGET /api/admin/stats 401 39 - 16.982 ms[39m
+2026-01-08 00:25:50:2550 [35mhttp[39m: [35mPOST /api/auth/refresh 200 397 - 432.953 ms[39m
+2026-01-08 00:25:50:2550 [35mhttp[39m: [35mGET /api/admin/stats 304 - - 3.660 ms[39m
+2026-01-08 00:26:03:263 [35mhttp[39m: [35mGET /api/items?page=1&limit=10 200 57 - 389.669 ms[39m
+2026-01-08 00:26:51:2651 [35mhttp[39m: [35mGET /api/admin/stats 304 - - 2.950 ms[39m
+2026-01-08 00:27:26:2726 [35mhttp[39m: [35mGET /api/items/public?search=&minPrice=0&maxPrice=1000&limit=20 304 - - 378.188 ms[39m
+2026-01-08 00:31:04:314 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-08 00:31:04:314 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-08 00:31:10:3110 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-08 00:31:10:3110 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-08 00:31:21:3121 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-08 00:31:21:3121 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-08 00:31:36:3136 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-08 00:31:36:3136 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-08 00:31:42:3142 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-08 00:31:42:3142 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-08 00:31:53:3153 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-08 00:31:53:3153 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-08 00:31:59:3159 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-08 00:31:59:3159 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-08 00:32:07:327 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-08 00:32:07:327 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-08 00:32:13:3213 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-08 00:32:13:3213 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-08 00:32:30:3230 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-08 00:32:30:3230 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-08 00:32:52:3252 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-08 00:32:52:3252 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-08 00:35:09:359 [35mhttp[39m: [35mGET /api/items/public?search=&minPrice=0&maxPrice=1000&limit=20 304 - - 390.157 ms[39m
+2026-01-08 00:35:09:359 [35mhttp[39m: [35mGET /api/auth/me 200 195 - 930.542 ms[39m
+2026-01-08 00:35:10:3510 [32minfo[39m: [32mUser 4 connected with socket wzcWA9lPQyop4UUAAAAB[39m
+2026-01-08 00:35:10:3510 [35mhttp[39m: [35mGET /api/auth/me 304 - - 178.118 ms[39m
+2026-01-08 00:36:57:3657 [35mhttp[39m: [35mGET /api/items/public?search=&minPrice=0&maxPrice=1000&limit=20 304 - - 357.933 ms[39m
+2026-01-08 00:37:20:3720 [35mhttp[39m: [35mGET /api/items/public?maxPrice=1000 200 57 - 538.978 ms[39m
+2026-01-08 06:26:53:2653 [35mhttp[39m: [35mGET /api/looks/favorites 401 39 - 4.591 ms[39m
+2026-01-08 06:26:54:2654 [35mhttp[39m: [35mGET /api/items/public?limit=8 200 56 - 1012.760 ms[39m
+2026-01-08 06:26:54:2654 [35mhttp[39m: [35mPOST /api/auth/refresh 200 397 - 1128.298 ms[39m
+2026-01-08 06:26:54:2654 [31merror[39m: [31mError handler caught: relation "favorites" does not exist[39m
+2026-01-08 06:26:54:2654 [35mhttp[39m: [35mGET /api/looks/favorites 500 51 - 190.593 ms[39m
+2026-01-08 06:26:56:2656 [31merror[39m: [31mError handler caught: relation "favorites" does not exist[39m
+2026-01-08 06:26:56:2656 [35mhttp[39m: [35mGET /api/looks/favorites 500 51 - 195.914 ms[39m
+2026-01-08 06:28:18:2818 [35mhttp[39m: [35mGET /api/admin/stats 304 - - 4.731 ms[39m
+2026-01-08 06:28:24:2824 [35mhttp[39m: [35mGET /api/users 401 54 - 1.300 ms[39m
+2026-01-08 06:28:25:2825 [35mhttp[39m: [35mGET /api/users 401 54 - 3.378 ms[39m
+2026-01-08 06:28:40:2840 [35mhttp[39m: [35mGET /api/tasks 401 54 - 1.130 ms[39m
+2026-01-08 06:28:40:2840 [35mhttp[39m: [35mGET /api/customers 401 54 - 1.174 ms[39m
+2026-01-08 06:28:40:2840 [35mhttp[39m: [35mGET /api/users 401 54 - 0.739 ms[39m
+2026-01-08 06:28:41:2841 [35mhttp[39m: [35mGET /api/tasks 401 54 - 2.850 ms[39m
+2026-01-08 06:28:41:2841 [35mhttp[39m: [35mGET /api/customers 401 54 - 2.689 ms[39m
+2026-01-08 06:28:41:2841 [35mhttp[39m: [35mGET /api/users 401 54 - 3.298 ms[39m
+2026-01-08 06:29:27:2927 [35mhttp[39m: [35mGET /api/admin/stats 304 - - 4.197 ms[39m
+2026-01-08 06:29:31:2931 [35mhttp[39m: [35mGET /api/customers?search= 401 54 - 2.066 ms[39m
+2026-01-08 06:29:32:2932 [35mhttp[39m: [35mGET /api/customers?search= 401 54 - 2.541 ms[39m
+2026-01-08 06:31:19:3119 [31merror[39m: [31mError handler caught: relation "favorites" does not exist[39m
+2026-01-08 06:31:19:3119 [35mhttp[39m: [35mGET /api/looks/favorites 500 51 - 1416.349 ms[39m
+2026-01-08 06:31:19:3119 [35mhttp[39m: [35mGET /api/items/public?limit=8 304 - - 1617.478 ms[39m
+2026-01-08 06:31:20:3120 [31merror[39m: [31mError handler caught: relation "favorites" does not exist[39m
+2026-01-08 06:31:20:3120 [35mhttp[39m: [35mGET /api/looks/favorites 500 51 - 277.886 ms[39m
+2026-01-08 06:31:49:3149 [32minfo[39m: [32mSocket wzcWA9lPQyop4UUAAAAB disconnected[39m
+2026-01-08 14:46:16:4616 [35mhttp[39m: [35mGET /api/auth/me 401 39 - 4.128 ms[39m
+2026-01-08 14:46:16:4616 [35mhttp[39m: [35mGET /api/auth/me 401 39 - 3.788 ms[39m
+2026-01-08 14:46:16:4616 [31merror[39m: [31mError handler caught: getaddrinfo EAI_AGAIN aws-1-eu-north-1.pooler.supabase.com[39m
+2026-01-08 14:46:16:4616 [35mhttp[39m: [35mGET /api/items/public?limit=8 500 72 - 149.011 ms[39m
+2026-01-08 14:46:16:4616 [31merror[39m: [31mError handler caught: getaddrinfo EAI_AGAIN aws-1-eu-north-1.pooler.supabase.com[39m
+2026-01-08 14:46:16:4616 [35mhttp[39m: [35mPOST /api/auth/refresh 500 72 - 81.887 ms[39m
+2026-01-08 14:46:16:4616 [31merror[39m: [31mError handler caught: getaddrinfo EAI_AGAIN aws-1-eu-north-1.pooler.supabase.com[39m
+2026-01-08 14:46:16:4616 [35mhttp[39m: [35mPOST /api/auth/refresh 500 72 - 40.754 ms[39m
+2026-01-08 14:46:17:4617 [31merror[39m: [31mError handler caught: getaddrinfo EAI_AGAIN aws-1-eu-north-1.pooler.supabase.com[39m
+2026-01-08 14:46:17:4617 [35mhttp[39m: [35mGET /api/items/public?limit=8 500 72 - 13.548 ms[39m
+2026-01-08 14:46:55:4655 [31merror[39m: [31mError handler caught: getaddrinfo EAI_AGAIN aws-1-eu-north-1.pooler.supabase.com[39m
+2026-01-08 14:46:55:4655 [35mhttp[39m: [35mGET /api/items/public?maxPrice=1000 500 72 - 205.902 ms[39m
+2026-01-08 14:46:56:4656 [31merror[39m: [31mError handler caught: getaddrinfo EAI_AGAIN aws-1-eu-north-1.pooler.supabase.com[39m
+2026-01-08 14:46:56:4656 [35mhttp[39m: [35mGET /api/items/public?maxPrice=1000 500 72 - 3.852 ms[39m
+2026-01-08 14:47:10:4710 [31merror[39m: [31mError handler caught: Connection terminated due to connection timeout[39m
+2026-01-08 14:47:10:4710 [35mhttp[39m: [35mGET /api/items/public?isTrending=true&limit=10 500 61 - 10004.310 ms[39m
+2026-01-08 14:47:18:4718 [31merror[39m: [31mError handler caught: Connection terminated due to connection timeout[39m
+2026-01-08 14:47:18:4718 [35mhttp[39m: [35mGET /api/items/public?maxPrice=1000 500 61 - 10013.925 ms[39m
+2026-01-08 14:47:30:4730 [31merror[39m: [31mError handler caught: Connection terminated due to connection timeout[39m
+2026-01-08 14:47:30:4730 [35mhttp[39m: [35mGET /api/items/public?maxPrice=1000 500 61 - 10006.321 ms[39m
+2026-01-09 01:40:07:407 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-09 01:40:07:407 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-09 01:44:15:4415 [35mhttp[39m: [35mGET /api/items/public?maxPrice=1000 200 57 - 422.166 ms[39m
+2026-01-09 01:46:19:4619 [35mhttp[39m: [35mGET /api/items/public?isTrending=true&limit=10 200 57 - 392.188 ms[39m
+2026-01-09 01:46:47:4647 [35mhttp[39m: [35mPOST /api/auth/login 200 606 - 775.089 ms[39m
+2026-01-09 01:46:47:4647 [32minfo[39m: [32mUser 3 connected with socket cURqkegDE0p5cCxeAAAB[39m
+2026-01-09 01:47:10:4710 [35mhttp[39m: [35mGET /api/items/public?limit=8 200 56 - 353.999 ms[39m
+2026-01-09 01:47:10:4710 [31merror[39m: [31mError handler caught: relation "favorites" does not exist[39m
+2026-01-09 01:47:10:4710 [35mhttp[39m: [35mGET /api/looks/favorites 500 51 - 896.578 ms[39m
+2026-01-09 01:47:11:4711 [31merror[39m: [31mError handler caught: relation "favorites" does not exist[39m
+2026-01-09 01:47:11:4711 [35mhttp[39m: [35mGET /api/looks/favorites 500 51 - 183.176 ms[39m
+2026-01-09 01:47:27:4727 [35mhttp[39m: [35mGET /api/chat/conversations 304 - - 898.126 ms[39m
+2026-01-09 01:47:28:4728 [35mhttp[39m: [35mGET /api/chat/conversations 304 - - 182.250 ms[39m
+2026-01-09 01:49:24:4924 [35mhttp[39m: [35mPOST /api/auth/login 200 611 - 464.823 ms[39m
+2026-01-09 01:49:24:4924 [35mhttp[39m: [35mGET /api/admin/stats 200 77 - 2.315 ms[39m
+2026-01-09 01:49:24:4924 [32minfo[39m: [32mUser 4 connected with socket aM8XIimbPqpJIUVeAAAD[39m
+2026-01-09 01:49:33:4933 [35mhttp[39m: [35mGET /api/items?page=1&limit=10 200 57 - 360.483 ms[39m
+2026-01-09 01:51:23:5123 [35mhttp[39m: [35mPOST /api/items 201 472 - 219.532 ms[39m
+2026-01-09 01:51:23:5123 [35mhttp[39m: [35mGET /api/items?page=1&limit=10 200 529 - 362.346 ms[39m
+2026-01-09 01:51:35:5135 [32minfo[39m: [32mSocket cURqkegDE0p5cCxeAAAB disconnected[39m
+2026-01-09 01:51:35:5135 [35mhttp[39m: [35mGET /api/auth/me 200 192 - 180.545 ms[39m
+2026-01-09 01:51:35:5135 [32minfo[39m: [32mUser 3 connected with socket 7r9M3WFS1MtNT_NBAAAF[39m
+2026-01-09 01:51:36:5136 [35mhttp[39m: [35mGET /api/auth/me 304 - - 209.006 ms[39m
+2026-01-09 01:51:39:5139 [35mhttp[39m: [35mGET /api/items/public?maxPrice=1000 304 - - 350.569 ms[39m
+2026-01-09 01:51:43:5143 [32minfo[39m: [32mSocket 7r9M3WFS1MtNT_NBAAAF disconnected[39m
+2026-01-09 01:51:44:5144 [35mhttp[39m: [35mGET /api/items/public?maxPrice=1000 304 - - 389.247 ms[39m
+2026-01-09 01:51:44:5144 [35mhttp[39m: [35mGET /api/auth/me 304 - - 903.502 ms[39m
+2026-01-09 01:51:44:5144 [32minfo[39m: [32mUser 3 connected with socket 8qyDPpk2WI1H8LXdAAAH[39m
+2026-01-09 01:51:44:5144 [35mhttp[39m: [35mGET /api/auth/me 304 - - 201.403 ms[39m
+2026-01-09 01:51:50:5150 [32minfo[39m: [32mSocket 8qyDPpk2WI1H8LXdAAAH disconnected[39m
+2026-01-09 01:51:51:5151 [35mhttp[39m: [35mGET /api/auth/me 304 - - 183.080 ms[39m
+2026-01-09 01:51:51:5151 [32minfo[39m: [32mUser 3 connected with socket i9V91egeoCT_hjkaAAAJ[39m
+2026-01-09 01:51:51:5151 [35mhttp[39m: [35mGET /api/auth/me 304 - - 185.028 ms[39m
+2026-01-09 01:51:51:5151 [35mhttp[39m: [35mGET /api/items/public?maxPrice=1000 304 - - 380.866 ms[39m
+2026-01-09 01:52:01:521 [32minfo[39m: [32mSocket aM8XIimbPqpJIUVeAAAD disconnected[39m
+2026-01-09 01:52:02:522 [35mhttp[39m: [35mGET /api/auth/me 200 195 - 177.113 ms[39m
+2026-01-09 01:52:02:522 [32minfo[39m: [32mUser 4 connected with socket Yg07CJfTQWhdPCXwAAAL[39m
+2026-01-09 01:52:02:522 [35mhttp[39m: [35mGET /api/auth/me 304 - - 188.586 ms[39m
+2026-01-09 01:52:02:522 [35mhttp[39m: [35mGET /api/items?page=1&limit=10 304 - - 331.301 ms[39m
+2026-01-09 01:52:12:5212 [35mhttp[39m: [35mGET /api/items/public?isTrending=true&limit=10 200 529 - 359.540 ms[39m
+2026-01-09 01:52:30:5230 [35mhttp[39m: [35mGET /api/items/1 200 472 - 182.106 ms[39m
+2026-01-09 01:53:41:5341 [35mhttp[39m: [35mGET /api/items/public?maxPrice=1000 304 - - 389.062 ms[39m
+2026-01-09 01:53:54:5354 [35mhttp[39m: [35mGET /api/items/public?category=&maxPrice=1000 200 57 - 346.533 ms[39m
+2026-01-09 01:55:01:551 [35mhttp[39m: [35mGET /api/items/public?category=Dresses&maxPrice=1000 200 57 - 366.776 ms[39m
+2026-01-09 01:55:03:553 [35mhttp[39m: [35mGET /api/items/public?category=&maxPrice=1000 304 - - 367.924 ms[39m
+2026-01-09 01:55:09:559 [35mhttp[39m: [35mGET /api/items/1 200 472 - 173.585 ms[39m
+2026-01-09 01:55:23:5523 [35mhttp[39m: [35mGET /api/items?page=1&limit=10 304 - - 376.158 ms[39m
+2026-01-09 01:55:52:5552 [35mhttp[39m: [35mGET /api/admin/stats 304 - - 2.375 ms[39m
+2026-01-09 01:56:26:5626 [35mhttp[39m: [35mGET /api/users 401 54 - 0.781 ms[39m
+2026-01-09 01:56:27:5627 [35mhttp[39m: [35mGET /api/users 401 54 - 0.793 ms[39m
+2026-01-09 01:56:38:5638 [32minfo[39m: [32mSocket Yg07CJfTQWhdPCXwAAAL disconnected[39m
+2026-01-09 01:56:38:5638 [35mhttp[39m: [35mGET /api/auth/me 304 - - 166.872 ms[39m
+2026-01-09 01:56:38:5638 [35mhttp[39m: [35mGET /api/users 401 54 - 0.894 ms[39m
+2026-01-09 01:56:38:5638 [32minfo[39m: [32mUser 4 connected with socket gpicgB4UzJv71zYCAAAN[39m
+2026-01-09 01:56:38:5638 [35mhttp[39m: [35mGET /api/auth/me 304 - - 179.225 ms[39m
+2026-01-09 01:56:39:5639 [35mhttp[39m: [35mGET /api/users 401 54 - 0.741 ms[39m
+2026-01-09 01:59:21:5921 [35mhttp[39m: [35mGET /api/users 401 54 - 0.952 ms[39m
+2026-01-09 01:59:22:5922 [35mhttp[39m: [35mGET /api/users 200 775 - 193.200 ms[39m
+2026-01-09 02:02:08:28 [35mhttp[39m: [35mGET /api/admin/stats 304 - - 3.009 ms[39m
+2026-01-09 02:02:12:212 [32minfo[39m: [32mSocket gpicgB4UzJv71zYCAAAN disconnected[39m
+2026-01-09 02:02:13:213 [35mhttp[39m: [35mGET /api/auth/me 304 - - 191.709 ms[39m
+2026-01-09 02:02:13:213 [35mhttp[39m: [35mGET /api/admin/stats 304 - - 2.467 ms[39m
+2026-01-09 02:02:13:213 [32minfo[39m: [32mUser 4 connected with socket zPPFmrdGFJt5Zlk_AAAP[39m
+2026-01-09 02:02:13:213 [35mhttp[39m: [35mGET /api/auth/me 304 - - 173.455 ms[39m
+2026-01-09 02:03:40:340 [31merror[39m: [31mError handler caught: relation "tasks" does not exist[39m
+2026-01-09 02:03:40:340 [35mhttp[39m: [35mGET /api/tasks 500 47 - 183.272 ms[39m
+2026-01-09 02:03:40:340 [31merror[39m: [31mError handler caught: relation "customers" does not exist[39m
+2026-01-09 02:03:40:340 [35mhttp[39m: [35mGET /api/customers 500 51 - 187.042 ms[39m
+2026-01-09 02:03:40:340 [35mhttp[39m: [35mGET /api/users 304 - - 924.316 ms[39m
+2026-01-09 02:03:41:341 [31merror[39m: [31mError handler caught: relation "tasks" does not exist[39m
+2026-01-09 02:03:41:341 [35mhttp[39m: [35mGET /api/tasks 500 47 - 186.281 ms[39m
+2026-01-09 02:03:42:342 [31merror[39m: [31mError handler caught: relation "customers" does not exist[39m
+2026-01-09 02:03:42:342 [35mhttp[39m: [35mGET /api/customers 500 51 - 888.947 ms[39m
+2026-01-09 02:06:03:63 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-09 02:06:03:63 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-09 02:06:20:620 [32minfo[39m: [32mStarting database migrations...[39m
+2026-01-09 02:06:20:620 [32minfo[39m: [32mCreating users table...[39m
+2026-01-09 02:06:21:621 [32minfo[39m: [32m✓ Users table created successfully[39m
+2026-01-09 02:06:21:621 [32minfo[39m: [32mCreating items table...[39m
+2026-01-09 02:06:21:621 [32minfo[39m: [32m✓ Items table created successfully[39m
+2026-01-09 02:06:21:621 [32minfo[39m: [32mCreating payments tables...[39m
+2026-01-09 02:06:22:622 [32minfo[39m: [32m✓ Payments tables created successfully[39m
+2026-01-09 02:06:22:622 [32minfo[39m: [32mCreating chat tables...[39m
+2026-01-09 02:06:22:622 [31merror[39m: [31mMigration failed: relation "idx_messages_conversation_id" already exists[39m
+2026-01-09 02:07:14:714 [32minfo[39m: [32mStarting database migrations...[39m
+2026-01-09 02:07:14:714 [32minfo[39m: [32mCreating users table...[39m
+2026-01-09 02:07:15:715 [32minfo[39m: [32m✓ Users table created successfully[39m
+2026-01-09 02:07:15:715 [32minfo[39m: [32mCreating items table...[39m
+2026-01-09 02:07:15:715 [32minfo[39m: [32m✓ Items table created successfully[39m
+2026-01-09 02:07:15:715 [32minfo[39m: [32mCreating payments tables...[39m
+2026-01-09 02:07:15:715 [32minfo[39m: [32m✓ Payments tables created successfully[39m
+2026-01-09 02:07:15:715 [32minfo[39m: [32mCreating chat tables...[39m
+2026-01-09 02:07:15:715 [32minfo[39m: [32m✓ Chat tables created successfully[39m
+2026-01-09 02:07:15:715 [32minfo[39m: [32mCreating admin tables (customers, tasks)...[39m
+2026-01-09 02:07:15:715 [32minfo[39m: [32m✓ Admin tables created successfully[39m
+2026-01-09 02:08:02:82 [32minfo[39m: [32mStarting database migrations...[39m
+2026-01-09 02:08:02:82 [32minfo[39m: [32mCreating users table...[39m
+2026-01-09 02:08:03:83 [32minfo[39m: [32m✓ Users table created successfully[39m
+2026-01-09 02:08:03:83 [32minfo[39m: [32mCreating items table...[39m
+2026-01-09 02:08:03:83 [32minfo[39m: [32m✓ Items table created successfully[39m
+2026-01-09 02:08:03:83 [32minfo[39m: [32mCreating payments tables...[39m
+2026-01-09 02:08:03:83 [32minfo[39m: [32m✓ Payments tables created successfully[39m
+2026-01-09 02:08:03:83 [32minfo[39m: [32mCreating chat tables...[39m
+2026-01-09 02:08:03:83 [32minfo[39m: [32m✓ Chat tables created successfully[39m
+2026-01-09 02:08:03:83 [32minfo[39m: [32mCreating admin tables (customers, tasks)...[39m
+2026-01-09 02:08:03:83 [32minfo[39m: [32m✓ Admin tables created successfully[39m
+2026-01-09 02:10:10:1010 [35mhttp[39m: [35mGET /api/auth/me 401 39 - 14.577 ms[39m
+2026-01-09 02:10:10:1010 [35mhttp[39m: [35mGET /api/auth/me 401 39 - 4.701 ms[39m
+2026-01-09 02:10:10:1010 [35mhttp[39m: [35mPOST /api/auth/refresh 200 397 - 395.750 ms[39m
+2026-01-09 02:10:11:1011 [35mhttp[39m: [35mGET /api/auth/me 200 195 - 183.718 ms[39m
+2026-01-09 02:10:11:1011 [32minfo[39m: [32mUser 4 connected with socket F0OsdsJljJPw12mbAAAF[39m
+2026-01-09 02:10:11:1011 [35mhttp[39m: [35mGET /api/customers 200 2 - 195.289 ms[39m
+2026-01-09 02:10:11:1011 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-09 02:10:11:1011 [35mhttp[39m: [35mPOST /api/auth/refresh 401 36 - 914.486 ms[39m
+2026-01-09 02:10:11:1011 [32minfo[39m: [32mSocket F0OsdsJljJPw12mbAAAF disconnected[39m
+2026-01-09 02:10:12:1012 [35mhttp[39m: [35mGET /api/users 200 775 - 913.731 ms[39m
+2026-01-09 02:10:12:1012 [31merror[39m: [31mError handler caught: column u.username does not exist[39m
+2026-01-09 02:10:12:1012 [35mhttp[39m: [35mGET /api/tasks 500 46 - 958.662 ms[39m
+2026-01-09 02:10:25:1025 [35mhttp[39m: [35mPOST /api/auth/login 200 611 - 493.507 ms[39m
+2026-01-09 02:10:25:1025 [32minfo[39m: [32mUser 4 connected with socket U05L3QtlYHQ1lnCvAAAH[39m
+2026-01-09 02:10:25:1025 [31merror[39m: [31mError handler caught: column u.username does not exist[39m
+2026-01-09 02:10:25:1025 [35mhttp[39m: [35mGET /api/tasks 500 46 - 182.705 ms[39m
+2026-01-09 02:10:27:1027 [31merror[39m: [31mError handler caught: column u.username does not exist[39m
+2026-01-09 02:10:27:1027 [35mhttp[39m: [35mGET /api/tasks 500 46 - 182.207 ms[39m
+2026-01-09 02:11:34:1134 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-09 02:11:34:1134 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-09 02:11:35:1135 [32minfo[39m: [32mUser 4 connected with socket OW8Ne-k6feBPiWf0AAAB[39m
+2026-01-09 02:11:53:1153 [32minfo[39m: [32mSocket OW8Ne-k6feBPiWf0AAAB disconnected[39m
+2026-01-09 02:11:54:1154 [35mhttp[39m: [35mGET /api/auth/me 200 195 - 202.122 ms[39m
+2026-01-09 02:11:54:1154 [32minfo[39m: [32mUser 4 connected with socket FVQksy2ldjBmMrQvAAAD[39m
+2026-01-09 02:11:54:1154 [35mhttp[39m: [35mGET /api/auth/me 304 - - 187.182 ms[39m
+2026-01-09 02:11:55:1155 [35mhttp[39m: [35mGET /api/customers 304 - - 904.257 ms[39m
+2026-01-09 02:11:55:1155 [35mhttp[39m: [35mGET /api/tasks 200 2 - 938.914 ms[39m
+2026-01-09 02:11:55:1155 [35mhttp[39m: [35mGET /api/users 200 775 - 941.937 ms[39m
+2026-01-09 02:12:29:1229 [35mhttp[39m: [35mGET /api/auth/me 401 39 - 3.999 ms[39m
+2026-01-09 02:12:29:1229 [35mhttp[39m: [35mGET /api/auth/me 401 39 - 3.554 ms[39m
+2026-01-09 02:12:30:1230 [35mhttp[39m: [35mGET /api/items/public?maxPrice=1000 304 - - 1219.001 ms[39m
+2026-01-09 02:12:30:1230 [35mhttp[39m: [35mPOST /api/auth/refresh 200 395 - 1150.043 ms[39m
+2026-01-09 02:12:31:1231 [35mhttp[39m: [35mPOST /api/auth/refresh 200 395 - 1096.381 ms[39m
+2026-01-09 02:12:31:1231 [35mhttp[39m: [35mGET /api/auth/me 200 192 - 186.235 ms[39m
+2026-01-09 02:12:31:1231 [32minfo[39m: [32mUser 3 connected with socket Ek1h-_OIGHD8bhiEAAAF[39m
+2026-01-09 02:12:31:1231 [35mhttp[39m: [35mGET /api/auth/me 304 - - 184.813 ms[39m
+2026-01-09 02:13:31:1331 [35mhttp[39m: [35mGET /api/items/public?isTrending=true&limit=10 304 - - 1085.025 ms[39m
+2026-01-09 02:13:43:1343 [35mhttp[39m: [35mGET /api/admin/stats 304 - - 2.827 ms[39m
+2026-01-09 02:15:30:1530 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-09 02:15:30:1530 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-09 02:15:30:1530 [32minfo[39m: [32mUser 3 connected with socket E4zyrxrD0LGa8E1pAAAB[39m
+2026-01-09 02:15:30:1530 [32minfo[39m: [32mUser 4 connected with socket vl2oRGZucTd2m2AFAAAD[39m
+2026-01-09 02:15:36:1536 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-09 02:15:36:1536 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-09 02:15:36:1536 [32minfo[39m: [32mUser 3 connected with socket qiz8dHUsNHcyJ_MsAAAB[39m
+2026-01-09 02:15:36:1536 [32minfo[39m: [32mUser 4 connected with socket fitJT_Br7qpyHY1iAAAD[39m
+2026-01-09 02:15:40:1540 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-09 02:15:40:1540 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-09 02:15:42:1542 [32minfo[39m: [32mUser 3 connected with socket FMn2Jl3cULdGOwKEAAAB[39m
+2026-01-09 02:15:42:1542 [32minfo[39m: [32mUser 4 connected with socket jFcjr1A3akWdR3pMAAAD[39m
+2026-01-09 02:15:47:1547 [35mhttp[39m: [35mGET /api/admin/stats 200 137 - 724.078 ms[39m
+2026-01-09 02:20:42:2042 [35mhttp[39m: [35mGET /api/customers?search= 200 2 - 185.053 ms[39m
+2026-01-09 02:21:32:2132 [35mhttp[39m: [35mPOST /api/customers 201 304 - 447.018 ms[39m
+2026-01-09 02:21:32:2132 [35mhttp[39m: [35mGET /api/customers?search= 200 306 - 498.932 ms[39m
+2026-01-09 03:29:17:2917 [35mhttp[39m: [35mGET /api/admin/stats 401 39 - 4.864 ms[39m
+2026-01-09 03:29:18:2918 [35mhttp[39m: [35mPOST /api/auth/refresh 200 397 - 475.032 ms[39m
+2026-01-09 03:29:19:2919 [35mhttp[39m: [35mGET /api/admin/stats 304 - - 716.280 ms[39m
+2026-01-09 03:29:28:2928 [35mhttp[39m: [35mGET /api/users 200 775 - 200.324 ms[39m
+2026-01-09 03:29:45:2945 [35mhttp[39m: [35mGET /api/customers 200 306 - 187.567 ms[39m
+2026-01-09 03:29:45:2945 [35mhttp[39m: [35mGET /api/tasks 304 - - 892.693 ms[39m
+2026-01-09 03:31:02:312 [35mhttp[39m: [35mPOST /api/tasks 201 358 - 221.654 ms[39m
+2026-01-09 03:31:02:312 [35mhttp[39m: [35mGET /api/tasks 200 414 - 192.907 ms[39m
+2026-01-09 03:31:40:3140 [35mhttp[39m: [35mPUT /api/tasks/1 200 360 - 199.330 ms[39m
+2026-01-09 03:31:40:3140 [35mhttp[39m: [35mGET /api/tasks 200 416 - 182.976 ms[39m
+2026-01-09 03:32:19:3219 [35mhttp[39m: [35mGET /api/looks/favorites 200 2 - 214.772 ms[39m
+2026-01-09 03:32:19:3219 [35mhttp[39m: [35mGET /api/items/public?limit=8 200 528 - 357.684 ms[39m
+2026-01-09 03:32:22:3222 [35mhttp[39m: [35mGET /api/admin/stats 200 137 - 667.970 ms[39m
+2026-01-09 03:35:40:3540 [35mhttp[39m: [35mGET /api/items/public?maxPrice=1000 304 - - 458.540 ms[39m
+2026-01-09 03:43:46:4346 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-09 03:43:46:4346 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-09 03:43:46:4346 [35mhttp[39m: [35mGET /api/looks/favorites 401 39 - 11.765 ms[39m
+2026-01-09 03:43:47:4347 [35mhttp[39m: [35mGET /api/items/public?limit=8 200 528 - 439.621 ms[39m
+2026-01-09 03:43:47:4347 [35mhttp[39m: [35mPOST /api/auth/refresh 200 395 - 1134.867 ms[39m
+2026-01-09 03:43:48:4348 [35mhttp[39m: [35mGET /api/looks/favorites 200 2 - 201.359 ms[39m
+2026-01-09 03:44:09:449 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-09 03:44:09:449 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-09 03:44:16:4416 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-09 03:44:16:4416 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-09 03:45:28:4528 [35mhttp[39m: [35mGET /api/items/public?maxPrice=1000 304 - - 385.018 ms[39m
+2026-01-09 03:45:41:4541 [35mhttp[39m: [35mGET /api/items/public?limit=8 304 - - 339.545 ms[39m
+2026-01-09 03:45:41:4541 [35mhttp[39m: [35mGET /api/looks/favorites 304 - - 909.040 ms[39m
+2026-01-09 03:47:29:4729 [35mhttp[39m: [35mGET /api/items/public?maxPrice=1000 304 - - 355.263 ms[39m
+2026-01-09 03:47:30:4730 [35mhttp[39m: [35mGET /api/items/public?isTrending=true&limit=10 304 - - 353.401 ms[39m
+2026-01-09 03:47:33:4733 [35mhttp[39m: [35mGET /api/items/1 304 - - 199.433 ms[39m
+2026-01-09 03:47:36:4736 [31merror[39m: [31mError handler caught: Invalid API Key provided: sk_test_...[39m
+2026-01-09 03:47:36:4736 [35mhttp[39m: [35mPOST /api/payments/create-checkout-session 401 51 - 830.380 ms[39m
+2026-01-09 03:47:37:4737 [35mhttp[39m: [35mPOST /api/auth/refresh 200 395 - 373.307 ms[39m
+2026-01-09 03:47:37:4737 [31merror[39m: [31mError handler caught: Invalid API Key provided: sk_test_...[39m
+2026-01-09 03:47:37:4737 [35mhttp[39m: [35mPOST /api/payments/create-checkout-session 401 51 - 340.224 ms[39m
+2026-01-09 03:50:19:5019 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-09 03:50:19:5019 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-09 03:55:10:5510 [35mhttp[39m: [35mGET /api/items?page=1&limit=10 401 39 - 15.923 ms[39m
+2026-01-09 03:55:11:5511 [35mhttp[39m: [35mPOST /api/auth/refresh 200 397 - 493.380 ms[39m
+2026-01-09 03:55:11:5511 [35mhttp[39m: [35mGET /api/items?page=1&limit=10 304 - - 375.398 ms[39m
+2026-01-09 03:55:24:5524 [35mhttp[39m: [35mGET /api/items/1 304 - - 203.992 ms[39m
+2026-01-09 03:55:35:5535 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-09 03:55:35:5535 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-09 03:55:43:5543 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-09 03:55:43:5543 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-09 03:55:48:5548 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-09 03:55:48:5548 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-09 03:56:09:569 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-09 03:56:09:569 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-09 03:56:17:5617 [35mhttp[39m: [35mGET /api/items?page=1&limit=10&search=t 200 529 - 402.553 ms[39m
+2026-01-09 03:56:18:5618 [35mhttp[39m: [35mGET /api/items?page=1&limit=10&search=tyuy 200 57 - 361.052 ms[39m
+2026-01-09 03:56:18:5618 [35mhttp[39m: [35mGET /api/items?page=1&limit=10&search=ty 200 57 - 1075.774 ms[39m
+2026-01-09 03:56:18:5618 [35mhttp[39m: [35mGET /api/items?page=1&limit=10&search=tyuyy 200 57 - 353.324 ms[39m
+2026-01-09 03:56:18:5618 [35mhttp[39m: [35mGET /api/items?page=1&limit=10&search=tyu 200 57 - 1105.274 ms[39m
+2026-01-09 03:56:19:5619 [35mhttp[39m: [35mGET /api/items?page=1&limit=10&search=tyuyyu 200 57 - 1068.669 ms[39m
+2026-01-09 03:56:19:5619 [35mhttp[39m: [35mGET /api/items?page=1&limit=10 304 - - 365.315 ms[39m
+2026-01-09 03:56:48:5648 [31merror[39m: [31mError handler caught: Invalid API Key provided: sk_test_...[39m
+2026-01-09 03:56:48:5648 [35mhttp[39m: [35mPOST /api/payments/create-checkout-session 401 51 - 778.191 ms[39m
+2026-01-09 03:56:49:5649 [35mhttp[39m: [35mPOST /api/auth/refresh 200 395 - 358.135 ms[39m
+2026-01-09 03:56:49:5649 [31merror[39m: [31mError handler caught: Invalid API Key provided: sk_test_...[39m
+2026-01-09 03:56:49:5649 [35mhttp[39m: [35mPOST /api/payments/create-checkout-session 401 51 - 355.031 ms[39m
+2026-01-09 03:56:52:5652 [32minfo[39m: [32mCreating installment plan for user 3: 4000 over 3 months for item 1[39m
+2026-01-09 03:56:53:5653 [31merror[39m: [31mError handler caught: Invalid API Key provided: sk_test_...[39m
+2026-01-09 03:56:53:5653 [35mhttp[39m: [35mPOST /api/payments/create-checkout-session 401 51 - 1184.339 ms[39m
+2026-01-09 03:56:54:5654 [35mhttp[39m: [35mPOST /api/auth/refresh 200 395 - 378.605 ms[39m
+2026-01-09 03:56:54:5654 [32minfo[39m: [32mCreating installment plan for user 3: 4000 over 3 months for item 1[39m
+2026-01-09 03:56:55:5655 [31merror[39m: [31mError handler caught: Invalid API Key provided: sk_test_...[39m
+2026-01-09 03:56:55:5655 [35mhttp[39m: [35mPOST /api/payments/create-checkout-session 401 51 - 1129.354 ms[39m
+2026-01-09 03:57:29:5729 [35mhttp[39m: [35mGET /api/items/public?maxPrice=1000 304 - - 382.618 ms[39m
+2026-01-09 03:57:49:5749 [35mhttp[39m: [35mGET /api/items/public?limit=8 304 - - 361.192 ms[39m
+2026-01-09 03:57:50:5750 [35mhttp[39m: [35mGET /api/looks/favorites 304 - - 931.949 ms[39m
+2026-01-09 03:59:36:5936 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-09 03:59:36:5936 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-09 03:59:48:5948 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-09 03:59:48:5948 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m

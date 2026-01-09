@@ -1,0 +1,73 @@
+2025-12-19 00:55:35:5535 [31merror[39m: [31mFailed to start server password authentication failed for user "postgres"[39m
+2025-12-19 00:55:35:5535 [31merror[39m: [31mFailed to start server password authentication failed for user "postgres"[39m
+2025-12-19 00:55:42:5542 [31merror[39m: [31mFailed to start server password authentication failed for user "postgres"[39m
+2025-12-19 00:55:42:5542 [31merror[39m: [31mFailed to start server password authentication failed for user "postgres"[39m
+2025-12-19 00:55:50:5550 [31merror[39m: [31mFailed to start server password authentication failed for user "postgres"[39m
+2025-12-19 00:55:50:5550 [31merror[39m: [31mFailed to start server password authentication failed for user "postgres"[39m
+2025-12-19 00:55:56:5556 [31merror[39m: [31mFailed to start server password authentication failed for user "postgres"[39m
+2025-12-19 00:55:57:5557 [31merror[39m: [31mFailed to start server password authentication failed for user "postgres"[39m
+2025-12-19 00:56:01:561 [31merror[39m: [31mFailed to start server password authentication failed for user "postgres"[39m
+2025-12-19 00:56:01:561 [31merror[39m: [31mFailed to start server password authentication failed for user "postgres"[39m
+2025-12-19 00:56:08:568 [31merror[39m: [31mFailed to start server password authentication failed for user "postgres"[39m
+2025-12-19 00:56:08:568 [31merror[39m: [31mFailed to start server password authentication failed for user "postgres"[39m
+2025-12-22 12:46:26:4626 [31merror[39m: [31mFailed to start server password authentication failed for user "postgres"[39m
+2025-12-22 13:45:47:4547 [31merror[39m: [31mFailed to start server password authentication failed for user "postgres"[39m
+2025-12-22 13:49:51:4951 [31merror[39m: [31mFailed to start server getaddrinfo EAI_AGAIN aws-1-eu-north-1.pooler.supabase.com[39m
+2025-12-22 14:06:04:64 [31merror[39m: [31mError handler caught: relation "users" does not exist[39m
+2025-12-22 14:06:14:614 [31merror[39m: [31mError handler caught: relation "users" does not exist[39m
+2025-12-22 14:06:22:622 [31merror[39m: [31mError handler caught: relation "users" does not exist[39m
+2025-12-22 14:09:08:98 [31merror[39m: [31mError handler caught: relation "users" does not exist[39m
+2025-12-22 14:29:04:294 [31merror[39m: [31mError handler caught: Please verify your email before logging in.[39m
+2025-12-22 14:31:29:3129 [31merror[39m: [31mError handler caught: Please verify your email before logging in.[39m
+2025-12-22 14:41:03:413 [31merror[39m: [31mError handler caught: Please verify your email before logging in.[39m
+2025-12-22 14:41:56:4156 [31merror[39m: [31mError handler caught: Invalid verification token.[39m
+2026-01-06 11:18:14:1814 [31merror[39m: [31mMigration failed: getaddrinfo EAI_AGAIN aws-1-eu-north-1.pooler.supabase.com[39m
+2026-01-06 11:18:39:1839 [31merror[39m: [31mMigration failed: Tenant or user not found[39m
+2026-01-06 11:41:49:4149 [31merror[39m: [31mMigration failed: Tenant or user not found[39m
+2026-01-06 23:11:44:1144 [31merror[39m: [31mDatabase connection failed Connection terminated due to connection timeout[39m
+2026-01-06 23:13:47:1347 [31merror[39m: [31mDatabase connection failed Connection terminated due to connection timeout[39m
+2026-01-06 23:29:44:2944 [31merror[39m: [31mDatabase connection failed Connection terminated due to connection timeout[39m
+2026-01-07 11:52:31:5231 [31merror[39m: [31mError handler caught: Please verify your email before logging in.[39m
+2026-01-07 12:15:15:1515 [31merror[39m: [31mError handler caught: Please verify your email before logging in.[39m
+2026-01-07 12:16:00:160 [31merror[39m: [31mError handler caught: Invalid verification token.[39m
+2026-01-07 12:17:02:172 [31merror[39m: [31mError handler caught: relation "user_payment_profiles" does not exist[39m
+2026-01-07 12:17:07:177 [31merror[39m: [31mError handler caught: relation "user_payment_profiles" does not exist[39m
+2026-01-07 12:17:13:1713 [31merror[39m: [31mError handler caught: Request failed with status code 401[39m
+2026-01-07 12:18:11:1811 [31merror[39m: [31mError fetching conversations: relation "conversations" does not exist[39m
+2026-01-07 12:18:14:1814 [31merror[39m: [31mError fetching conversations: relation "conversations" does not exist[39m
+2026-01-07 12:19:19:1919 [31merror[39m: [31mError fetching conversations: relation "conversations" does not exist[39m
+2026-01-07 12:19:22:1922 [31merror[39m: [31mError fetching conversations: relation "conversations" does not exist[39m
+2026-01-07 12:22:00:220 [31merror[39m: [31mError handler caught: Invalid API Key provided: sk_test_...[39m
+2026-01-07 12:27:01:271 [31merror[39m: [31mError handler caught: Invalid API Key provided: sk_test_...[39m
+2026-01-07 12:27:02:272 [31merror[39m: [31mError handler caught: Invalid API Key provided: sk_test_...[39m
+2026-01-07 12:29:28:2928 [31merror[39m: [31mError handler caught: Invalid verification token.[39m
+2026-01-08 06:26:54:2654 [31merror[39m: [31mError handler caught: relation "favorites" does not exist[39m
+2026-01-08 06:26:56:2656 [31merror[39m: [31mError handler caught: relation "favorites" does not exist[39m
+2026-01-08 06:31:19:3119 [31merror[39m: [31mError handler caught: relation "favorites" does not exist[39m
+2026-01-08 06:31:20:3120 [31merror[39m: [31mError handler caught: relation "favorites" does not exist[39m
+2026-01-08 14:46:16:4616 [31merror[39m: [31mError handler caught: getaddrinfo EAI_AGAIN aws-1-eu-north-1.pooler.supabase.com[39m
+2026-01-08 14:46:16:4616 [31merror[39m: [31mError handler caught: getaddrinfo EAI_AGAIN aws-1-eu-north-1.pooler.supabase.com[39m
+2026-01-08 14:46:16:4616 [31merror[39m: [31mError handler caught: getaddrinfo EAI_AGAIN aws-1-eu-north-1.pooler.supabase.com[39m
+2026-01-08 14:46:17:4617 [31merror[39m: [31mError handler caught: getaddrinfo EAI_AGAIN aws-1-eu-north-1.pooler.supabase.com[39m
+2026-01-08 14:46:55:4655 [31merror[39m: [31mError handler caught: getaddrinfo EAI_AGAIN aws-1-eu-north-1.pooler.supabase.com[39m
+2026-01-08 14:46:56:4656 [31merror[39m: [31mError handler caught: getaddrinfo EAI_AGAIN aws-1-eu-north-1.pooler.supabase.com[39m
+2026-01-08 14:47:10:4710 [31merror[39m: [31mError handler caught: Connection terminated due to connection timeout[39m
+2026-01-08 14:47:18:4718 [31merror[39m: [31mError handler caught: Connection terminated due to connection timeout[39m
+2026-01-08 14:47:30:4730 [31merror[39m: [31mError handler caught: Connection terminated due to connection timeout[39m
+2026-01-09 01:47:10:4710 [31merror[39m: [31mError handler caught: relation "favorites" does not exist[39m
+2026-01-09 01:47:11:4711 [31merror[39m: [31mError handler caught: relation "favorites" does not exist[39m
+2026-01-09 02:03:40:340 [31merror[39m: [31mError handler caught: relation "tasks" does not exist[39m
+2026-01-09 02:03:40:340 [31merror[39m: [31mError handler caught: relation "customers" does not exist[39m
+2026-01-09 02:03:41:341 [31merror[39m: [31mError handler caught: relation "tasks" does not exist[39m
+2026-01-09 02:03:42:342 [31merror[39m: [31mError handler caught: relation "customers" does not exist[39m
+2026-01-09 02:06:22:622 [31merror[39m: [31mMigration failed: relation "idx_messages_conversation_id" already exists[39m
+2026-01-09 02:10:11:1011 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-09 02:10:12:1012 [31merror[39m: [31mError handler caught: column u.username does not exist[39m
+2026-01-09 02:10:25:1025 [31merror[39m: [31mError handler caught: column u.username does not exist[39m
+2026-01-09 02:10:27:1027 [31merror[39m: [31mError handler caught: column u.username does not exist[39m
+2026-01-09 03:47:36:4736 [31merror[39m: [31mError handler caught: Invalid API Key provided: sk_test_...[39m
+2026-01-09 03:47:37:4737 [31merror[39m: [31mError handler caught: Invalid API Key provided: sk_test_...[39m
+2026-01-09 03:56:48:5648 [31merror[39m: [31mError handler caught: Invalid API Key provided: sk_test_...[39m
+2026-01-09 03:56:49:5649 [31merror[39m: [31mError handler caught: Invalid API Key provided: sk_test_...[39m
+2026-01-09 03:56:53:5653 [31merror[39m: [31mError handler caught: Invalid API Key provided: sk_test_...[39m
+2026-01-09 03:56:55:5655 [31merror[39m: [31mError handler caught: Invalid API Key provided: sk_test_...[39m
