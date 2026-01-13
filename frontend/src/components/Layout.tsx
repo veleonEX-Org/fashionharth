@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../state/AuthContext";
 
@@ -9,6 +9,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
   const { user, clearAuth } = useAuth();
   const location = useLocation();
   const isLandingPage = location.pathname === "/";
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   React.useEffect(() => {
     if (user) {
@@ -28,7 +29,21 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
           <Link to="/" className="text-lg font-semibold text-primary">
             Veleonex Starter
           </Link>
-          <nav className="flex items-center gap-4 text-sm">
+
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden p-2 text-gray-600 hover:text-primary transition-colors"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? (
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            ) : (
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+            )}
+          </button>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-4 text-sm">
             {/* <Link to="/pricing" className="hover:text-primary">
               Pricing
             </Link> */}
@@ -40,15 +55,17 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
             </Link>
             {user ? (
               <>
+                {(user.role === "admin" || user.role === "staff") && (
+                  <span className="rounded-full bg-red-100 px-2.5 py-0.5 text-xs font-medium text-red-600 capitalize">
+                    {user.role}
+                  </span>
+                )}
                 <Link to="/dashboard" className="hover:text-primary">
                   Dashboard
                 </Link>
                 <Link to="/profile" className="hover:text-primary">
                   Profile
                 </Link>
-                {/* <Link to="/chat" className="hover:text-primary">
-                  Chat
-                </Link> */}
                 <button
                   onClick={clearAuth}
                   className="rounded-md bg-primary px-3 py-1 text-xs font-medium text-primary-foreground hover:opacity-90"
@@ -71,6 +88,63 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
             )}
           </nav>
         </div>
+
+        {/* Mobile Navigation Dropdown */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden border-t border-gray-200 bg-white">
+            <nav className="flex flex-col p-4 space-y-4 text-sm">
+              <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-primary font-bold py-2">
+                Dress Room
+              </Link>
+              <Link to="/style-me" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-primary font-bold py-2">
+                Style Me
+              </Link>
+              
+              <div className="border-t border-gray-100 my-2"></div>
+              
+              {user ? (
+                <>
+                  <div className="flex items-center gap-2 py-2">
+                    <span className="font-medium text-gray-900">{user.firstName} {user.lastName}</span>
+                    {(user.role === "admin" || user.role === "staff") && (
+                      <span className="rounded-full bg-red-100 px-2.5 py-0.5 text-xs font-medium text-red-600 capitalize">
+                        {user.role}
+                      </span>
+                    )}
+                  </div>
+                  <Link to="/dashboard" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-primary py-2">
+                    Dashboard
+                  </Link>
+                  <Link to="/profile" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-primary py-2">
+                    Profile
+                  </Link>
+                  <button
+                    onClick={() => {
+                      clearAuth();
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="text-left py-2 text-red-600 hover:text-red-700 font-medium"
+                  >
+                    Logout
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Link to="/login" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-primary py-2">
+                    Login
+                  </Link>
+                  <Link
+                    to="/register"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="inline-block text-center rounded-md bg-primary px-3 py-2 text-xs font-medium text-primary-foreground hover:opacity-90"
+                  >
+                    Sign up
+                  </Link>
+                </>
+              )}
+            </nav>
+          </div>
+        )}
       </header>
       <main
         className={

@@ -4,6 +4,7 @@ import {
   getCustomers,
   createCustomer,
   updateCustomer,
+  getCustomer,
 } from "../controllers/customerController.js";
 
 export const customerRouter = Router();
@@ -14,5 +15,6 @@ customerRouter.use(authenticate);
 customerRouter.use(authorize(["admin", "staff"]));
 
 customerRouter.get("/", getCustomers);
+customerRouter.get("/:id", getCustomer);
 customerRouter.post("/", createCustomer);
 customerRouter.put("/:id", updateCustomer);

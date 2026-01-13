@@ -71,3 +71,18 @@
 2026-01-09 03:56:49:5649 [31merror[39m: [31mError handler caught: Invalid API Key provided: sk_test_...[39m
 2026-01-09 03:56:53:5653 [31merror[39m: [31mError handler caught: Invalid API Key provided: sk_test_...[39m
 2026-01-09 03:56:55:5655 [31merror[39m: [31mError handler caught: Invalid API Key provided: sk_test_...[39m
+2026-01-09 04:01:45:145 [31merror[39m: [31mError handler caught: Request failed with status code 401[39m
+2026-01-10 06:02:17:217 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-13 11:35:16:3516 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-13 11:38:50:3850 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-13 11:38:51:3851 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-13 11:58:23:5823 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-13 11:58:24:5824 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-13 11:58:24:5824 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-13 11:58:24:5824 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-13 11:58:24:5824 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-13 11:58:50:5850 [31merror[39m: [31mError handler caught: Invalid email or password.[39m
+2026-01-13 11:59:06:596 [31merror[39m: [31mError handler caught: Invalid email or password.[39m
+2026-01-13 12:19:09:199 [31merror[39m: [31mError handler caught: Invalid email or password.[39m
+2026-01-13 12:19:57:1957 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-13 12:45:16:4516 [31merror[39m: [31mError handler caught: Invalid email or password.[39m

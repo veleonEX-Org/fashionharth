@@ -4,8 +4,8 @@ import { useQuery } from "@tanstack/react-query";
 import { http } from "../api/http";
 
 interface StaffOverview {
-  assignedTickets: number;
-  pendingTasks: number;
+  totalAssignments: number;
+  ongoingAssignments: number;
   message: string;
 }
 
@@ -27,11 +27,17 @@ const StaffDashboardPage: React.FC = () => {
         </p>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-3">
+      <div className="grid gap-4 md:grid-cols-4">
         <div className="rounded-xl border border-border bg-card p-4 text-sm shadow-sm">
-          <p className="text-xs text-muted-foreground font-bold uppercase tracking-wider">Assigned Assignments</p>
+          <p className="text-xs text-muted-foreground font-bold uppercase tracking-wider">Total Assignments</p>
           <p className="mt-1 text-2xl font-semibold text-foreground">
-            {isLoading ? "…" : data?.assignedTickets ?? "-"}
+            {isLoading ? "…" : data?.totalAssignments ?? "-"}
+          </p>
+        </div>
+        <div className="rounded-xl border border-border bg-card p-4 text-sm shadow-sm">
+          <p className="text-xs text-muted-foreground font-bold uppercase tracking-wider">Ongoing Assignments</p>
+          <p className="mt-1 text-2xl font-semibold text-primary">
+            {isLoading ? "…" : data?.ongoingAssignments ?? "-"}
           </p>
         </div>
         <div className="rounded-xl border border-border bg-card p-4 text-sm shadow-sm transition-all hover:shadow-md">

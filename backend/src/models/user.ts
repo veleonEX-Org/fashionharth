@@ -1,4 +1,4 @@
-import type { UserRole } from "../types/auth";
+import type { UserRole } from "../types/auth.js";
 
 export interface User {
   id: number;
@@ -7,6 +7,7 @@ export interface User {
   email: string;
   password_hash: string;
   role: UserRole;
+  status: string; // 'active' or 'disabled'
   is_email_verified: boolean;
   email_verification_token: string | null;
   reset_password_token: string | null;
@@ -22,6 +23,7 @@ export interface PublicUser {
   lastName: string;
   email: string;
   role: UserRole;
+  status: string;
   isEmailVerified: boolean;
   createdAt: string;
   updatedAt: string;
@@ -34,6 +36,7 @@ export function toPublicUser(row: User): PublicUser {
     lastName: row.last_name,
     email: row.email,
     role: row.role,
+    status: row.status || 'active',
     isEmailVerified: row.is_email_verified,
     createdAt: row.created_at.toISOString(),
     updatedAt: row.updated_at.toISOString(),

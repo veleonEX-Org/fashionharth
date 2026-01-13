@@ -5,6 +5,7 @@ import { FormField } from "../../components/forms/FormField";
 import { Input } from "../../components/forms/Input";
 import { Select } from "../../components/forms/Select";
 import { Textarea } from "../../components/forms/Textarea";
+import { BackButton } from "../../components/ui/BackButton";
 import toast from "react-hot-toast";
 import { format, differenceInDays } from "date-fns";
 
@@ -78,17 +79,20 @@ const AdminTasksPage: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">Production Tasks</h1>
-          <p className="text-sm text-gray-500">Track orders and manage production deadlines.</p>
+      <div className="flex flex-col gap-4">
+        <BackButton />
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900">Production Tasks</h1>
+            <p className="text-sm text-gray-500">Track orders and manage production deadlines.</p>
+          </div>
+          <button
+            onClick={() => setIsAdding(!isAdding)}
+            className="rounded-full bg-black px-6 py-2 text-sm font-bold text-white hover:bg-gray-800 transition-colors"
+          >
+            {isAdding ? "CANCEL" : "NEW TASK"}
+          </button>
         </div>
-        <button
-          onClick={() => setIsAdding(!isAdding)}
-          className="rounded-full bg-black px-6 py-2 text-sm font-bold text-white hover:bg-gray-800 transition-colors"
-        >
-          {isAdding ? "CANCEL" : "NEW TASK"}
-        </button>
       </div>
 
       {isAdding && (
@@ -131,7 +135,7 @@ const AdminTasksPage: React.FC = () => {
                     onChange={(e) => setAssignedTo(e.target.value)}
                     options={[
                        { label: "Unassigned", value: "" },
-                       ...(staffs?.map((s: any) => ({ label: s.username, value: s.id.toString() })) || [])
+                       ...(staffs?.map((s: any) => ({ label: s.firstName + " " + s.lastName, value: s.id.toString() })) || [])
                     ]}
                  />
               </FormField>
@@ -157,7 +161,8 @@ const AdminTasksPage: React.FC = () => {
         </form>
       )}
 
-      <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+      {/* Desktop Table */}
+      <div className="hidden md:block overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
         <table className="w-full text-left text-sm">
           <thead className="bg-gray-50 text-xs font-bold uppercase tracking-wider text-gray-500">
             <tr>
@@ -165,7 +170,7 @@ const AdminTasksPage: React.FC = () => {
               <th className="px-6 py-4">Finance</th>
               <th className="px-6 py-4">Deadline</th>
               <th className="px-6 py-4">Status / Assignee</th>
-              <th className="px-6 py-4">Actions</th>
+              <th className="px-6 py-4 text-right">Actions</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
@@ -177,6 +182,7 @@ const AdminTasksPage: React.FC = () => {
                 <tr key={t.id} className={`hover:bg-gray-50 transition-colors ${isOverdue ? "bg-red-50" : ""}`}>
                   <td className="px-6 py-4">
                     <div className="font-bold text-gray-900">{t.customerName}</div>
+                    <div className="text-xs text-gray-500">{t.customerPhone}</div>
                     <div className="text-xs text-primary uppercase font-bold">{t.category}</div>
                   </td>
                   <td className="px-6 py-4">
@@ -199,7 +205,7 @@ const AdminTasksPage: React.FC = () => {
                     </span>
                     <div className="text-xs text-gray-500 mt-1">@{t.assigneeName || "Unassigned"}</div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-6 py-4 text-right">
                     {t.status !== "completed" && (
                        <button
                          onClick={() => markCompleteMutation.mutate(t.id)}
@@ -215,6 +221,63 @@ const AdminTasksPage: React.FC = () => {
           </tbody>
         </table>
         {tasksLoading && <div className="p-8 text-center text-gray-400">Loading tasks...</div>}
+        {tasks?.length === 0 && !tasksLoading && <div className="p-8 text-center text-gray-400">No tasks found.</div>}
+      </div>
+
+      {/* Mobile Optimized View */}
+      <div className="md:hidden space-y-4">
+         {tasksLoading && <div className="p-8 text-center text-gray-400">Loading tasks...</div>}
+         {tasks?.map((t: any) => {
+            const remains = t.totalAmount - t.amountPaid;
+            const isOverdue = new Date(t.deadline) < new Date() && t.status !== "completed";
+            
+            return (
+               <div key={t.id} className={`rounded-xl border border-gray-200 bg-white p-5 shadow-sm space-y-4 ${isOverdue ? "border-red-200 bg-red-50/30" : ""}`}>
+                  <div className="flex items-start justify-between">
+                     <div>
+                        <div className="font-bold text-gray-900">{t.customerName}</div>
+                        <div className="text-xs text-primary uppercase font-bold mt-0.5">{t.category}</div>
+                     </div>
+                     <span className={`inline-block rounded-full px-2 py-0.5 text-[10px] font-bold uppercase ${
+                        t.status === "completed" ? "bg-green-100 text-green-700" : "bg-yellow-100 text-yellow-700"
+                     }`}>
+                        {t.status}
+                     </span>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4 py-3 border-y border-gray-100">
+                     <div>
+                        <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider block">Status</span>
+                        <div className="text-xs text-gray-500 mt-1">@{t.assigneeName || "Unassigned"}</div>
+                     </div>
+                     <div>
+                        <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider block">Deadline</span>
+                        <div className={`text-xs font-bold mt-1 ${isOverdue ? "text-red-600" : "text-gray-900"}`}>
+                           {format(new Date(t.deadline), "MMM d, yyyy")}
+                        </div>
+                     </div>
+                  </div>
+
+                  <div className="flex items-center justify-between">
+                     <div>
+                        <div className="text-sm font-bold text-gray-900">${t.totalAmount}</div>
+                        <div className={`text-[10px] font-bold ${remains > 0 ? "text-red-500" : "text-green-500"}`}>
+                           {remains > 0 ? `-$${remains} UNPAID` : "FULLY PAID"}
+                        </div>
+                     </div>
+                     {t.status !== "completed" && (
+                        <button
+                          onClick={() => markCompleteMutation.mutate(t.id)}
+                          className="rounded-full bg-primary/10 px-4 py-2 text-xs font-bold text-primary hover:bg-primary hover:text-white transition-colors"
+                        >
+                          MARK DONE
+                        </button>
+                     )}
+                  </div>
+               </div>
+            );
+         })}
+         {tasks?.length === 0 && !tasksLoading && <div className="p-8 text-center text-gray-400">No tasks found.</div>}
       </div>
     </div>
   );

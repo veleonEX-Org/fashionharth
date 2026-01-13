@@ -16,6 +16,7 @@ export interface Task {
   
   // Joins
   customerName?: string;
+  customerPhone?: string;
   assigneeName?: string;
 }
 

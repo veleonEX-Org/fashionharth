@@ -8,6 +8,7 @@ import { Input } from "../../../components/forms/Input";
 import { Textarea } from "../../../components/forms/Textarea";
 import { Select } from "../../../components/forms/Select";
 import { MultiSelect } from "../../../components/forms/MultiSelect";
+import { BackButton } from "../../../components/ui/BackButton";
 import type { CreateItemPayload, Item } from "../../../types/item";
 import { z } from "zod";
 
@@ -82,11 +83,14 @@ const AdminAddItemPage: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-semibold">Add New Item</h1>
-        <p className="mt-1 text-sm text-muted-foreground">
-          Create a new item in the system.
-        </p>
+      <div className="flex flex-col gap-4">
+        <BackButton />
+        <div>
+          <h1 className="text-2xl font-semibold">Add New Item</h1>
+          <p className="mt-1 text-sm text-muted-foreground">
+            Create a new item in the system.
+          </p>
+        </div>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4 rounded-xl border border-border bg-card p-6">

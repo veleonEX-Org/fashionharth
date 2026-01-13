@@ -29,3 +29,17 @@ export async function updateCustomer(req: Request, res: Response, next: NextFunc
     next(err);
   }
 }
+
+export async function getCustomer(req: Request, res: Response, next: NextFunction) {
+  try {
+    const id = Number(req.params.id);
+    const customer = await customerService.getCustomerById(id);
+    if (!customer) {
+      res.status(404).json({ message: "Customer not found" });
+      return;
+    }
+    res.json(customer);
+  } catch (err) {
+    next(err);
+  }
+}

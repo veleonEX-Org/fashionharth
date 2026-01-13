@@ -7,6 +7,7 @@ import { PaginatedTable } from "../../../components/table/PaginatedTable";
 import type { Column } from "../../../components/table/DataTable";
 import type { Item as ItemType, PaginatedItems } from "../../../types/item";
 import { getErrorMessage } from "../../../utils/errorHandler";
+import { BackButton } from "../../../components/ui/BackButton";
 
 const AdminListItemsPage: React.FC = () => {
   const navigate = useNavigate();
@@ -134,11 +135,14 @@ const AdminListItemsPage: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-semibold">Admin - Items</h1>
-        <p className="mt-1 text-sm text-muted-foreground">
-          Manage all items in the system.
-        </p>
+      <div className="flex flex-col gap-4">
+        <BackButton />
+        <div>
+          <h1 className="text-2xl font-semibold text-white">Admin - Items</h1>
+          <p className="mt-1 text-sm text-muted-foreground">
+            Manage all items in the system.
+          </p>
+        </div>
       </div>
 
       {/* Filters */}

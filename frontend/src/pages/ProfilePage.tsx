@@ -4,7 +4,10 @@ import toast from "react-hot-toast";
 import { useAuth } from "../state/AuthContext";
 import { http } from "../api/http";
 import type { User } from "../types/auth";
-import { profileUpdateSchema } from "../validation/authSchemas";
+import {
+  profileUpdateSchema,
+  changePasswordSchema,
+} from "../validation/authSchemas";
 
 const ProfilePage: React.FC = () => {
   const { user, refreshProfile } = useAuth();
@@ -12,9 +15,15 @@ const ProfilePage: React.FC = () => {
   const [lastName, setLastName] = useState(user?.lastName ?? "");
   const [validationError, setValidationError] = useState<string | null>(null);
 
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmNewPassword, setConfirmNewPassword] = useState("");
+  const [passwordError, setPasswordError] = useState<string | null>(null);
+  const [showPasswordForm, setShowPasswordForm] = useState(false);
+
   const mutation = useMutation({
     mutationFn: async (payload: { firstName: string; lastName: string }) => {
-      const res = await http.put<User>("/users/me", payload);
+      const res = await http.put<User>("/auth/me", payload);
       return res.data;
     },
     onSuccess: async (updated: User) => {
@@ -25,6 +34,19 @@ const ProfilePage: React.FC = () => {
       setValidationError(null);
     },
     // Error handling is done globally in queryClient
+  });
+
+  const changePasswordMutation = useMutation({
+    mutationFn: async (payload: unknown) => {
+      await http.post("/auth/change-password", payload);
+    },
+    onSuccess: () => {
+      toast.success("Password changed successfully!");
+      setCurrentPassword("");
+      setNewPassword("");
+      setConfirmNewPassword("");
+      setPasswordError(null);
+    },
   });
 
   useEffect(() => {
@@ -47,6 +69,26 @@ const ProfilePage: React.FC = () => {
     }
 
     mutation.mutate(parsed.data);
+  };
+
+  const handlePasswordSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setPasswordError(null);
+
+    const parsed = changePasswordSchema.safeParse({
+      currentPassword,
+      newPassword,
+      confirmNewPassword,
+    });
+
+    if (!parsed.success) {
+      const firstError = parsed.error.issues[0]?.message ?? "Invalid input.";
+      setPasswordError(firstError);
+      toast.error(firstError);
+      return;
+    }
+
+    changePasswordMutation.mutate(parsed.data);
   };
 
   if (!user) {
@@ -109,6 +151,83 @@ const ProfilePage: React.FC = () => {
             <p className="mt-2 text-xs text-destructive">{validationError}</p>
           )}
         </form>
+      </div>
+
+      <div className="rounded-xl border border-border bg-card p-6 shadow">
+        <div className="flex items-center justify-between mb-2">
+          <h2 className="text-xl font-semibold">Change Password</h2>
+          <button
+            type="button"
+            onClick={() => setShowPasswordForm(!showPasswordForm)}
+            className="text-sm text-primary hover:underline font-medium"
+          >
+            {showPasswordForm ? "Hide Password Form" : "Show Password Form"}
+          </button>
+        </div>
+        
+        {!showPasswordForm && (
+            <p className="text-xs text-muted-foreground">
+              Update your password securely.
+            </p>
+        )}
+
+        {showPasswordForm && (
+          <>
+            <p className="text-xs text-muted-foreground">
+              Update your password securely.
+            </p>
+            <form onSubmit={handlePasswordSubmit} className="mt-4 space-y-4">
+              <div className="space-y-1 text-sm">
+                <label className="block text-foreground" htmlFor="currentPassword">
+                  Current Password
+                </label>
+                <input
+                  id="currentPassword"
+                  type="password"
+                  value={currentPassword}
+                  onChange={(e) => setCurrentPassword(e.target.value)}
+                  className="w-full rounded-md border border-border bg-input px-3 py-2 text-sm text-foreground outline-none focus:border-primary"
+                />
+              </div>
+              <div className="space-y-1 text-sm">
+                <label className="block text-foreground" htmlFor="newPassword">
+                  New Password
+                </label>
+                <input
+                  id="newPassword"
+                  type="password"
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                  className="w-full rounded-md border border-border bg-input px-3 py-2 text-sm text-foreground outline-none focus:border-primary"
+                />
+              </div>
+              <div className="space-y-1 text-sm">
+                <label className="block text-foreground" htmlFor="confirmNewPassword">
+                  Confirm New Password
+                </label>
+                <input
+                  id="confirmNewPassword"
+                  type="password"
+                  value={confirmNewPassword}
+                  onChange={(e) => setConfirmNewPassword(e.target.value)}
+                  className="w-full rounded-md border border-border bg-input px-3 py-2 text-sm text-foreground outline-none focus:border-primary"
+                />
+              </div>
+              <button
+                type="submit"
+                disabled={changePasswordMutation.isPending}
+                className="mt-2 inline-flex items-center justify-center rounded-md bg-destructive px-4 py-2 text-sm font-medium text-destructive-foreground hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {changePasswordMutation.isPending
+                  ? "Updating..."
+                  : "Update Password"}
+              </button>
+              {passwordError && (
+                <p className="mt-2 text-xs text-destructive">{passwordError}</p>
+              )}
+            </form>
+          </>
+        )}
       </div>
     </div>
   );

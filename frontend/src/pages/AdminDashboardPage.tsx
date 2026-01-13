@@ -8,6 +8,7 @@ interface AdminStats {
   activeSessions: number;
   totalItems: number;
   totalTasks: number;
+  totalCustomers: number;
   message: string;
 }
 
@@ -58,26 +59,51 @@ const AdminDashboardPage: React.FC = () => {
         </div>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 pt-6">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-5 pt-6">
         <Link to="/admin/items" className="group rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:shadow-xl hover:-translate-y-1">
-          <div className="mb-4 text-3xl">👗</div>
+          <div className="flex items-start justify-between mb-4">
+            <div className="text-3xl">👗</div>
+            <div className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-bold">
+              {isLoading ? "…" : data?.totalItems ?? 0}
+            </div>
+          </div>
           <h3 className="font-bold text-foreground group-hover:text-primary transition-colors">Manage Dresses</h3>
           <p className="text-xs text-muted-foreground mt-2">Post new designs and manage categories.</p>
         </Link>
         <Link to="/admin/customers" className="group rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:shadow-xl hover:-translate-y-1">
-          <div className="mb-4 text-3xl">👥</div>
+          <div className="flex items-start justify-between mb-4">
+            <div className="text-3xl">👥</div>
+            <div className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-bold">
+              {isLoading ? "…" : data?.totalCustomers ?? 0}
+            </div>
+          </div>
           <h3 className="font-bold text-foreground group-hover:text-primary transition-colors">Customers</h3>
           <p className="text-xs text-muted-foreground mt-2">Manage measurements and client data.</p>
         </Link>
         <Link to="/admin/tasks" className="group rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:shadow-xl hover:-translate-y-1">
-          <div className="mb-4 text-3xl">🧵</div>
+          <div className="flex items-start justify-between mb-4">
+            <div className="text-3xl">🧵</div>
+            <div className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-bold">
+              {isLoading ? "…" : data?.totalTasks ?? 0}
+            </div>
+          </div>
           <h3 className="font-bold text-foreground group-hover:text-primary transition-colors">Production</h3>
           <p className="text-xs text-muted-foreground mt-2">Track tasks and production deadlines.</p>
         </Link>
         <Link to="/admin/users" className="group rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:shadow-xl hover:-translate-y-1">
-          <div className="mb-4 text-3xl">🛡️</div>
+          <div className="flex items-start justify-between mb-4">
+            <div className="text-3xl">🛡️</div>
+            <div className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-bold">
+              {isLoading ? "…" : data?.totalUsers ?? 0}
+            </div>
+          </div>
           <h3 className="font-bold text-foreground group-hover:text-primary transition-colors">Users & Staff</h3>
           <p className="text-xs text-muted-foreground mt-2">Manage roles and permissions.</p>
+        </Link>
+        <Link to="/admin/categories" className="group rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:shadow-xl hover:-translate-y-1">
+          <div className="mb-4 text-3xl">📏</div>
+          <h3 className="font-bold text-foreground group-hover:text-primary transition-colors">Categories</h3>
+          <p className="text-xs text-muted-foreground mt-2">Manage dress types and measurements.</p>
         </Link>
       </div>
     </div>

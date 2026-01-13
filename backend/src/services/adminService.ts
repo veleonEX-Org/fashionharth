@@ -5,6 +5,7 @@ export interface AdminStats {
   activeSessions: number;
   totalItems: number;
   totalTasks: number;
+  totalCustomers: number;
   message: string;
 }
 
@@ -18,6 +19,9 @@ export async function getDashboardStats(): Promise<AdminStats> {
   // Get total tasks
   const tasksCount = await pool.query("SELECT COUNT(*) as count FROM tasks");
 
+  // Get total customers
+  const customersCount = await pool.query("SELECT COUNT(*) as count FROM customers");
+
   // Get active sessions (users with a non-null refresh_token)
   // This is a simple heuristic for "active" in this template
   const activeSessionsCount = await pool.query(
@@ -29,6 +33,7 @@ export async function getDashboardStats(): Promise<AdminStats> {
     activeSessions: parseInt(activeSessionsCount.rows[0].count, 10),
     totalItems: parseInt(itemsCount.rows[0].count, 10),
     totalTasks: parseInt(tasksCount.rows[0].count, 10),
+    totalCustomers: parseInt(customersCount.rows[0].count, 10),
     message: "Real-time administrative statistics retrieved successfully.",
   };
 }

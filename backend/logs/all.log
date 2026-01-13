@@ -596,3 +596,432 @@
 2026-01-09 03:59:36:5936 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
 2026-01-09 03:59:48:5948 [32minfo[39m: [32mDatabase connection established successfully[39m
 2026-01-09 03:59:48:5948 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-09 04:00:18:018 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-09 04:00:18:018 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-09 04:01:16:116 [35mhttp[39m: [35mGET /api/items/public?maxPrice=1000 304 - - 474.850 ms[39m
+2026-01-09 04:01:18:118 [35mhttp[39m: [35mGET /api/items/public?isTrending=true&limit=10 304 - - 369.489 ms[39m
+2026-01-09 04:01:37:137 [35mhttp[39m: [35mGET /api/items/1 304 - - 184.364 ms[39m
+2026-01-09 04:01:45:145 [31merror[39m: [31mError handler caught: Request failed with status code 401[39m
+2026-01-09 04:01:45:145 [35mhttp[39m: [35mPOST /api/payments/create-checkout-session 500 49 - 773.856 ms[39m
+2026-01-10 05:57:09:579 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-10 05:57:10:5710 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-10 05:57:45:5745 [35mhttp[39m: [35mGET /api/auth/me 401 39 - 7.112 ms[39m
+2026-01-10 05:57:45:5745 [35mhttp[39m: [35mGET /api/auth/me 401 39 - 5.292 ms[39m
+2026-01-10 05:57:45:5745 [35mhttp[39m: [35mGET /api/items/public?maxPrice=1000 200 57 - 553.163 ms[39m
+2026-01-10 05:57:46:5746 [35mhttp[39m: [35mPOST /api/auth/refresh 200 397 - 1365.007 ms[39m
+2026-01-10 05:57:46:5746 [35mhttp[39m: [35mPOST /api/auth/refresh 200 397 - 1099.509 ms[39m
+2026-01-10 05:57:47:5747 [35mhttp[39m: [35mGET /api/auth/me 200 195 - 182.846 ms[39m
+2026-01-10 05:57:47:5747 [32minfo[39m: [32mUser 4 connected with socket UpGBsVBSBoQ6mxxlAAAB[39m
+2026-01-10 05:57:47:5747 [35mhttp[39m: [35mGET /api/auth/me 304 - - 184.897 ms[39m
+2026-01-10 06:00:54:054 [35mhttp[39m: [35mGET /api/looks/favorites 200 2 - 939.050 ms[39m
+2026-01-10 06:00:55:055 [35mhttp[39m: [35mGET /api/items/public?limit=8 200 528 - 1086.814 ms[39m
+2026-01-10 06:00:56:056 [35mhttp[39m: [35mGET /api/admin/stats 304 - - 721.824 ms[39m
+2026-01-10 06:02:16:216 [35mhttp[39m: [35mGET /api/auth/me 401 39 - 3.246 ms[39m
+2026-01-10 06:02:16:216 [35mhttp[39m: [35mGET /api/auth/me 401 39 - 3.171 ms[39m
+2026-01-10 06:02:17:217 [35mhttp[39m: [35mGET /api/items/public?maxPrice=1000 304 - - 348.222 ms[39m
+2026-01-10 06:02:17:217 [35mhttp[39m: [35mPOST /api/auth/refresh 200 395 - 384.827 ms[39m
+2026-01-10 06:02:17:217 [35mhttp[39m: [35mGET /api/auth/me 200 192 - 191.351 ms[39m
+2026-01-10 06:02:17:217 [32minfo[39m: [32mUser 3 connected with socket Vj9c-cuYeNEeSz8zAAAD[39m
+2026-01-10 06:02:17:217 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-10 06:02:17:217 [35mhttp[39m: [35mPOST /api/auth/refresh 401 36 - 892.370 ms[39m
+2026-01-10 06:02:17:217 [32minfo[39m: [32mSocket Vj9c-cuYeNEeSz8zAAAD disconnected[39m
+2026-01-10 06:03:48:348 [35mhttp[39m: [35mGET /api/items/public?maxPrice=1000 304 - - 1253.695 ms[39m
+2026-01-10 06:05:22:522 [35mhttp[39m: [35mPOST /api/auth/login 200 606 - 551.838 ms[39m
+2026-01-10 06:05:22:522 [32minfo[39m: [32mUser 3 connected with socket AvI0VTADxs9HxdhiAAAF[39m
+2026-01-10 06:45:30:4530 [32minfo[39m: [32mSocket UpGBsVBSBoQ6mxxlAAAB disconnected[39m
+2026-01-10 06:45:30:4530 [32minfo[39m: [32mSocket AvI0VTADxs9HxdhiAAAF disconnected[39m
+2026-01-13 11:34:50:3450 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 11:34:50:3450 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-13 11:35:15:3515 [35mhttp[39m: [35mGET /api/auth/me 401 39 - 8.092 ms[39m
+2026-01-13 11:35:15:3515 [35mhttp[39m: [35mGET /api/auth/me 401 39 - 3.669 ms[39m
+2026-01-13 11:35:16:3516 [35mhttp[39m: [35mPOST /api/auth/refresh 200 395 - 699.500 ms[39m
+2026-01-13 11:35:16:3516 [35mhttp[39m: [35mGET /api/auth/me 200 192 - 200.566 ms[39m
+2026-01-13 11:35:16:3516 [32minfo[39m: [32mUser 3 connected with socket xN8BmRHIc-qbZ_4DAAAF[39m
+2026-01-13 11:35:16:3516 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-13 11:35:16:3516 [35mhttp[39m: [35mPOST /api/auth/refresh 401 36 - 901.858 ms[39m
+2026-01-13 11:35:17:3517 [32minfo[39m: [32mSocket xN8BmRHIc-qbZ_4DAAAF disconnected[39m
+2026-01-13 11:35:31:3531 [35mhttp[39m: [35mPOST /api/auth/login 200 606 - 496.124 ms[39m
+2026-01-13 11:35:31:3531 [32minfo[39m: [32mUser 3 connected with socket xfnSU2PEc9g5QBzPAAAH[39m
+2026-01-13 11:36:23:3623 [35mhttp[39m: [35mPOST /api/auth/login 200 611 - 447.287 ms[39m
+2026-01-13 11:36:23:3623 [32minfo[39m: [32mUser 4 connected with socket 43TUbfl6y0ouXs53AAAJ[39m
+2026-01-13 11:36:24:3624 [35mhttp[39m: [35mGET /api/admin/stats 200 137 - 761.112 ms[39m
+2026-01-13 11:36:58:3658 [35mhttp[39m: [35mGET /api/tasks 200 416 - 186.029 ms[39m
+2026-01-13 11:36:58:3658 [35mhttp[39m: [35mGET /api/customers 200 306 - 185.214 ms[39m
+2026-01-13 11:36:59:3659 [35mhttp[39m: [35mGET /api/users 200 775 - 968.602 ms[39m
+2026-01-13 11:37:33:3733 [35mhttp[39m: [35mGET /api/items/public?maxPrice=1000 200 57 - 1160.870 ms[39m
+2026-01-13 11:38:50:3850 [35mhttp[39m: [35mGET /api/auth/me 401 39 - 1.923 ms[39m
+2026-01-13 11:38:50:3850 [35mhttp[39m: [35mGET /api/auth/me 401 39 - 1.743 ms[39m
+2026-01-13 11:38:50:3850 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-13 11:38:50:3850 [35mhttp[39m: [35mPOST /api/auth/refresh 401 36 - 196.299 ms[39m
+2026-01-13 11:38:51:3851 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-13 11:38:51:3851 [35mhttp[39m: [35mPOST /api/auth/refresh 401 36 - 940.114 ms[39m
+2026-01-13 11:41:15:4115 [35mhttp[39m: [35mGET /api/admin/stats 304 - - 770.075 ms[39m
+2026-01-13 11:41:23:4123 [35mhttp[39m: [35mGET /api/users 200 775 - 180.716 ms[39m
+2026-01-13 11:41:28:4128 [35mhttp[39m: [35mPUT /api/users/1/role 200 192 - 230.172 ms[39m
+2026-01-13 11:41:28:4128 [35mhttp[39m: [35mGET /api/users 200 776 - 174.261 ms[39m
+2026-01-13 11:42:05:425 [35mhttp[39m: [35mPOST /api/auth/login 200 608 - 473.297 ms[39m
+2026-01-13 11:42:05:425 [35mhttp[39m: [35mGET /api/staff/overview 200 78 - 3.075 ms[39m
+2026-01-13 11:42:05:425 [32minfo[39m: [32mUser 1 connected with socket JvZixNYotUJBzvJnAAAL[39m
+2026-01-13 11:42:17:4217 [35mhttp[39m: [35mGET /api/tasks?assignedTo=1&status=ongoing 200 2 - 202.772 ms[39m
+2026-01-13 11:42:20:4220 [35mhttp[39m: [35mGET /api/tasks?assignedTo=1&status=completed 200 2 - 193.246 ms[39m
+2026-01-13 11:42:42:4242 [35mhttp[39m: [35mGET /api/items/public?maxPrice=1000 200 57 - 365.244 ms[39m
+2026-01-13 11:42:46:4246 [35mhttp[39m: [35mGET /api/looks/favorites 200 2 - 196.197 ms[39m
+2026-01-13 11:42:46:4246 [35mhttp[39m: [35mGET /api/items/public?limit=8 200 528 - 382.804 ms[39m
+2026-01-13 11:43:04:434 [35mhttp[39m: [35mGET /api/items/public?maxPrice=1000 304 - - 363.281 ms[39m
+2026-01-13 11:43:08:438 [35mhttp[39m: [35mGET /api/looks/favorites 200 2 - 185.354 ms[39m
+2026-01-13 11:43:09:439 [35mhttp[39m: [35mGET /api/items/public?limit=8 200 528 - 366.326 ms[39m
+2026-01-13 11:43:11:4311 [35mhttp[39m: [35mGET /api/admin/stats 304 - - 745.011 ms[39m
+2026-01-13 11:56:07:567 [35mhttp[39m: [35mPUT /api/users/me 403 54 - 3.428 ms[39m
+2026-01-13 11:58:21:5821 [32minfo[39m: [32mSocket 43TUbfl6y0ouXs53AAAJ disconnected[39m
+2026-01-13 11:58:21:5821 [32minfo[39m: [32mSocket JvZixNYotUJBzvJnAAAL disconnected[39m
+2026-01-13 11:58:21:5821 [32minfo[39m: [32mSocket xfnSU2PEc9g5QBzPAAAH disconnected[39m
+2026-01-13 11:58:22:5822 [35mhttp[39m: [35mGET /api/auth/me 401 39 - 2.901 ms[39m
+2026-01-13 11:58:22:5822 [35mhttp[39m: [35mGET /api/auth/me 401 39 - 2.652 ms[39m
+2026-01-13 11:58:22:5822 [35mhttp[39m: [35mGET /api/auth/me 401 39 - 2.725 ms[39m
+2026-01-13 11:58:22:5822 [35mhttp[39m: [35mGET /api/auth/me 401 39 - 2.834 ms[39m
+2026-01-13 11:58:22:5822 [35mhttp[39m: [35mGET /api/auth/me 401 39 - 3.850 ms[39m
+2026-01-13 11:58:22:5822 [35mhttp[39m: [35mGET /api/auth/me 401 39 - 2.830 ms[39m
+2026-01-13 11:58:22:5822 [35mhttp[39m: [35mPOST /api/auth/refresh 200 395 - 466.914 ms[39m
+2026-01-13 11:58:22:5822 [35mhttp[39m: [35mGET /api/items/public?maxPrice=1000 304 - - 408.171 ms[39m
+2026-01-13 11:58:23:5823 [35mhttp[39m: [35mGET /api/auth/me 200 192 - 177.838 ms[39m
+2026-01-13 11:58:23:5823 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-13 11:58:23:5823 [35mhttp[39m: [35mPOST /api/auth/refresh 401 36 - 891.579 ms[39m
+2026-01-13 11:58:23:5823 [35mhttp[39m: [35mPOST /api/auth/refresh 200 397 - 1102.915 ms[39m
+2026-01-13 11:58:23:5823 [35mhttp[39m: [35mPOST /api/auth/refresh 200 397 - 1128.270 ms[39m
+2026-01-13 11:58:23:5823 [35mhttp[39m: [35mPOST /api/auth/refresh 200 397 - 1121.146 ms[39m
+2026-01-13 11:58:23:5823 [35mhttp[39m: [35mPOST /api/auth/refresh 200 397 - 1138.093 ms[39m
+2026-01-13 11:58:23:5823 [35mhttp[39m: [35mGET /api/auth/me 401 39 - 3.299 ms[39m
+2026-01-13 11:58:23:5823 [35mhttp[39m: [35mGET /api/auth/me 401 39 - 2.957 ms[39m
+2026-01-13 11:58:23:5823 [35mhttp[39m: [35mGET /api/auth/me 401 39 - 3.215 ms[39m
+2026-01-13 11:58:23:5823 [35mhttp[39m: [35mGET /api/auth/me 401 39 - 3.011 ms[39m
+2026-01-13 11:58:23:5823 [35mhttp[39m: [35mGET /api/auth/me 304 - - 201.935 ms[39m
+2026-01-13 11:58:24:5824 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-13 11:58:24:5824 [35mhttp[39m: [35mPOST /api/auth/refresh 401 36 - 181.538 ms[39m
+2026-01-13 11:58:24:5824 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-13 11:58:24:5824 [35mhttp[39m: [35mPOST /api/auth/refresh 401 36 - 181.274 ms[39m
+2026-01-13 11:58:24:5824 [35mhttp[39m: [35mGET /api/auth/me 304 - - 197.114 ms[39m
+2026-01-13 11:58:24:5824 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-13 11:58:24:5824 [35mhttp[39m: [35mPOST /api/auth/refresh 401 36 - 178.135 ms[39m
+2026-01-13 11:58:24:5824 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-13 11:58:24:5824 [35mhttp[39m: [35mPOST /api/auth/refresh 401 36 - 191.061 ms[39m
+2026-01-13 11:58:24:5824 [35mhttp[39m: [35mGET /api/items/public?maxPrice=1000 304 - - 360.709 ms[39m
+2026-01-13 11:58:24:5824 [32minfo[39m: [32mUser 3 connected with socket uuQorK6VZnCJRuCKAAAN[39m
+2026-01-13 11:58:30:5830 [32minfo[39m: [32mSocket uuQorK6VZnCJRuCKAAAN disconnected[39m
+2026-01-13 11:58:31:5831 [35mhttp[39m: [35mGET /api/auth/me 304 - - 191.412 ms[39m
+2026-01-13 11:58:31:5831 [32minfo[39m: [32mUser 3 connected with socket E30WyNywlenT5O30AAAP[39m
+2026-01-13 11:58:31:5831 [35mhttp[39m: [35mGET /api/auth/me 304 - - 187.679 ms[39m
+2026-01-13 11:58:31:5831 [35mhttp[39m: [35mGET /api/items/public?maxPrice=1000 304 - - 379.806 ms[39m
+2026-01-13 11:58:50:5850 [31merror[39m: [31mError handler caught: Invalid email or password.[39m
+2026-01-13 11:58:50:5850 [35mhttp[39m: [35mPOST /api/auth/login 401 40 - 283.445 ms[39m
+2026-01-13 11:59:06:596 [31merror[39m: [31mError handler caught: Invalid email or password.[39m
+2026-01-13 11:59:06:596 [35mhttp[39m: [35mPOST /api/auth/login 401 40 - 286.000 ms[39m
+2026-01-13 11:59:16:5916 [35mhttp[39m: [35mPOST /api/auth/login 200 608 - 464.975 ms[39m
+2026-01-13 11:59:16:5916 [32minfo[39m: [32mUser 1 connected with socket Y00EcxUSMqwtXBNfAAAR[39m
+2026-01-13 12:01:25:125 [35mhttp[39m: [35mPUT /api/users/me 403 54 - 3.250 ms[39m
+2026-01-13 12:02:35:235 [35mhttp[39m: [35mPUT /api/users/me 403 54 - 1.992 ms[39m
+2026-01-13 12:04:01:41 [32minfo[39m: [32mSocket Y00EcxUSMqwtXBNfAAAR disconnected[39m
+2026-01-13 12:04:02:42 [32minfo[39m: [32mSocket E30WyNywlenT5O30AAAP disconnected[39m
+2026-01-13 12:04:03:43 [35mhttp[39m: [35mGET /api/auth/me 200 192 - 244.812 ms[39m
+2026-01-13 12:04:03:43 [32minfo[39m: [32mUser 1 connected with socket _jhV0G3aZn639pVvAAAT[39m
+2026-01-13 12:04:03:43 [35mhttp[39m: [35mGET /api/auth/me 200 192 - 953.868 ms[39m
+2026-01-13 12:04:04:44 [35mhttp[39m: [35mGET /api/auth/me 304 - - 222.925 ms[39m
+2026-01-13 12:04:04:44 [35mhttp[39m: [35mGET /api/auth/me 304 - - 190.643 ms[39m
+2026-01-13 12:04:04:44 [32minfo[39m: [32mUser 3 connected with socket IFgfp6rZ37Mc8CXUAAAV[39m
+2026-01-13 12:04:04:44 [35mhttp[39m: [35mGET /api/items/public?maxPrice=1000 304 - - 383.040 ms[39m
+2026-01-13 12:04:18:418 [35mhttp[39m: [35mPUT /api/users/me 403 54 - 1.920 ms[39m
+2026-01-13 12:04:24:424 [35mhttp[39m: [35mPUT /api/users/me 403 54 - 1.746 ms[39m
+2026-01-13 12:05:39:539 [32minfo[39m: [32mSocket IFgfp6rZ37Mc8CXUAAAV disconnected[39m
+2026-01-13 12:05:39:539 [32minfo[39m: [32mSocket _jhV0G3aZn639pVvAAAT disconnected[39m
+2026-01-13 12:05:40:540 [35mhttp[39m: [35mGET /api/auth/me 304 - - 201.560 ms[39m
+2026-01-13 12:05:40:540 [35mhttp[39m: [35mGET /api/items/public?maxPrice=1000 304 - - 378.183 ms[39m
+2026-01-13 12:05:40:540 [35mhttp[39m: [35mGET /api/auth/me 304 - - 204.990 ms[39m
+2026-01-13 12:05:40:540 [32minfo[39m: [32mUser 3 connected with socket i2tTxksaYbT7hujQAAAX[39m
+2026-01-13 12:05:41:541 [35mhttp[39m: [35mGET /api/auth/me 200 192 - 905.015 ms[39m
+2026-01-13 12:05:41:541 [32minfo[39m: [32mUser 1 connected with socket cj3Wv0CN6g35SngUAAAZ[39m
+2026-01-13 12:05:41:541 [35mhttp[39m: [35mGET /api/auth/me 200 192 - 954.533 ms[39m
+2026-01-13 12:05:46:546 [35mhttp[39m: [35mPUT /api/users/me 403 54 - 1.860 ms[39m
+2026-01-13 12:05:59:559 [32minfo[39m: [32mSocket cj3Wv0CN6g35SngUAAAZ disconnected[39m
+2026-01-13 12:05:59:559 [32minfo[39m: [32mSocket i2tTxksaYbT7hujQAAAX disconnected[39m
+2026-01-13 12:06:00:60 [35mhttp[39m: [35mGET /api/items/public?maxPrice=1000 304 - - 422.368 ms[39m
+2026-01-13 12:06:00:60 [35mhttp[39m: [35mGET /api/auth/me 200 192 - 249.080 ms[39m
+2026-01-13 12:06:00:60 [35mhttp[39m: [35mGET /api/auth/me 200 192 - 250.112 ms[39m
+2026-01-13 12:06:00:60 [32minfo[39m: [32mUser 1 connected with socket YCtWWOwMycrx5QSYAAAb[39m
+2026-01-13 12:06:00:60 [35mhttp[39m: [35mGET /api/auth/me 304 - - 183.411 ms[39m
+2026-01-13 12:06:01:61 [35mhttp[39m: [35mGET /api/auth/me 304 - - 183.353 ms[39m
+2026-01-13 12:06:01:61 [32minfo[39m: [32mUser 3 connected with socket nSLpofNGdsh6ABUEAAAd[39m
+2026-01-13 12:06:07:67 [35mhttp[39m: [35mPUT /api/users/me 403 54 - 1.866 ms[39m
+2026-01-13 12:08:27:827 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 12:08:27:827 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-13 12:08:27:827 [32minfo[39m: [32mUser 3 connected with socket UgU2ghOy16VThBEsAAAB[39m
+2026-01-13 12:08:27:827 [32minfo[39m: [32mUser 1 connected with socket UvmmcV4W9V1QuRZTAAAD[39m
+2026-01-13 12:10:19:1019 [35mhttp[39m: [35mPUT /api/users/me 404 151 - 27.159 ms[39m
+2026-01-13 12:12:07:127 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 12:12:07:127 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-13 12:12:10:1210 [32minfo[39m: [32mUser 3 connected with socket hKOVSp3zjYO3a8VCAAAB[39m
+2026-01-13 12:12:11:1211 [32minfo[39m: [32mUser 1 connected with socket bXI99nrmWsPzfNqpAAAD[39m
+2026-01-13 12:12:22:1222 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 12:12:22:1222 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-13 12:12:22:1222 [32minfo[39m: [32mUser 3 connected with socket 9aurmL4w7TnblnGjAAAC[39m
+2026-01-13 12:12:22:1222 [32minfo[39m: [32mUser 1 connected with socket IkDriCKYW2k8J4J5AAAD[39m
+2026-01-13 12:13:31:1331 [35mhttp[39m: [35mPUT /api/auth/me 200 197 - 247.724 ms[39m
+2026-01-13 12:13:32:1332 [35mhttp[39m: [35mGET /api/auth/me 200 197 - 193.467 ms[39m
+2026-01-13 12:13:37:1337 [32minfo[39m: [32mSocket IkDriCKYW2k8J4J5AAAD disconnected[39m
+2026-01-13 12:13:38:1338 [35mhttp[39m: [35mGET /api/auth/me 200 197 - 191.539 ms[39m
+2026-01-13 12:13:38:1338 [32minfo[39m: [32mUser 1 connected with socket 5SR13nhKlTtTvg4CAAAF[39m
+2026-01-13 12:13:39:1339 [35mhttp[39m: [35mGET /api/auth/me 200 197 - 952.642 ms[39m
+2026-01-13 12:14:43:1443 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 12:14:43:1443 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-13 12:15:14:1514 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 12:15:14:1514 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-13 12:18:34:1834 [35mhttp[39m: [35mPOST /api/auth/change-password 401 39 - 35.649 ms[39m
+2026-01-13 12:18:34:1834 [35mhttp[39m: [35mPOST /api/auth/refresh 200 397 - 538.719 ms[39m
+2026-01-13 12:18:35:1835 [35mhttp[39m: [35mPOST /api/auth/change-password 200 44 - 761.775 ms[39m
+2026-01-13 12:19:09:199 [31merror[39m: [31mError handler caught: Invalid email or password.[39m
+2026-01-13 12:19:09:199 [35mhttp[39m: [35mPOST /api/auth/login 401 40 - 397.523 ms[39m
+2026-01-13 12:19:17:1917 [35mhttp[39m: [35mPOST /api/auth/login 200 613 - 614.496 ms[39m
+2026-01-13 12:19:17:1917 [32minfo[39m: [32mUser 1 connected with socket aYVygqRAkCB4LJjyAAAB[39m
+2026-01-13 12:19:56:1956 [35mhttp[39m: [35mGET /api/auth/me 401 39 - 3.347 ms[39m
+2026-01-13 12:19:56:1956 [35mhttp[39m: [35mGET /api/auth/me 401 39 - 1.924 ms[39m
+2026-01-13 12:19:56:1956 [35mhttp[39m: [35mPOST /api/auth/refresh 200 395 - 551.484 ms[39m
+2026-01-13 12:19:57:1957 [35mhttp[39m: [35mGET /api/auth/me 200 192 - 249.957 ms[39m
+2026-01-13 12:19:57:1957 [32minfo[39m: [32mUser 3 connected with socket 5hF8BXLQyTqLDrWxAAAD[39m
+2026-01-13 12:19:57:1957 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-13 12:19:57:1957 [35mhttp[39m: [35mPOST /api/auth/refresh 401 36 - 906.427 ms[39m
+2026-01-13 12:19:57:1957 [32minfo[39m: [32mSocket 5hF8BXLQyTqLDrWxAAAD disconnected[39m
+2026-01-13 12:20:21:2021 [35mhttp[39m: [35mPOST /api/auth/login 200 611 - 444.518 ms[39m
+2026-01-13 12:20:21:2021 [32minfo[39m: [32mUser 4 connected with socket ISMG105bhg7Q8n5LAAAF[39m
+2026-01-13 12:20:22:2022 [35mhttp[39m: [35mGET /api/admin/stats 304 - - 714.846 ms[39m
+2026-01-13 12:20:30:2030 [35mhttp[39m: [35mGET /api/tasks 304 - - 195.098 ms[39m
+2026-01-13 12:20:30:2030 [35mhttp[39m: [35mGET /api/customers 304 - - 271.118 ms[39m
+2026-01-13 12:20:31:2031 [35mhttp[39m: [35mGET /api/users 200 781 - 930.428 ms[39m
+2026-01-13 12:21:26:2126 [32minfo[39m: [32mSocket ISMG105bhg7Q8n5LAAAF disconnected[39m
+2026-01-13 12:21:28:2128 [35mhttp[39m: [35mGET /api/auth/me 200 195 - 919.633 ms[39m
+2026-01-13 12:21:28:2128 [32minfo[39m: [32mUser 4 connected with socket VkGvKpoG7qQQIk2DAAAH[39m
+2026-01-13 12:21:28:2128 [35mhttp[39m: [35mGET /api/auth/me 304 - - 182.617 ms[39m
+2026-01-13 12:21:29:2129 [35mhttp[39m: [35mGET /api/tasks 304 - - 910.438 ms[39m
+2026-01-13 12:21:29:2129 [35mhttp[39m: [35mGET /api/customers 304 - - 907.718 ms[39m
+2026-01-13 12:21:29:2129 [35mhttp[39m: [35mGET /api/users 304 - - 952.600 ms[39m
+2026-01-13 12:23:01:231 [35mhttp[39m: [35mGET /api/customers 304 - - 967.111 ms[39m
+2026-01-13 12:23:01:231 [35mhttp[39m: [35mGET /api/users 304 - - 1006.957 ms[39m
+2026-01-13 12:23:01:231 [35mhttp[39m: [35mGET /api/tasks 304 - - 1195.156 ms[39m
+2026-01-13 12:24:13:2413 [35mhttp[39m: [35mPOST /api/tasks 201 351 - 915.299 ms[39m
+2026-01-13 12:24:13:2413 [35mhttp[39m: [35mGET /api/tasks 200 834 - 182.222 ms[39m
+2026-01-13 12:24:28:2428 [35mhttp[39m: [35mGET /api/staff/overview 200 78 - 2.495 ms[39m
+2026-01-13 12:24:32:2432 [35mhttp[39m: [35mGET /api/tasks?assignedTo=1&status=ongoing 200 419 - 194.521 ms[39m
+2026-01-13 12:26:00:260 [35mhttp[39m: [35mPOST /api/tasks 201 342 - 184.006 ms[39m
+2026-01-13 12:26:00:260 [35mhttp[39m: [35mGET /api/tasks 200 1243 - 188.460 ms[39m
+2026-01-13 12:26:11:2611 [32minfo[39m: [32mSocket aYVygqRAkCB4LJjyAAAB disconnected[39m
+2026-01-13 12:26:12:2612 [35mhttp[39m: [35mGET /api/auth/me 200 197 - 184.722 ms[39m
+2026-01-13 12:26:12:2612 [32minfo[39m: [32mUser 1 connected with socket 7hybS1d4qO09uJf8AAAJ[39m
+2026-01-13 12:26:12:2612 [35mhttp[39m: [35mGET /api/tasks?assignedTo=1&status=ongoing 200 828 - 181.616 ms[39m
+2026-01-13 12:26:12:2612 [35mhttp[39m: [35mGET /api/auth/me 200 197 - 928.907 ms[39m
+2026-01-13 12:28:01:281 [35mhttp[39m: [35mPOST /api/tasks 201 371 - 188.853 ms[39m
+2026-01-13 12:28:01:281 [35mhttp[39m: [35mGET /api/tasks 200 1681 - 203.340 ms[39m
+2026-01-13 12:28:19:2819 [32minfo[39m: [32mSocket 7hybS1d4qO09uJf8AAAJ disconnected[39m
+2026-01-13 12:28:20:2820 [35mhttp[39m: [35mGET /api/auth/me 200 197 - 175.181 ms[39m
+2026-01-13 12:28:20:2820 [35mhttp[39m: [35mGET /api/auth/me 200 197 - 181.509 ms[39m
+2026-01-13 12:28:20:2820 [32minfo[39m: [32mUser 1 connected with socket xqXlPrGpNNlM15-mAAAL[39m
+2026-01-13 12:28:20:2820 [35mhttp[39m: [35mGET /api/tasks?assignedTo=1&status=ongoing 200 1266 - 189.151 ms[39m
+2026-01-13 12:30:47:3047 [35mhttp[39m: [35mGET /api/tasks?assignedTo=1&status=completed 200 2 - 176.831 ms[39m
+2026-01-13 12:30:48:3048 [35mhttp[39m: [35mGET /api/tasks?assignedTo=1&status=ongoing 200 1266 - 189.777 ms[39m
+2026-01-13 12:31:21:3121 [35mhttp[39m: [35mPUT /api/tasks/3 200 344 - 201.258 ms[39m
+2026-01-13 12:31:22:3122 [35mhttp[39m: [35mGET /api/tasks?assignedTo=1&status=ongoing 200 857 - 189.828 ms[39m
+2026-01-13 12:31:25:3125 [35mhttp[39m: [35mGET /api/tasks?assignedTo=1&status=completed 200 412 - 187.095 ms[39m
+2026-01-13 12:33:35:3335 [35mhttp[39m: [35mGET /api/tasks?assignedTo=1&status=ongoing 200 857 - 264.902 ms[39m
+2026-01-13 12:34:30:3430 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 12:34:30:3430 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-13 12:34:31:3431 [32minfo[39m: [32mUser 4 connected with socket 97m5GUlPAkStOaeeAAAD[39m
+2026-01-13 12:34:40:3440 [35mhttp[39m: [35mGET /api/tasks 200 1815 - 210.147 ms[39m
+2026-01-13 12:34:41:3441 [35mhttp[39m: [35mGET /api/customers 304 - - 920.732 ms[39m
+2026-01-13 12:34:41:3441 [35mhttp[39m: [35mGET /api/users 304 - - 921.020 ms[39m
+2026-01-13 12:34:41:3441 [35mhttp[39m: [35mGET /api/tasks?assignedTo=1&status=ongoing 401 39 - 3.403 ms[39m
+2026-01-13 12:34:42:3442 [35mhttp[39m: [35mPOST /api/auth/refresh 200 397 - 417.073 ms[39m
+2026-01-13 12:34:42:3442 [35mhttp[39m: [35mGET /api/tasks?assignedTo=1&status=ongoing 200 923 - 191.334 ms[39m
+2026-01-13 12:38:33:3833 [35mhttp[39m: [35mGET /api/tasks?assignedTo=1&status=ongoing 200 923 - 883.933 ms[39m
+2026-01-13 12:38:59:3859 [32minfo[39m: [32mSocket 97m5GUlPAkStOaeeAAAD disconnected[39m
+2026-01-13 12:38:59:3859 [35mhttp[39m: [35mGET /api/auth/me 401 39 - 4.121 ms[39m
+2026-01-13 12:38:59:3859 [35mhttp[39m: [35mGET /api/auth/me 401 39 - 4.009 ms[39m
+2026-01-13 12:38:59:3859 [35mhttp[39m: [35mGET /api/auth/me 200 197 - 176.157 ms[39m
+2026-01-13 12:38:59:3859 [32minfo[39m: [32mUser 1 connected with socket rONfD9TGM83eLiSuAAAF[39m
+2026-01-13 12:39:00:390 [35mhttp[39m: [35mGET /api/auth/me 200 197 - 966.624 ms[39m
+2026-01-13 12:39:00:390 [35mhttp[39m: [35mPOST /api/auth/refresh 200 397 - 1202.668 ms[39m
+2026-01-13 12:39:00:390 [35mhttp[39m: [35mPOST /api/auth/refresh 200 397 - 1237.852 ms[39m
+2026-01-13 12:39:00:390 [35mhttp[39m: [35mGET /api/auth/me 200 195 - 177.266 ms[39m
+2026-01-13 12:39:00:390 [32minfo[39m: [32mUser 4 connected with socket BEMo37ajiOwnwEitAAAH[39m
+2026-01-13 12:39:00:390 [35mhttp[39m: [35mGET /api/auth/me 304 - - 191.263 ms[39m
+2026-01-13 12:39:00:390 [35mhttp[39m: [35mGET /api/tasks 304 - - 203.593 ms[39m
+2026-01-13 12:39:01:391 [35mhttp[39m: [35mGET /api/customers 304 - - 201.764 ms[39m
+2026-01-13 12:39:01:391 [35mhttp[39m: [35mGET /api/users 200 781 - 227.316 ms[39m
+2026-01-13 12:39:26:3926 [35mhttp[39m: [35mGET /api/tasks?assignedTo=1&status=completed 200 445 - 192.559 ms[39m
+2026-01-13 12:39:36:3936 [35mhttp[39m: [35mGET /api/tasks?assignedTo=1&status=ongoing 200 923 - 178.379 ms[39m
+2026-01-13 12:40:29:4029 [35mhttp[39m: [35mGET /api/tasks?assignedTo=1&status=completed 200 445 - 182.955 ms[39m
+2026-01-13 12:41:53:4153 [35mhttp[39m: [35mGET /api/tasks?assignedTo=1&status=completed 200 445 - 182.353 ms[39m
+2026-01-13 12:43:07:437 [35mhttp[39m: [35mGET /api/tasks?assignedTo=1&status=ongoing 200 923 - 177.486 ms[39m
+2026-01-13 12:43:37:4337 [35mhttp[39m: [35mGET /api/tasks?assignedTo=1&status=completed 200 445 - 187.476 ms[39m
+2026-01-13 12:44:08:448 [32minfo[39m: [32mSocket rONfD9TGM83eLiSuAAAF disconnected[39m
+2026-01-13 12:44:27:4427 [35mhttp[39m: [35mPOST /api/auth/forgot-password 200 78 - 370.096 ms[39m
+2026-01-13 12:45:02:452 [35mhttp[39m: [35mPOST /api/auth/reset-password 200 42 - 678.876 ms[39m
+2026-01-13 12:45:16:4516 [31merror[39m: [31mError handler caught: Invalid email or password.[39m
+2026-01-13 12:45:16:4516 [35mhttp[39m: [35mPOST /api/auth/login 401 40 - 299.474 ms[39m
+2026-01-13 12:45:23:4523 [35mhttp[39m: [35mPOST /api/auth/login 200 613 - 473.973 ms[39m
+2026-01-13 12:45:23:4523 [32minfo[39m: [32mUser 1 connected with socket xydFSQM1u2-d37gIAAAJ[39m
+2026-01-13 12:45:23:4523 [35mhttp[39m: [35mGET /api/staff/overview 200 78 - 2.990 ms[39m
+2026-01-13 12:45:43:4543 [35mhttp[39m: [35mGET /api/tasks?assignedTo=1&status=ongoing 200 923 - 211.944 ms[39m
+2026-01-13 12:47:48:4748 [35mhttp[39m: [35mGET /api/tasks?assignedTo=1&status=ongoing 200 923 - 190.368 ms[39m
+2026-01-13 12:47:58:4758 [35mhttp[39m: [35mGET /api/tasks?assignedTo=1&status=completed 200 445 - 186.790 ms[39m
+2026-01-13 12:48:38:4838 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 12:48:38:4838 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-13 12:48:39:4839 [32minfo[39m: [32mUser 1 connected with socket 3UyGjuJaxx5Q9yvzAAAB[39m
+2026-01-13 12:48:42:4842 [32minfo[39m: [32mUser 4 connected with socket LVq-oEB2v5DL9sIIAAAD[39m
+2026-01-13 12:48:47:4847 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 12:48:47:4847 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-13 12:48:48:4848 [32minfo[39m: [32mUser 1 connected with socket OaFTi_nTssrpCHgRAAAB[39m
+2026-01-13 12:48:49:4849 [32minfo[39m: [32mUser 4 connected with socket JqCo2OB3s6QzP6fgAAAD[39m
+2026-01-13 12:52:15:5215 [32minfo[39m: [32mSocket OaFTi_nTssrpCHgRAAAB disconnected[39m
+2026-01-13 12:53:36:5336 [35mhttp[39m: [35mGET /api/auth/me 200 197 - 244.429 ms[39m
+2026-01-13 12:53:36:5336 [32minfo[39m: [32mUser 1 connected with socket 19j1LqId4x3gkpghAAAF[39m
+2026-01-13 12:53:36:5336 [35mhttp[39m: [35mGET /api/tasks?assignedTo=1&status=ongoing 200 923 - 225.265 ms[39m
+2026-01-13 12:53:37:5337 [35mhttp[39m: [35mGET /api/auth/me 200 197 - 937.553 ms[39m
+2026-01-13 12:54:01:541 [35mhttp[39m: [35mGET /api/staff/overview 200 78 - 197.143 ms[39m
+2026-01-13 12:54:24:5424 [35mhttp[39m: [35mGET /api/tasks?assignedTo=1&status=completed 200 445 - 188.982 ms[39m
+2026-01-13 12:55:17:5517 [35mhttp[39m: [35mGET /api/staff/overview 200 78 - 186.378 ms[39m
+2026-01-13 12:56:32:5632 [35mhttp[39m: [35mGET /api/auth/me 401 39 - 2.901 ms[39m
+2026-01-13 12:56:32:5632 [35mhttp[39m: [35mGET /api/auth/me 401 39 - 3.020 ms[39m
+2026-01-13 12:56:32:5632 [35mhttp[39m: [35mPOST /api/auth/refresh 200 397 - 397.945 ms[39m
+2026-01-13 12:56:33:5633 [35mhttp[39m: [35mPOST /api/auth/refresh 200 397 - 477.417 ms[39m
+2026-01-13 12:56:33:5633 [35mhttp[39m: [35mGET /api/auth/me 200 195 - 190.469 ms[39m
+2026-01-13 12:56:33:5633 [32minfo[39m: [32mUser 4 connected with socket NqR_CvLKa1_0qDEmAAAH[39m
+2026-01-13 12:56:33:5633 [35mhttp[39m: [35mGET /api/auth/me 304 - - 175.788 ms[39m
+2026-01-13 12:56:35:5635 [35mhttp[39m: [35mGET /api/admin/stats 200 137 - 756.928 ms[39m
+2026-01-13 12:56:40:5640 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 12:56:40:5640 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-13 12:56:41:5641 [32minfo[39m: [32mUser 4 connected with socket B9gmXM2vC9miSVX5AAAE[39m
+2026-01-13 12:56:41:5641 [32minfo[39m: [32mUser 1 connected with socket m1F-K8lEuZNcAq2sAAAF[39m
+2026-01-13 12:56:58:5658 [35mhttp[39m: [35mGET /api/staff/overview 200 85 - 413.955 ms[39m
+2026-01-13 12:57:42:5742 [35mhttp[39m: [35mPUT /api/auth/me 200 197 - 210.866 ms[39m
+2026-01-13 12:57:42:5742 [35mhttp[39m: [35mGET /api/auth/me 200 197 - 179.724 ms[39m
+2026-01-13 12:57:46:5746 [32minfo[39m: [32mSocket B9gmXM2vC9miSVX5AAAE disconnected[39m
+2026-01-13 12:57:46:5746 [35mhttp[39m: [35mGET /api/auth/me 304 - - 186.186 ms[39m
+2026-01-13 12:57:46:5746 [32minfo[39m: [32mUser 4 connected with socket tWg18oyWG8mmjF-YAAAH[39m
+2026-01-13 12:57:46:5746 [35mhttp[39m: [35mGET /api/auth/me 304 - - 194.647 ms[39m
+2026-01-13 12:59:42:5942 [35mhttp[39m: [35mGET /api/customers?search= 200 306 - 194.093 ms[39m
+2026-01-13 12:59:44:5944 [35mhttp[39m: [35mGET /api/admin/stats 304 - - 761.840 ms[39m
+2026-01-13 12:59:46:5946 [35mhttp[39m: [35mGET /api/auth/me 304 - - 184.577 ms[39m
+2026-01-13 12:59:46:5946 [32minfo[39m: [32mUser 4 connected with socket vUduo7-s5ImuZmOyAAAJ[39m
+2026-01-13 12:59:46:5946 [35mhttp[39m: [35mGET /api/auth/me 304 - - 186.903 ms[39m
+2026-01-13 12:59:46:5946 [32minfo[39m: [32mSocket tWg18oyWG8mmjF-YAAAH disconnected[39m
+2026-01-13 12:59:47:5947 [35mhttp[39m: [35mGET /api/customers?search= 304 - - 927.779 ms[39m
+2026-01-13 13:00:41:041 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 13:00:41:041 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-13 13:00:42:042 [32minfo[39m: [32mUser 4 connected with socket eRSiqnpa_3pzb-ebAAAD[39m
+2026-01-13 13:00:48:048 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 13:00:48:048 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-13 13:00:50:050 [32minfo[39m: [32mUser 4 connected with socket ex6ZWxcDyKx24d33AAAB[39m
+2026-01-13 13:08:20:820 [35mhttp[39m: [35mGET /api/admin/stats 200 156 - 960.717 ms[39m
+2026-01-13 13:10:52:1052 [35mhttp[39m: [35mGET /api/customers?search= 304 - - 259.017 ms[39m
+2026-01-13 13:11:00:110 [35mhttp[39m: [35mGET /api/admin/stats 304 - - 883.409 ms[39m
+2026-01-13 13:11:15:1115 [35mhttp[39m: [35mGET /api/items?page=1&limit=10 200 529 - 391.105 ms[39m
+2026-01-13 13:13:20:1320 [35mhttp[39m: [35mGET /api/items?page=1&limit=10 401 39 - 4.531 ms[39m
+2026-01-13 13:13:20:1320 [35mhttp[39m: [35mPOST /api/auth/refresh 200 397 - 475.405 ms[39m
+2026-01-13 13:13:21:1321 [35mhttp[39m: [35mGET /api/items?page=1&limit=10 304 - - 390.243 ms[39m
+2026-01-13 13:13:26:1326 [35mhttp[39m: [35mGET /api/admin/stats 304 - - 869.342 ms[39m
+2026-01-13 13:15:27:1527 [35mhttp[39m: [35mGET /api/tasks 304 - - 200.611 ms[39m
+2026-01-13 13:15:27:1527 [35mhttp[39m: [35mGET /api/users 200 783 - 855.333 ms[39m
+2026-01-13 13:15:27:1527 [35mhttp[39m: [35mGET /api/customers 304 - - 899.452 ms[39m
+2026-01-13 13:15:52:1552 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 13:15:52:1552 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-13 13:16:03:163 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 13:16:03:163 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-13 13:16:31:1631 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 13:16:31:1631 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-13 13:16:52:1652 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 13:16:53:1653 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-13 13:17:05:175 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 13:17:05:175 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-13 13:17:31:1731 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 13:17:31:1731 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-13 13:18:24:1824 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 13:18:24:1824 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-13 13:20:06:206 [35mhttp[39m: [35mGET /api/customers?search= 304 - - 202.419 ms[39m
+2026-01-13 13:23:49:2349 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 13:24:03:243 [35mhttp[39m: [35mGET /api/admin/stats 304 - - 932.154 ms[39m
+2026-01-13 13:24:08:248 [35mhttp[39m: [35mGET /api/measurement-fields 200 2153 - 257.506 ms[39m
+2026-01-13 13:24:09:249 [35mhttp[39m: [35mGET /api/categories 200 858 - 914.658 ms[39m
+2026-01-13 13:25:38:2538 [35mhttp[39m: [35mGET /api/categories 304 - - 188.633 ms[39m
+2026-01-13 13:25:38:2538 [35mhttp[39m: [35mGET /api/measurement-fields 304 - - 198.140 ms[39m
+2026-01-13 13:25:48:2548 [35mhttp[39m: [35mGET /api/categories 304 - - 199.429 ms[39m
+2026-01-13 13:25:48:2548 [35mhttp[39m: [35mGET /api/measurement-fields 304 - - 199.899 ms[39m
+2026-01-13 13:27:59:2759 [35mhttp[39m: [35mGET /api/categories 304 - - 187.227 ms[39m
+2026-01-13 13:27:59:2759 [35mhttp[39m: [35mGET /api/measurement-fields 304 - - 193.185 ms[39m
+2026-01-13 13:28:53:2853 [35mhttp[39m: [35mGET /api/admin/stats 401 39 - 3.861 ms[39m
+2026-01-13 13:28:53:2853 [35mhttp[39m: [35mPOST /api/auth/refresh 200 397 - 459.755 ms[39m
+2026-01-13 13:28:54:2854 [35mhttp[39m: [35mGET /api/admin/stats 304 - - 939.803 ms[39m
+2026-01-13 13:29:00:290 [35mhttp[39m: [35mGET /api/customers?search= 304 - - 185.580 ms[39m
+2026-01-13 13:29:03:293 [35mhttp[39m: [35mGET /api/measurement-fields 304 - - 189.241 ms[39m
+2026-01-13 13:29:03:293 [35mhttp[39m: [35mGET /api/categories 304 - - 194.548 ms[39m
+2026-01-13 13:30:18:3018 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 13:30:18:3018 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-13 13:30:19:3019 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 13:30:25:3025 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 13:30:25:3025 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-13 13:30:25:3025 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 13:30:32:3032 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 13:30:32:3032 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-13 13:30:32:3032 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 13:30:35:3035 [35mhttp[39m: [35mGET /api/customers?search= 304 - - 205.072 ms[39m
+2026-01-13 13:30:36:3036 [35mhttp[39m: [35mGET /api/customers?search= 304 - - 194.147 ms[39m
+2026-01-13 13:31:17:3117 [35mhttp[39m: [35mGET /api/admin/stats 304 - - 906.065 ms[39m
+2026-01-13 13:31:22:3122 [35mhttp[39m: [35mGET /api/items?page=1&limit=10 304 - - 376.588 ms[39m
+2026-01-13 13:31:45:3145 [35mhttp[39m: [35mGET /api/users 200 783 - 197.855 ms[39m
+2026-01-13 13:32:25:3225 [35mhttp[39m: [35mGET /api/admin/stats 304 - - 919.782 ms[39m
+2026-01-13 13:33:04:334 [35mhttp[39m: [35mGET /api/measurement-fields 304 - - 222.434 ms[39m
+2026-01-13 13:33:04:334 [35mhttp[39m: [35mGET /api/categories 304 - - 972.400 ms[39m
+2026-01-13 13:33:30:3330 [35mhttp[39m: [35mPUT /api/customers/1 200 426 - 427.471 ms[39m
+2026-01-13 13:33:30:3330 [35mhttp[39m: [35mGET /api/customers?search= 200 428 - 198.110 ms[39m
+2026-01-13 13:34:23:3423 [35mhttp[39m: [35mGET /api/admin/stats 304 - - 937.490 ms[39m
+2026-01-13 13:34:50:3450 [35mhttp[39m: [35mGET /api/users 304 - - 188.517 ms[39m
+2026-01-13 13:36:09:369 [35mhttp[39m: [35mGET /api/customers 200 428 - 174.933 ms[39m
+2026-01-13 13:36:09:369 [35mhttp[39m: [35mGET /api/tasks 304 - - 253.710 ms[39m
+2026-01-13 13:36:10:3610 [35mhttp[39m: [35mGET /api/users 304 - - 929.961 ms[39m
+2026-01-13 13:36:44:3644 [35mhttp[39m: [35mGET /api/measurement-fields 304 - - 924.999 ms[39m
+2026-01-13 13:36:44:3644 [35mhttp[39m: [35mGET /api/categories 304 - - 940.346 ms[39m
+2026-01-13 13:37:40:3740 [35mhttp[39m: [35mGET /api/admin/stats 304 - - 967.028 ms[39m
+2026-01-13 13:37:58:3758 [35mhttp[39m: [35mGET /api/items?page=1&limit=10 304 - - 395.362 ms[39m
+2026-01-13 13:38:33:3833 [35mhttp[39m: [35mGET /api/auth/me 200 197 - 202.152 ms[39m
+2026-01-13 13:38:33:3833 [32minfo[39m: [32mUser 4 connected with socket S98gArXvUcvdrkplAAAB[39m
+2026-01-13 13:38:34:3834 [35mhttp[39m: [35mGET /api/auth/me 304 - - 205.942 ms[39m
+2026-01-13 13:38:39:3839 [35mhttp[39m: [35mGET /api/items/1 200 472 - 206.387 ms[39m
+2026-01-13 13:39:00:390 [35mhttp[39m: [35mGET /api/items?page=1&limit=10 304 - - 392.834 ms[39m
+2026-01-13 13:39:05:395 [32minfo[39m: [32mSocket S98gArXvUcvdrkplAAAB disconnected[39m
+2026-01-13 13:39:05:395 [35mhttp[39m: [35mGET /api/auth/me 304 - - 193.657 ms[39m
+2026-01-13 13:39:05:395 [32minfo[39m: [32mUser 4 connected with socket qMAYwGT0hkWZfynmAAAD[39m
+2026-01-13 13:39:05:395 [35mhttp[39m: [35mGET /api/auth/me 304 - - 194.178 ms[39m
+2026-01-13 13:41:33:4133 [35mhttp[39m: [35mGET /api/items?page=1&limit=10 304 - - 374.105 ms[39m
+2026-01-13 13:41:37:4137 [35mhttp[39m: [35mGET /api/admin/stats 304 - - 1030.770 ms[39m
+2026-01-13 13:41:41:4141 [35mhttp[39m: [35mGET /api/customers?search= 304 - - 186.503 ms[39m
+2026-01-13 13:44:06:446 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 13:44:06:446 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-13 13:44:06:446 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 13:44:13:4413 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 13:44:13:4413 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-13 13:44:13:4413 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 13:44:20:4420 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 13:44:20:4420 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-13 13:44:20:4420 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 13:44:27:4427 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 13:44:27:4427 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-13 13:44:27:4427 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 13:44:34:4434 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 13:44:34:4434 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-13 13:44:35:4435 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 13:44:49:4449 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 13:44:49:4449 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-13 13:44:49:4449 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 13:44:57:4457 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 13:44:57:4457 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-13 13:44:57:4457 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 13:45:04:454 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 13:45:04:454 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-13 13:45:04:454 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-13 13:45:34:4534 [32minfo[39m: [32mStarting user status migration...[39m
+2026-01-13 13:45:35:4535 [32minfo[39m: [32m✓ User status migration completed successfully![39m

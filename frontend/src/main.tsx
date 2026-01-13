@@ -20,10 +20,14 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
           <App />
           <Toaster
             position="top-right"
+            containerStyle={{
+              zIndex: 999999, // higher than modals, drawers, etc.
+              // top: 80, // Avoid overlap with sticky header
+            }}
             toastOptions={{
               duration: 4000,
               style: {
-                background: "var(--color-gray-800)",
+                background: "white",
                 color: "var(--color-gray-50)",
                 border: "1px solid var(--color-gray-700)",
               },

@@ -13,6 +13,11 @@ export const updateUserRole = async (userId: number, role: string) => {
   return response.data;
 };
 
+export const updateUserStatus = async (userId: number, status: string) => {
+  const response = await http.put(`/users/${userId}/status`, { status });
+  return response.data;
+};
+
 export const fetchCustomers = async (search?: string) => {
   const response = await http.get("/customers", { params: { search } });
   return response.data;
@@ -20,6 +25,16 @@ export const fetchCustomers = async (search?: string) => {
 
 export const createCustomer = async (data: CreateCustomerPayload) => {
   const response = await http.post("/customers", data);
+  return response.data;
+};
+
+export const updateCustomer = async (id: number, data: any) => {
+  const response = await http.put(`/customers/${id}`, data);
+  return response.data;
+};
+
+export const fetchCustomer = async (id: number) => {
+  const response = await http.get(`/customers/${id}`);
   return response.data;
 };
 

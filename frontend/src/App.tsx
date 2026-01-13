@@ -45,6 +45,7 @@ import StyleMePage from "./pages/StyleMePage";
 import AdminCustomersPage from "./pages/admin/AdminCustomersPage";
 import AdminTasksPage from "./pages/admin/AdminTasksPage";
 import AdminUsersPage from "./pages/admin/AdminUsersPage";
+import AdminCategoriesPage from "./pages/admin/AdminCategoriesPage";
 import StaffPortalPage from "./pages/staff/StaffPortalPage";
 
 const App: React.FC = () => {
@@ -106,6 +107,7 @@ const App: React.FC = () => {
           <Route path="/admin/customers" element={<AdminCustomersPage />} />
           <Route path="/admin/tasks" element={<AdminTasksPage />} />
           <Route path="/admin/users" element={<AdminUsersPage />} />
+          <Route path="/admin/categories" element={<AdminCategoriesPage />} />
         </Route>
 
         <Route element={<ProtectedRoute allowedRoles={["staff"]} />}>

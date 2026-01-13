@@ -10,6 +10,7 @@ import {
   verifyEmail,
   updateUserProfile,
   resendVerificationEmail,
+  changePassword,
 } from "../services/authService";
 import { loginWithGoogle } from "../services/oauthService";
 
@@ -197,3 +198,21 @@ export async function resendVerificationEmailController(
   }
 }
 
+
+
+export async function changePasswordController(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
+  try {
+    if (!req.user) {
+      res.status(401).json({ message: "Not authenticated." });
+      return;
+    }
+    await changePassword(req.user.id, req.body);
+    res.json({ message: "Password changed successfully." });
+  } catch (err) {
+    next(err);
+  }
+}

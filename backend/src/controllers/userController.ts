@@ -20,3 +20,14 @@ export async function updateUserRole(req: Request, res: Response, next: NextFunc
     next(err);
   }
 }
+
+export async function updateUserStatus(req: Request, res: Response, next: NextFunction) {
+  try {
+    const id = Number(req.params.id);
+    const { status } = req.body;
+    const user = await userService.updateUserStatus(id, status);
+    res.json(user);
+  } catch (err) {
+    next(err);
+  }
+}

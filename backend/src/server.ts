@@ -14,6 +14,7 @@ import { chatRouter } from "./routes/chatRoutes.js";
 import { customerRouter } from "./routes/customerRoutes.js";
 import { taskRouter } from "./routes/taskRoutes.js";
 import { lookRouter } from "./routes/lookRoutes.js";
+import categoryRouter from "./routes/categoryRoutes.js";
 import { errorHandler } from "./middleware/errorHandler.js";
 import { pingDatabase } from "./database/pool.js";
 import { logger } from "./utils/logger.js";
@@ -92,6 +93,7 @@ async function bootstrap(): Promise<void> {
   app.use("/api/customers", customerRouter);
   app.use("/api/tasks", taskRouter);
   app.use("/api/looks", lookRouter);
+  app.use("/api", categoryRouter);
 
   app.use(errorHandler);
 

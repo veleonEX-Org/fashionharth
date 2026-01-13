@@ -33,6 +33,7 @@ function toTask(row: any): Task {
     createdAt: row.created_at,
     updatedAt: row.updated_at,
     customerName: row.customer_name,
+    customerPhone: row.customer_phone,
     assigneeName: row.username, // Join from users
   };
 }
@@ -77,7 +78,7 @@ export async function getTasks(
   status?: string
 ): Promise<Task[]> {
   let query = `
-    SELECT t.*, c.name as customer_name, (u.first_name || ' ' || u.last_name) as username
+    SELECT t.*, c.name as customer_name, c.phone as customer_phone, (u.first_name || ' ' || u.last_name) as username
     FROM tasks t
     LEFT JOIN customers c ON t.customer_id = c.id
     LEFT JOIN users u ON t.assigned_to = u.id

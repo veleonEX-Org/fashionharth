@@ -1,19 +1,19 @@
 import { randomBytes } from "crypto";
 import { z } from "zod";
-import { pool } from "../database/pool";
-import { hashPassword, comparePassword } from "../utils/password";
+import { pool } from "../database/pool.js";
+import { hashPassword, comparePassword } from "../utils/password.js";
 import {
   signAccessToken,
   signRefreshToken,
   verifyRefreshToken,
-} from "../utils/jwt";
-import type { PublicUser, User } from "../models/user";
-import { toPublicUser } from "../models/user";
-import { env } from "../config/env";
+} from "../utils/jwt.js";
+import type { PublicUser, User } from "../models/user.js";
+import { toPublicUser } from "../models/user.js";
+import { env } from "../config/env.js";
 import {
   sendVerificationEmail,
   sendPasswordResetEmail,
-} from "./emailService";
+} from "./emailService.js";
 
 const registerSchema = z.object({
   firstName: z
@@ -105,6 +105,12 @@ export async function loginUser(
 
   if (!user.is_email_verified) {
     const error = new Error("Please verify your email before logging in.");
+    (error as any).statusCode = 403;
+    throw error;
+  }
+
+  if (user.status === "disabled") {
+    const error = new Error("Your account has been disabled. Please contact the administrator.");
     (error as any).statusCode = 403;
     throw error;
   }
@@ -361,3 +367,41 @@ export async function resendVerificationEmail(email: string): Promise<void> {
   }
 }
 
+
+const changePasswordSchema = z.object({
+  currentPassword: z.string().min(1, "Current password is required."),
+  newPassword: z.string().min(8, "Password must be at least 8 characters long."),
+});
+
+export async function changePassword(
+  userId: number,
+  input: unknown
+): Promise<void> {
+  const data = changePasswordSchema.parse(input);
+  const { currentPassword, newPassword } = data;
+
+  const result = await pool.query<User>("SELECT * FROM users WHERE id = $1", [
+    userId,
+  ]);
+  const user = result.rows[0];
+
+  if (!user) {
+    const error = new Error("User not found.");
+    (error as any).statusCode = 404;
+    throw error;
+  }
+
+  const isValid = await comparePassword(currentPassword, user.password_hash);
+  if (!isValid) {
+    const error = new Error("Incorrect current password.");
+    (error as any).statusCode = 401;
+    throw error;
+  }
+
+  const newPasswordHash = await hashPassword(newPassword);
+
+  await pool.query(
+    "UPDATE users SET password_hash = $1, updated_at = NOW() WHERE id = $2",
+    [newPasswordHash, userId]
+  );
+}

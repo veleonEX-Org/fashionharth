@@ -1,0 +1,272 @@
+import { randomBytes } from "crypto";
+import { z } from "zod";
+import { pool } from "../database/pool";
+import { hashPassword, comparePassword } from "../utils/password";
+import { signAccessToken, signRefreshToken, verifyRefreshToken, } from "../utils/jwt";
+import { toPublicUser } from "../models/user";
+import { env } from "../config/env";
+import { sendVerificationEmail, sendPasswordResetEmail, } from "./emailService";
+const registerSchema = z.object({
+    firstName: z
+        .string()
+        .min(1, "First name is required.")
+        .max(100, "First name must be less than 100 characters."),
+    lastName: z
+        .string()
+        .min(1, "Last name is required.")
+        .max(100, "Last name must be less than 100 characters."),
+    email: z.string().email("Please enter a valid email address."),
+    password: z
+        .string()
+        .min(8, "Password must be at least 8 characters long."),
+});
+const loginSchema = z.object({
+    email: z.string().email("Please enter a valid email address."),
+    password: z.string().min(1, "Password is required."),
+});
+export async function registerUser(input) {
+    const data = registerSchema.parse(input);
+    const existing = await pool.query("SELECT * FROM users WHERE email = $1", [data.email]);
+    if (existing.rows.length > 0) {
+        const error = new Error("Email is already in use.");
+        error.statusCode = 400;
+        throw error;
+    }
+    const passwordHash = await hashPassword(data.password);
+    const verificationToken = randomBytes(32).toString("hex");
+    await pool.query(`
+      INSERT INTO users (first_name, last_name, email, password_hash, role, is_email_verified, email_verification_token)
+      VALUES ($1, $2, $3, $4, $5, false, $6)
+    `, [
+        data.firstName,
+        data.lastName,
+        data.email,
+        passwordHash,
+        "user",
+        verificationToken,
+    ]);
+    // Send verification email
+    try {
+        await sendVerificationEmail(data.email, verificationToken);
+    }
+    catch (error) {
+        // Log error but don't fail registration
+        console.error("Failed to send verification email:", error);
+        // Fallback: log the link for development
+        console.log(`Email verification link: ${env.appUrl}/verify-email?token=${verificationToken}`);
+    }
+}
+export async function loginUser(input) {
+    const data = loginSchema.parse(input);
+    const result = await pool.query("SELECT * FROM users WHERE email = $1", [data.email]);
+    const user = result.rows[0];
+    if (!user) {
+        const error = new Error("Invalid email or password.");
+        error.statusCode = 401;
+        throw error;
+    }
+    const isValid = await comparePassword(data.password, user.password_hash);
+    if (!isValid) {
+        const error = new Error("Invalid email or password.");
+        error.statusCode = 401;
+        throw error;
+    }
+    if (!user.is_email_verified) {
+        const error = new Error("Please verify your email before logging in.");
+        error.statusCode = 403;
+        throw error;
+    }
+    const accessToken = signAccessToken(user.id, user.role);
+    const refreshToken = signRefreshToken(user.id, user.role);
+    await pool.query("UPDATE users SET refresh_token = $1, updated_at = NOW() WHERE id = $2", [refreshToken, user.id]);
+    return {
+        user: toPublicUser(user),
+        accessToken,
+        refreshToken,
+    };
+}
+export async function refreshTokens(refreshToken) {
+    const payload = verifyRefreshToken(refreshToken);
+    const result = await pool.query("SELECT * FROM users WHERE id = $1", [
+        payload.sub,
+    ]);
+    const user = result.rows[0];
+    if (!user || user.refresh_token !== refreshToken) {
+        const error = new Error("Invalid refresh token.");
+        error.statusCode = 401;
+        throw error;
+    }
+    const newAccessToken = signAccessToken(user.id, user.role);
+    const newRefreshToken = signRefreshToken(user.id, user.role);
+    await pool.query("UPDATE users SET refresh_token = $1, updated_at = NOW() WHERE id = $2", [newRefreshToken, user.id]);
+    return {
+        accessToken: newAccessToken,
+        refreshToken: newRefreshToken,
+    };
+}
+export async function verifyEmail(token) {
+    const result = await pool.query("SELECT * FROM users WHERE email_verification_token = $1", [token]);
+    const user = result.rows[0];
+    if (!user) {
+        const error = new Error("Invalid verification token.");
+        error.statusCode = 400;
+        throw error;
+    }
+    await pool.query(`
+      UPDATE users
+      SET is_email_verified = true,
+          email_verification_token = NULL,
+          updated_at = NOW()
+      WHERE id = $1
+    `, [user.id]);
+}
+export async function requestPasswordReset(email) {
+    const result = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
+    const user = result.rows[0];
+    if (!user) {
+        // Do not reveal that the email does not exist.
+        return;
+    }
+    const token = randomBytes(32).toString("hex");
+    const expiresAt = new Date(Date.now() + 1000 * 60 * 60); // 1 hour
+    await pool.query(`
+      UPDATE users
+      SET reset_password_token = $1,
+          reset_password_expires_at = $2,
+          updated_at = NOW()
+      WHERE id = $3
+    `, [token, expiresAt, user.id]);
+    // Send password reset email
+    try {
+        await sendPasswordResetEmail(email, token);
+    }
+    catch (error) {
+        // Log error but don't fail the request
+        console.error("Failed to send password reset email:", error);
+        // Fallback: log the link for development
+        console.log(`Password reset link: ${env.appUrl}/reset-password?token=${token}`);
+    }
+}
+const resetPasswordSchema = z.object({
+    token: z.string().min(1, "Reset token is required."),
+    password: z
+        .string()
+        .min(8, "Password must be at least 8 characters long."),
+});
+export async function resetPassword(input) {
+    const data = resetPasswordSchema.parse(input);
+    const { token, password: newPassword } = data;
+    const result = await pool.query("SELECT * FROM users WHERE reset_password_token = $1", [token]);
+    const user = result.rows[0];
+    if (!user ||
+        !user.reset_password_expires_at ||
+        user.reset_password_expires_at < new Date()) {
+        const error = new Error("Reset token is invalid or expired.");
+        error.statusCode = 400;
+        throw error;
+    }
+    const passwordHash = await hashPassword(newPassword);
+    await pool.query(`
+      UPDATE users
+      SET password_hash = $1,
+          reset_password_token = NULL,
+          reset_password_expires_at = NULL,
+          updated_at = NOW()
+      WHERE id = $2
+    `, [passwordHash, user.id]);
+}
+export async function logoutUser(userId) {
+    await pool.query("UPDATE users SET refresh_token = NULL, updated_at = NOW() WHERE id = $1", [userId]);
+}
+export async function getUserById(id) {
+    const result = await pool.query("SELECT * FROM users WHERE id = $1", [
+        id,
+    ]);
+    const user = result.rows[0];
+    return user ? toPublicUser(user) : null;
+}
+const profileUpdateSchema = z.object({
+    firstName: z
+        .string()
+        .min(1, "First name is required.")
+        .max(100, "First name must be less than 100 characters."),
+    lastName: z
+        .string()
+        .min(1, "Last name is required.")
+        .max(100, "Last name must be less than 100 characters."),
+});
+export async function updateUserProfile(id, input) {
+    const data = profileUpdateSchema.parse(input);
+    const { firstName, lastName } = data;
+    const result = await pool.query(`
+      UPDATE users
+      SET first_name = $1,
+          last_name = $2,
+          updated_at = NOW()
+      WHERE id = $3
+      RETURNING *
+    `, [firstName, lastName, id]);
+    const user = result.rows[0];
+    if (!user) {
+        const error = new Error("User not found.");
+        error.statusCode = 404;
+        throw error;
+    }
+    return toPublicUser(user);
+}
+export async function resendVerificationEmail(email) {
+    const result = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
+    const user = result.rows[0];
+    if (!user) {
+        const error = new Error("User not found.");
+        error.statusCode = 404;
+        throw error;
+    }
+    if (user.is_email_verified) {
+        const error = new Error("Email is already verified.");
+        error.statusCode = 400;
+        throw error;
+    }
+    const verificationToken = randomBytes(32).toString("hex");
+    await pool.query(`
+      UPDATE users
+      SET email_verification_token = $1,
+          updated_at = NOW()
+      WHERE id = $2
+    `, [verificationToken, user.id]);
+    // Send verification email
+    try {
+        await sendVerificationEmail(email, verificationToken);
+    }
+    catch (error) {
+        // Log error but don't fail the request
+        console.error("Failed to send verification email:", error);
+        // Fallback: log the link for development
+        console.log(`Email verification link: ${env.appUrl}/verify-email?token=${verificationToken}`);
+    }
+}
+const changePasswordSchema = z.object({
+    currentPassword: z.string().min(1, "Current password is required."),
+    newPassword: z.string().min(8, "Password must be at least 8 characters long."),
+});
+export async function changePassword(userId, input) {
+    const data = changePasswordSchema.parse(input);
+    const { currentPassword, newPassword } = data;
+    const result = await pool.query("SELECT * FROM users WHERE id = $1", [
+        userId,
+    ]);
+    const user = result.rows[0];
+    if (!user) {
+        const error = new Error("User not found.");
+        error.statusCode = 404;
+        throw error;
+    }
+    const isValid = await comparePassword(currentPassword, user.password_hash);
+    if (!isValid) {
+        const error = new Error("Incorrect current password.");
+        error.statusCode = 401;
+        throw error;
+    }
+    const newPasswordHash = await hashPassword(newPassword);
+    await pool.query("UPDATE users SET password_hash = $1, updated_at = NOW() WHERE id = $2", [newPasswordHash, userId]);
+}
