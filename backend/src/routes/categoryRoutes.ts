@@ -5,13 +5,17 @@ import { requireRole } from "../middleware/roleMiddleware.js";
 
 const router = Router();
 
-// All routes require authentication
+// ============ PUBLIC ROUTES ============
+// GET /api/categories - Get all categories
+router.get("/categories", categoryController.getCategories);
+
+// GET /api/measurement-fields - Get all measurement fields
+router.get("/measurement-fields", categoryController.getMeasurementFields);
+
+// All other routes require authentication
 router.use(authenticate);
 
 // ============ CATEGORIES ============
-// GET /api/categories - Get all categories (accessible to all authenticated users)
-router.get("/categories", categoryController.getCategories);
-
 // GET /api/categories/:id - Get single category
 router.get("/categories/:id", categoryController.getCategory);
 
@@ -25,9 +29,6 @@ router.put("/categories/:id", requireRole(["admin"]), categoryController.updateC
 router.delete("/categories/:id", requireRole(["admin"]), categoryController.deleteCategory);
 
 // ============ MEASUREMENT FIELDS ============
-// GET /api/measurement-fields - Get all measurement fields (accessible to all authenticated users)
-router.get("/measurement-fields", categoryController.getMeasurementFields);
-
 // GET /api/measurement-fields/:id - Get single measurement field
 router.get("/measurement-fields/:id", categoryController.getMeasurementField);
 

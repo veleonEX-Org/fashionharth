@@ -1,4 +1,4 @@
-import type { UserRole } from "../types/auth";
+
 
 export interface Item {
   id: number;
@@ -6,7 +6,6 @@ export interface Item {
   description: string | null;
   status: "active" | "inactive" | "archived";
   created_by: number;
-  role_access: UserRole[];
   metadata: Record<string, unknown> | null;
   created_at: Date;
   updated_at: Date;
@@ -15,6 +14,7 @@ export interface Item {
   story: string | null;
   is_trending: boolean;
   image_url: string | null;
+  inspired_image_url: string | null;
 }
 
 export interface PublicItem {
@@ -23,7 +23,6 @@ export interface PublicItem {
   description: string | null;
   status: "active" | "inactive" | "archived";
   createdBy: number;
-  roleAccess: UserRole[];
   metadata: Record<string, unknown> | null;
   createdAt: string;
   updatedAt: string;
@@ -32,6 +31,7 @@ export interface PublicItem {
   story: string | null;
   isTrending: boolean;
   imageUrl: string | null;
+  inspiredImageUrl: string | null;
 }
 
 export function toPublicItem(row: Item): PublicItem {
@@ -41,7 +41,6 @@ export function toPublicItem(row: Item): PublicItem {
     description: row.description,
     status: row.status,
     createdBy: row.created_by,
-    roleAccess: row.role_access,
     metadata: row.metadata,
     createdAt: row.created_at.toISOString(),
     updatedAt: row.updated_at.toISOString(),
@@ -50,6 +49,7 @@ export function toPublicItem(row: Item): PublicItem {
     story: row.story,
     isTrending: row.is_trending,
     imageUrl: row.image_url,
+    inspiredImageUrl: row.inspired_image_url,
   };
 }
 

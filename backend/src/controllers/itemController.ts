@@ -6,7 +6,7 @@ import {
   updateItem,
   deleteItem,
   getPublicItems,
-} from "../services/itemService";
+} from "../services/itemService.js";
 
 export async function createItemController(
   req: Request,
@@ -42,7 +42,6 @@ export async function getItemsController(
 
     const result = await getItems(
       req.user.id,
-      req.user.role,
       page,
       limit,
       status,
@@ -60,16 +59,12 @@ export async function getItemByIdController(
   next: NextFunction
 ): Promise<void> {
   try {
-    if (!req.user) {
-      res.status(401).json({ message: "Not authenticated." });
-      return;
-    }
     const id = parseInt(req.params.id);
     if (isNaN(id)) {
       res.status(400).json({ message: "Invalid item ID." });
       return;
     }
-    const item = await getItemById(id, req.user.role);
+    const item = await getItemById(id);
     if (!item) {
       res.status(404).json({ message: "Item not found." });
       return;

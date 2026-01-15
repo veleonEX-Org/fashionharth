@@ -1,5 +1,6 @@
 import React from 'react';
 import { CheckoutButton } from '../components/Payment/CheckoutButton';
+import { BackButton } from '../components/ui/BackButton';
 
 const PricingPage: React.FC = () => {
   const [provider, setProvider] = React.useState<'stripe' | 'paystack'>('paystack');
@@ -36,7 +37,7 @@ const PricingPage: React.FC = () => {
       type: 'installment' as const,
       description: 'Get full access today, pay in manageable segments.',
       features: ['Total Feature Access', '3 Easy Payments', 'No Hidden Interest', 'Dedicated Support Manager'],
-      label: '3 x $20',
+      label: '3 x ₦20',
       icon: (
         <svg className="w-8 h-8 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -52,6 +53,9 @@ const PricingPage: React.FC = () => {
       <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-purple-500/10 blur-[100px] rounded-full -z-10" />
 
       <div className="max-w-7xl mx-auto">
+        <div className="mb-8">
+          <BackButton />
+        </div>
         <div className="text-center mb-20">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold tracking-widest uppercase mb-6">
             <span className="relative flex h-2 w-2">
@@ -107,7 +111,7 @@ const PricingPage: React.FC = () => {
                 <p className="text-gray-500 text-sm font-medium leading-relaxed mb-8">{plan.description}</p>
                 
                 <div className="flex items-baseline gap-1">
-                  <span className="text-6xl font-black tracking-tighter">${plan.price}</span>
+                  <span className="text-6xl font-black tracking-tighter">₦{plan.price}</span>
                   <span className="text-gray-500 font-bold text-sm tracking-widest uppercase">
                     {plan.type === 'subscription' ? '/month' : plan.type === 'installment' ? '/mo (x3)' : '/once'}
                   </span>
@@ -133,7 +137,7 @@ const PricingPage: React.FC = () => {
               <div className="pt-4 mt-auto">
                 <CheckoutButton 
                   amount={plan.price} 
-                  currency="USD" 
+                  currency="NGN" 
                   type={plan.type} 
                   provider={provider}
                   label={plan.type === 'subscription' ? 'START SUBSCRIPTION' : 'GET ACCESS NOW'}

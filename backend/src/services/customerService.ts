@@ -6,6 +6,7 @@ const customerSchema = z.object({
   name: z.string().min(1, "Name is required"),
   email: z.string().email().optional().nullable(),
   phone: z.string().optional().nullable(),
+  userId: z.number().optional().nullable(),
   measurements: z.record(z.any()).optional().default({}),
   dob: z.string().optional().nullable(), // ISO Date string
   anniversaryDate: z.string().optional().nullable(),
@@ -17,6 +18,7 @@ function toCustomer(row: any): Customer {
     name: row.name,
     email: row.email,
     phone: row.phone,
+    userId: row.user_id,
     measurements: row.measurements,
     dob: row.dob,
     anniversaryDate: row.anniversary_date,
@@ -28,23 +30,44 @@ function toCustomer(row: any): Customer {
 export async function createCustomer(input: CreateCustomerPayload): Promise<Customer> {
   const data = customerSchema.parse(input);
 
-  const result = await pool.query(
-    `
-    INSERT INTO customers (name, email, phone, measurements, dob, anniversary_date)
-    VALUES ($1, $2, $3, $4, $5, $6)
-    RETURNING *
-    `,
-    [
-      data.name,
-      data.email || null,
-      data.phone || null,
-      JSON.stringify(data.measurements),
-      data.dob || null,
-      data.anniversaryDate || null,
-    ]
-  );
+  const client = await pool.connect();
+  try {
+    await client.query("BEGIN");
 
-  return toCustomer(result.rows[0]);
+    const result = await client.query(
+      `
+      INSERT INTO customers (name, email, phone, user_id, measurements, dob, anniversary_date)
+      VALUES ($1, $2, $3, $4, $5, $6, $7)
+      RETURNING *
+      `,
+      [
+        data.name,
+        data.email || null,
+        data.phone || null,
+        data.userId || null,
+        JSON.stringify(data.measurements),
+        data.dob || null,
+        data.anniversaryDate || null,
+      ]
+    );
+
+    const customer = toCustomer(result.rows[0]);
+
+    if (data.userId) {
+      await client.query(
+        "UPDATE users SET customer_id = $1 WHERE id = $2",
+        [customer.id, data.userId]
+      );
+    }
+
+    await client.query("COMMIT");
+    return customer;
+  } catch (error) {
+    await client.query("ROLLBACK");
+    throw error;
+  } finally {
+    client.release();
+  }
 }
 
 export async function getCustomers(search?: string): Promise<Customer[]> {
@@ -88,6 +111,10 @@ export async function updateCustomer(id: number, input: UpdateCustomerPayload): 
     updates.push(`phone = $${idx++}`);
     params.push(input.phone);
   }
+  if (input.userId !== undefined) {
+    updates.push(`user_id = $${idx++}`);
+    params.push(input.userId);
+  }
   if (input.measurements !== undefined) {
     updates.push(`measurements = $${idx++}`);
     params.push(JSON.stringify(input.measurements));
@@ -102,21 +129,40 @@ export async function updateCustomer(id: number, input: UpdateCustomerPayload): 
   }
 
   updates.push(`updated_at = NOW()`);
-  params.push(id);
-
-  if (updates.length > 1) { // >1 because updated_at is always there? No, updated_at is hardcoded string, params has id.
-     // logic: updates array holds string parts. params holds values.
-     // current loop pushes column=$N.
-     // params pushed value.
-  }
-
+  
   const query = `
     UPDATE customers 
     SET ${updates.join(", ")}
     WHERE id = $${idx}
     RETURNING *
   `;
+  params.push(id);
 
-  const result = await pool.query(query, params);
-  return toCustomer(result.rows[0]);
+  const client = await pool.connect();
+  try {
+    await client.query("BEGIN");
+    
+    const result = await client.query(query, params);
+    const updated = toCustomer(result.rows[0]);
+
+    // Handle user link change
+    if (input.userId !== undefined) {
+      // Clear old user link if any
+      if (current.userId && current.userId !== input.userId) {
+        await client.query("UPDATE users SET customer_id = NULL WHERE id = $1", [current.userId]);
+      }
+      // Set new user link if provided
+      if (input.userId) {
+        await client.query("UPDATE users SET customer_id = $1 WHERE id = $2", [id, input.userId]);
+      }
+    }
+
+    await client.query("COMMIT");
+    return updated;
+  } catch (error) {
+    await client.query("ROLLBACK");
+    throw error;
+  } finally {
+    client.release();
+  }
 }

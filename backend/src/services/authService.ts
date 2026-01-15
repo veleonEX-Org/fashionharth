@@ -38,44 +38,72 @@ const loginSchema = z.object({
 export async function registerUser(input: unknown): Promise<void> {
   const data = registerSchema.parse(input);
 
-  const existing = await pool.query<User>(
-    "SELECT * FROM users WHERE email = $1",
-    [data.email]
-  );
-  if (existing.rows.length > 0) {
-    const error = new Error("Email is already in use.");
-    (error as any).statusCode = 400;
-    throw error;
-  }
-
-  const passwordHash = await hashPassword(data.password);
-  const verificationToken = randomBytes(32).toString("hex");
-
-  await pool.query(
-    `
-      INSERT INTO users (first_name, last_name, email, password_hash, role, is_email_verified, email_verification_token)
-      VALUES ($1, $2, $3, $4, $5, false, $6)
-    `,
-    [
-      data.firstName,
-      data.lastName,
-      data.email,
-      passwordHash,
-      "user",
-      verificationToken,
-    ]
-  );
-
-  // Send verification email
+  const client = await pool.connect();
   try {
-    await sendVerificationEmail(data.email, verificationToken);
-  } catch (error) {
-    // Log error but don't fail registration
-    console.error("Failed to send verification email:", error);
-    // Fallback: log the link for development
-    console.log(
-      `Email verification link: ${env.appUrl}/verify-email?token=${verificationToken}`
+    await client.query("BEGIN");
+
+    const existing = await client.query<User>(
+      "SELECT * FROM users WHERE email = $1",
+      [data.email]
     );
+    if (existing.rows.length > 0) {
+      const error = new Error("Email is already in use.");
+      (error as any).statusCode = 400;
+      throw error;
+    }
+
+    const passwordHash = await hashPassword(data.password);
+    const verificationToken = randomBytes(32).toString("hex");
+
+    // Check if a customer already exists with this email
+    const existingCustomer = await client.query(
+      "SELECT id FROM customers WHERE email = $1",
+      [data.email]
+    );
+
+    const customerId = existingCustomer.rows.length > 0 ? existingCustomer.rows[0].id : null;
+
+    const result = await client.query(
+      `
+        INSERT INTO users (first_name, last_name, email, password_hash, role, is_email_verified, email_verification_token, customer_id)
+        VALUES ($1, $2, $3, $4, $5, false, $6, $7)
+        RETURNING id
+      `,
+      [
+        data.firstName,
+        data.lastName,
+        data.email,
+        passwordHash,
+        "user",
+        verificationToken,
+        customerId
+      ]
+    );
+
+    const userId = result.rows[0].id;
+
+    // If customer existed, link it back to the user
+    if (customerId) {
+      await client.query(
+        "UPDATE customers SET user_id = $1 WHERE id = $2",
+        [userId, customerId]
+      );
+    }
+
+    await client.query("COMMIT");
+
+    // Send verification email (outside transaction)
+    try {
+      await sendVerificationEmail(data.email, verificationToken);
+    } catch (error) {
+      console.error("Failed to send verification email:", error);
+      console.log(`Email verification link: ${env.appUrl}/verify-email?token=${verificationToken}`);
+    }
+  } catch (error) {
+    await client.query("ROLLBACK");
+    throw error;
+  } finally {
+    client.release();
   }
 }
 

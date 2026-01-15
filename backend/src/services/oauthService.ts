@@ -63,16 +63,44 @@ export async function loginWithGoogle(
       `oauth-${Date.now().toString(36)}-${Math.random().toString(36)}`
     );
 
-    const insert = await pool.query<User>(
-      `
-        INSERT INTO users (first_name, last_name, email, password_hash, role, is_email_verified)
-        VALUES ($1, $2, $3, $4, $5, true)
-        RETURNING *
-      `,
-      [firstName, lastName, email, randomPasswordHash, "user"]
-    );
+    const client = await pool.connect();
+    try {
+      await client.query("BEGIN");
 
-    user = insert.rows[0];
+      // Check if a customer already exists with this email
+      const existingCustomer = await client.query(
+        "SELECT id FROM customers WHERE email = $1",
+        [email]
+      );
+
+      const customerId = existingCustomer.rows.length > 0 ? existingCustomer.rows[0].id : null;
+
+      const insert = await client.query<User>(
+        `
+          INSERT INTO users (first_name, last_name, email, password_hash, role, is_email_verified, customer_id)
+          VALUES ($1, $2, $3, $4, $5, true, $6)
+          RETURNING *
+        `,
+        [firstName, lastName, email, randomPasswordHash, "user", customerId]
+      );
+
+      user = insert.rows[0];
+
+      // If customer existed, link it back to the user
+      if (customerId) {
+        await client.query(
+          "UPDATE customers SET user_id = $1 WHERE id = $2",
+          [user.id, customerId]
+        );
+      }
+
+      await client.query("COMMIT");
+    } catch (error) {
+      await client.query("ROLLBACK");
+      throw error;
+    } finally {
+      client.release();
+    }
   }
 
   const accessToken = signAccessToken(user.id, user.role);

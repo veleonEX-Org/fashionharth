@@ -7,18 +7,16 @@ import { FormField } from "../../../components/forms/FormField";
 import { Input } from "../../../components/forms/Input";
 import { Textarea } from "../../../components/forms/Textarea";
 import { Select } from "../../../components/forms/Select";
-import { MultiSelect } from "../../../components/forms/MultiSelect";
+import { fetchCategories } from "../../../api/categories";
 import type { UpdateItemPayload, Item } from "../../../types/item";
 import { z } from "zod";
+import { BackButton } from "../../../components/ui/BackButton";
 
 const itemSchema = z.object({
   title: z.string().min(1, "Title is required.").max(255).optional(),
   description: z.string().nullable().optional(),
   status: z.enum(["active", "inactive", "archived"]).optional(),
-  roleAccess: z
-    .array(z.enum(["admin", "staff", "user"]))
-    .min(1, "At least one role access is required.")
-    .optional(),
+
 });
 
 const StaffEditItemPage: React.FC = () => {
@@ -30,7 +28,7 @@ const StaffEditItemPage: React.FC = () => {
   const [status, setStatus] = useState<"active" | "inactive" | "archived">(
     "active"
   );
-  const [roleAccess, setRoleAccess] = useState<string[]>([]);
+  const [category, setCategory] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const { data: item, isLoading } = useQuery<Item>({
@@ -42,12 +40,17 @@ const StaffEditItemPage: React.FC = () => {
     enabled: !!id,
   });
 
+  const { data: categories } = useQuery({
+    queryKey: ["categories"],
+    queryFn: fetchCategories,
+  });
+
   useEffect(() => {
     if (item) {
       setTitle(item.title);
       setDescription(item.description || "");
       setStatus(item.status);
-      setRoleAccess(item.roleAccess);
+      setCategory(item.category);
     }
   }, [item]);
 
@@ -72,7 +75,7 @@ const StaffEditItemPage: React.FC = () => {
       title,
       description: description || null,
       status,
-      roleAccess: roleAccess as ("admin" | "staff" | "user")[],
+      category,
     });
 
     if (!parsed.success) {
@@ -112,9 +115,12 @@ const StaffEditItemPage: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-semibold">Edit Item</h1>
-        <p className="mt-1 text-sm text-muted-foreground">Update item details.</p>
+      <div className="flex flex-col gap-4">
+        <BackButton to="/staff/items" />
+        <div>
+          <h1 className="text-2xl font-semibold">Edit Item</h1>
+          <p className="mt-1 text-sm text-muted-foreground">Update item details.</p>
+        </div>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4 rounded-xl border border-border bg-card p-6">
@@ -156,22 +162,15 @@ const StaffEditItemPage: React.FC = () => {
           />
         </FormField>
 
-        <FormField
-          label="Role Access"
-          name="roleAccess"
-          required
-          error={errors.roleAccess}
-        >
-          <MultiSelect
-            value={roleAccess}
-            onChange={setRoleAccess}
+        <FormField label="Category" name="category" required error={errors.category}>
+          <Select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
             options={[
-              { value: "admin", label: "Admin" },
-              { value: "staff", label: "Staff" },
-              { value: "user", label: "User" },
+              { value: "", label: "Select category" },
+              ...(categories?.map((cat) => ({ value: cat.name, label: cat.name })) || []),
             ]}
-            error={errors.roleAccess}
-            placeholder="Select roles that can access this item"
+            error={errors.category}
           />
         </FormField>
 

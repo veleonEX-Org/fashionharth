@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams, useNavigate } from "react-router-dom";
 import { http } from "../../../api/http";
 import type { Item } from "../../../types/item";
+import { BackButton } from "../../../components/ui/BackButton";
 
 const StaffViewItemPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -41,24 +42,21 @@ const StaffViewItemPage: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-semibold">{item.title}</h1>
-          <p className="mt-1 text-sm text-muted-foreground">Item Details</p>
-        </div>
-        <div className="flex gap-2">
-          <button
-            onClick={() => navigate(`/staff/items/${item.id}/edit`)}
-            className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:opacity-90"
-          >
-            Edit
-          </button>
-          <button
-            onClick={() => navigate("/staff/items")}
-            className="rounded-md border border-border bg-input px-4 py-2 text-sm font-medium text-muted-foreground hover:border-primary hover:text-primary"
-          >
-            Back to List
-          </button>
+      <div className="flex flex-col gap-4">
+        <BackButton to="/staff/items" />
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-semibold">{item.title}</h1>
+            <p className="mt-1 text-sm text-muted-foreground">Item Details</p>
+          </div>
+          <div className="flex gap-2">
+            <button
+              onClick={() => navigate(`/staff/items/${item.id}/edit`)}
+              className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:opacity-90"
+            >
+              Edit
+            </button>
+          </div>
         </div>
       </div>
 

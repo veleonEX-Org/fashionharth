@@ -1,13 +1,16 @@
 import React, { useState } from "react";
-import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { http } from "../../../api/http";
+import { fetchCategories } from "../../../api/categories";
 import { FormField } from "../../../components/forms/FormField";
 import { Input } from "../../../components/forms/Input";
 import { Textarea } from "../../../components/forms/Textarea";
 import { Select } from "../../../components/forms/Select";
 import { MultiSelect } from "../../../components/forms/MultiSelect";
+import { Checkbox } from "../../../components/forms/Checkbox";
+import { ImageUpload } from "../../../components/forms/ImageUpload";
 import { BackButton } from "../../../components/ui/BackButton";
 import type { CreateItemPayload, Item } from "../../../types/item";
 import { z } from "zod";
@@ -16,14 +19,13 @@ const itemSchema = z.object({
   title: z.string().min(1, "Title is required.").max(255),
   description: z.string().nullable().optional(),
   status: z.enum(["active", "inactive", "archived"]),
-  roleAccess: z
-    .array(z.enum(["admin", "staff", "user"]))
-    .min(1, "At least one role access is required."),
+
   price: z.number().min(0).default(0),
   category: z.string().min(1, "Category is required"),
   story: z.string().nullable().optional(),
   isTrending: z.boolean().default(false),
   imageUrl: z.string().url().nullable().optional().or(z.literal("")),
+  inspiredImageUrl: z.string().url().nullable().optional().or(z.literal("")),
 });
 
 const AdminAddItemPage: React.FC = () => {
@@ -33,13 +35,25 @@ const AdminAddItemPage: React.FC = () => {
   const [status, setStatus] = useState<"active" | "inactive" | "archived">(
     "active"
   );
-  const [roleAccess, setRoleAccess] = useState<string[]>(["user"]);
+
   const [price, setPrice] = useState("0");
-  const [category, setCategory] = useState("Dresses");
+  const [category, setCategory] = useState("");
   const [story, setStory] = useState("");
   const [isTrending, setIsTrending] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
+  const [inspiredImageUrl, setInspiredImageUrl] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const { data: categories } = useQuery({
+    queryKey: ["categories"],
+    queryFn: fetchCategories,
+  });
+
+  React.useEffect(() => {
+    if (categories && categories.length > 0 && !category) {
+      setCategory(categories[0].name);
+    }
+  }, [categories, category]);
 
   const mutation = useMutation({
     mutationFn: async (payload: CreateItemPayload) => {
@@ -60,12 +74,12 @@ const AdminAddItemPage: React.FC = () => {
       title,
       description: description || null,
       status,
-      roleAccess: roleAccess as ("admin" | "staff" | "user")[],
       price: parseFloat(price),
       category,
       story: story || null,
       isTrending,
       imageUrl: imageUrl || null,
+      inspiredImageUrl: inspiredImageUrl || null,
     });
 
     if (!parsed.success) {
@@ -118,7 +132,7 @@ const AdminAddItemPage: React.FC = () => {
         </FormField>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <FormField label="Price" name="price" required error={errors.price}>
+          <FormField label="Price (₦)" name="price" required error={errors.price}>
             <Input
               type="number"
               value={price}
@@ -133,26 +147,29 @@ const AdminAddItemPage: React.FC = () => {
               value={category}
               onChange={(e) => setCategory(e.target.value)}
               options={[
-                { value: "Dresses", label: "Dresses" },
-                { value: "Tops", label: "Tops" },
-                { value: "Bottoms", label: "Bottoms" },
-                { value: "Shoes", label: "Shoes" },
-                { value: "Accessories", label: "Accessories" },
-                { value: "Outerwear", label: "Outerwear" },
+                { value: "", label: "Select category" },
+                ...(categories?.map((cat) => ({ value: cat.name, label: cat.name })) || []),
               ]}
               error={errors.category}
             />
           </FormField>
         </div>
 
-        <FormField label="Image URL" name="imageUrl" error={errors.imageUrl}>
-          <Input
-            value={imageUrl}
-            onChange={(e) => setImageUrl(e.target.value)}
-            error={errors.imageUrl}
-            placeholder="https://..."
-          />
-        </FormField>
+        <ImageUpload
+          label="Product Image"
+          value={imageUrl}
+          onChange={setImageUrl}
+          folder="products"
+          error={errors.imageUrl}
+        />
+
+        <ImageUpload
+          label="Inspired Image (Overlay)"
+          value={inspiredImageUrl}
+          onChange={setInspiredImageUrl}
+          folder="inspired"
+          error={errors.inspiredImageUrl}
+        />
 
         <FormField label="The Story" name="story" error={errors.story}>
           <Textarea
@@ -164,18 +181,12 @@ const AdminAddItemPage: React.FC = () => {
           />
         </FormField>
 
-        <div className="flex items-center gap-2 py-2">
-          <input
-            type="checkbox"
-            id="isTrending"
-            checked={isTrending}
-            onChange={(e) => setIsTrending(e.target.checked)}
-            className="h-4 w-4 rounded border-border bg-input text-primary focus:ring-primary"
-          />
-          <label htmlFor="isTrending" className="text-sm font-medium text-foreground">
-            Show in Trending
-          </label>
-        </div>
+        <Checkbox
+          id="isTrending"
+          label="Show in Trending"
+          checked={isTrending}
+          onChange={(e) => setIsTrending(e.target.checked)}
+        />
 
         <FormField label="Status" name="status" required error={errors.status}>
           <Select
@@ -192,24 +203,7 @@ const AdminAddItemPage: React.FC = () => {
           />
         </FormField>
 
-        <FormField
-          label="Role Access"
-          name="roleAccess"
-          required
-          error={errors.roleAccess}
-        >
-          <MultiSelect
-            value={roleAccess}
-            onChange={setRoleAccess}
-            options={[
-              { value: "admin", label: "Admin" },
-              { value: "staff", label: "Staff" },
-              { value: "user", label: "User" },
-            ]}
-            error={errors.roleAccess}
-            placeholder="Select roles that can access this item"
-          />
-        </FormField>
+
 
         <div className="flex gap-3">
           <button

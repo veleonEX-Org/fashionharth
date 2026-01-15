@@ -94,6 +94,14 @@ const AdminViewItemPage: React.FC = () => {
               {new Date(item.updatedAt).toLocaleString()}
             </p>
           </div>
+          <div>
+            <p className="text-xs text-muted-foreground">Price</p>
+            <p className="mt-1 text-sm font-medium">${item.price}</p>
+          </div>
+          <div>
+            <p className="text-xs text-muted-foreground">Category</p>
+            <p className="mt-1 text-sm font-medium">{item.category}</p>
+          </div>
         </div>
 
         <div>
@@ -104,18 +112,25 @@ const AdminViewItemPage: React.FC = () => {
         </div>
 
         <div>
-          <p className="text-xs text-muted-foreground">Role Access</p>
-          <div className="mt-1 flex gap-2">
-            {item.roleAccess.map((role: string) => (
-              <span
-                key={role}
-                className="rounded bg-primary/20 px-2 py-1 text-xs text-primary"
-              >
-                {role}
-              </span>
-            ))}
-          </div>
+          <p className="text-xs text-muted-foreground">The Story</p>
+          <p className="mt-1 text-sm text-foreground italic">
+            {item.story || "—"}
+          </p>
         </div>
+
+        {item.imageUrl && (
+          <div>
+            <p className="text-xs text-muted-foreground">Main Image</p>
+            <img src={item.imageUrl} alt={item.title} className="mt-2 h-40 w-40 rounded-lg object-cover shadow-sm" />
+          </div>
+        )}
+
+        {item.inspiredImageUrl && (
+          <div>
+            <p className="text-xs text-muted-foreground">Inspired Image</p>
+            <img src={item.inspiredImageUrl} alt="Inspiration" className="mt-2 h-40 w-40 rounded-lg object-cover shadow-sm" />
+          </div>
+        )}
 
         {item.metadata && (
           <div>

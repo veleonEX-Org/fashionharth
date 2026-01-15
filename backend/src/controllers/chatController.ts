@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { pool } from "../database/pool.js";
 import { logger } from "../utils/logger.js";
+import { SocketService } from "../services/socketService.js";
 
 export const getConversations = async (req: Request, res: Response) => {
   try {
@@ -54,9 +55,11 @@ export const getMessages = async (req: Request, res: Response) => {
 import { z } from "zod";
 
 const createConversationSchema = z.object({
-  participantIds: z.array(z.number()).min(1),
+  participantIds: z.array(z.number()).min(1).optional(),
   name: z.string().optional(),
   isGroup: z.boolean().optional(),
+  isSupport: z.boolean().optional(),
+  message: z.string().optional(),
 });
 
 export const createConversation = async (req: Request, res: Response) => {
@@ -68,7 +71,28 @@ export const createConversation = async (req: Request, res: Response) => {
   const client = await pool.connect();
   try {
     const userId = req.user!.id;
-    const { participantIds, name, isGroup } = validation.data;
+    let { participantIds, name, isGroup, isSupport, message } = validation.data;
+    
+    // Initializing participantIds if undefined
+    if (!participantIds) participantIds = [];
+
+    if (isSupport) {
+      const adminResult = await client.query(
+        "SELECT id FROM users WHERE role IN ('admin', 'staff') AND status = 'active'"
+      );
+      const adminIds = adminResult.rows.map((r: any) => r.id);
+      participantIds.push(...adminIds);
+      
+      // Ensure it's a group chat effectively since multiple admins might be there
+      // But acts as a direct support line
+      isGroup = true; 
+      if (!name) name = "Support Enquiry";
+    }
+
+    if (participantIds.length === 0) {
+       return res.status(400).json({ message: "At least one participant is required" });
+    }
+
     const allParticipants = Array.from(new Set([userId, ...participantIds])).sort((a, b) => a - b);
 
     await client.query("BEGIN");
@@ -113,7 +137,57 @@ export const createConversation = async (req: Request, res: Response) => {
       );
     }
 
+    if (message) {
+      await client.query(
+        "INSERT INTO messages (conversation_id, sender_id, content) VALUES ($1, $2, $3)",
+        [conversationId, userId, message]
+      );
+      // We should potentially update the SocketService here to notify, but 
+      // the client will likely poll or the socket event will handle subsequent messages.
+      // Ideally, we import SocketService and emit the new message event.
+      // But for now, let's keep it simple.
+    }
+
     await client.query("COMMIT");
+    await client.query("COMMIT");
+
+    // Socket Notification Logic
+    const socketService = SocketService.getInstance();
+    
+    // Fetch the new conversation details to send to clients
+    // We need the same structure as getConversations
+    const newConvResult = await pool.query(
+      `SELECT c.*, 
+       m.content as last_message,
+       m.created_at as last_message_at
+       FROM conversations c
+       LEFT JOIN messages m ON m.conversation_id = c.id AND m.id = (
+         SELECT id FROM messages WHERE conversation_id = c.id ORDER BY created_at DESC LIMIT 1
+       )
+       WHERE c.id = $1`,
+      [conversationId]
+    );
+
+    const newConversation = newConvResult.rows[0];
+
+    // Notify all participants
+    for (const pId of allParticipants) {
+       socketService.emitToUser(pId, "new_conversation", newConversation);
+    }
+    
+    // If there was an initial message, we might want to emit that too, 
+    // although new_conversation carries the last_message. 
+    // But for consistency with open chats:
+    if (message) {
+      const msgResult = await pool.query(
+         "SELECT * FROM messages WHERE conversation_id = $1 ORDER BY created_at DESC LIMIT 1",
+         [conversationId]
+      );
+      if (msgResult.rows[0]) {
+        socketService.emitToConversation(conversationId, "new_message", msgResult.rows[0]);
+      }
+    }
+
     res.status(201).json({ id: conversationId });
   } catch (error) {
     await client.query("ROLLBACK");

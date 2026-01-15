@@ -1,21 +1,23 @@
 import React, { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { fetchTasks, createTask, fetchCustomers, fetchUsers, updateTask } from "../../api/admin";
+import { fetchCategories } from "../../api/categories";
 import { FormField } from "../../components/forms/FormField";
 import { Input } from "../../components/forms/Input";
 import { Select } from "../../components/forms/Select";
 import { Textarea } from "../../components/forms/Textarea";
 import { BackButton } from "../../components/ui/BackButton";
 import toast from "react-hot-toast";
-import { format, differenceInDays } from "date-fns";
+import { format, parseISO } from "date-fns";
 
 const AdminTasksPage: React.FC = () => {
   const queryClient = useQueryClient();
   const [isAdding, setIsAdding] = useState(false);
+  const [editingTaskId, setEditingTaskId] = useState<number | null>(null);
   
   // Form state
   const [customerId, setCustomerId] = useState("");
-  const [category, setCategory] = useState("Kaftan");
+  const [category, setCategory] = useState("");
   const [totalAmount, setTotalAmount] = useState("");
   const [amountPaid, setAmountPaid] = useState("");
   const [productionCost, setProductionCost] = useState("");
@@ -23,6 +25,7 @@ const AdminTasksPage: React.FC = () => {
   const [startDate, setStartDate] = useState(format(new Date(), "yyyy-MM-dd"));
   const [dueDate, setDueDate] = useState("");
   const [notes, setNotes] = useState("");
+  const [status, setStatus] = useState("pending");
 
   const { data: tasks, isLoading: tasksLoading } = useQuery({
     queryKey: ["tasks"],
@@ -39,6 +42,11 @@ const AdminTasksPage: React.FC = () => {
     queryFn: () => fetchUsers(),
   });
 
+  const { data: categories } = useQuery({
+    queryKey: ["categories"],
+    queryFn: () => fetchCategories(),
+  });
+
   const staffs = users?.filter((u: any) => u.role === "staff" || u.role === "admin") || [];
 
   const createMutation = useMutation({
@@ -47,8 +55,18 @@ const AdminTasksPage: React.FC = () => {
       toast.success("Task created successfully");
       setIsAdding(false);
       queryClient.invalidateQueries({ queryKey: ["tasks"] });
-      // Reset
-      setCustomerId(""); setTotalAmount(""); setAmountPaid(""); setProductionCost(""); setDueDate(""); setNotes("");
+      resetForm();
+    },
+  });
+
+  const updateMutation = useMutation({
+    mutationFn: ({ id, data }: { id: number; data: any }) => updateTask(id, data),
+    onSuccess: () => {
+      toast.success("Task updated successfully");
+      setEditingTaskId(null);
+      setIsAdding(false);
+      queryClient.invalidateQueries({ queryKey: ["tasks"] });
+      resetForm();
     },
   });
 
@@ -60,11 +78,40 @@ const AdminTasksPage: React.FC = () => {
     },
   });
 
+  const resetForm = () => {
+    setCustomerId("");
+    setTotalAmount("");
+    setAmountPaid("");
+    setProductionCost("");
+    setDueDate("");
+    setNotes("");
+    setCategory(categories?.[0]?.name || "");
+    setAssignedTo("");
+    setStartDate(format(new Date(), "yyyy-MM-dd"));
+    setStatus("pending");
+  };
+
+  const handleEdit = (task: any) => {
+    setEditingTaskId(task.id);
+    setCustomerId(task.customerId.toString());
+    setCategory(task.category);
+    setTotalAmount(task.totalAmount.toString());
+    setAmountPaid(task.amountPaid.toString());
+    setProductionCost(task.productionCost.toString());
+    setAssignedTo(task.assignedTo?.toString() || "");
+    setStartDate(task.startDate ? format(parseISO(task.startDate), "yyyy-MM-dd") : "");
+    setDueDate(task.dueDate ? format(parseISO(task.dueDate), "yyyy-MM-dd") : "");
+    setNotes(task.notes || "");
+    setStatus(task.status);
+    setIsAdding(true);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!customerId || !dueDate) return toast.error("Please select customer and due date");
 
-    createMutation.mutate({
+    const payload = {
       customerId: Number(customerId),
       category,
       totalAmount: Number(totalAmount),
@@ -74,7 +121,14 @@ const AdminTasksPage: React.FC = () => {
       startDate: startDate || undefined,
       dueDate,
       notes,
-    });
+      status: status as any,
+    };
+
+    if (editingTaskId) {
+      updateMutation.mutate({ id: editingTaskId, data: payload });
+    } else {
+      createMutation.mutate(payload);
+    }
   };
 
   return (
@@ -87,7 +141,17 @@ const AdminTasksPage: React.FC = () => {
             <p className="text-sm text-gray-500">Track orders and manage production deadlines.</p>
           </div>
           <button
-            onClick={() => setIsAdding(!isAdding)}
+            onClick={() => {
+              if (isAdding) {
+                setIsAdding(false);
+                setEditingTaskId(null);
+                resetForm();
+              } else {
+                setIsAdding(true);
+                setEditingTaskId(null);
+                resetForm();
+              }
+            }}
             className="rounded-full bg-black px-6 py-2 text-sm font-bold text-white hover:bg-gray-800 transition-colors"
           >
             {isAdding ? "CANCEL" : "NEW TASK"}
@@ -97,6 +161,7 @@ const AdminTasksPage: React.FC = () => {
 
       {isAdding && (
         <form onSubmit={handleSubmit} className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm space-y-4">
+           <h2 className="text-lg font-bold text-gray-900">{editingTaskId ? "Edit Task" : "Add New Task"}</h2>
            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <FormField label="Select Customer" name="customer" required>
                  <Select
@@ -113,10 +178,8 @@ const AdminTasksPage: React.FC = () => {
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
                     options={[
-                       { label: "Kaftan", value: "Kaftan" },
-                       { label: "Suit", value: "Suit" },
-                       { label: "Agbada", value: "Agbada" },
-                       { label: "Other", value: "Other" },
+                       { label: "Select a category", value: "" },
+                       ...(categories?.map((cat: any) => ({ label: cat.name, value: cat.name })) || [])
                     ]}
                  />
               </FormField>
@@ -147,17 +210,30 @@ const AdminTasksPage: React.FC = () => {
               </FormField>
            </div>
            
-           <FormField label="Notes" name="notes">
-              <Textarea value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="Additional instructions..." />
-           </FormField>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+               <FormField label="Status" name="status">
+                  <Select
+                     value={status}
+                     onChange={(e) => setStatus(e.target.value)}
+                     options={[
+                        { label: "Pending", value: "pending" },
+                        { label: "In Progress", value: "in_progress" },
+                        { label: "Completed", value: "completed" },
+                     ]}
+                  />
+               </FormField>
+               <FormField label="Notes" name="notes">
+                  <Textarea value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="Additional instructions..." />
+               </FormField>
+            </div>
 
-           <button
-             type="submit"
-             disabled={createMutation.isPending}
-             className="w-full rounded-full bg-primary py-3 text-sm font-bold text-white hover:opacity-90 transition-opacity"
-           >
-             {createMutation.isPending ? "REGISTERING..." : "REGISTER TASK"}
-           </button>
+            <button
+              type="submit"
+              disabled={createMutation.isPending || updateMutation.isPending}
+              className="w-full rounded-full bg-primary py-3 text-sm font-bold text-white hover:opacity-90 transition-opacity"
+            >
+              {createMutation.isPending || updateMutation.isPending ? "SAVING..." : editingTaskId ? "UPDATE TASK" : "REGISTER TASK"}
+            </button>
         </form>
       )}
 
@@ -186,9 +262,9 @@ const AdminTasksPage: React.FC = () => {
                     <div className="text-xs text-primary uppercase font-bold">{t.category}</div>
                   </td>
                   <td className="px-6 py-4">
-                    <div className="text-gray-900 font-medium">${t.totalAmount}</div>
+                    <div className="text-gray-900 font-medium">₦{t.totalAmount.toLocaleString()}</div>
                     <div className={`text-xs ${remains > 0 ? "text-red-500 font-bold" : "text-green-500"}`}>
-                       {remains > 0 ? `Unpaid: $${remains}` : "Fully Paid"}
+                       {remains > 0 ? `Unpaid: ₦${remains.toLocaleString()}` : "Fully Paid"}
                     </div>
                   </td>
                   <td className="px-6 py-4">
@@ -205,7 +281,13 @@ const AdminTasksPage: React.FC = () => {
                     </span>
                     <div className="text-xs text-gray-500 mt-1">@{t.assigneeName || "Unassigned"}</div>
                   </td>
-                  <td className="px-6 py-4 text-right">
+                  <td className="px-6 py-4 text-right space-x-2">
+                    <button
+                      onClick={() => handleEdit(t)}
+                      className="text-xs font-bold text-gray-500 hover:text-black uppercase"
+                    >
+                      Edit
+                    </button>
                     {t.status !== "completed" && (
                        <button
                          onClick={() => markCompleteMutation.mutate(t.id)}
@@ -260,19 +342,27 @@ const AdminTasksPage: React.FC = () => {
 
                   <div className="flex items-center justify-between">
                      <div>
-                        <div className="text-sm font-bold text-gray-900">${t.totalAmount}</div>
+                        <div className="text-sm font-bold text-gray-900">₦{t.totalAmount.toLocaleString()}</div>
                         <div className={`text-[10px] font-bold ${remains > 0 ? "text-red-500" : "text-green-500"}`}>
-                           {remains > 0 ? `-$${remains} UNPAID` : "FULLY PAID"}
+                           {remains > 0 ? `-₦${remains.toLocaleString()} UNPAID` : "FULLY PAID"}
                         </div>
                      </div>
-                     {t.status !== "completed" && (
+                     <div className="flex gap-2">
                         <button
-                          onClick={() => markCompleteMutation.mutate(t.id)}
-                          className="rounded-full bg-primary/10 px-4 py-2 text-xs font-bold text-primary hover:bg-primary hover:text-white transition-colors"
+                          onClick={() => handleEdit(t)}
+                          className="rounded-full bg-gray-100 px-4 py-2 text-xs font-bold text-gray-600 hover:bg-gray-200 transition-colors"
                         >
-                          MARK DONE
+                          EDIT
                         </button>
-                     )}
+                        {t.status !== "completed" && (
+                           <button
+                             onClick={() => markCompleteMutation.mutate(t.id)}
+                             className="rounded-full bg-primary/10 px-4 py-2 text-xs font-bold text-primary hover:bg-primary hover:text-white transition-colors"
+                           >
+                             MARK DONE
+                           </button>
+                        )}
+                     </div>
                   </div>
                </div>
             );

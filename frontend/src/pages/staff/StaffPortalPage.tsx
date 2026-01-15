@@ -5,6 +5,7 @@ import { fetchTasks, updateTask } from "../../api/admin";
 import { useAuth } from "../../state/AuthContext";
 import toast from "react-hot-toast";
 import { format } from "date-fns";
+import { BackButton } from "../../components/ui/BackButton";
 
 const StaffPortalPage: React.FC = () => {
   const { user } = useAuth();
@@ -32,14 +33,12 @@ const StaffPortalPage: React.FC = () => {
     <div className="space-y-6">
        {/* <div className="md:flex md:flex-row flex-col items-center justify-between border-b border-border pb-4"> */}
        <div className="md:flex md:flex-row flex-col items-center justify-between border-b border-border pb-4">
-          <div>
-            <div className="flex items-center gap-2">
-             <Link to="/dashboard" className="text-muted-foreground hover:text-foreground transition-colors">
-               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-             </Link>
+          <div className="flex flex-col gap-4 flex-1">
+            <BackButton to="/dashboard" />
+            <div>
              <h1 className="md:text-2xl text-xl font-bold text-foreground ">Staff Production Portal</h1>
-            </div>
              <p className="text-sm text-muted-foreground md:mb-0 mb-2">Manage your assigned production assignments.</p>
+            </div>
           </div>
           <div className="flex bg-muted rounded-full p-1  w-fit">
              <button

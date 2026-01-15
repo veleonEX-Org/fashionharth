@@ -8,6 +8,8 @@ import type { Column } from "../../../components/table/DataTable";
 import type { Item as ItemType, PaginatedItems } from "../../../types/item";
 import { getErrorMessage } from "../../../utils/errorHandler";
 import { BackButton } from "../../../components/ui/BackButton";
+import { Input } from "../../../components/forms/Input";
+import { Select } from "../../../components/forms/Select";
 
 const AdminListItemsPage: React.FC = () => {
   const navigate = useNavigate();
@@ -110,21 +112,16 @@ const AdminListItemsPage: React.FC = () => {
       ),
     },
     {
-      key: "roleAccess",
-      header: "Role Access",
+      key: "price",
+      header: "Price",
       render: (item) => (
-        <div className="flex gap-1">
-          {item.roleAccess.map((role) => (
-            <span
-              key={role}
-              className="rounded bg-primary/20 px-2 py-0.5 text-xs text-primary"
-            >
-              {role}
-            </span>
-          ))}
-        </div>
+        <span className="font-bold text-white">
+          ₦{item.price.toLocaleString()}
+        </span>
       ),
+      sortable: true,
     },
+
     {
       key: "createdAt",
       header: "Created At",
@@ -145,31 +142,31 @@ const AdminListItemsPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Filters */}
-      <div className="flex gap-4 rounded-xl border border-border bg-muted/60 p-4">
-        <input
+      <div className="flex gap-4 rounded-xl border border-border bg-card p-4">
+        <Input
           type="text"
           placeholder="Search items..."
           value={search}
           onChange={(e) => {
             setSearch(e.target.value);
-            setPage(1);
+            setPage(page);
           }}
-          className="flex-1 rounded-md border border-border bg-black/0 px-3 py-2 text-sm text-foreground outline-none focus:border-primary"
+          className="flex-1"
         />
-        <select
+        <Select
           value={status}
           onChange={(e) => {
             setStatus(e.target.value);
             setPage(1);
           }}
-          className="rounded-md border border-border bg-black/40 px-3 py-2 text-sm text-foreground outline-none focus:border-primary"
-        >
-          <option value="">All Status</option>
-          <option value="active">Active</option>
-          <option value="inactive">Inactive</option>
-          <option value="archived">Archived</option>
-        </select>
+          options={[
+            { value: "", label: "All Status" },
+            { value: "active", label: "Active" },
+            { value: "inactive", label: "Inactive" },
+            { value: "archived", label: "Archived" },
+          ]}
+          className="w-40"
+        />
       </div>
 
       {/* Table */}

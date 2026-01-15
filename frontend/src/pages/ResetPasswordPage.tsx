@@ -4,6 +4,8 @@ import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { http } from "../api/http";
 import { resetPasswordSchema } from "../validation/authSchemas";
+import { Input } from "../components/forms/Input";
+import { Label } from "../components/forms/Label";
 
 const ResetPasswordPage: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -57,28 +59,24 @@ const ResetPasswordPage: React.FC = () => {
         <p className="mb-3 text-xs text-destructive">{validationError}</p>
       )}
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="space-y-1 text-sm">
-          <label htmlFor="password" className="block text-foreground">
-            New password
-          </label>
-          <input
+        <div className="space-y-1">
+          <Label htmlFor="password">New password</Label>
+          <Input
             id="password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full rounded-md border border-border bg-input px-3 py-2 text-sm text-foreground outline-none focus:border-primary"
+            required
           />
         </div>
-        <div className="space-y-1 text-sm">
-          <label htmlFor="confirmPassword" className="block text-foreground">
-            Confirm new password
-          </label>
-          <input
+        <div className="space-y-1">
+          <Label htmlFor="confirmPassword">Confirm new password</Label>
+          <Input
             id="confirmPassword"
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            className="w-full rounded-md border border-border bg-input px-3 py-2 text-sm text-foreground outline-none focus:border-primary"
+            required
           />
         </div>
         <button

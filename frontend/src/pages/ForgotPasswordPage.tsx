@@ -3,6 +3,8 @@ import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { http } from "../api/http";
 import { forgotPasswordSchema } from "../validation/authSchemas";
+import { Input } from "../components/forms/Input";
+import { Label } from "../components/forms/Label";
 
 const ForgotPasswordPage: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -44,16 +46,14 @@ const ForgotPasswordPage: React.FC = () => {
         <p className="mb-3 text-xs text-destructive">{validationError}</p>
       )}
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="space-y-1 text-sm">
-          <label htmlFor="email" className="block text-foreground">
-            Email
-          </label>
-          <input
+        <div className="space-y-1">
+          <Label htmlFor="email">Email</Label>
+          <Input
             id="email"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full rounded-md border border-border bg-input px-3 py-2 text-sm text-foreground outline-none focus:border-primary"
+            required
           />
         </div>
         <button

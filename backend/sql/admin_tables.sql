@@ -4,12 +4,15 @@ CREATE TABLE IF NOT EXISTS customers (
   name VARCHAR(255) NOT NULL,
   email VARCHAR(255),
   phone VARCHAR(50),
+  user_id INTEGER REFERENCES users(id) ON DELETE SET NULL,
   measurements JSONB DEFAULT '{}'::jsonb,
   dob TIMESTAMP,
   anniversary_date TIMESTAMP,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
+
+CREATE UNIQUE INDEX IF NOT EXISTS idx_customers_user_id_unique ON customers(user_id) WHERE user_id IS NOT NULL;
 
 -- Tasks table
 CREATE TABLE IF NOT EXISTS tasks (

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { useAuth } from "../state/AuthContext";
@@ -7,9 +7,12 @@ import { http } from "../api/http";
 import { registerSchema } from "../validation/authSchemas";
 import type { RegisterPayload } from "../types/auth";
 import Modal from "../components/Modal";
+import { Input } from "../components/forms/Input";
+import { Label } from "../components/forms/Label";
 
 const RegisterPage: React.FC = () => {
   const { clearAuth } = useAuth();
+  const location = useLocation();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -84,66 +87,56 @@ const RegisterPage: React.FC = () => {
         )}
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="flex gap-3">
-            <div className="flex-1 space-y-1 text-sm">
-              <label htmlFor="firstName" className="block text-foreground">
-                First name
-              </label>
-              <input
+            <div className="flex-1 space-y-1">
+              <Label htmlFor="firstName">First name</Label>
+              <Input
                 id="firstName"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
-                className="w-full rounded-md border border-border bg-input px-3 py-2 text-sm text-foreground outline-none focus:border-primary"
+                required
               />
             </div>
-            <div className="flex-1 space-y-1 text-sm">
-              <label htmlFor="lastName" className="block text-foreground">
-                Last name
-              </label>
-              <input
+            <div className="flex-1 space-y-1">
+              <Label htmlFor="lastName">Last name</Label>
+              <Input
                 id="lastName"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
-                className="w-full rounded-md border border-border bg-input px-3 py-2 text-sm text-foreground outline-none focus:border-primary"
+                required
               />
             </div>
           </div>
-          <div className="space-y-1 text-sm">
-            <label htmlFor="email" className="block text-foreground">
-              Email
-            </label>
-            <input
+          <div className="space-y-1">
+            <Label htmlFor="email">Email</Label>
+            <Input
               id="email"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full rounded-md border border-border bg-input px-3 py-2 text-sm text-foreground outline-none focus:border-primary"
               autoComplete="email"
+              required
             />
           </div>
-          <div className="space-y-1 text-sm">
-            <label htmlFor="password" className="block text-foreground">
-              Password
-            </label>
-            <input
+          <div className="space-y-1">
+            <Label htmlFor="password">Password</Label>
+            <Input
               id="password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full rounded-md border border-border bg-input px-3 py-2 text-sm text-foreground outline-none focus:border-primary"
               autoComplete="new-password"
+              required
             />
           </div>
-          <div className="space-y-1 text-sm">
-            <label htmlFor="confirmPassword" className="block text-foreground">
-              Confirm password
-            </label>
-            <input
+          <div className="space-y-1">
+            <Label htmlFor="confirmPassword">Confirm password</Label>
+            <Input
               id="confirmPassword"
               type="password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className="w-full rounded-md border border-border bg-input px-3 py-2 text-sm text-foreground outline-none focus:border-primary"
               autoComplete="new-password"
+              required
             />
           </div>
           <button
@@ -158,7 +151,7 @@ const RegisterPage: React.FC = () => {
         </form>
         <p className="mt-4 text-xs text-muted-foreground">
           Already have an account?{" "}
-          <Link to="/login" className="text-primary hover:underline">
+          <Link to="/login" state={location.state} className="text-primary hover:underline">
             Sign in
           </Link>
         </p>

@@ -1,5 +1,5 @@
 import express, { Router } from "express";
-import { createCheckoutSession, handleStripeWebhook, handlePaystackWebhook } from "../controllers/paymentController.js";
+import { createCheckoutSession, handleStripeWebhook, handlePaystackWebhook, verifyRequest } from "../controllers/paymentController.js";
 import { authenticate } from "../middleware/authMiddleware.js";
 
 const router = Router();
@@ -24,5 +24,6 @@ router.use(express.json());
 router.use(authenticate);
 
 router.post("/create-checkout-session", createCheckoutSession);
+router.post("/verify", verifyRequest);
 
 export { router as paymentRouter };

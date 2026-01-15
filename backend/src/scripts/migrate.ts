@@ -11,45 +11,39 @@ async function runMigrations() {
   try {
     logger.info("Starting database migrations...");
 
-    // Read and execute schema.sql
-    const schemaPath = path.join(__dirname, "../../sql/schema.sql");
-    const schemaSQL = fs.readFileSync(schemaPath, "utf-8");
-    
-    logger.info("Creating users table...");
-    await pool.query(schemaSQL);
-    logger.info("✓ Users table created successfully");
+    const sqlFiles = [
+      "schema.sql",
+      "items.sql",
+      "payments.sql",
+      "chat.sql",
+      "admin_tables.sql",
+      "trending_news.sql",
+    ];
 
-    // Read and execute items.sql
-    const itemsPath = path.join(__dirname, "../../sql/items.sql");
-    const itemsSQL = fs.readFileSync(itemsPath, "utf-8");
-    
-    logger.info("Creating items table...");
-    await pool.query(itemsSQL);
-    logger.info("✓ Items table created successfully");
+    for (const file of sqlFiles) {
+      const filePath = path.join(__dirname, "../../sql/", file);
+      if (fs.existsSync(filePath)) {
+        logger.info(`Executing ${file}...`);
+        const sql = fs.readFileSync(filePath, "utf-8");
+        await pool.query(sql);
+        logger.info(`✓ ${file} executed successfully`);
+      } else {
+        logger.warn(`File ${file} not found, skipping.`);
+      }
+    }
 
-    // Read and execute payments.sql
-    const paymentsPath = path.join(__dirname, "../../sql/payments.sql");
-    const paymentsSQL = fs.readFileSync(paymentsPath, "utf-8");
-    
-    logger.info("Creating payments tables...");
-    await pool.query(paymentsSQL);
-    logger.info("✓ Payments tables created successfully");
-
-    // Read and execute chat.sql
-    const chatPath = path.join(__dirname, "../../sql/chat.sql");
-    const chatSQL = fs.readFileSync(chatPath, "utf-8");
-    
-    logger.info("Creating chat tables...");
-    await pool.query(chatSQL);
-    logger.info("✓ Chat tables created successfully");
-
-    // Read and execute admin_tables.sql
-    const adminTablesPath = path.join(__dirname, "../../sql/admin_tables.sql");
-    const adminTablesSQL = fs.readFileSync(adminTablesPath, "utf-8");
-    
-    logger.info("Creating admin tables (customers, tasks)...");
-    await pool.query(adminTablesSQL);
-    logger.info("✓ Admin tables created successfully");
+    // Run additional migrations from migrations directory
+    const migrationsDir = path.join(__dirname, "../../sql/migrations");
+    if (fs.existsSync(migrationsDir)) {
+      const migrations = fs.readdirSync(migrationsDir).filter(f => f.endsWith(".sql"));
+      for (const migration of migrations) {
+        logger.info(`Executing migration ${migration}...`);
+        const migrationPath = path.join(migrationsDir, migration);
+        const sql = fs.readFileSync(migrationPath, "utf-8");
+        await pool.query(sql);
+        logger.info(`✓ ${migration} executed successfully`);
+      }
+    }
 
     logger.info("✓ All migrations completed successfully!");
     process.exit(0);

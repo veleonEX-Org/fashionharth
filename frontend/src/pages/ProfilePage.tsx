@@ -8,6 +8,9 @@ import {
   profileUpdateSchema,
   changePasswordSchema,
 } from "../validation/authSchemas";
+import { Input } from "../components/forms/Input";
+import { Label } from "../components/forms/Label";
+import { BackButton } from "../components/ui/BackButton";
 
 const ProfilePage: React.FC = () => {
   const { user, refreshProfile } = useAuth();
@@ -97,6 +100,7 @@ const ProfilePage: React.FC = () => {
 
   return (
     <div className="space-y-6">
+      <BackButton />
       <div className="rounded-xl border border-border bg-card p-6 shadow">
         <h1 className="mb-2 text-xl font-semibold">Profile</h1>
         <p className="text-xs text-muted-foreground">
@@ -105,38 +109,34 @@ const ProfilePage: React.FC = () => {
         </p>
         <form onSubmit={handleSubmit} className="mt-4 space-y-4">
           <div className="flex gap-3">
-            <div className="flex-1 space-y-1 text-sm">
-              <label className="block text-foreground" htmlFor="firstName">
-                First name
-              </label>
-              <input
+            <div className="flex-1 space-y-1">
+              <Label htmlFor="firstName">First name</Label>
+              <Input
                 id="firstName"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
-                className="w-full rounded-md border border-border bg-input px-3 py-2 text-sm text-foreground outline-none focus:border-primary"
+                required
               />
             </div>
-            <div className="flex-1 space-y-1 text-sm">
-              <label className="block text-foreground" htmlFor="lastName">
-                Last name
-              </label>
-              <input
+            <div className="flex-1 space-y-1">
+              <Label htmlFor="lastName">Last name</Label>
+              <Input
                 id="lastName"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
-                className="w-full rounded-md border border-border bg-input px-3 py-2 text-sm text-foreground outline-none focus:border-primary"
+                required
               />
             </div>
           </div>
-          <div className="space-y-1 text-sm">
-            <label className="block text-foreground">Email</label>
-            <div className="rounded-md border border-border bg-muted px-3 py-2 text-sm text-muted-foreground">
+          <div className="space-y-1">
+            <Label>Email</Label>
+            <div className="rounded-md border border-border bg-muted px-3 py-2 text-sm text-muted-foreground font-medium">
               {user.email}
             </div>
           </div>
-          <div className="space-y-1 text-sm">
-            <label className="block text-foreground">Role</label>
-            <div className="inline-flex items-center rounded-full border border-border bg-muted px-3 py-1 text-xs uppercase tracking-wide text-muted-foreground">
+          <div className="space-y-1">
+            <Label>Role</Label>
+            <div className="inline-flex items-center rounded-full border border-border bg-muted px-3 py-1 text-xs uppercase tracking-wide text-muted-foreground font-semibold">
               {user.role}
             </div>
           </div>
@@ -177,40 +177,34 @@ const ProfilePage: React.FC = () => {
               Update your password securely.
             </p>
             <form onSubmit={handlePasswordSubmit} className="mt-4 space-y-4">
-              <div className="space-y-1 text-sm">
-                <label className="block text-foreground" htmlFor="currentPassword">
-                  Current Password
-                </label>
-                <input
+              <div className="space-y-1">
+                <Label htmlFor="currentPassword">Current Password</Label>
+                <Input
                   id="currentPassword"
                   type="password"
                   value={currentPassword}
                   onChange={(e) => setCurrentPassword(e.target.value)}
-                  className="w-full rounded-md border border-border bg-input px-3 py-2 text-sm text-foreground outline-none focus:border-primary"
+                  required
                 />
               </div>
-              <div className="space-y-1 text-sm">
-                <label className="block text-foreground" htmlFor="newPassword">
-                  New Password
-                </label>
-                <input
+              <div className="space-y-1">
+                <Label htmlFor="newPassword">New Password</Label>
+                <Input
                   id="newPassword"
                   type="password"
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
-                  className="w-full rounded-md border border-border bg-input px-3 py-2 text-sm text-foreground outline-none focus:border-primary"
+                  required
                 />
               </div>
-              <div className="space-y-1 text-sm">
-                <label className="block text-foreground" htmlFor="confirmNewPassword">
-                  Confirm New Password
-                </label>
-                <input
+              <div className="space-y-1">
+                <Label htmlFor="confirmNewPassword">Confirm New Password</Label>
+                <Input
                   id="confirmNewPassword"
                   type="password"
                   value={confirmNewPassword}
                   onChange={(e) => setConfirmNewPassword(e.target.value)}
-                  className="w-full rounded-md border border-border bg-input px-3 py-2 text-sm text-foreground outline-none focus:border-primary"
+                  required
                 />
               </div>
               <button

@@ -62,7 +62,7 @@ const FashionCard: React.FC<FashionCardProps> = ({ item, onFavorite }) => {
         <h3 className="text-lg font-bold text-foreground truncate">{item.title}</h3>
         <p className="mt-1 text-sm text-muted-foreground line-clamp-2">{item.description}</p>
         <div className="mt-3 flex items-center justify-between">
-          <span className="text-xl font-light text-foreground">${item.price.toFixed(2)}</span>
+          <span className="text-xl font-light text-foreground">₦{item.price.toLocaleString()}</span>
         </div>
       </div>
     </div>

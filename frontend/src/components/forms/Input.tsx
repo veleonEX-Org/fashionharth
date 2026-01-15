@@ -4,23 +4,21 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: string;
 }
 
-export const Input: React.FC<InputProps> = ({
-  className = "",
-  error,
-  ...props
-}) => {
-  return (
-    <input
-      className={`w-full rounded-md border ${
-        error ? "border-red-500" : "border-border"
-      } bg-black/40 px-3 py-2 text-sm text-foreground outline-none focus:border-primary ${
-        props.disabled ? "cursor-not-allowed opacity-60" : ""
-      } ${className}`}
-      {...props}
-    />
-  );
-};
+export const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  ({ className = "", error, ...props }, ref) => {
+    return (
+      <div className="w-full">
+        <input
+          ref={ref}
+          className={`flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all ${
+            error ? "border-red-500 focus-visible:ring-red-500" : ""
+          } ${className}`}
+          {...props}
+        />
+        {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
+      </div>
+    );
+  }
+);
 
-
-
-
+Input.displayName = "Input";

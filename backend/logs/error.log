@@ -86,3 +86,52 @@
 2026-01-13 12:19:09:199 [31merror[39m: [31mError handler caught: Invalid email or password.[39m
 2026-01-13 12:19:57:1957 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
 2026-01-13 12:45:16:4516 [31merror[39m: [31mError handler caught: Invalid email or password.[39m
+2026-01-13 13:45:53:4553 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-13 13:45:57:4557 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-13 13:45:57:4557 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-13 23:44:10:4410 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-13 23:44:10:4410 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-14 00:03:57:357 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-14 00:03:58:358 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-14 00:03:58:358 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-14 12:43:25:4325 [31merror[39m: [31mDatabase connection failed Connection terminated due to connection timeout[39m
+2026-01-14 12:43:57:4357 [31merror[39m: [31mDatabase connection failed Connection terminated due to connection timeout[39m
+2026-01-14 12:45:02:452 [31merror[39m: [31mDatabase connection failed Connection terminated due to connection timeout[39m
+2026-01-14 12:46:08:468 [31merror[39m: [31mDatabase connection failed Connection terminated due to connection timeout[39m
+2026-01-15 10:11:26:1126 [31merror[39m: [31mError handler caught: Request failed with status code 401[39m
+2026-01-15 10:22:45:2245 [31merror[39m: [31mFailed to start server trendingRouter is not defined[39m
+2026-01-15 10:22:55:2255 [31merror[39m: [31mFailed to start server trendingRouter is not defined[39m
+2026-01-15 10:47:37:4737 [31merror[39m: [31mError handler caught: Request failed with status code 400[39m
+2026-01-15 10:47:58:4758 [31merror[39m: [31mError handler caught: Request failed with status code 400[39m
+2026-01-15 10:50:05:505 [31merror[39m: [31mPaystack initialization failed: Request failed with status code 400[39m
+2026-01-15 10:50:05:505 [31merror[39m: [31mPaystack response: {"status":false,"message":"Email Address is required","meta":{"nextStep":"Provide all required params "},"type":"validation_error","code":"missing_params"}[39m
+2026-01-15 10:50:05:505 [31merror[39m: [31mError handler caught: Request failed with status code 400[39m
+2026-01-15 10:52:39:5239 [31merror[39m: [31mPaystack initialization failed: Request failed with status code 403[39m
+2026-01-15 10:52:39:5239 [31merror[39m: [31mPaystack response: {"status":false,"message":"Currency not supported by merchant","meta":{"nextStep":"Ensure you're passing the currency code for a currency enabled on your integration"},"type":"validation_error","code":"unsupported_currency"}[39m
+2026-01-15 10:52:39:5239 [31merror[39m: [31mError handler caught: Request failed with status code 403[39m
+2026-01-15 10:56:27:5627 [31merror[39m: [31mPaystack initialization failed: Request failed with status code 403[39m
+2026-01-15 10:56:27:5627 [31merror[39m: [31mPaystack response: {"status":false,"message":"Currency not supported by merchant","meta":{"nextStep":"Ensure you're passing the currency code for a currency enabled on your integration"},"type":"validation_error","code":"unsupported_currency"}[39m
+2026-01-15 10:56:27:5627 [31merror[39m: [31mError handler caught: Request failed with status code 403[39m
+2026-01-15 10:56:50:5650 [31merror[39m: [31mPaystack initialization failed: Request failed with status code 403[39m
+2026-01-15 10:56:50:5650 [31merror[39m: [31mPaystack response: {"status":false,"message":"Currency not supported by merchant","meta":{"nextStep":"Ensure you're passing the currency code for a currency enabled on your integration"},"type":"validation_error","code":"unsupported_currency"}[39m
+2026-01-15 10:56:50:5650 [31merror[39m: [31mError handler caught: Request failed with status code 403[39m
+2026-01-15 10:57:58:5758 [31merror[39m: [31mPaystack initialization failed: Request failed with status code 403[39m
+2026-01-15 10:57:58:5758 [31merror[39m: [31mPaystack response: {"status":false,"message":"Currency not supported by merchant","meta":{"nextStep":"Ensure you're passing the currency code for a currency enabled on your integration"},"type":"validation_error","code":"unsupported_currency"}[39m
+2026-01-15 10:57:58:5758 [31merror[39m: [31mError handler caught: Request failed with status code 403[39m
+2026-01-15 10:58:19:5819 [31merror[39m: [31mPaystack initialization failed: Request failed with status code 403[39m
+2026-01-15 10:58:19:5819 [31merror[39m: [31mPaystack response: {"status":false,"message":"Currency not supported by merchant","meta":{"nextStep":"Ensure you're passing the currency code for a currency enabled on your integration"},"type":"validation_error","code":"unsupported_currency"}[39m
+2026-01-15 10:58:19:5819 [31merror[39m: [31mError handler caught: Request failed with status code 403[39m
+2026-01-15 11:18:13:1813 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-15 11:34:42:3442 [31merror[39m: [31mBackground crawl failed relation "trending_news" does not exist[39m
+2026-01-15 11:40:55:4055 [31merror[39m: [31mBackground crawl failed relation "trending_news" does not exist[39m
+2026-01-15 11:51:42:5142 [31merror[39m: [31mError handler caught: Verification not supported by provider[39m
+2026-01-15 12:04:05:45 [31merror[39m: [31mError handler caught: relation "trending_news" does not exist[39m
+2026-01-15 12:04:06:46 [31merror[39m: [31mError handler caught: relation "trending_news" does not exist[39m
+2026-01-15 13:23:00:230 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-15 13:23:00:230 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-15 13:30:55:3055 [31merror[39m: [31mFailed to start server uploadRouter is not defined[39m
+2026-01-15 13:38:54:3854 [31merror[39m: [31mCloudinary upload failed: getaddrinfo EAI_AGAIN api.cloudinary.com[39m
+2026-01-15 13:38:54:3854 [31merror[39m: [31mError in uploadImage controller: Failed to upload image to Cloudinary[39m
+2026-01-15 13:38:54:3854 [31merror[39m: [31mError handler caught: Failed to upload image to Cloudinary[39m
+2026-01-15 13:50:03:503 [31merror[39m: [31mError handler caught: column "inspired_image_url" of relation "items" does not exist[39m
+2026-01-15 13:51:01:511 [31merror[39m: [31mMigration failed: column "role_access" does not exist[39m

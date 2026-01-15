@@ -13,13 +13,13 @@ export const itemRouter = Router();
 
 // Public routes
 itemRouter.get("/public", getPublicItemsController);
+itemRouter.get("/:id", getItemByIdController);
 
 // All other item routes require authentication
 itemRouter.use(authenticate);
 
 itemRouter.post("/", createItemController);
 itemRouter.get("/", getItemsController);
-itemRouter.get("/:id", getItemByIdController);
 itemRouter.put("/:id", updateItemController);
 itemRouter.delete("/:id", deleteItemController);
 

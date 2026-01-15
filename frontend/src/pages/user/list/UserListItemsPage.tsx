@@ -7,6 +7,9 @@ import { PaginatedTable } from "../../../components/table/PaginatedTable";
 import type { Column } from "../../../components/table/DataTable";
 import type { Item, PaginatedItems } from "../../../types/item";
 import { getErrorMessage } from "../../../utils/errorHandler";
+import { Input } from "../../../components/forms/Input";
+import { Select } from "../../../components/forms/Select";
+import { BackButton } from "../../../components/ui/BackButton";
 
 const UserListItemsPage: React.FC = () => {
   const navigate = useNavigate();
@@ -120,16 +123,18 @@ const UserListItemsPage: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-semibold">My Items</h1>
-        <p className="mt-1 text-sm text-muted-foreground">
-          View and manage your items.
-        </p>
+      <div className="flex flex-col gap-4">
+        <BackButton />
+        <div>
+          <h1 className="text-2xl font-semibold">My Items</h1>
+          <p className="mt-1 text-sm text-muted-foreground">
+            View and manage your items.
+          </p>
+        </div>
       </div>
 
-      {/* Filters */}
-      <div className="flex gap-4 rounded-xl border border-border bg-muted/60 p-4">
-        <input
+      <div className="flex gap-4 rounded-xl border border-border bg-card p-4 shadow-sm">
+        <Input
           type="text"
           placeholder="Search items..."
           value={search}
@@ -137,21 +142,22 @@ const UserListItemsPage: React.FC = () => {
             setSearch(e.target.value);
             setPage(1);
           }}
-          className="flex-1 rounded-md border border-border bg-black/40 px-3 py-2 text-sm text-foreground outline-none focus:border-primary"
+          className="flex-1"
         />
-        <select
+        <Select
           value={status}
           onChange={(e) => {
             setStatus(e.target.value);
             setPage(1);
           }}
-          className="rounded-md border border-border bg-black/40 px-3 py-2 text-sm text-foreground outline-none focus:border-primary"
-        >
-          <option value="">All Status</option>
-          <option value="active">Active</option>
-          <option value="inactive">Inactive</option>
-          <option value="archived">Archived</option>
-        </select>
+          options={[
+            { value: "", label: "All Status" },
+            { value: "active", label: "Active" },
+            { value: "inactive", label: "Inactive" },
+            { value: "archived", label: "Archived" },
+          ]}
+          className="w-40"
+        />
       </div>
 
       {/* Table */}

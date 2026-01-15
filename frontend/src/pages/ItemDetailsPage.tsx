@@ -1,16 +1,20 @@
 import React, { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { fetchItemById } from "../api/items";
 import { useAuth } from "../state/AuthContext";
 import toast from "react-hot-toast";
 import { CheckoutButton } from "../components/Payment/CheckoutButton";
+import { EnquiryModal } from "../components/EnquiryModal";
+import { BackButton } from "../components/ui/BackButton";
 
 const ItemDetailsPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const location = useLocation();
   const { user } = useAuth();
   const [activeTab, setActiveTab] = useState<"details" | "story">("story");
+  const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
 
   const { data: item, isLoading, error } = useQuery({
     queryKey: ["item", id],
@@ -49,6 +53,9 @@ const ItemDetailsPage: React.FC = () => {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 md:py-16">
+      <div className="mb-8">
+        <BackButton />
+      </div>
       <div className="grid gap-12 lg:grid-cols-2">
         {/* Image Section */}
         <div className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-zinc-900 shadow-2xl overflow-hidden">
@@ -69,6 +76,18 @@ const ItemDetailsPage: React.FC = () => {
               Trending Piece
             </div>
           )}
+          {item.inspiredImageUrl && (
+            <div className="absolute top-6 right-6 z-20 h-24 w-24 overflow-hidden rounded-lg border-2 border-white/20 shadow-xl backdrop-blur-md">
+              <img
+                src={item.inspiredImageUrl}
+                alt="Inspiration"
+                className="h-full w-full object-cover"
+              />
+              <div className="absolute bottom-0 left-0 right-0 bg-black/40 py-1 text-center text-[8px] font-black uppercase tracking-widest text-white">
+                Inspiration
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Info Section */}
@@ -79,7 +98,7 @@ const ItemDetailsPage: React.FC = () => {
             </div>
             <h1 className="text-5xl font-black tracking-tighter text-zinc-900 md:text-7xl leading-[0.9]">{item.title}</h1>
             <div className="mt-6 flex items-baseline gap-2">
-              <span className="text-4xl font-black text-zinc-900">${item.price.toFixed(2)}</span>
+              <span className="text-4xl font-black text-zinc-900">₦{item.price.toLocaleString()}</span>
               <span className="text-zinc-400 font-bold text-sm tracking-widest uppercase">{item.category}</span>
             </div>
           </div>
@@ -105,9 +124,24 @@ const ItemDetailsPage: React.FC = () => {
 
           <div className="min-h-[120px]">
             {activeTab === "story" ? (
-              <p className="text-xl leading-relaxed text-zinc-500 font-medium italic">
-                "{item.story || "This piece was inspired by the intersection of traditional heritage and modern silhouette."}"
-              </p>
+              <div className="space-y-6">
+                <p className="text-xl leading-relaxed text-zinc-500 font-medium italic">
+                  "{item.story || "This piece was inspired by the intersection of traditional heritage and modern silhouette."}"
+                </p>
+                {item.inspiredImageUrl && (
+                  <div className="flex items-start gap-4 rounded-2xl bg-zinc-50 p-4 border border-zinc-100">
+                    <img 
+                      src={item.inspiredImageUrl} 
+                      alt="The Inspiration" 
+                      className="h-20 w-20 rounded-xl object-cover shadow-md"
+                    />
+                    <div>
+                      <h4 className="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-1">Inspiration Source</h4>
+                      <p className="text-sm text-zinc-600 font-medium">The visual Muse behind this unique silhouette and aesthetic details.</p>
+                    </div>
+                  </div>
+                )}
+              </div>
             ) : (
               <p className="text-lg leading-relaxed text-zinc-600 font-medium">
                 {item.description || "Premium fabric selection with tailored precision. Designed for an impeccable drape and lasting comfort."}
@@ -131,7 +165,7 @@ const ItemDetailsPage: React.FC = () => {
                 className={`p-4 rounded-2xl border-2 transition-all text-left ${paymentMode === "installment" ? "border-black bg-black text-white" : "border-zinc-100 bg-zinc-50 hover:border-zinc-200"}`}
               >
                 <div className="font-black text-xs tracking-widest uppercase mb-1">Installments</div>
-                <div className={`text-[10px] font-bold block ${paymentMode === "installment" ? "text-zinc-400" : "text-zinc-500"}`}>From ${(item.price / 3).toFixed(2)} / month</div>
+                <div className={`text-[10px] font-bold block ${paymentMode === "installment" ? "text-zinc-400" : "text-zinc-500"}`}>From ₦{(item.price / 3).toLocaleString()} / month</div>
               </button>
             </div>
           </div>
@@ -139,10 +173,11 @@ const ItemDetailsPage: React.FC = () => {
           <div className="flex flex-col gap-4 md:flex-row">
             <CheckoutButton 
               amount={item.price}
-              currency="USD"
+              currency="NGN"
               type={paymentMode === "full" ? "item" : "installment"}
               itemId={item.id}
               label={paymentMode === "installment" ? "START INSTALLMENTS" : "ORDER NOW"}
+              provider="paystack"
               fullWidth
             />
             <button
@@ -152,8 +187,29 @@ const ItemDetailsPage: React.FC = () => {
               WISHLIST
             </button>
           </div>
+
+          <button
+            onClick={() => {
+              if (!user) {
+                navigate("/login", { state: { from: location.pathname } });
+                return;
+              }
+              setIsEnquiryOpen(true);
+            }}
+            className="w-full rounded-full border border-zinc-200 px-8 py-4 text-[10px] font-black tracking-[0.2em] text-zinc-500 hover:border-black hover:text-black transition-colors uppercase"
+          >
+            Make Enquiry about this Piece
+          </button>
         </div>
       </div>
+      
+      {item && (
+        <EnquiryModal
+          isOpen={isEnquiryOpen}
+          onClose={() => setIsEnquiryOpen(false)}
+          item={{ id: item.id, name: item.title }}
+        />
+      )}
     </div>
   );
 };

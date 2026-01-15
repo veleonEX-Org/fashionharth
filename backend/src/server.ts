@@ -20,6 +20,10 @@ import { pingDatabase } from "./database/pool.js";
 import { logger } from "./utils/logger.js";
 import { rateLimiter, authRateLimiter } from "./middleware/rateLimiter.js";
 import { SocketService } from "./services/socketService.js";
+import cron from "node-cron";
+import { trendingRouter } from "./routes/trendingRoutes.js";
+import { uploadRouter } from "./routes/uploadRoutes.js";
+import { crawlFashionTrends } from "./services/trendingService.js";
 
 async function bootstrap(): Promise<void> {
   // ... (retry logic omitted for brevity, keeping it as is)
@@ -93,9 +97,21 @@ async function bootstrap(): Promise<void> {
   app.use("/api/customers", customerRouter);
   app.use("/api/tasks", taskRouter);
   app.use("/api/looks", lookRouter);
+  app.use("/api/trending", trendingRouter);
+  app.use("/api/upload", uploadRouter);
   app.use("/api", categoryRouter);
 
   app.use(errorHandler);
+
+  // Schedule weekly fashion crawl (Every Sunday at midnight)
+  cron.schedule("0 0 * * 0", async () => {
+    logger.info("Running weekly fashion crawl...");
+    try {
+      await crawlFashionTrends();
+    } catch (err) {
+      logger.error("Weekly fashion crawl failed", err);
+    }
+  });
 
   httpServer.listen(env.port, () => {
     logger.info(`API server with Socket.io listening on http://localhost:${env.port}`);

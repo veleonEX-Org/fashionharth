@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { fetchCustomers, createCustomer, updateCustomer } from "../../api/admin";
+import { fetchCustomers, createCustomer, updateCustomer, fetchUsers } from "../../api/admin";
 import { FormField } from "../../components/forms/FormField";
 import { Input } from "../../components/forms/Input";
+import { Select } from "../../components/forms/Select";
 import { DynamicMeasurementFields } from "../../components/measurements/DynamicMeasurementFields";
 import { BackButton } from "../../components/ui/BackButton";
 import toast from "react-hot-toast";
@@ -18,9 +19,15 @@ const AdminCustomersPage: React.FC = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [userId, setUserId] = useState<string>("");
   const [dob, setDob] = useState("");
   const [anniversary, setAnniversary] = useState("");
   const [measurements, setMeasurements] = useState<Record<string, any>>({});
+
+  const { data: users } = useQuery({
+    queryKey: ["users"],
+    queryFn: fetchUsers,
+  });
 
   const { data: customers, isLoading } = useQuery({
     queryKey: ["customers", search],
@@ -29,6 +36,7 @@ const AdminCustomersPage: React.FC = () => {
 
   const resetForm = () => {
     setName(""); setEmail(""); setPhone(""); setDob(""); setAnniversary("");
+    setUserId("");
     setMeasurements({});
     setEditingCustomer(null);
     setIsAdding(false);
@@ -58,6 +66,7 @@ const AdminCustomersPage: React.FC = () => {
       name,
       email: email || undefined,
       phone: phone || undefined,
+      userId: userId ? parseInt(userId) : undefined,
       dob: dob || undefined,
       anniversaryDate: anniversary || undefined,
       measurements,
@@ -75,11 +84,23 @@ const AdminCustomersPage: React.FC = () => {
     setName(customer.name);
     setEmail(customer.email || "");
     setPhone(customer.phone || "");
+    setUserId(customer.userId ? String(customer.userId) : "");
     setDob(customer.dob ? new Date(customer.dob).toISOString().split('T')[0] : "");
     setAnniversary(customer.anniversaryDate ? new Date(customer.anniversaryDate).toISOString().split('T')[0] : "");
     setMeasurements(customer.measurements || {});
     setIsAdding(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleUserSelect = (val: string) => {
+    setUserId(val);
+    if (val) {
+      const selectedUser = users?.find((u: any) => String(u.id) === val);
+      if (selectedUser) {
+        setName(`${selectedUser.firstName} ${selectedUser.lastName}`);
+        setEmail(selectedUser.email);
+      }
+    }
   };
 
   return (
@@ -107,6 +128,19 @@ const AdminCustomersPage: React.FC = () => {
         <form onSubmit={handleSubmit} className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm space-y-4">
            <h2 className="text-lg font-bold">{editingCustomer ? "Edit Customer" : "Add New Customer"}</h2>
            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+               <FormField label="Link to Registered User (Optional)" name="userId">
+                 <Select 
+                    value={userId} 
+                    onChange={(e) => handleUserSelect(e.target.value)} 
+                    options={[
+                      { value: "", label: "--- Select User ---" },
+                      ...(users?.filter((u: any) => !u.customerId || (editingCustomer && u.customerId === editingCustomer.id))?.map((u: any) => ({
+                        value: String(u.id),
+                        label: `${u.firstName} ${u.lastName} (${u.email})`
+                      })) || [])
+                    ]}
+                 />
+               </FormField>
               <FormField label="Name" name="name" required>
                 <Input value={name} onChange={(e) => setName(e.target.value)} placeholder="Full Name" />
               </FormField>

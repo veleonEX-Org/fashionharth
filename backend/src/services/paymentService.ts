@@ -23,8 +23,22 @@ export class PaymentService {
     return await activeProvider.handleWebhook(payload, signature);
   }
 
-  async createInstallmentPlan(userId: number, totalAmount: number, periods: number, provider: 'stripe' | 'paystack' = 'stripe', itemId?: number) {
-    logger.info(`Creating installment plan for user ${userId}: ${totalAmount} over ${periods} months ${itemId ? `for item ${itemId}` : ''}`);
+  async verifyTransaction(provider: 'stripe' | 'paystack', reference: string) {
+    logger.info(`[PAYMENT SERVICE] verifyTransaction called - Provider: ${provider}, Reference: ${reference}`);
+    
+    if (provider === 'paystack') {
+      logger.info(`[PAYMENT SERVICE] Delegating to PaystackService.verifyTransaction`);
+      return await this.paystackProvider.verifyTransaction(reference);
+    } else if (provider === 'stripe') {
+      // Stripe doesn't need manual verification in the same way
+      logger.info(`[PAYMENT SERVICE] Stripe verification not implemented for reference: ${reference}`);
+      return false;
+    }
+    throw new Error(`Provider ${provider} not supported`);
+  }
+
+  async createInstallmentPlan(userId: number, email: string, totalAmount: number, currency: string, periods: number, provider: 'stripe' | 'paystack' = 'stripe', itemId?: number) {
+    logger.info(`Creating installment plan for user ${userId}: ${totalAmount} ${currency} over ${periods} months ${itemId ? `for item ${itemId}` : ''}`);
     
     // 1. Calculate installment amount
     const installmentAmount = totalAmount / periods;
@@ -32,7 +46,7 @@ export class PaymentService {
     // 2. Create the initial transaction record in pending state
     const transactionResult = await pool.query(
         "INSERT INTO transactions (user_id, amount, currency, status, type, provider) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id",
-        [userId, totalAmount, 'USD', 'pending', 'installment', provider]
+        [userId, totalAmount, currency, 'pending', 'installment', provider]
     );
     const transactionId = transactionResult.rows[0].id;
 
@@ -50,12 +64,14 @@ export class PaymentService {
     const activeProvider = this.getProvider(provider);
     return await activeProvider.createCheckoutSession({
         userId,
-        email: '', // In a real app, fetch user email from DB or pass it
+        email, // Use the passed email
         amount: installmentAmount,
-        currency: 'USD',
+        currency: currency,
         type: 'installment',
-        successUrl: `${process.env.APP_URL}/success`,
-        cancelUrl: `${process.env.APP_URL}/cancel`,
+        successUrl: provider === 'paystack'
+            ? `${process.env.APP_URL}/payment/success?provider=paystack`
+            : `${process.env.APP_URL}/payment/success?provider=stripe&session_id={CHECKOUT_SESSION_ID}`,
+        cancelUrl: `${process.env.APP_URL}/payment/cancel`,
         metadata: {
             transactionId: transactionId.toString(),
             isInstallment: 'true',

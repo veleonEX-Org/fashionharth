@@ -4,6 +4,9 @@ import { fetchPublicItems } from "../api/items";
 import { saveLook, fetchFavorites } from "../api/looks";
 import { useAuth } from "../state/AuthContext";
 import toast from "react-hot-toast";
+import { http } from "../api/http";
+import { Loader2 } from "lucide-react";
+import { BackButton } from "../components/ui/BackButton";
 
 const COLOR_PALETTES = [
   { name: "Monochromatic", colors: ["#000000", "#333333", "#666666", "#999999"], description: "Elegant and elongating. Uses different shades of the same hue." },
@@ -15,6 +18,7 @@ const COLOR_PALETTES = [
 const StyleMePage: React.FC = () => {
   const { user } = useAuth();
   const [userPhoto, setUserPhoto] = useState<string | null>(null);
+  const [isUploading, setIsUploading] = useState(false);
   const [selectedItem, setSelectedItem] = useState<any>(null);
   const [customColor, setCustomColor] = useState("#A87B50");
   const [isWearing, setIsWearing] = useState(false);
@@ -44,13 +48,30 @@ const StyleMePage: React.FC = () => {
 
   const wardrobe = user && favoritesData?.length ? favoritesData : (suggestedData?.items || []);
 
-  const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        setUserPhoto(event.target?.result as string);
-      };
-      reader.readAsDataURL(e.target.files[0]);
+  const handlePhotoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+      toast.error("Please upload an image file");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("image", file);
+    formData.append("folder", "avatars");
+
+    setIsUploading(true);
+    try {
+      const { data } = await http.post<{ imageUrl: string }>("/upload", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      setUserPhoto(data.imageUrl);
+      toast.success("Photo uploaded successfully!");
+    } catch (err: any) {
+      toast.error(err.response?.data?.message || "Failed to upload photo");
+    } finally {
+      setIsUploading(false);
     }
   };
 
@@ -72,7 +93,10 @@ const StyleMePage: React.FC = () => {
 
   return (
     <div className="space-y-12 pb-24">
-      <section className="text-center space-y-4 max-w-2xl mx-auto pt-8">
+      <div className="mx-auto max-w-7xl px-4 flex justify-start pt-8">
+        <BackButton />
+      </div>
+      <section className="text-center space-y-4 max-w-2xl mx-auto">
         <h1 className="text-4xl md:text-5xl font-bold tracking-tighter">STYLE <span className="text-primary italic">STUDIO</span></h1>
         <p className="text-gray-500 text-lg">Experiment with colors, match your favorites, and visualize your future self.</p>
       </section>
@@ -144,15 +168,22 @@ const StyleMePage: React.FC = () => {
                     )}
                  </div>
                ) : (
-                 <div className="text-center p-8 space-y-4 transition-transform group-hover:scale-105">
+                  <div className="text-center p-8 space-y-4 transition-transform group-hover:scale-105">
                     <div className="text-6xl mb-4">👤</div>
                     <h3 className="text-xl font-bold">Create Your 2D Avatar</h3>
                     <p className="text-sm text-gray-400 max-w-xs">Upload a photo to see how our collection fits your silhouette.</p>
-                    <label className="inline-block rounded-full bg-black text-white px-8 py-3 font-bold text-xs tracking-widest cursor-pointer hover:bg-primary transition-colors">
-                       UPLOAD PHOTO
-                       <input type="file" className="hidden" onChange={handlePhotoUpload} accept="image/*" />
+                    <label className={`inline-flex items-center gap-2 rounded-full bg-black text-white px-8 py-3 font-bold text-xs tracking-widest cursor-pointer hover:bg-primary transition-colors ${isUploading ? "opacity-50 cursor-not-allowed" : ""}`}>
+                       {isUploading ? (
+                         <>
+                           <Loader2 className="h-4 w-4 animate-spin" />
+                           UPLOADING...
+                         </>
+                       ) : (
+                         "UPLOAD PHOTO"
+                       )}
+                       <input type="file" className="hidden" onChange={handlePhotoUpload} accept="image/*" disabled={isUploading} />
                     </label>
-                 </div>
+                  </div>
                )}
                {userPhoto && (
                   <button onClick={() => setUserPhoto(null)} className="absolute top-6 right-6 h-10 w-10 rounded-full bg-white/80 backdrop-blur-md text-black flex items-center justify-center hover:bg-white transition-colors shadow-lg">✕</button>

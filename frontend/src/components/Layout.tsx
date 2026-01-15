@@ -4,6 +4,7 @@ import { useAuth } from "../state/AuthContext";
 
 import { socketService } from "../lib/socket";
 import { getStoredTokens } from "../utils/tokenStorage";
+import { SupportFab } from "./SupportFab";
 
 export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { user, clearAuth } = useAuth();
@@ -53,6 +54,12 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
             <Link to="/style-me" className="hover:text-primary font-bold">
               Style Me
             </Link>
+            <Link to="/categories" className="hover:text-primary font-bold">
+              Categories
+            </Link>
+            <Link to="/chat" className="hover:text-primary font-bold">
+              Support
+            </Link>
             {user ? (
               <>
                 {(user.role === "admin" || user.role === "staff") && (
@@ -75,11 +82,12 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
               </>
             ) : (
               <>
-                <Link to="/login" className="hover:text-primary">
+                <Link to="/login" state={{ from: location }} className="hover:text-primary">
                   Login
                 </Link>
                 <Link
                   to="/register"
+                  state={{ from: location }}
                   className="rounded-md bg-primary px-3 py-1 text-xs font-medium text-primary-foreground hover:opacity-90"
                 >
                   Sign up
@@ -98,6 +106,9 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
               </Link>
               <Link to="/style-me" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-primary font-bold py-2">
                 Style Me
+              </Link>
+              <Link to="/categories" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-primary font-bold py-2">
+                Categories
               </Link>
               
               <div className="border-t border-gray-100 my-2"></div>
@@ -130,11 +141,12 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                 </>
               ) : (
                 <>
-                  <Link to="/login" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-primary py-2">
+                  <Link to="/login" state={{ from: location }} onClick={() => setIsMobileMenuOpen(false)} className="hover:text-primary py-2">
                     Login
                   </Link>
                   <Link
                     to="/register"
+                    state={{ from: location }}
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="inline-block text-center rounded-md bg-primary px-3 py-2 text-xs font-medium text-primary-foreground hover:opacity-90"
                   >
@@ -195,6 +207,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
           </div>
         </div>
       </footer>
+      <SupportFab />
     </div>
   );
 };

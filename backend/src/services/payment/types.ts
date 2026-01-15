@@ -21,6 +21,8 @@ export interface PaymentProvider {
 
   handleWebhook(payload: any, signature: string): Promise<void>;
   
+  verifyTransaction?(reference: string): Promise<boolean>;
+
   cancelSubscription(subscriptionId: string): Promise<void>;
   
   getSubscription(subscriptionId: string): Promise<any>;

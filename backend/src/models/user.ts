@@ -8,6 +8,7 @@ export interface User {
   password_hash: string;
   role: UserRole;
   status: string; // 'active' or 'disabled'
+  customer_id: number | null;
   is_email_verified: boolean;
   email_verification_token: string | null;
   reset_password_token: string | null;
@@ -24,6 +25,7 @@ export interface PublicUser {
   email: string;
   role: UserRole;
   status: string;
+  customerId: number | null;
   isEmailVerified: boolean;
   createdAt: string;
   updatedAt: string;
@@ -37,6 +39,7 @@ export function toPublicUser(row: User): PublicUser {
     email: row.email,
     role: row.role,
     status: row.status || 'active',
+    customerId: row.customer_id,
     isEmailVerified: row.is_email_verified,
     createdAt: row.created_at.toISOString(),
     updatedAt: row.updated_at.toISOString(),

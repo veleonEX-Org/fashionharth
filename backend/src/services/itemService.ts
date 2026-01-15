@@ -1,8 +1,8 @@
 import { z } from "zod";
-import { pool } from "../database/pool";
-import type { Item, PublicItem } from "../models/item";
-import { toPublicItem } from "../models/item";
-import type { UserRole } from "../types/auth";
+import { pool } from "../database/pool.js";
+import type { Item, PublicItem } from "../models/item.js";
+import { toPublicItem } from "../models/item.js";
+import type { UserRole } from "../types/auth.js";
 
 const createItemSchema = z.object({
   title: z
@@ -11,15 +11,13 @@ const createItemSchema = z.object({
     .max(255, "Title must be less than 255 characters."),
   description: z.string().nullable().optional(),
   status: z.enum(["active", "inactive", "archived"]).default("active"),
-  roleAccess: z
-    .array(z.enum(["admin", "staff", "user"]))
-    .min(1, "At least one role access is required."),
   metadata: z.record(z.unknown()).nullable().optional(),
   price: z.number().min(0, "Price must be non-negative").default(0),
   category: z.string().default("General"),
   story: z.string().nullable().optional(),
   isTrending: z.boolean().default(false),
   imageUrl: z.string().url().nullable().optional(),
+  inspiredImageUrl: z.string().url().nullable().optional(),
 });
 
 const updateItemSchema = z.object({
@@ -30,16 +28,13 @@ const updateItemSchema = z.object({
     .optional(),
   description: z.string().nullable().optional(),
   status: z.enum(["active", "inactive", "archived"]).optional(),
-  roleAccess: z
-    .array(z.enum(["admin", "staff", "user"]))
-    .min(1, "At least one role access is required.")
-    .optional(),
   metadata: z.record(z.unknown()).nullable().optional(),
   price: z.number().min(0).optional(),
   category: z.string().optional(),
   story: z.string().nullable().optional(),
   isTrending: z.boolean().optional(),
   imageUrl: z.string().url().nullable().optional(),
+  inspiredImageUrl: z.string().url().nullable().optional(),
 });
 
 export interface PaginatedItems {
@@ -59,8 +54,8 @@ export async function createItem(
   const result = await pool.query<Item>(
     `
       INSERT INTO items (
-        title, description, status, created_by, role_access, metadata,
-        price, category, story, is_trending, image_url
+        title, description, status, created_by, metadata,
+        price, category, story, is_trending, image_url, inspired_image_url
       )
       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
       RETURNING *
@@ -70,13 +65,13 @@ export async function createItem(
       data.description || null,
       data.status,
       userId,
-      data.roleAccess,
       data.metadata ? JSON.stringify(data.metadata) : null,
       data.price,
       data.category,
       data.story || null,
       data.isTrending,
       data.imageUrl || null,
+      data.inspiredImageUrl || null,
     ]
   );
 
@@ -85,7 +80,6 @@ export async function createItem(
 
 export async function getItems(
   userId: number,
-  userRole: UserRole,
   page: number = 1,
   limit: number = 10,
   status?: string,
@@ -96,10 +90,7 @@ export async function getItems(
   const params: unknown[] = [];
   let paramIndex = 1;
 
-  // Filter by role access
-  conditions.push(`$${paramIndex} = ANY(role_access)`);
-  params.push(userRole);
-  paramIndex++;
+
 
   // Filter by status if provided
   if (status && ["active", "inactive", "archived"].includes(status)) {
@@ -150,15 +141,14 @@ export async function getItems(
 }
 
 export async function getItemById(
-  id: number,
-  userRole: UserRole
+  id: number
 ): Promise<PublicItem | null> {
   const result = await pool.query<Item>(
     `
       SELECT * FROM items
-      WHERE id = $1 AND $2 = ANY(role_access)
+      WHERE id = $1
     `,
-    [id, userRole]
+    [id]
   );
 
   if (result.rows.length === 0) {
@@ -177,7 +167,7 @@ export async function updateItem(
   const data = updateItemSchema.parse(input);
 
   // Check if item exists and user has access
-  const existing = await getItemById(id, userRole);
+  const existing = await getItemById(id);
   if (!existing) {
     const error = new Error("Item not found or access denied.");
     (error as any).statusCode = 404;
@@ -213,11 +203,7 @@ export async function updateItem(
     paramIndex++;
   }
 
-  if (data.roleAccess !== undefined) {
-    updates.push(`role_access = $${paramIndex}`);
-    params.push(data.roleAccess);
-    paramIndex++;
-  }
+
 
   if (data.metadata !== undefined) {
     updates.push(`metadata = $${paramIndex}`);
@@ -255,6 +241,12 @@ export async function updateItem(
     paramIndex++;
   }
 
+  if (data.inspiredImageUrl !== undefined) {
+    updates.push(`inspired_image_url = $${paramIndex}`);
+    params.push(data.inspiredImageUrl);
+    paramIndex++;
+  }
+
   if (updates.length === 0) {
     return existing;
   }
@@ -281,7 +273,7 @@ export async function deleteItem(
   userRole: UserRole
 ): Promise<void> {
   // Check if item exists and user has access
-  const existing = await getItemById(id, userRole);
+  const existing = await getItemById(id);
   if (!existing) {
     const error = new Error("Item not found or access denied.");
     (error as any).statusCode = 404;
@@ -313,7 +305,7 @@ export async function getPublicItems(
   let paramIndex = 1;
 
   if (category) {
-    conditions.push(`category = $${paramIndex}`);
+    conditions.push(`category ILIKE $${paramIndex}`);
     params.push(category);
     paramIndex++;
   }

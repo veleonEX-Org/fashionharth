@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { http } from "../../../api/http";
@@ -7,17 +7,15 @@ import { FormField } from "../../../components/forms/FormField";
 import { Input } from "../../../components/forms/Input";
 import { Textarea } from "../../../components/forms/Textarea";
 import { Select } from "../../../components/forms/Select";
-import { MultiSelect } from "../../../components/forms/MultiSelect";
+import { fetchCategories } from "../../../api/categories";
 import type { CreateItemPayload, Item } from "../../../types/item";
 import { z } from "zod";
+import { BackButton } from "../../../components/ui/BackButton";
 
 const itemSchema = z.object({
   title: z.string().min(1, "Title is required.").max(255),
   description: z.string().nullable().optional(),
   status: z.enum(["active", "inactive", "archived"]),
-  roleAccess: z
-    .array(z.enum(["admin", "staff", "user"]))
-    .min(1, "At least one role access is required."),
 });
 
 const UserAddItemPage: React.FC = () => {
@@ -27,8 +25,19 @@ const UserAddItemPage: React.FC = () => {
   const [status, setStatus] = useState<"active" | "inactive" | "archived">(
     "active"
   );
-  const [roleAccess, setRoleAccess] = useState<string[]>(["user"]);
+  const [category, setCategory] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const { data: categories } = useQuery({
+    queryKey: ["categories"],
+    queryFn: fetchCategories,
+  });
+
+  React.useEffect(() => {
+    if (categories && categories.length > 0 && !category) {
+      setCategory(categories[0].name);
+    }
+  }, [categories, category]);
 
   const mutation = useMutation({
     mutationFn: async (payload: CreateItemPayload) => {
@@ -49,7 +58,6 @@ const UserAddItemPage: React.FC = () => {
       title,
       description: description || null,
       status,
-      roleAccess: roleAccess as ("admin" | "staff" | "user")[],
     });
 
     if (!parsed.success) {
@@ -62,16 +70,22 @@ const UserAddItemPage: React.FC = () => {
       return;
     }
 
-    mutation.mutate(parsed.data);
+    mutation.mutate({
+      ...parsed.data,
+      category,
+    } as CreateItemPayload);
   };
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-semibold">Add New Item</h1>
-        <p className="mt-1 text-sm text-muted-foreground">
-          Create a new item in the system.
-        </p>
+      <div className="flex flex-col gap-4">
+        <BackButton to="/user/items" />
+        <div>
+          <h1 className="text-2xl font-semibold">Add New Item</h1>
+          <p className="mt-1 text-sm text-muted-foreground">
+            Create a new item in the system.
+          </p>
+        </div>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4 rounded-xl border border-border bg-card p-6">
@@ -113,22 +127,15 @@ const UserAddItemPage: React.FC = () => {
           />
         </FormField>
 
-        <FormField
-          label="Role Access"
-          name="roleAccess"
-          required
-          error={errors.roleAccess}
-        >
-          <MultiSelect
-            value={roleAccess}
-            onChange={setRoleAccess}
+        <FormField label="Category" name="category" required error={errors.category}>
+          <Select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
             options={[
-              { value: "admin", label: "Admin" },
-              { value: "staff", label: "Staff" },
-              { value: "user", label: "User" },
+              { value: "", label: "Select category" },
+              ...(categories?.map((cat) => ({ value: cat.name, label: cat.name })) || []),
             ]}
-            error={errors.roleAccess}
-            placeholder="Select roles that can access this item"
+            error={errors.category}
           />
         </FormField>
 

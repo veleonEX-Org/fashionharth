@@ -60,8 +60,13 @@ export const useChat = () => {
       console.error("Socket error event:", error.message);
     });
 
+    socket.on("new_conversation", () => {
+      fetchConversations();
+    });
+
     return () => {
       socket.off("new_message");
+      socket.off("new_conversation");
       socket.off("error");
     };
   }, [addMessage, fetchConversations]);

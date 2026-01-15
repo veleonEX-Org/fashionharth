@@ -3,11 +3,14 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useParams, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { http } from "../../../api/http";
+import { fetchCategories } from "../../../api/categories";
 import { FormField } from "../../../components/forms/FormField";
 import { Input } from "../../../components/forms/Input";
 import { Textarea } from "../../../components/forms/Textarea";
 import { Select } from "../../../components/forms/Select";
 import { MultiSelect } from "../../../components/forms/MultiSelect";
+import { Checkbox } from "../../../components/forms/Checkbox";
+import { ImageUpload } from "../../../components/forms/ImageUpload";
 import { BackButton } from "../../../components/ui/BackButton";
 import type { UpdateItemPayload, Item } from "../../../types/item";
 import { z } from "zod";
@@ -16,10 +19,13 @@ const itemSchema = z.object({
   title: z.string().min(1, "Title is required.").max(255).optional(),
   description: z.string().nullable().optional(),
   status: z.enum(["active", "inactive", "archived"]).optional(),
-  roleAccess: z
-    .array(z.enum(["admin", "staff", "user"]))
-    .min(1, "At least one role access is required.")
-    .optional(),
+
+  price: z.number().min(0).optional(),
+  category: z.string().min(1, "Category is required").optional(),
+  story: z.string().nullable().optional(),
+  isTrending: z.boolean().optional(),
+  imageUrl: z.string().url().nullable().optional().or(z.literal("")),
+  inspiredImageUrl: z.string().url().nullable().optional().or(z.literal("")),
 });
 
 const AdminEditItemPage: React.FC = () => {
@@ -31,7 +37,13 @@ const AdminEditItemPage: React.FC = () => {
   const [status, setStatus] = useState<"active" | "inactive" | "archived">(
     "active"
   );
-  const [roleAccess, setRoleAccess] = useState<string[]>([]);
+
+  const [price, setPrice] = useState("0");
+  const [category, setCategory] = useState("");
+  const [story, setStory] = useState("");
+  const [isTrending, setIsTrending] = useState(false);
+  const [imageUrl, setImageUrl] = useState("");
+  const [inspiredImageUrl, setInspiredImageUrl] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const { data: item, isLoading } = useQuery<Item>({
@@ -43,12 +55,23 @@ const AdminEditItemPage: React.FC = () => {
     enabled: !!id,
   });
 
+  const { data: categories } = useQuery({
+    queryKey: ["categories"],
+    queryFn: fetchCategories,
+  });
+
   useEffect(() => {
     if (item) {
       setTitle(item.title);
       setDescription(item.description || "");
       setStatus(item.status);
-      setRoleAccess(item.roleAccess);
+
+      setPrice(item.price.toString());
+      setCategory(item.category);
+      setStory(item.story || "");
+      setIsTrending(item.isTrending);
+      setImageUrl(item.imageUrl || "");
+      setInspiredImageUrl(item.inspiredImageUrl || "");
     }
   }, [item]);
 
@@ -73,7 +96,13 @@ const AdminEditItemPage: React.FC = () => {
       title,
       description: description || null,
       status,
-      roleAccess: roleAccess as ("admin" | "staff" | "user")[],
+
+      price: parseFloat(price),
+      category,
+      story: story || null,
+      isTrending,
+      imageUrl: imageUrl || null,
+      inspiredImageUrl: inspiredImageUrl || null,
     });
 
     if (!parsed.success) {
@@ -145,6 +174,63 @@ const AdminEditItemPage: React.FC = () => {
           />
         </FormField>
 
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <FormField label="Price (₦)" name="price" required error={errors.price}>
+            <Input
+              type="number"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+              error={errors.price}
+              placeholder="0.00"
+            />
+          </FormField>
+
+          <FormField label="Category" name="category" required error={errors.category}>
+            <Select
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              options={[
+                { value: "", label: "Select category" },
+                ...(categories?.map((cat) => ({ value: cat.name, label: cat.name })) || []),
+              ]}
+              error={errors.category}
+            />
+          </FormField>
+        </div>
+
+        <ImageUpload
+          label="Product Image"
+          value={imageUrl}
+          onChange={setImageUrl}
+          folder="products"
+          error={errors.imageUrl}
+        />
+
+        <ImageUpload
+          label="Inspired Image (Overlay)"
+          value={inspiredImageUrl}
+          onChange={setInspiredImageUrl}
+          folder="inspired"
+          error={errors.inspiredImageUrl}
+        />
+
+        <FormField label="The Story" name="story" error={errors.story}>
+          <Textarea
+            value={story}
+            onChange={(e) => setStory(e.target.value)}
+            error={errors.story}
+            rows={4}
+            placeholder="Tell the story behind this design inspired by..."
+          />
+        </FormField>
+
+        <Checkbox
+          id="isTrending"
+          label="Show in Trending"
+          checked={isTrending}
+          onChange={(e) => setIsTrending(e.target.checked)}
+        />
+
         <FormField label="Status" name="status" required error={errors.status}>
           <Select
             value={status}
@@ -160,24 +246,7 @@ const AdminEditItemPage: React.FC = () => {
           />
         </FormField>
 
-        <FormField
-          label="Role Access"
-          name="roleAccess"
-          required
-          error={errors.roleAccess}
-        >
-          <MultiSelect
-            value={roleAccess}
-            onChange={setRoleAccess}
-            options={[
-              { value: "admin", label: "Admin" },
-              { value: "staff", label: "Staff" },
-              { value: "user", label: "User" },
-            ]}
-            error={errors.roleAccess}
-            placeholder="Select roles that can access this item"
-          />
-        </FormField>
+
 
         <div className="flex gap-3">
           <button

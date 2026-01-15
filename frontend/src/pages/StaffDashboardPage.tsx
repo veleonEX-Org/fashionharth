@@ -54,7 +54,7 @@ const StaffDashboardPage: React.FC = () => {
         </div>
       </div>
 
-      <div className="mt-8">
+      <div className="mt-8 grid gap-6 md:grid-cols-2">
          <Link 
            to="/staff/portal" 
            className="flex items-center justify-between rounded-2xl bg-foreground p-8 text-background transition-all hover:bg-gray-800"
@@ -64,6 +64,16 @@ const StaffDashboardPage: React.FC = () => {
                <p className="text-muted-foreground mt-2">View deadlines and mark tasks as complete in your production queue.</p>
             </div>
             <div className="text-4xl">🧵</div>
+         </Link>
+         <Link 
+           to="/staff/support" 
+           className="flex items-center justify-between rounded-2xl bg-primary p-8 text-primary-foreground transition-all hover:bg-primary/90"
+         >
+            <div>
+               <h2 className="text-2xl font-bold">Customer Support</h2>
+               <p className="text-primary-foreground/80 mt-2">Respond to customer enquiries and provide assistance.</p>
+            </div>
+            <div className="text-4xl">💬</div>
          </Link>
       </div>
     </div>

@@ -42,11 +42,16 @@ import UserEditItemPage from "./pages/user/edit/UserEditItemPage";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { ChatPage } from "./pages/ChatPage";
 import StyleMePage from "./pages/StyleMePage";
+import CategoriesPage from "./pages/CategoriesPage";
 import AdminCustomersPage from "./pages/admin/AdminCustomersPage";
 import AdminTasksPage from "./pages/admin/AdminTasksPage";
 import AdminUsersPage from "./pages/admin/AdminUsersPage";
 import AdminCategoriesPage from "./pages/admin/AdminCategoriesPage";
 import StaffPortalPage from "./pages/staff/StaffPortalPage";
+import PaymentSuccessPage from "./pages/PaymentSuccessPage";
+import PaymentCancelPage from "./pages/PaymentCancelPage";
+import AdminSupportPage from "./pages/admin/AdminSupportPage";
+import StaffSupportPage from "./pages/staff/StaffSupportPage";
 
 const App: React.FC = () => {
   return (
@@ -55,9 +60,12 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/trending" element={<TrendingPage />} />
+          <Route path="/categories" element={<CategoriesPage />} />
           <Route path="/item/:id" element={<ItemDetailsPage />} />
           <Route path="/pricing" element={<PricingPage />} />
           <Route path="/style-me" element={<StyleMePage />} />
+          <Route path="/payment/success" element={<PaymentSuccessPage />} />
+          <Route path="/payment/cancel" element={<PaymentCancelPage />} />
         {/* Global auth routes */}
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
@@ -108,6 +116,7 @@ const App: React.FC = () => {
           <Route path="/admin/tasks" element={<AdminTasksPage />} />
           <Route path="/admin/users" element={<AdminUsersPage />} />
           <Route path="/admin/categories" element={<AdminCategoriesPage />} />
+          <Route path="/admin/support" element={<AdminSupportPage />} />
         </Route>
 
         <Route element={<ProtectedRoute allowedRoles={["staff"]} />}>
@@ -117,6 +126,7 @@ const App: React.FC = () => {
           <Route path="/staff/items/:id" element={<StaffViewItemPage />} />
           <Route path="/staff/items/:id/edit" element={<StaffEditItemPage />} />
           <Route path="/staff/portal" element={<StaffPortalPage />} />
+          <Route path="/staff/support" element={<StaffSupportPage />} />
         </Route>
 
         <Route element={<ProtectedRoute allowedRoles={["user"]} />}>

@@ -8,9 +8,15 @@ import { http } from "../api/http";
 import type { AuthTokens, User } from "../types/auth";
 import { loginSchema } from "../validation/authSchemas";
 import type { GoogleOAuthRequest } from "../types/oauth";
+import { Input } from "../components/forms/Input";
+import { Label } from "../components/forms/Label";
 
 interface LocationState {
-  from?: { pathname?: string };
+  from?: { 
+    pathname?: string;
+    search?: string;
+    hash?: string;
+  };
 }
 
 const LoginPage: React.FC = () => {
@@ -36,8 +42,12 @@ const LoginPage: React.FC = () => {
     onSuccess: (data) => {
       setAuth(data.user, data.tokens);
       toast.success(`Welcome back, ${data.user.firstName}!`);
-      const redirectTo = state?.from?.pathname ?? "/dashboard";
-      navigate(redirectTo, { replace: true });
+      const from = state?.from;
+      const isAuthPage = from?.pathname === "/login" || from?.pathname === "/register" || from?.pathname?.includes("/verify-email") || from?.pathname?.includes("/reset-password");
+      const redirectTo = from && !isAuthPage
+        ? `${from.pathname ?? ""}${from.search ?? ""}${from.hash ?? ""}` 
+        : "/dashboard";
+      navigate(redirectTo || "/dashboard", { replace: true });
     },
     onError: (err: any) => {
       // Check if error is related to email verification
@@ -76,8 +86,12 @@ const LoginPage: React.FC = () => {
     onSuccess: (data) => {
       setAuth(data.user, data.tokens);
       toast.success(`Welcome, ${data.user.firstName}!`);
-      const redirectTo = state?.from?.pathname ?? "/dashboard";
-      navigate(redirectTo, { replace: true });
+      const from = state?.from;
+      const isAuthPage = from?.pathname === "/login" || from?.pathname === "/register" || from?.pathname?.includes("/verify-email") || from?.pathname?.includes("/reset-password");
+      const redirectTo = from && !isAuthPage
+        ? `${from.pathname ?? ""}${from.search ?? ""}${from.hash ?? ""}` 
+        : "/dashboard";
+      navigate(redirectTo || "/dashboard", { replace: true });
     },
     // Error handling is done globally in queryClient
   });
@@ -129,34 +143,30 @@ const LoginPage: React.FC = () => {
         </div>
       )}
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="space-y-1 text-sm">
-          <label htmlFor="email" className="block text-foreground">
-            Email
-          </label>
-          <input
+        <div className="space-y-1">
+          <Label htmlFor="email">Email</Label>
+          <Input
             id="email"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full rounded-md border border-border bg-input px-3 py-2 text-sm text-foreground outline-none focus:border-primary"
             autoComplete="email"
+            required
           />
         </div>
-        <div className="space-y-1 text-sm">
-          <label htmlFor="password" className="block text-foreground">
-            Password
-          </label>
-          <input
+        <div className="space-y-1">
+          <Label htmlFor="password">Password</Label>
+          <Input
             id="password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full rounded-md border border-border bg-input px-3 py-2 text-sm text-foreground outline-none focus:border-primary"
             autoComplete="current-password"
+            required
           />
         </div>
         <div className="flex items-center justify-between text-xs">
-          <Link to="/forgot-password" className="text-primary hover:underline">
+          <Link to="/forgot-password" state={location.state} className="text-primary hover:underline">
             Forgot password?
           </Link>
         </div>
@@ -182,7 +192,7 @@ const LoginPage: React.FC = () => {
       </div>
       <p className="mt-4 text-xs text-muted-foreground">
         Don&apos;t have an account?{" "}
-        <Link to="/register" className="text-primary hover:underline">
+        <Link to="/register" state={location.state} className="text-primary hover:underline">
           Sign up
         </Link>
       </p>
