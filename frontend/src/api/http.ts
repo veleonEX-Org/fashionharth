@@ -16,11 +16,12 @@ export const http = axios.create({
 
 // Attach access token if present.
 http.interceptors.request.use((config) => {
-  const tokens: AuthTokens | null = getStoredTokens();
+  const tokens = getStoredTokens();
   if (tokens?.accessToken) {
-    if (config.headers) {
-      config.headers.Authorization = `Bearer ${tokens.accessToken}`;
-    }
+    console.log(`[HTTP] Attaching token to ${config.url}`);
+    config.headers.Authorization = `Bearer ${tokens.accessToken}`;
+  } else {
+    console.warn(`[HTTP] No token found for ${config.url}`);
   }
   return config;
 });

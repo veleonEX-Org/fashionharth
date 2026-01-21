@@ -14,6 +14,8 @@ const createTaskSchema = z.object({
   dueDate: z.string(), // ISO Date
   status: z.enum(['pending', 'in_progress', 'completed']).default('pending'),
   notes: z.string().optional(),
+  deliveryDestination: z.string().optional(),
+  transactionId: z.number().optional().nullable(),
 });
 
 function toTask(row: any): Task {
@@ -30,8 +32,10 @@ function toTask(row: any): Task {
     deadline: row.deadline,
     status: row.status,
     notes: row.notes,
+    deliveryDestination: row.delivery_destination,
     createdAt: row.created_at,
     updatedAt: row.updated_at,
+    transactionId: row.transaction_id,
     customerName: row.customer_name,
     customerPhone: row.customer_phone,
     assigneeName: row.username, // Join from users
@@ -50,9 +54,9 @@ export async function createTask(input: CreateTaskPayload): Promise<Task> {
     `
     INSERT INTO tasks (
       customer_id, category, total_amount, amount_paid, production_cost, 
-      assigned_to, start_date, due_date, deadline, status, notes
+      assigned_to, start_date, due_date, deadline, status, notes, delivery_destination, transaction_id
     )
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
     RETURNING *
     `,
     [
@@ -67,6 +71,8 @@ export async function createTask(input: CreateTaskPayload): Promise<Task> {
       deadline.toISOString(),
       data.status,
       data.notes || null,
+      data.deliveryDestination || null,
+      data.transactionId || null,
     ]
   );
 
@@ -75,7 +81,12 @@ export async function createTask(input: CreateTaskPayload): Promise<Task> {
 
 export async function getTasks(
   assignedTo?: number, 
-  status?: string
+  status?: string,
+  sortBy: 'deadline' | 'created_at' = 'deadline',
+  sortOrder: 'ASC' | 'DESC' = 'ASC',
+  paymentStatus?: 'paid' | 'unpaid',
+  minDate?: string,
+  maxDate?: string
 ): Promise<Task[]> {
   let query = `
     SELECT t.*, c.name as customer_name, c.phone as customer_phone, (u.first_name || ' ' || u.last_name) as username
@@ -103,12 +114,31 @@ export async function getTasks(
     }
   }
 
+  if (paymentStatus) {
+    if (paymentStatus === 'paid') {
+      conditions.push(`t.amount_paid >= t.total_amount`);
+    } else {
+      conditions.push(`t.amount_paid < t.total_amount`);
+    }
+  }
+
+  if (minDate) {
+    conditions.push(`t.created_at >= $${idx++}`);
+    params.push(minDate);
+  }
+
+  if (maxDate) {
+    conditions.push(`t.created_at <= $${idx++}`);
+    params.push(maxDate);
+  }
+
   if (conditions.length > 0) {
     query += ` WHERE ${conditions.join(" AND ")}`;
   }
 
-  // "tasks are sorted by deadlines"
-  query += ` ORDER BY t.deadline ASC`;
+  // Sorting
+  const sortColumn = sortBy === 'created_at' ? 't.created_at' : 't.deadline';
+  query += ` ORDER BY ${sortColumn} ${sortOrder}`;
 
   const result = await pool.query(query, params);
   return result.rows.map(toTask);
@@ -136,6 +166,8 @@ export async function updateTask(id: number, input: UpdateTaskPayload): Promise<
   if (input.dueDate !== undefined) { updates.push(`due_date = $${idx++}`); params.push(input.dueDate); }
   if (input.status !== undefined) { updates.push(`status = $${idx++}`); params.push(input.status); }
   if (input.notes !== undefined) { updates.push(`notes = $${idx++}`); params.push(input.notes); }
+  if (input.deliveryDestination !== undefined) { updates.push(`delivery_destination = $${idx++}`); params.push(input.deliveryDestination); }
+  if (input.transactionId !== undefined) { updates.push(`transaction_id = $${idx++}`); params.push(input.transactionId); }
   
   if (deadlineStr) {
      updates.push(`deadline = $${idx++}`);

@@ -26,6 +26,8 @@ const itemSchema = z.object({
   isTrending: z.boolean().default(false),
   imageUrl: z.string().url().nullable().optional().or(z.literal("")),
   inspiredImageUrl: z.string().url().nullable().optional().or(z.literal("")),
+  discountPercentage: z.number().min(0).max(100).default(0),
+  installmentDuration: z.number().min(0).nullable().optional(),
 });
 
 const AdminAddItemPage: React.FC = () => {
@@ -37,6 +39,9 @@ const AdminAddItemPage: React.FC = () => {
   );
 
   const [price, setPrice] = useState("0");
+  const [discountPercentage, setDiscountPercentage] = useState("0");
+  const [installmentDuration, setInstallmentDuration] = useState(""); // Empty means default (null)
+
   const [category, setCategory] = useState("");
   const [story, setStory] = useState("");
   const [isTrending, setIsTrending] = useState(false);
@@ -80,6 +85,8 @@ const AdminAddItemPage: React.FC = () => {
       isTrending,
       imageUrl: imageUrl || null,
       inspiredImageUrl: inspiredImageUrl || null,
+      discountPercentage: parseFloat(discountPercentage),
+      installmentDuration: installmentDuration ? parseInt(installmentDuration) : null,
     });
 
     if (!parsed.success) {
@@ -152,6 +159,32 @@ const AdminAddItemPage: React.FC = () => {
               ]}
               error={errors.category}
             />
+          </FormField>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <FormField label="Discount (%)" name="discountPercentage" error={errors.discountPercentage}>
+            <Input
+              type="number"
+              value={discountPercentage}
+              onChange={(e) => setDiscountPercentage(e.target.value)}
+              error={errors.discountPercentage}
+              placeholder="0"
+              min={0}
+              max={100}
+            />
+          </FormField>
+
+          <FormField label="Installment Months" name="installmentDuration" error={errors.installmentDuration}>
+            <Input
+              type="number"
+              value={installmentDuration}
+              onChange={(e) => setInstallmentDuration(e.target.value)}
+              error={errors.installmentDuration}
+              placeholder="(Optional) Default: Dynamic"
+              min={0}
+            />
+            <p className="text-[10px] text-muted-foreground mt-1">Set '0' to disable installments. Leave empty for default dynamic logic.</p>
           </FormField>
         </div>
 

@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import { CheckoutButton } from "../components/Payment/CheckoutButton";
 import { EnquiryModal } from "../components/EnquiryModal";
 import { BackButton } from "../components/ui/BackButton";
+import { calculateInstallmentPeriods } from "../utils/installment";
 
 const ItemDetailsPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -97,8 +98,22 @@ const ItemDetailsPage: React.FC = () => {
               Handcrafted Excellence
             </div>
             <h1 className="text-5xl font-black tracking-tighter text-zinc-900 md:text-7xl leading-[0.9]">{item.title}</h1>
-            <div className="mt-6 flex items-baseline gap-2">
-              <span className="text-4xl font-black text-zinc-900">₦{item.price.toLocaleString()}</span>
+            <div className="mt-6 flex flex-wrap items-baseline gap-4">
+              {item.discountPercentage && item.discountPercentage > 0 ? (
+                <>
+                  <span className="text-4xl font-black text-zinc-900">
+                    ₦{(item.price * (1 - item.discountPercentage / 100)).toLocaleString()}
+                  </span>
+                  <span className="text-xl font-bold text-zinc-400 line-through decoration-2">
+                    ₦{item.price.toLocaleString()}
+                  </span>
+                  <span className="rounded-full bg-red-500/10 px-3 py-1 text-xs font-black text-red-500 uppercase tracking-widest">
+                    {item.discountPercentage}% OFF
+                  </span>
+                </>
+              ) : (
+                <span className="text-4xl font-black text-zinc-900">₦{item.price.toLocaleString()}</span>
+              )}
               <span className="text-zinc-400 font-bold text-sm tracking-widest uppercase">{item.category}</span>
             </div>
           </div>
@@ -160,19 +175,30 @@ const ItemDetailsPage: React.FC = () => {
                 <div className="font-black text-xs tracking-widest uppercase mb-1">Pay in Full</div>
                 <div className={`text-[10px] font-bold block ${paymentMode === "full" ? "text-zinc-400" : "text-zinc-500"}`}>Immediate order processing</div>
               </button>
-              <button 
-                onClick={() => setPaymentMode("installment")}
-                className={`p-4 rounded-2xl border-2 transition-all text-left ${paymentMode === "installment" ? "border-black bg-black text-white" : "border-zinc-100 bg-zinc-50 hover:border-zinc-200"}`}
-              >
-                <div className="font-black text-xs tracking-widest uppercase mb-1">Installments</div>
-                <div className={`text-[10px] font-bold block ${paymentMode === "installment" ? "text-zinc-400" : "text-zinc-500"}`}>From ₦{(item.price / 3).toLocaleString()} / month</div>
-              </button>
+              
+              {(() => {
+                const finalPrice = item.discountPercentage ? item.price * (1 - item.discountPercentage / 100) : item.price;
+                const periods = item.installmentDuration ?? calculateInstallmentPeriods(user, item.category);
+                if (periods <= 0) return null;
+                
+                return (
+                  <button 
+                    onClick={() => setPaymentMode("installment")}
+                    className={`p-4 rounded-2xl border-2 transition-all text-left ${paymentMode === "installment" ? "border-black bg-black text-white" : "border-zinc-100 bg-zinc-50 hover:border-zinc-200"}`}
+                  >
+                    <div className="font-black text-xs tracking-widest uppercase mb-1">Installments</div>
+                    <div className={`text-[10px] font-bold block ${paymentMode === "installment" ? "text-zinc-400" : "text-zinc-500"}`}>
+                      {periods} Months @ ₦{(finalPrice / periods).toLocaleString()} / month
+                    </div>
+                  </button>
+                );
+              })()}
             </div>
           </div>
 
           <div className="flex flex-col gap-4 md:flex-row">
             <CheckoutButton 
-              amount={item.price}
+              amount={item.discountPercentage ? item.price * (1 - item.discountPercentage / 100) : item.price}
               currency="NGN"
               type={paymentMode === "full" ? "item" : "installment"}
               itemId={item.id}

@@ -130,106 +130,203 @@ export class PaystackService implements PaymentProvider {
   private async handleChargeSuccess(data: any) {
     logger.info(`[PAYSTACK CHARGE] Starting handleChargeSuccess for reference: ${data.reference}`);
     
-    const metadata = data.metadata;
+    let metadata = data.metadata;
+    if (typeof metadata === 'string') {
+        try { metadata = JSON.parse(metadata); } catch(e) { 
+            logger.warn(`[PAYSTACK CHARGE] Failed to parse metadata string: ${metadata}`);
+        }
+    }
+
     const userId = parseInt(metadata?.userId || "0");
     const type = metadata?.type;
-    const isFirstInstallment = type === "installment" && metadata?.currentInstallment === "1";
+    const isFirstInstallment = (type === "installment" || metadata?.isInstallment === 'true') && metadata?.currentInstallment === "1";
     const itemIdFromMeta = metadata?.itemId;
     
-    logger.info(`[PAYSTACK CHARGE] Parsed metadata - userId: ${userId}, type: ${type}, itemId: ${itemIdFromMeta}, isFirstInstallment: ${isFirstInstallment}`);
+    logger.info(`[PAYSTACK CHARGE] Parsed metadata - userId: ${userId}, type: ${type}, itemId: ${itemIdFromMeta}, isFirstInstallment: ${isFirstInstallment}, metadata: ${JSON.stringify(metadata)}`);
     
-    // 1. Record transaction
-    logger.info(`[PAYSTACK CHARGE] Attempting to insert transaction into database...`);
-    const txResult = await pool.query(
-      "INSERT INTO transactions (user_id, amount, currency, status, type, provider, provider_payment_id, provider_checkout_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) ON CONFLICT (provider_payment_id) DO UPDATE SET status = $4, updated_at = NOW() RETURNING id",
-      [
-        userId,
-        data.amount / 100,
-        data.currency,
-        "succeeded",
-        type || "one-time",
-        "paystack",
-        data.reference,
-        data.reference
-      ]
-    );
+    // 1. Record/Update transaction
+    const transactionIdFromMeta = metadata?.transactionId;
+    let transactionId: number;
+    let description = "Fashion Purchase";
+
+    // Try to get item title for description
+    try {
+        const itemId = metadata?.itemId || itemIdFromMeta;
+        if (itemId) {
+            const itemRes = await pool.query("SELECT title FROM items WHERE id = $1", [itemId]);
+            if (itemRes.rows.length > 0) {
+                const itemTitle = itemRes.rows[0].title;
+                if (metadata?.isInstallment === 'true') {
+                    description = `Installment ${metadata.currentInstallment} for ${itemTitle}`;
+                } else {
+                    description = `Payment for ${itemTitle}`;
+                }
+            }
+        } else if (metadata?.isInstallment === 'true') {
+             description = `Installment ${metadata.currentInstallment} Payment`;
+        }
+    } catch (descErr) {
+        logger.warn(`Failed to generate description: ${descErr}`);
+    }
+
+    if (transactionIdFromMeta && metadata?.currentInstallment !== "1") {
+        // Subsequent installment: INSERT NEW for history
+        logger.info(`[PAYSTACK CHARGE] Subsequent installment. Inserting new transaction record for history.`);
+        const txResult = await pool.query(
+            "INSERT INTO transactions (user_id, amount, currency, status, type, provider, provider_payment_id, provider_checkout_id, description) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id",
+            [
+                userId,
+                data.amount / 100,
+                data.currency,
+                "succeeded",
+                "installment",
+                "paystack",
+                data.reference,
+                data.reference,
+                description
+            ]
+        );
+        transactionId = txResult.rows[0]?.id;
+    } else if (transactionIdFromMeta) {
+        logger.info(`[PAYSTACK CHARGE] Updating existing transaction ${transactionIdFromMeta}`);
+        await pool.query(
+            "UPDATE transactions SET status = $1, provider_payment_id = $2, provider_checkout_id = $3, description = $4, updated_at = NOW() WHERE id = $5",
+            ["succeeded", data.reference, data.reference, description, parseInt(transactionIdFromMeta)]
+        );
+        transactionId = parseInt(transactionIdFromMeta);
+    } else {
+        logger.info(`[PAYSTACK CHARGE] Attempting to insert new transaction into database...`);
+        const txResult = await pool.query(
+            "INSERT INTO transactions (user_id, amount, currency, status, type, provider, provider_payment_id, provider_checkout_id, description) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) ON CONFLICT (provider_payment_id) DO UPDATE SET status = 'succeeded', description = $9, updated_at = NOW() RETURNING id",
+            [
+                userId,
+                data.amount / 100,
+                data.currency,
+                "succeeded",
+                type || "one-time",
+                "paystack",
+                data.reference,
+                data.reference,
+                description
+            ]
+        );
+        transactionId = txResult.rows[0]?.id;
+    }
     
-    const transactionId = txResult.rows[0]?.id;
-    logger.info(`[PAYSTACK CHARGE] Transaction inserted/updated with ID: ${transactionId}`);
+    logger.info(`[PAYSTACK CHARGE] Transaction processed with ID: ${transactionId}`);
+
+    // Update Installments Table if applicable
+    if (metadata?.isInstallment === 'true' && metadata?.transactionId && metadata?.currentInstallment) {
+        const parentTxId = parseInt(metadata.transactionId);
+        const instNum = parseInt(metadata.currentInstallment);
+        
+        logger.info(`[PAYSTACK CHARGE] Updating installment ${instNum} for transaction ${parentTxId}`);
+        await pool.query(
+            "UPDATE installments SET status = 'paid', provider_payment_id = $1, updated_at = NOW() WHERE transaction_id = $2 AND installment_number = $3",
+            [data.reference, parentTxId, instNum]
+        );
+
+        // If not the first installment, we need to find the associated task and update its amount_paid
+        if (metadata.currentInstallment !== "1") {
+            logger.info(`[PAYSTACK CHARGE] Subsequent installment payment. Updating task amount_paid...`);
+            // Find task by checking notes for the parent transaction's original reference or just logic
+            const taskRes = await pool.query(
+                "SELECT id, amount_paid FROM tasks WHERE notes LIKE $1",
+                [`%parent transaction ID: ${parentTxId}%`]
+            );
+            
+            if (taskRes.rows.length > 0) {
+                const task = taskRes.rows[0];
+                const newAmountPaid = Number(task.amount_paid) + (data.amount / 100);
+                logger.info(`[PAYSTACK CHARGE] Task found (ID: ${task.id}). Updating amount_paid from ${task.amount_paid} to ${newAmountPaid}`);
+                await pool.query(
+                    "UPDATE tasks SET amount_paid = $1, updated_at = NOW() WHERE id = $2",
+                    [newAmountPaid, task.id]
+                );
+            } else {
+                logger.warn(`[PAYSTACK CHARGE] Task with parent transaction ID ${parentTxId} not found in notes.`);
+            }
+        }
+    }
 
     // 2. Handle Production Tasks
-    logger.info(`[PAYSTACK CHARGE] Checking if task creation is needed - type: ${type}, itemIdFromMeta: ${itemIdFromMeta}`);
+    logger.info(`[PAYSTACK CHARGE] Checking if task creation is needed - type: ${type}, itemIdFromMeta: ${itemIdFromMeta}, isFirstInstallment: ${isFirstInstallment}`);
     
     if ((type === "item" || isFirstInstallment) && itemIdFromMeta) {
-      logger.info(`[PAYSTACK CHARGE] Task creation conditions met. Proceeding...`);
-      
-      const itemId = parseInt(itemIdFromMeta);
-      
-      const itemRes = await pool.query("SELECT title, category, price FROM items WHERE id = $1", [itemId]);
-      const item = itemRes.rows[0];
-      
-      if (!item) {
-        logger.warn(`[PAYSTACK CHARGE] Item ${itemId} not found in database. Skipping task creation.`);
-        return;
-      }
-      
-      logger.info(`[PAYSTACK CHARGE] Item found: ${item.title}, Category: ${item.category}, Price: ${item.price}`);
+      try {
+        logger.info(`[PAYSTACK CHARGE] Task creation conditions met. Proceeding...`);
+        
+        const itemId = parseInt(itemIdFromMeta.toString());
+        if (isNaN(itemId)) throw new Error(`Invalid itemId: ${itemIdFromMeta}`);
+        
+        const itemRes = await pool.query("SELECT title, category, price FROM items WHERE id = $1", [itemId]);
+        const item = itemRes.rows[0];
+        
+        if (!item) {
+          logger.warn(`[PAYSTACK CHARGE] Item ${itemId} not found in database. Skipping task creation.`);
+          return;
+        }
+        
+        logger.info(`[PAYSTACK CHARGE] Item found: ${item.title}, Category: ${item.category}, Price: ${item.price}`);
 
-      const userRes = await pool.query("SELECT first_name, last_name, email FROM users WHERE id = $1", [userId]);
-      const user = userRes.rows[0];
-      
-      logger.info(`[PAYSTACK CHARGE] User found: ${user.first_name} ${user.last_name}, Email: ${user.email}`);
-      
-      let customerId: number;
-      const existingCustomer = await pool.query("SELECT id FROM customers WHERE email = $1", [user.email]);
-      
-      if (existingCustomer.rows.length > 0) {
-        customerId = existingCustomer.rows[0].id;
-        logger.info(`[PAYSTACK CHARGE] Existing customer found with ID: ${customerId}`);
-      } else {
-        const newCustomer = await pool.query(
-          "INSERT INTO customers (name, email) VALUES ($1, $2) RETURNING id",
-          [`${user.first_name} ${user.last_name}`, user.email]
-        );
-        customerId = newCustomer.rows[0].id;
-        logger.info(`[PAYSTACK CHARGE] New customer created with ID: ${customerId}`);
-      }
-      
-      const taskCheck = await pool.query(
-          `SELECT id FROM tasks WHERE customer_id = $1 AND notes LIKE $2`,
-          [customerId, `%${data.reference}%`]
-      );
-
-      if (taskCheck.rows.length === 0) {
-          logger.info(`[PAYSTACK CHARGE] No existing task found for this reference. Creating new task...`);
-          
-          const dueDate = new Date();
-          dueDate.setDate(dueDate.getDate() + 14); 
-          const deadline = new Date(dueDate);
-          deadline.setDate(deadline.getDate() - 3);
-
-          const taskResult = await pool.query(
-            `INSERT INTO tasks (customer_id, category, total_amount, amount_paid, due_date, deadline, status, notes)
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id`,
-            [
-              customerId, 
-              item.category || 'General', 
-              parseFloat(item.price), 
-              data.amount / 100,
-              dueDate,
-              deadline,
-              'pending',
-              `Order via Paystack for item: ${item.title}. Ref: ${data.reference}. ${isFirstInstallment ? 'Started via Installment Plan.' : 'Paid in Full.'}`
-            ]
+        const userRes = await pool.query("SELECT first_name, last_name, email FROM users WHERE id = $1", [userId]);
+        const user = userRes.rows[0];
+        
+        if (!user) {
+          logger.warn(`[PAYSTACK CHARGE] User ${userId} not found in database. Skipping task creation.`);
+          return;
+        }
+        
+        let customerId: number;
+        const existingCustomer = await pool.query("SELECT id FROM customers WHERE email = $1", [user.email]);
+        
+        if (existingCustomer.rows.length > 0) {
+          customerId = existingCustomer.rows[0].id;
+        } else {
+          const newCustomer = await pool.query(
+            "INSERT INTO customers (name, email) VALUES ($1, $2) RETURNING id",
+            [`${user.first_name} ${user.last_name}`, user.email]
           );
-          
-          const taskId = taskResult.rows[0]?.id;
-          logger.info(`[PAYSTACK CHARGE] ✅ Production task created successfully with ID: ${taskId} for item ${itemId} from user ${userId}`);
-      } else {
-          logger.info(`[PAYSTACK CHARGE] Task already exists for reference ${data.reference}. Skipping creation.`);
+          customerId = newCustomer.rows[0].id;
+        }
+        
+        const taskCheck = await pool.query(
+            `SELECT id FROM tasks WHERE customer_id = $1 AND notes LIKE $2`,
+            [customerId, `%${data.reference}%`]
+        );
+
+        if (taskCheck.rows.length === 0) {
+            const dueDate = new Date();
+            dueDate.setDate(dueDate.getDate() + 14); 
+            const deadline = new Date(dueDate);
+            deadline.setDate(deadline.getDate() - 3);
+
+            const taskResult = await pool.query(
+              `INSERT INTO tasks (customer_id, category, total_amount, amount_paid, due_date, deadline, status, notes, transaction_id)
+               VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id`,
+              [
+                customerId, 
+                item.category || 'General', 
+                parseFloat(item.price), 
+                data.amount / 100,
+                dueDate,
+                deadline,
+                'pending',
+                `Order via Paystack for item: ${item.title}. Ref: ${data.reference}. parent transaction ID: ${transactionId}. ${isFirstInstallment ? 'Started via Installment Plan.' : 'Paid in Full.'}`,
+                transactionId
+              ]
+            );
+            
+            logger.info(`[PAYSTACK CHARGE] ✅ Production task created with ID: ${taskResult.rows[0]?.id}`);
+        } else {
+            logger.info(`[PAYSTACK CHARGE] Task already exists for reference ${data.reference}`);
+        }
+      } catch (taskErr: any) {
+        logger.error(`[PAYSTACK CHARGE] Error in task creation process: ${taskErr.message}`);
+        logger.error(taskErr.stack);
       }
     } else {
-      logger.info(`[PAYSTACK CHARGE] Task creation skipped - conditions not met.`);
+      logger.info(`[PAYSTACK CHARGE] Task creation skipped - conditions not met. Type: ${type}, ItemId: ${itemIdFromMeta}, isFirst: ${isFirstInstallment}`);
     }
     
     logger.info(`[PAYSTACK CHARGE] handleChargeSuccess completed for reference: ${data.reference}`);

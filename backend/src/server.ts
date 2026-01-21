@@ -23,7 +23,10 @@ import { SocketService } from "./services/socketService.js";
 import cron from "node-cron";
 import { trendingRouter } from "./routes/trendingRoutes.js";
 import { uploadRouter } from "./routes/uploadRoutes.js";
+import { systemSettingsRouter } from "./routes/systemSettingsRoutes.js";
 import { crawlFashionTrends } from "./services/trendingService.js";
+import adRouter from "./routes/adRoutes.js";
+
 
 async function bootstrap(): Promise<void> {
   // ... (retry logic omitted for brevity, keeping it as is)
@@ -79,7 +82,8 @@ async function bootstrap(): Promise<void> {
   // Stripe webhook route must come BEFORE express.json() to get raw body
   app.use("/api/payments", paymentRouter);
 
-  app.use(express.json());
+  app.use(express.json({ limit: "50mb" }));
+  app.use(express.urlencoded({ limit: "50mb", extended: true }));
   app.use(cookieParser());
 
   app.use("/api", rateLimiter);
@@ -99,7 +103,10 @@ async function bootstrap(): Promise<void> {
   app.use("/api/looks", lookRouter);
   app.use("/api/trending", trendingRouter);
   app.use("/api/upload", uploadRouter);
+  app.use("/api/settings", systemSettingsRouter);
+  app.use("/api/ads", adRouter);
   app.use("/api", categoryRouter);
+
 
   app.use(errorHandler);
 

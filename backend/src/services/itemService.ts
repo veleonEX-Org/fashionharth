@@ -18,6 +18,8 @@ const createItemSchema = z.object({
   isTrending: z.boolean().default(false),
   imageUrl: z.string().url().nullable().optional(),
   inspiredImageUrl: z.string().url().nullable().optional(),
+  discountPercentage: z.number().min(0).max(100).optional(),
+  installmentDuration: z.number().min(0).optional(),
 });
 
 const updateItemSchema = z.object({
@@ -35,6 +37,8 @@ const updateItemSchema = z.object({
   isTrending: z.boolean().optional(),
   imageUrl: z.string().url().nullable().optional(),
   inspiredImageUrl: z.string().url().nullable().optional(),
+  discountPercentage: z.number().min(0).max(100).optional(),
+  installmentDuration: z.number().min(0).optional(),
 });
 
 export interface PaginatedItems {
@@ -51,6 +55,18 @@ export async function createItem(
 ): Promise<PublicItem> {
   const data = createItemSchema.parse(input);
 
+  // Merge legacy metadata with new fields
+  const finalMetadata: Record<string, any> = {
+    ...(data.metadata || {}),
+  };
+  
+  if (data.discountPercentage !== undefined) {
+    finalMetadata.discount_percentage = data.discountPercentage;
+  }
+  if (data.installmentDuration !== undefined) {
+    finalMetadata.installment_duration = data.installmentDuration;
+  }
+
   const result = await pool.query<Item>(
     `
       INSERT INTO items (
@@ -65,7 +81,7 @@ export async function createItem(
       data.description || null,
       data.status,
       userId,
-      data.metadata ? JSON.stringify(data.metadata) : null,
+      JSON.stringify(finalMetadata),
       data.price,
       data.category,
       data.story || null,
@@ -205,9 +221,29 @@ export async function updateItem(
 
 
 
+  let metadataChanged = false;
+  const mergedMetadata = { ...(existing.metadata as Record<string, any> || {}) };
+
   if (data.metadata !== undefined) {
+      if (data.metadata) {
+          Object.assign(mergedMetadata, data.metadata);
+      }
+      metadataChanged = true;
+  }
+
+  if (data.discountPercentage !== undefined) {
+      mergedMetadata.discount_percentage = data.discountPercentage;
+      metadataChanged = true;
+  }
+
+  if (data.installmentDuration !== undefined) {
+      mergedMetadata.installment_duration = data.installmentDuration;
+      metadataChanged = true;
+  }
+
+  if (metadataChanged) {
     updates.push(`metadata = $${paramIndex}`);
-    params.push(data.metadata ? JSON.stringify(data.metadata) : null);
+    params.push(JSON.stringify(mergedMetadata));
     paramIndex++;
   }
 

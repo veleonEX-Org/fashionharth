@@ -135,3 +135,24 @@
 2026-01-15 13:38:54:3854 [31merror[39m: [31mError handler caught: Failed to upload image to Cloudinary[39m
 2026-01-15 13:50:03:503 [31merror[39m: [31mError handler caught: column "inspired_image_url" of relation "items" does not exist[39m
 2026-01-15 13:51:01:511 [31merror[39m: [31mMigration failed: column "role_access" does not exist[39m
+2026-01-17 23:07:04:74 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-17 23:10:59:1059 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-17 23:11:00:110 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-17 23:22:30:2230 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-18 08:27:39:2739 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-19 12:23:26:2326 [31merror[39m: [31mMigration failed: column "delivery_destination" of relation "tasks" already exists[39m
+2026-01-19 12:24:53:2453 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-19 12:43:33:4333 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-19 14:14:35:1435 [31merror[39m: [31m[PAYSTACK VERIFY] Verification error for reference yiwez45jgk: column "provider_payment_id" of relation "installments" does not exist[39m
+2026-01-19 14:15:35:1535 [31merror[39m: [31mPaystack initialization failed: Request failed with status code 403[39m
+2026-01-19 14:15:35:1535 [31merror[39m: [31mPaystack response: {"status":false,"message":"Currency not supported by merchant","meta":{"nextStep":"Ensure you're passing the currency code for a currency enabled on your integration"},"type":"validation_error","code":"unsupported_currency"}[39m
+2026-01-19 14:15:35:1535 [31merror[39m: [31mError handler caught: Request failed with status code 403[39m
+2026-01-20 23:04:03:43 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-20 23:37:58:3758 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-20 23:38:30:3830 [31merror[39m: [31mCloudinary upload failed: getaddrinfo EAI_AGAIN api.cloudinary.com[39m
+2026-01-20 23:38:30:3830 [31merror[39m: [31mError in uploadImage controller: Failed to upload image to Cloudinary[39m
+2026-01-20 23:38:30:3830 [31merror[39m: [31mError handler caught: Failed to upload image to Cloudinary[39m
+2026-01-20 23:43:11:4311 [31merror[39m: [31m[PAYSTACK VERIFY] Verification error for reference 1p6tcyx6y9: column "provider_payment_id" of relation "installments" does not exist[39m
+2026-01-21 10:02:51:251 [31merror[39m: [31m[PAYSTACK VERIFY] Verification error for reference rndifsufs7: column "provider_payment_id" of relation "installments" does not exist[39m
+2026-01-21 11:22:42:2242 [31merror[39m: [31mError handler caught: column "description" does not exist[39m
+2026-01-21 11:22:42:2242 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m

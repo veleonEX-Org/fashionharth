@@ -37,6 +37,51 @@ export class PaymentService {
     throw new Error(`Provider ${provider} not supported`);
   }
 
+  async initiateInstallmentPayment(userId: number, email: string, transactionId: number, installmentNumber: number, provider: 'stripe' | 'paystack' = 'paystack') {
+    logger.info(`Initiating payment for installment ${installmentNumber} of transaction ${transactionId} for user ${userId}`);
+
+    // 1. Fetch transaction and installment details
+    const txRes = await pool.query("SELECT * FROM transactions WHERE id = $1 AND user_id = $2", [transactionId, userId]);
+    const transaction = txRes.rows[0];
+
+    if (!transaction) {
+        throw new Error("Transaction not found or unauthorized");
+    }
+
+    const instRes = await pool.query(
+        "SELECT * FROM installments WHERE transaction_id = $1 AND installment_number = $2",
+        [transactionId, installmentNumber]
+    );
+    const installment = instRes.rows[0];
+
+    if (!installment) {
+        throw new Error("Installment not found");
+    }
+
+    if (installment.status === 'paid' || installment.status === 'succeeded') {
+        throw new Error("Installment already paid");
+    }
+
+    const activeProvider = this.getProvider(provider);
+    return await activeProvider.createCheckoutSession({
+        userId,
+        email,
+        amount: parseFloat(installment.amount),
+        currency: transaction.currency,
+        type: 'installment',
+        successUrl: provider === 'paystack'
+            ? `${process.env.APP_URL}/payment/success?provider=paystack`
+            : `${process.env.APP_URL}/payment/success?provider=stripe&session_id={CHECKOUT_SESSION_ID}`,
+        cancelUrl: `${process.env.APP_URL}/payment/cancel`,
+        metadata: {
+            userId: userId.toString(),
+            transactionId: transactionId.toString(),
+            isInstallment: 'true',
+            currentInstallment: installmentNumber.toString(),
+        }
+    });
+  }
+
   async createInstallmentPlan(userId: number, email: string, totalAmount: number, currency: string, periods: number, provider: 'stripe' | 'paystack' = 'stripe', itemId?: number) {
     logger.info(`Creating installment plan for user ${userId}: ${totalAmount} ${currency} over ${periods} months ${itemId ? `for item ${itemId}` : ''}`);
     
@@ -68,11 +113,13 @@ export class PaymentService {
         amount: installmentAmount,
         currency: currency,
         type: 'installment',
+        itemId,
         successUrl: provider === 'paystack'
             ? `${process.env.APP_URL}/payment/success?provider=paystack`
             : `${process.env.APP_URL}/payment/success?provider=stripe&session_id={CHECKOUT_SESSION_ID}`,
         cancelUrl: `${process.env.APP_URL}/payment/cancel`,
         metadata: {
+            userId: userId.toString(),
             transactionId: transactionId.toString(),
             isInstallment: 'true',
             currentInstallment: '1',

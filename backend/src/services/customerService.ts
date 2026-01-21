@@ -24,6 +24,7 @@ function toCustomer(row: any): Customer {
     anniversaryDate: row.anniversary_date,
     createdAt: row.created_at,
     updatedAt: row.updated_at,
+    totalTasks: row.total_tasks ? Number(row.total_tasks) : 0,
   };
 }
 
@@ -71,15 +72,19 @@ export async function createCustomer(input: CreateCustomerPayload): Promise<Cust
 }
 
 export async function getCustomers(search?: string): Promise<Customer[]> {
-  let query = `SELECT * FROM customers`;
+  let query = `
+    SELECT c.*, COUNT(t.id) as total_tasks 
+    FROM customers c
+    LEFT JOIN tasks t ON c.id = t.customer_id
+  `;
   const params: any[] = [];
 
   if (search) {
-    query += ` WHERE name ILIKE $1 OR email ILIKE $1 OR phone ILIKE $1`;
+    query += ` WHERE c.name ILIKE $1 OR c.email ILIKE $1 OR c.phone ILIKE $1`;
     params.push(`%${search}%`);
   }
 
-  query += ` ORDER BY created_at DESC`;
+  query += ` GROUP BY c.id ORDER BY c.created_at DESC`;
 
   const result = await pool.query(query, params);
   return result.rows.map(toCustomer);

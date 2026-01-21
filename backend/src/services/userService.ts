@@ -3,7 +3,16 @@ import { PublicUser, User } from "../models/user.js";
 import { toPublicUser } from "../models/user.js";
 
 export async function getAllUsers(): Promise<PublicUser[]> {
-  const result = await pool.query<User>("SELECT * FROM users ORDER BY created_at DESC");
+  const result = await pool.query<User>(`
+    SELECT 
+      u.*,
+      COUNT(t.id) as tasks_assigned,
+      COUNT(CASE WHEN t.status = 'completed' THEN 1 END) as tasks_completed
+    FROM users u
+    LEFT JOIN tasks t ON u.id = t.assigned_to
+    GROUP BY u.id
+    ORDER BY u.created_at DESC
+  `);
   return result.rows.map(toPublicUser);
 }
 
@@ -69,20 +78,10 @@ export async function getUserTransactions(userId: number) {
   const result = await pool.query(
     `
     SELECT 
-      t.id, t.amount, t.currency, t.status, t.type, t.provider, t.created_at,
-      json_agg(
-        json_build_object(
-          'installment_number', i.installment_number,
-          'amount', i.amount,
-          'due_date', i.due_date,
-          'status', i.status
-        ) ORDER BY i.installment_number
-      ) FILTER (WHERE i.id IS NOT NULL) as installments
-    FROM transactions t
-    LEFT JOIN installments i ON t.id = i.transaction_id
-    WHERE t.user_id = $1
-    GROUP BY t.id
-    ORDER BY t.created_at DESC
+      id, amount, currency, status, type, provider, created_at, description
+    FROM transactions
+    WHERE user_id = $1 AND status = 'succeeded'
+    ORDER BY created_at DESC
     `,
     [userId]
   );
@@ -93,7 +92,21 @@ export async function getUserTasks(userId: number) {
   // Link User -> Customer (via email) -> Tasks
   const result = await pool.query(
     `
-    SELECT t.*, c.name as customer_name
+    SELECT 
+      t.*, 
+      c.name as customer_name,
+      (
+        SELECT json_agg(
+          json_build_object(
+            'installment_number', i.installment_number,
+            'amount', i.amount,
+            'due_date', i.due_date,
+            'status', i.status
+          ) ORDER BY i.installment_number
+        )
+        FROM installments i
+        WHERE i.transaction_id = t.transaction_id
+      ) as installments
     FROM tasks t
     JOIN customers c ON t.customer_id = c.id
     JOIN users u ON c.email = u.email
@@ -103,9 +116,6 @@ export async function getUserTasks(userId: number) {
     [userId]
   );
   
-  // We can reuse toTask mapper if we import it or duplicate logic. 
-  // For simplicity, let's just return raw rows or simplistic mapping since toTask is in taskService.
-  // Actually, let's just return rows for now.
   return result.rows.map(row => ({
     id: row.id,
     category: row.category,
@@ -116,6 +126,9 @@ export async function getUserTasks(userId: number) {
     deadline: row.deadline,
     dueDate: row.due_date,
     notes: row.notes,
-    createdAt: row.created_at
+    deliveryDestination: row.delivery_destination,
+    createdAt: row.created_at,
+    transactionId: row.transaction_id,
+    installments: row.installments || []
   }));
 }

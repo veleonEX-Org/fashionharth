@@ -5,7 +5,13 @@ export async function getTasks(req: Request, res: Response, next: NextFunction) 
   try {
     const assignedTo = req.query.assignedTo ? Number(req.query.assignedTo) : undefined;
     const status = req.query.status as string;
-    const tasks = await taskService.getTasks(assignedTo, status);
+    const sortBy = (req.query.sortBy === 'created_at' || req.query.sortBy === 'deadline') ? req.query.sortBy : undefined;
+    const sortOrder = (req.query.sortOrder === 'ASC' || req.query.sortOrder === 'DESC') ? req.query.sortOrder : undefined;
+    const paymentStatus = (req.query.paymentStatus === 'paid' || req.query.paymentStatus === 'unpaid') ? req.query.paymentStatus : undefined;
+    const minDate = req.query.minDate as string;
+    const maxDate = req.query.maxDate as string;
+
+    const tasks = await taskService.getTasks(assignedTo, status, sortBy, sortOrder, paymentStatus, minDate, maxDate);
     res.json(tasks);
   } catch (err) {
     next(err);

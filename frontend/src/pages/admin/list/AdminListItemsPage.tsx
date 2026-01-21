@@ -91,7 +91,7 @@ const AdminListItemsPage: React.FC = () => {
       key: "description",
       header: "Description",
       render: (item) => (
-        <span className="max-w-xs truncate">{item.description || "—"}</span>
+        <span className="max-w-xs truncate text-foreground">{item.description || "—"}</span>
       ),
     },
     {
@@ -115,7 +115,7 @@ const AdminListItemsPage: React.FC = () => {
       key: "price",
       header: "Price",
       render: (item) => (
-        <span className="font-bold text-white">
+        <span className="font-bold text-foreground">
           ₦{item.price.toLocaleString()}
         </span>
       ),
@@ -125,7 +125,9 @@ const AdminListItemsPage: React.FC = () => {
     {
       key: "createdAt",
       header: "Created At",
-      render: (item) => new Date(item.createdAt).toLocaleDateString(),
+      render: (item) => (
+        <span className="text-foreground">{new Date(item.createdAt).toLocaleDateString()}</span>
+      ),
       sortable: true,
     },
   ];
@@ -135,8 +137,8 @@ const AdminListItemsPage: React.FC = () => {
       <div className="flex flex-col gap-4">
         <BackButton />
         <div>
-          <h1 className="text-2xl font-semibold text-white">Admin - Items</h1>
-          <p className="mt-1 text-sm text-muted-foreground">
+          <h1 className="text-2xl font-semibold text-foreground">Admin - Items</h1>
+          <p className="mt-1 text-sm text-foreground">
             Manage all items in the system.
           </p>
         </div>

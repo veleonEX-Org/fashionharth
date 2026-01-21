@@ -5,6 +5,7 @@ import { useAuth } from "../state/AuthContext";
 import { socketService } from "../lib/socket";
 import { getStoredTokens } from "../utils/tokenStorage";
 import { SupportFab } from "./SupportFab";
+import { APP_NAME, SUPPORT_EMAIL } from "../utils/constants";
 
 export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { user, clearAuth } = useAuth();
@@ -28,7 +29,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
       <header className="border-b border-gray-200 bg-white/80 backdrop-blur sticky top-0 z-50">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <Link to="/" className="text-lg font-semibold text-primary">
-            Veleonex Starter
+            {APP_NAME}
           </Link>
 
           {/* Mobile Menu Button */}
@@ -51,12 +52,12 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
             <Link to="/" className="hover:text-primary font-bold">
               Dress Room
             </Link>
-            <Link to="/style-me" className="hover:text-primary font-bold">
+            {/* <Link to="/style-me" className="hover:text-primary font-bold">
               Style Me
-            </Link>
-            <Link to="/categories" className="hover:text-primary font-bold">
+            </Link> */}
+            {/* <Link to="/categories" className="hover:text-primary font-bold">
               Categories
-            </Link>
+            </Link> */}
             <Link to="/chat" className="hover:text-primary font-bold">
               Support
             </Link>
@@ -104,19 +105,19 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
               <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-primary font-bold py-2">
                 Dress Room
               </Link>
-              <Link to="/style-me" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-primary font-bold py-2">
+              {/* <Link to="/style-me" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-primary font-bold py-2">
                 Style Me
-              </Link>
-              <Link to="/categories" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-primary font-bold py-2">
+              </Link> */}
+              {/* <Link to="/categories" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-primary font-bold py-2">
                 Categories
-              </Link>
+              </Link> */}
               
               <div className="border-t border-gray-100 my-2"></div>
               
               {user ? (
                 <>
                   <div className="flex items-center gap-2 py-2">
-                    <span className="font-medium text-gray-900">{user.firstName} {user.lastName}</span>
+                    <span className="font-medium text-gray-900">{(user.firstName || '').charAt(0).toUpperCase() + (user.firstName || '').slice(1)} {(user.lastName || '').charAt(0).toUpperCase() + (user.lastName || '').slice(1)}</span>
                     {(user.role === "admin" || user.role === "staff") && (
                       <span className="rounded-full bg-red-100 px-2.5 py-0.5 text-xs font-medium text-red-600 capitalize">
                         {user.role}
@@ -172,7 +173,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
         <div className="mx-auto max-w-6xl px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1 md:col-span-2">
             <Link to="/" className="text-lg font-semibold text-primary block mb-4">
-              Veleonex Starter
+              {APP_NAME}
             </Link>
             <p className="text-gray-600 text-sm max-w-sm">
               The ultimate full-stack boilerplate for building modern web applications. 
@@ -194,12 +195,12 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
             <ul className="space-y-2 text-sm text-gray-600">
               <li><Link to="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link></li>
               <li><Link to="/terms" className="hover:text-primary transition-colors">Terms of Service</Link></li>
-              <li><a href="mailto:contact@veleonex.com" className="hover:text-primary transition-colors">Contact</a></li>
+              <li><a href={`mailto:${SUPPORT_EMAIL}`} className="hover:text-primary transition-colors">Contact</a></li>
             </ul>
           </div>
         </div>
         <div className="mx-auto max-w-6xl px-6 mt-12 pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
-          <p>© {new Date().getFullYear()} Veleonex Starter. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} {APP_NAME}. All rights reserved.</p>
           <div className="flex gap-4 mt-4 md:mt-0">
              <span>Twitter</span>
              <span>GitHub</span>

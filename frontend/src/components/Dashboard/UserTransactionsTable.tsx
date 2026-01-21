@@ -1,98 +1,122 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Transaction } from '../../api/users';
 import { format } from 'date-fns';
+import Modal from '../Modal';
+import { CreditCard, Calendar, CheckCircle2, AlertCircle, Eye, ArrowRight, Clock } from 'lucide-react';
+import { http } from '../../api/http';
+import { toast } from 'react-hot-toast';
 
 interface Props {
   transactions: Transaction[];
 }
 
 export const UserTransactionsTable: React.FC<Props> = ({ transactions }) => {
+  const [selectedTx, setSelectedTx] = useState<Transaction | null>(null);
+  const [filter, setFilter] = useState<'all' | 'installment' | 'one-time'>('all');
+
   if (transactions.length === 0) {
     return (
-      <div className="text-center py-10 bg-zinc-50 rounded-xl border border-dashed border-zinc-200">
-        <p className="text-zinc-400 text-sm">No transactions found</p>
+      <div className="text-center py-10 bg-zinc-50 rounded-2xl border border-dashed border-zinc-200">
+        <p className="text-zinc-400 text-xs font-medium uppercase tracking-widest">No history yet</p>
       </div>
     );
   }
 
+  const filteredTransactions = transactions.filter(tx => {
+    if (filter === 'all') return true;
+    return tx.type === filter;
+  });
+
   return (
-    <div className="overflow-x-auto">
-      <table className="w-full text-left text-sm">
-        <thead>
-          <tr className="border-b border-zinc-100 text-zinc-400 text-[10px] uppercase tracking-widest">
-            <th className="pb-4 font-black">Date</th>
-            <th className="pb-4 font-black">Type</th>
-            <th className="pb-4 font-black">Amount</th>
-            <th className="pb-4 font-black">Status</th>
-            <th className="pb-4 font-black">Details</th>
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-zinc-50">
-          {transactions.map((tx) => (
-            <React.Fragment key={tx.id}>
-              <tr className="group">
-                <td className="py-4 text-zinc-600 font-medium">
-                  {format(new Date(tx.created_at), 'MMM d, yyyy')}
-                </td>
-                <td className="py-4">
-                  <span className={`px-2 py-1 rounded-md text-[10px] uppercase font-bold tracking-wider ${
-                    tx.type === 'installment' ? 'bg-purple-50 text-purple-600' : 'bg-zinc-100 text-zinc-600'
-                  }`}>
-                    {tx.type}
-                  </span>
-                </td>
-                <td className="py-4 font-bold text-zinc-900">
-                  {tx.currency} {Number(tx.amount).toFixed(2)}
-                </td>
-                <td className="py-4">
-                  <span className={`inline-flex items-center gap-1.5 px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
-                    tx.status === 'succeeded' || tx.status === 'completed' 
-                      ? 'bg-green-50 text-green-600' 
-                      : tx.status === 'pending' 
-                        ? 'bg-orange-50 text-orange-600' 
-                        : 'bg-red-50 text-red-600'
-                  }`}>
-                    <span className={`w-1.5 h-1.5 rounded-full ${
-                      tx.status === 'succeeded' || tx.status === 'completed' ? 'bg-green-500' : tx.status === 'pending' ? 'bg-orange-500' : 'bg-red-500'
-                    }`} />
-                    {tx.status}
-                  </span>
-                </td>
-                <td className="py-4 text-zinc-400 text-xs">
-                  Via {tx.provider}
-                </td>
-              </tr>
-              {tx.installments && tx.installments.length > 0 && (
-                <tr>
-                  <td colSpan={5} className="pb-6 pt-0 pl-4">
-                    <div className="bg-zinc-50 rounded-lg p-4 text-xs">
-                      <p className="font-bold text-zinc-500 uppercase tracking-wider mb-3 text-[10px]">Installment Schedule</p>
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
-                        {tx.installments.map((inst, idx) => (
-                          <div key={idx} className="bg-white border border-zinc-100 p-3 rounded-md flex items-center justify-between shadow-sm">
-                            <div>
-                              <div className="font-bold text-zinc-700">Payment {inst.installment_number}</div>
-                              <div className="text-zinc-400 text-[10px] mt-0.5">Due: {format(new Date(inst.due_date), 'MMM d, yyyy')}</div>
-                            </div>
-                            <div className="text-right">
-                                <div className="font-black text-black">₦{Number(inst.amount).toLocaleString()}</div>
-                                <div className={`text-[9px] font-bold uppercase tracking-wider mt-1 ${
-                                    inst.status === 'paid' || inst.status === 'succeeded' ? 'text-green-500' : 'text-orange-400'
-                                }`}>
-                                    {inst.status}
-                                </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-              )}
-            </React.Fragment>
-          ))}
-        </tbody>
-      </table>
+    <div className="space-y-4">
+      <div className="flex justify-between items-center px-1">
+        <select 
+          value={filter}
+          onChange={(e) => setFilter(e.target.value as any)}
+          className="bg-zinc-50 border border-zinc-100 text-zinc-900 text-[9px] font-black uppercase tracking-wider rounded-xl px-3 py-1.5 focus:outline-none focus:ring-1 focus:ring-zinc-200 cursor-pointer"
+        >
+          <option value="all">Filter: All Payments</option>
+          <option value="one-time">Filter: One-time</option>
+          <option value="installment">Filter: Installments</option>
+        </select>
+        <p className="text-[9px] font-black uppercase tracking-widest text-zinc-400">{filteredTransactions.length} Receipts</p>
+      </div>
+
+      <div className="space-y-2">
+        {filteredTransactions.map((tx) => (
+          <div 
+            key={tx.id} 
+            className="group p-3 bg-white border border-zinc-100 rounded-2xl transition-all cursor-pointer hover:border-zinc-300 active:scale-[0.98]"
+            onClick={() => setSelectedTx(tx)}
+          >
+            <div className="flex items-center justify-between gap-3">
+              <div className="flex items-center gap-3">
+                <div className="p-2 rounded-xl bg-zinc-50 border border-zinc-100 text-zinc-400">
+                  <CreditCard className="w-3.5 h-3.5" />
+                </div>
+                <div>
+                  <p className="text-[11px] font-black text-foreground uppercase tracking-tight">
+                    {tx.description || `${tx.type} Payment`}
+                  </p>
+                  <p className="text-[9px] text-muted-foreground font-medium uppercase tracking-widest">
+                    {format(new Date(tx.created_at), 'dd MMM yyyy')}
+                  </p>
+                </div>
+              </div>
+              <div className="text-right">
+                <p className="text-xs font-black text-foreground italic">₦{Number(tx.amount).toLocaleString()}</p>
+                <div className="text-[8px] font-black uppercase tracking-widest mt-0.5 text-approve">
+                    Successful
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {selectedTx && (
+        <Modal 
+          isOpen={!!selectedTx} 
+          onClose={() => setSelectedTx(null)} 
+          title="Payment Receipt"
+        >
+          <div className="space-y-4 pt-0">
+            <div className="flex flex-col items-center justify-center p-6 bg-muted/30 rounded-3xl border border-border/50 text-center">
+                <div className="w-12 h-12 rounded-2xl bg-approve/10 border border-approve/20 flex items-center justify-center mb-4">
+                    <CheckCircle2 className="w-6 h-6 text-approve" />
+                </div>
+                <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mb-1">Payment Successful</p>
+                <p className="text-2xl font-black text-foreground italic">₦{Number(selectedTx.amount).toLocaleString()}</p>
+            </div>
+
+            <div className="space-y-2">
+                <div className="flex justify-between p-3 bg-muted/50 rounded-2xl border border-border">
+                    <p className="text-[9px] text-muted-foreground font-black uppercase tracking-widest">Description</p>
+                    <p className="text-[10px] font-bold text-foreground text-right">{selectedTx.description || 'Fashion Purchase'}</p>
+                </div>
+                <div className="flex justify-between p-3 bg-muted/50 rounded-2xl border border-border">
+                    <p className="text-[9px] text-muted-foreground font-black uppercase tracking-widest">Date</p>
+                    <p className="text-[10px] font-bold text-foreground">{format(new Date(selectedTx.created_at), 'MMMM d, yyyy')}</p>
+                </div>
+                <div className="flex justify-between p-3 bg-muted/50 rounded-2xl border border-border">
+                    <p className="text-[9px] text-muted-foreground font-black uppercase tracking-widest">Reference</p>
+                    <p className="text-[10px] font-bold text-foreground uppercase tracking-tighter">{selectedTx.id.toString().padStart(8, '0')}</p>
+                </div>
+                <div className="flex justify-between p-3 bg-muted/50 rounded-2xl border border-border">
+                    <p className="text-[9px] text-muted-foreground font-black uppercase tracking-widest">Method</p>
+                    <p className="text-[10px] font-bold text-foreground uppercase">{selectedTx.provider}</p>
+                </div>
+            </div>
+
+            <button 
+              onClick={() => setSelectedTx(null)}
+              className="w-full py-4 rounded-2xl bg-foreground text-card text-xs font-black uppercase tracking-widest hover:opacity-90 transition-all transform active:scale-[0.98]"
+            >
+              Done
+            </button>
+          </div>
+        </Modal>
+      )}
     </div>
   );
 };

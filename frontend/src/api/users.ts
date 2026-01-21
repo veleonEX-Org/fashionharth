@@ -8,12 +8,7 @@ export interface Transaction {
   type: string;
   provider: string;
   created_at: string;
-  installments?: Array<{
-    installment_number: number;
-    amount: number;
-    due_date: string;
-    status: string;
-  }>;
+  description?: string;
 }
 
 export interface UserTask {
@@ -26,7 +21,15 @@ export interface UserTask {
   deadline: string;
   dueDate: string;
   notes: string | null;
+  deliveryDestination: string | null;
   createdAt: string;
+  transactionId?: number;
+  installments?: Array<{
+    installment_number: number;
+    amount: number;
+    due_date: string;
+    status: string;
+  }>;
 }
 
 export const fetchMyTransactions = async (): Promise<Transaction[]> => {

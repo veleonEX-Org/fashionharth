@@ -17,6 +17,8 @@ export interface Item {
   isTrending: boolean;
   imageUrl: string | null;
   inspiredImageUrl: string | null;
+  discountPercentage?: number;
+  installmentDuration?: number | null;
 }
 
 export interface PaginatedItems {
@@ -39,6 +41,8 @@ export interface CreateItemPayload {
   isTrending?: boolean;
   imageUrl?: string | null;
   inspiredImageUrl?: string | null;
+  discountPercentage?: number;
+  installmentDuration?: number | null;
 }
 
 export interface UpdateItemPayload {
@@ -53,6 +57,8 @@ export interface UpdateItemPayload {
   isTrending?: boolean;
   imageUrl?: string | null;
   inspiredImageUrl?: string | null;
+  discountPercentage?: number;
+  installmentDuration?: number | null;
 }
 
 

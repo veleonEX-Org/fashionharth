@@ -49,14 +49,14 @@ export function PaginatedTable<T extends { id: number }>({
     <div className="space-y-4">
       {/* Header with actions */}
       <div className="flex items-center justify-between">
-        <div className="text-sm text-gray-300">
+        <div className="text-sm text-foreground">
           Showing {startItem} to {endItem} of {total} items
         </div>
         <div className="flex gap-2">
           {onExport && (
             <button
               onClick={onExport}
-              className="rounded-md border border-border bg-black/40 px-3 py-1.5 text-xs font-medium text-gray-200 hover:border-primary hover:text-primary"
+              className="rounded-md border border-border bg-black/5 px-3 py-1.5 text-xs font-medium text-foreground hover:border-primary hover:text-primary"
             >
               {exportLabel}
             </button>
@@ -88,14 +88,14 @@ export function PaginatedTable<T extends { id: number }>({
       {/* Pagination */}
       {totalPages > 1 && (
         <div className="flex items-center justify-between">
-          <div className="text-xs text-gray-400">
+          <div className="text-xs text-foreground">
             Page {currentPage} of {totalPages}
           </div>
           <div className="flex gap-2">
             <button
               onClick={() => onPageChange(currentPage - 1)}
               disabled={currentPage === 1}
-              className="rounded-md border border-border bg-black/40 px-3 py-1.5 text-xs font-medium text-gray-200 hover:border-primary hover:text-primary disabled:cursor-not-allowed disabled:opacity-40"
+              className="rounded-md border border-border bg-black/5 px-3 py-1.5 text-xs font-medium text-foreground hover:border-primary hover:text-primary disabled:cursor-not-allowed disabled:opacity-40"
             >
               Previous
             </button>
@@ -109,14 +109,14 @@ export function PaginatedTable<T extends { id: number }>({
               .map((page, index, array) => (
                 <React.Fragment key={page}>
                   {index > 0 && array[index - 1] !== page - 1 && (
-                    <span className="px-2 text-xs text-gray-400">...</span>
+                    <span className="px-2 text-xs text-foreground">...</span>
                   )}
                   <button
                     onClick={() => onPageChange(page)}
                     className={`rounded-md border border-border px-3 py-1.5 text-xs font-medium ${
                       currentPage === page
                         ? "bg-primary text-primary-foreground"
-                        : "bg-black/40 text-gray-200 hover:border-primary hover:text-primary"
+                        : "bg-black/5 text-foreground hover:border-primary hover:text-primary"
                     }`}
                   >
                     {page}
@@ -126,7 +126,7 @@ export function PaginatedTable<T extends { id: number }>({
             <button
               onClick={() => onPageChange(currentPage + 1)}
               disabled={currentPage === totalPages}
-              className="rounded-md border border-border bg-black/40 px-3 py-1.5 text-xs font-medium text-gray-200 hover:border-primary hover:text-primary disabled:cursor-not-allowed disabled:opacity-40"
+              className="rounded-md border border-border bg-black/5 px-3 py-1.5 text-xs font-medium text-foreground hover:border-primary hover:text-primary disabled:cursor-not-allowed disabled:opacity-40"
             >
               Next
             </button>

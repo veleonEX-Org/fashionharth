@@ -66,6 +66,7 @@ CREATE TABLE IF NOT EXISTS installments (
     amount DECIMAL(12, 2) NOT NULL,
     due_date TIMESTAMPTZ NOT NULL,
     status VARCHAR(50) NOT NULL, -- 'pending', 'paid', 'overdue'
+    provider_payment_id VARCHAR(255),
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );

@@ -53,6 +53,11 @@ import PaymentCancelPage from "./pages/PaymentCancelPage";
 import AdminSupportPage from "./pages/admin/AdminSupportPage";
 import StaffSupportPage from "./pages/staff/StaffSupportPage";
 
+import AdminFinancePage from "./pages/admin/AdminFinancePage";
+import AdminSettingsPage from "./pages/admin/AdminSettingsPage";
+import AdminAdsPage from "./pages/admin/AdminAdsPage";
+
+
 const App: React.FC = () => {
   return (
     <StripeProvider>
@@ -117,6 +122,10 @@ const App: React.FC = () => {
           <Route path="/admin/users" element={<AdminUsersPage />} />
           <Route path="/admin/categories" element={<AdminCategoriesPage />} />
           <Route path="/admin/support" element={<AdminSupportPage />} />
+          <Route path="/admin/finance" element={<AdminFinancePage />} />
+          <Route path="/admin/settings" element={<AdminSettingsPage />} />
+          <Route path="/admin/ads" element={<AdminAdsPage />} />
+
         </Route>
 
         <Route element={<ProtectedRoute allowedRoles={["staff"]} />}>

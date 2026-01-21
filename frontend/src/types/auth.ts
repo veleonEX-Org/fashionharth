@@ -10,6 +10,7 @@ export interface User {
   createdAt: string;
   updatedAt: string;
   isEmailVerified: boolean;
+  isStudent?: boolean;
 }
 
 export interface AuthTokens {

@@ -9,6 +9,7 @@ export interface Customer {
   anniversaryDate: string | null; // Mapped from anniversary_date
   createdAt: string;
   updatedAt: string;
+  totalTasks?: number;
 }
 
 export interface CreateCustomerPayload {

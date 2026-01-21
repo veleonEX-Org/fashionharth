@@ -64,7 +64,7 @@ export function DataTable<T extends { id: number }>({
   if (loading) {
     return (
       <div className="flex items-center justify-center py-12">
-        <p className="text-sm text-gray-300">Loading...</p>
+        <p className="text-sm text-foreground">Loading...</p>
       </div>
     );
   }
@@ -72,7 +72,7 @@ export function DataTable<T extends { id: number }>({
   if (data.length === 0) {
     return (
       <div className="flex items-center justify-center py-12">
-        <p className="text-sm text-gray-300">{emptyMessage}</p>
+        <p className="text-sm text-foreground">{emptyMessage}</p>
       </div>
     );
   }
@@ -87,7 +87,7 @@ export function DataTable<T extends { id: number }>({
               {columns.map((column) => (
                 <th
                   key={String(column.key)}
-                  className={`px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-300 ${
+                  className={`px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-foreground ${
                     column.sortable ? "cursor-pointer hover:bg-muted" : ""
                   }`}
                   onClick={() => handleSort(column)}
@@ -103,7 +103,7 @@ export function DataTable<T extends { id: number }>({
                 </th>
               ))}
               {(onEdit || onDelete || onView || viewPath) && (
-                <th className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-gray-300">
+                <th className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-foreground">
                   Actions
                 </th>
               )}
@@ -116,7 +116,7 @@ export function DataTable<T extends { id: number }>({
                 className="hover:bg-muted/30 transition-colors"
               >
                 {columns.map((column) => (
-                  <td key={String(column.key)} className="px-4 py-3 text-sm text-gray-300">
+                  <td key={String(column.key)} className="px-4 py-3 text-sm text-foreground">
                     {column.render
                       ? column.render(item)
                       : String(item[column.key as keyof T] ?? "")}
@@ -169,7 +169,7 @@ export function DataTable<T extends { id: number }>({
                          {idx === 0 ? (
                             <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest block">{column.header}</span>
                          ) : null}
-                         <div className={idx === 0 ? "text-sm font-bold text-white" : "text-xs text-gray-400"}>
+                         <div className={idx === 0 ? "text-sm font-bold text-foreground" : "text-xs text-foreground"}>
                             {column.render ? column.render(item) : String(item[column.key as keyof T] ?? "")}
                          </div>
                       </div>

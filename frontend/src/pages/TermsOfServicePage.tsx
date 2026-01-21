@@ -1,4 +1,5 @@
 import React from "react";
+import { APP_NAME } from "../utils/constants";
 
 const TermsOfServicePage: React.FC = () => {
   return (
@@ -16,7 +17,7 @@ const TermsOfServicePage: React.FC = () => {
         <section>
           <h2 className="text-2xl font-bold text-primary mb-4">1. Agreement to Terms</h2>
           <p className="text-gray-300">
-            By accessing or using Veleonex Starter, you agree to be bound by these Terms of Service and our Privacy Policy. 
+            By accessing or using {APP_NAME}, you agree to be bound by these Terms of Service and our Privacy Policy. 
             If you disagree with any part of the terms, then you may not access the service.
           </p>
         </section>
@@ -24,9 +25,9 @@ const TermsOfServicePage: React.FC = () => {
         <section>
           <h2 className="text-2xl font-bold text-primary mb-4">2. Intellectual Property</h2>
           <p className="text-gray-300">
-            The Service and its original content, features and functionality are and will remain the exclusive property of Veleonex Starter and its licensors. 
+            The Service and its original content, features and functionality are and will remain the exclusive property of {APP_NAME} and its licensors. 
             The Service is protected by copyright, trademark, and other laws of both the country and foreign countries. 
-            Our trademarks and trade dress may not be used in connection with any product or service without the prior written consent of Veleonex Starter.
+            Our trademarks and trade dress may not be used in connection with any product or service without the prior written consent of {APP_NAME}.
           </p>
         </section>
 
@@ -41,7 +42,7 @@ const TermsOfServicePage: React.FC = () => {
         <section>
           <h2 className="text-2xl font-bold text-primary mb-4">4. Limitation of Liability</h2>
           <p className="text-gray-300">
-            In no event shall Veleonex Starter, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use the Service.
+            In no event shall {APP_NAME}, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use the Service.
           </p>
         </section>
 

@@ -147,10 +147,13 @@
 
 body {
   @apply bg-background text-foreground antialiased;
+}@keyframes border-pulse-red {
+  0% { border-color: rgba(239, 68, 68, 0.5); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.2); }
+  50% { border-color: rgba(239, 68, 68, 1); box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1); }
+  100% { border-color: rgba(239, 68, 68, 0.5); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
 }
 
-
-
-
-
+.animate-border-pulse-red {
+  animation: border-pulse-red 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
 

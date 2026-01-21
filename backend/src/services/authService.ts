@@ -35,7 +35,7 @@ const loginSchema = z.object({
   password: z.string().min(1, "Password is required."),
 });
 
-export async function registerUser(input: unknown): Promise<void> {
+export async function registerUser(input: unknown): Promise<string> {
   const data = registerSchema.parse(input);
 
   const client = await pool.connect();
@@ -99,6 +99,8 @@ export async function registerUser(input: unknown): Promise<void> {
       console.error("Failed to send verification email:", error);
       console.log(`Email verification link: ${env.appUrl}/verify-email?token=${verificationToken}`);
     }
+
+    return verificationToken;
   } catch (error) {
     await client.query("ROLLBACK");
     throw error;
@@ -351,7 +353,7 @@ export async function updateUserProfile(
   return toPublicUser(user);
 }
 
-export async function resendVerificationEmail(email: string): Promise<void> {
+export async function resendVerificationEmail(email: string): Promise<string> {
   const result = await pool.query<User>(
     "SELECT * FROM users WHERE email = $1",
     [email]
@@ -393,6 +395,8 @@ export async function resendVerificationEmail(email: string): Promise<void> {
       `Email verification link: ${env.appUrl}/verify-email?token=${verificationToken}`
     );
   }
+
+  return verificationToken;
 }
 
 

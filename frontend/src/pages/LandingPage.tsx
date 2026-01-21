@@ -8,6 +8,8 @@ import { useAuth } from "../state/AuthContext";
 import toast from "react-hot-toast";
 import FashionCard from "../components/FashionCard";
 import { Input } from "../components/forms/Input";
+import AdSection from "../components/AdSection";
+
 
 const LandingPage: React.FC = () => {
   const queryClient = useQueryClient();
@@ -83,42 +85,8 @@ const LandingPage: React.FC = () => {
       </section>
       
       {/* Ads Banner */}
-      <section className="mx-auto max-w-7xl px-4 py-8">
-        <div className="group relative h-64 md:h-96 w-full overflow-hidden rounded-[2rem] shadow-2xl ring-1 ring-white/10 transition-all hover:ring-primary/50">
-          <img 
-            src="/convocation-sale.png" 
-            alt="Convocation Sale" 
-            className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/40 to-transparent flex flex-col justify-center px-10 md:px-20">
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary/20 backdrop-blur-md px-4 py-1.5 text-[10px] font-bold tracking-widest text-primary uppercase border border-primary/30">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-              </span>
-              Limited Time Offer
-            </div>
-            <h2 className="text-4xl md:text-6xl font-black text-white mb-3 tracking-tighter drop-shadow-2xl">
-              CONVOCATION <span className="text-primary italic">SALE</span>
-            </h2>
-            <p className="max-w-md text-base md:text-xl text-gray-200 mb-8 font-medium leading-relaxed drop-shadow-lg">
-              Craft your legacy with custom tailored suits and kaftans. Perfect for your big day.
-            </p>
-            <Link 
-              to="/pricing" 
-              className="w-fit rounded-full bg-white px-10 py-4 text-xs font-black tracking-widest text-black hover:bg-primary hover:text-white transition-all duration-300 shadow-[0_0_40px_rgba(255,255,255,0.1)] hover:shadow-primary/40 hover:-translate-y-1"
-            >
-              START MAKING PAYMENT NOW
-            </Link>
-          </div>
-          
-          {/* Decorative glass elements */}
-          <div className="absolute bottom-10 right-10 hidden md:flex flex-col gap-2 rounded-2xl bg-white/5 backdrop-blur-md p-4 border border-white/10 shadow-2xl">
-            <div className="text-white font-bold text-2xl">25% OFF</div>
-            <div className="text-gray-400 text-[10px] font-bold tracking-widest">ON ALL CUSTOM ORDERS</div>
-          </div>
-        </div>
-      </section>
+      <AdSection />
+
 
       {/* Filter & Search Bar */}
       <section className="sticky top-4 z-30 mx-auto max-w-6xl rounded-2xl border border-border bg-card/80 backdrop-blur-xl p-4 shadow-xl transition-all">

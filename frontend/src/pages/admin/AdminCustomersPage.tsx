@@ -269,6 +269,7 @@ const AdminCustomersPage: React.FC = () => {
             <tr>
               <th className="px-6 py-4">Name</th>
               <th className="px-6 py-4">Contact</th>
+              <th className="px-6 py-4 text-center">Tasks</th>
               <th className="px-6 py-4">Measurements</th>
               <th className="px-6 py-4 text-right">Actions</th>
             </tr>
@@ -280,6 +281,9 @@ const AdminCustomersPage: React.FC = () => {
                 <td className="px-6 py-4 text-gray-600">
                    <div>{c.email}</div>
                    <div className="text-xs">{c.phone}</div>
+                </td>
+                <td className="px-6 py-4 text-center font-bold text-gray-900">
+                   {c.totalTasks || 0}
                 </td>
                 <td className="px-6 py-4 text-xs text-gray-500">
                    <div className="flex flex-wrap gap-1">
@@ -323,6 +327,9 @@ const AdminCustomersPage: React.FC = () => {
               <div>
                 <h3 className="font-bold text-gray-900">{c.name}</h3>
                 <p className="text-sm text-gray-500">{c.phone || c.email}</p>
+                <p className="text-xs font-bold text-gray-400 mt-1">
+                  Total Tasks: <span className="text-gray-900">{c.totalTasks || 0}</span>
+                </p>
               </div>
               <div className="flex gap-2">
                 <button 

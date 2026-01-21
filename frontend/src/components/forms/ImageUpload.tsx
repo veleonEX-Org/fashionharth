@@ -31,9 +31,9 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
       return;
     }
 
-    // Validate file size (e.g., 5MB)
-    if (file.size > 5 * 1024 * 1024) {
-      toast.error("File size should be less than 5MB");
+    // Validate file size (e.g., 50MB)
+    if (file.size > 50 * 1024 * 1024) {
+      toast.error("File size should be less than 50MB");
       return;
     }
 
@@ -106,7 +106,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
                 {isUploading ? "Uploading..." : "Click to upload image"}
               </p>
               <p className="text-xs text-muted-foreground">
-                PNG, JPG or WEBP up to 5MB
+                PNG, JPG or WEBP up to 50MB
               </p>
             </div>
           </div>

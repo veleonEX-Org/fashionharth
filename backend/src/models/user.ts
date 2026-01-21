@@ -16,6 +16,9 @@ export interface User {
   refresh_token: string | null;
   created_at: Date;
   updated_at: Date;
+  tasks_assigned?: number;
+  tasks_completed?: number;
+  metadata: Record<string, any> | null;
 }
 
 export interface PublicUser {
@@ -29,6 +32,9 @@ export interface PublicUser {
   isEmailVerified: boolean;
   createdAt: string;
   updatedAt: string;
+  tasksAssigned: number;
+  tasksCompleted: number;
+  isStudent: boolean;
 }
 
 export function toPublicUser(row: User): PublicUser {
@@ -43,6 +49,9 @@ export function toPublicUser(row: User): PublicUser {
     isEmailVerified: row.is_email_verified,
     createdAt: row.created_at.toISOString(),
     updatedAt: row.updated_at.toISOString(),
+    tasksAssigned: row.tasks_assigned ? Number(row.tasks_assigned) : 0,
+    tasksCompleted: row.tasks_completed ? Number(row.tasks_completed) : 0,
+    isStudent: row.metadata?.is_student === true,
   };
 }
 

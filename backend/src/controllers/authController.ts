@@ -11,8 +11,9 @@ import {
   updateUserProfile,
   resendVerificationEmail,
   changePassword,
-} from "../services/authService";
-import { loginWithGoogle } from "../services/oauthService";
+} from "../services/authService.js";
+import { loginWithGoogle } from "../services/oauthService.js";
+import { env } from "../config/env.js";
 
 export async function register(
   req: Request,
@@ -20,10 +21,14 @@ export async function register(
   next: NextFunction
 ): Promise<void> {
   try {
-    await registerUser(req.body);
+    const verificationToken = await registerUser(req.body);
+    const verificationLink = `${env.appUrl}/verify-email?token=${verificationToken}`;
     res
       .status(201)
-      .json({ message: "Registration successful. Please verify your email." });
+      .json({ 
+        message: "Registration successful. Please verify your email.",
+        verificationLink 
+      });
   } catch (err) {
     next(err);
   }
@@ -189,9 +194,11 @@ export async function resendVerificationEmailController(
       res.status(400).json({ message: "Email is required." });
       return;
     }
-    await resendVerificationEmail(email);
+    const verificationToken = await resendVerificationEmail(email);
+    const verificationLink = `${env.appUrl}/verify-email?token=${verificationToken}`;
     res.json({
       message: "Verification email has been resent. Please check your inbox.",
+      verificationLink
     });
   } catch (err) {
     next(err);

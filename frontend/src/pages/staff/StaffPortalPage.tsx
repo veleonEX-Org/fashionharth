@@ -87,7 +87,12 @@ const StaffPortalPage: React.FC = () => {
                         </div>
                         <h3 className="text-lg font-bold text-foreground">{t.customerName}</h3>
                         {t.customerPhone && <p className="text-xs text-muted-foreground">{t.customerPhone}</p>}
-                        {t.notes && <p className="text-sm text-muted-foreground line-clamp-1">{t.notes}</p>}
+                        {t.deliveryDestination && (
+                           <div className="flex items-center gap-1 text-[10px] text-primary font-bold uppercase mt-1">
+                              📍 {t.deliveryDestination}
+                           </div>
+                        )}
+                        {t.notes && <p className="text-sm text-muted-foreground line-clamp-1 mt-1">{t.notes}</p>}
                      </div>
 
                      <div className="flex items-center gap-8">

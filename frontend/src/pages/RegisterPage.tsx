@@ -9,10 +9,15 @@ import type { RegisterPayload } from "../types/auth";
 import Modal from "../components/Modal";
 import { Input } from "../components/forms/Input";
 import { Label } from "../components/forms/Label";
+import { GoogleLogin } from "@react-oauth/google";
+import { useNavigate } from "react-router-dom";
+import type { GoogleOAuthRequest } from "../types/oauth";
+import type { AuthTokens, User } from "../types/auth";
 
 const RegisterPage: React.FC = () => {
-  const { clearAuth } = useAuth();
+  const { clearAuth, setAuth } = useAuth();
   const location = useLocation();
+  const navigate = useNavigate();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -21,14 +26,32 @@ const RegisterPage: React.FC = () => {
   const [validationError, setValidationError] = useState<string | null>(null);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [registeredEmail, setRegisteredEmail] = useState("");
+  const [verificationLink, setVerificationLink] = useState("");
+
+  const oauthMutation = useMutation({
+    mutationFn: async (payload: GoogleOAuthRequest) => {
+      const res = await http.post<{ user: User; tokens: AuthTokens }>(
+        "/auth/oauth/google",
+        payload
+      );
+      return res.data;
+    },
+    onSuccess: (data) => {
+      setAuth(data.user, data.tokens);
+      toast.success(`Welcome, ${data.user.firstName}!`);
+      navigate("/dashboard", { replace: true });
+    },
+  });
 
   const registerMutation = useMutation({
     mutationFn: async (payload: RegisterPayload) => {
-      await http.post("/auth/register", payload);
+      const { data } = await http.post<{ verificationLink: string }>("/auth/register", payload);
+      return data;
     },
-    onSuccess: (_data, variables) => {
+    onSuccess: (data, variables) => {
       clearAuth();
       setRegisteredEmail(variables.email);
+      setVerificationLink(data.verificationLink);
       setShowSuccessModal(true);
       setFirstName("");
       setLastName("");
@@ -42,9 +65,11 @@ const RegisterPage: React.FC = () => {
 
   const resendMutation = useMutation({
     mutationFn: async (email: string) => {
-      await http.post("/auth/resend-verification", { email });
+      const { data } = await http.post<{ verificationLink: string }>("/auth/resend-verification", { email });
+      return data;
     },
-    onSuccess: () => {
+    onSuccess: (data) => {
+      setVerificationLink(data.verificationLink);
       toast.success("Verification email has been resent!");
     },
   });
@@ -75,6 +100,12 @@ const RegisterPage: React.FC = () => {
   const handleResendVerification = () => {
     if (registeredEmail) {
       resendMutation.mutate(registeredEmail);
+    }
+  };
+
+  const handleGoogleSuccess = (credentialResponse: any) => {
+    if (credentialResponse.credential) {
+      oauthMutation.mutate({ idToken: credentialResponse.credential });
     }
   };
 
@@ -149,6 +180,35 @@ const RegisterPage: React.FC = () => {
               : "Create account"}
           </button>
         </form>
+
+        <div className="mt-4 border-t border-border pt-4 flex justify-center">
+          <GoogleLogin
+            onSuccess={handleGoogleSuccess}
+            onError={() => {
+              console.error("Google Login Failed");
+              toast.error("Google Login Failed");
+            }}
+            theme="filled_black"
+            shape="rectangular"
+            width="100%"
+          />
+        </div>
+
+        {verificationLink && (
+          <div className="mt-4 break-all rounded-lg bg-yellow-500/10 border border-yellow-500/20 p-3 text-xs">
+            <p className="font-medium text-yellow-600 dark:text-yellow-400 mb-1">
+              Dev Mode: Verification Link
+            </p>
+            <a 
+              href={verificationLink} 
+              className="text-primary underline hover:opacity-80 transition-opacity"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {verificationLink}
+            </a>
+          </div>
+        )}
         <p className="mt-4 text-xs text-muted-foreground">
           Already have an account?{" "}
           <Link to="/login" state={location.state} className="text-primary hover:underline">
@@ -184,6 +244,24 @@ const RegisterPage: React.FC = () => {
               Didn't receive the email?
             </p>
           </div>
+
+          {verificationLink && (
+            <div className="rounded-lg bg-primary/5 border border-primary/10 p-4 space-y-2">
+              <p className="text-xs font-semibold text-primary">
+                Immediate Verification Link (Dev):
+              </p>
+              <div className="break-all p-2 bg-background rounded border text-[10px] font-mono">
+                <a 
+                  href={verificationLink} 
+                  className="text-primary hover:underline"
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                  {verificationLink}
+                </a>
+              </div>
+            </div>
+          )}
 
           <button
             onClick={handleResendVerification}

@@ -46,6 +46,9 @@ const AdminUsersPage: React.FC = () => {
               <th className="px-6 py-4">User</th>
               <th className="px-6 py-4">Email</th>
               <th className="px-6 py-4">Current Role</th>
+              <th className="px-6 py-4 text-center">Assigned</th>
+              <th className="px-6 py-4 text-center">Completed</th>
+              <th className="px-6 py-4 text-center">Rate</th>
               <th className="px-6 py-4">Status</th>
               <th className="px-6 py-4 text-right">Actions</th>
             </tr>
@@ -64,6 +67,17 @@ const AdminUsersPage: React.FC = () => {
                    }`}>
                       {u.role}
                    </span>
+                </td>
+                <td className="px-6 py-4 text-center font-medium text-gray-700">
+                  {u.tasksAssigned || 0}
+                </td>
+                <td className="px-6 py-4 text-center font-medium text-gray-700">
+                  {u.tasksCompleted || 0}
+                </td>
+                <td className="px-6 py-4 text-center font-bold text-gray-900">
+                  {u.tasksAssigned > 0 
+                    ? Math.round((u.tasksCompleted / u.tasksAssigned) * 100) + '%' 
+                    : '0%'}
                 </td>
                 <td className="px-6 py-4">
                    <span className={`inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-[10px] font-bold uppercase ${
@@ -118,6 +132,14 @@ const AdminUsersPage: React.FC = () => {
                         }`}>
                           {u.role}
                         </span>
+                        {(u.role === 'staff' || u.role === 'admin') && (
+                           <div className="flex gap-2 text-[10px] font-bold text-gray-500 items-center">
+                              <span>Tasks: {u.tasksCompleted}/{u.tasksAssigned}</span>
+                              <span className="text-primary">
+                                 ({u.tasksAssigned > 0 ? Math.round((u.tasksCompleted / u.tasksAssigned) * 100) : 0}%)
+                              </span>
+                           </div>
+                        )}
                         <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold uppercase ${
                             u.status === "active" ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"
                         }`}>

@@ -53,13 +53,13 @@ const TrendingPage: React.FC = () => {
         <div className="mx-auto max-w-7xl px-4 flex justify-start mb-4">
            <BackButton />
         </div>
-        <h1 className="font-heading text-5xl font-extrabold uppercase tracking-tight text-gray-900 md:text-8xl">
-          Trending <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-600">NOW</span>
+        <h1 className="font-heading text-4xl font-extrabold uppercase tracking-tight text-gray-900 md:text-8xl">
+          Trending <span className="text-primary italic">Now</span>
         </h1>
         <p className="mt-6 text-xl text-gray-500">Curated styles & Global Fashion Insights.</p>
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 space-y-32 pt-20">
+      <div className="mx-auto max-w-7xl px-4 space-y-16 md:space-y-32 pt-20">
         {combinedData.map((trend, index) => {
            const isItem = trend.type === "item";
            // Align alternating left/right
@@ -68,7 +68,7 @@ const TrendingPage: React.FC = () => {
            return (
             <div
               key={isItem ? `item-${trend.data.id}` : `news-${trend.data.id}`}
-              className={`flex flex-col gap-12 lg:items-center ${
+              className={`flex flex-col gap-8 md:gap-12 lg:items-center ${
                 isEven ? "lg:flex-row" : "lg:flex-row-reverse"
               }`}
             >
@@ -106,20 +106,20 @@ const TrendingPage: React.FC = () => {
               </div>
               
               {/* Content Section */}
-              <div className="flex-1 space-y-6 lg:p-12">
-                 <div className={`h-1 w-20 mb-8 ${isItem ? 'bg-primary' : 'bg-purple-600'}`} />
+              <div className="flex-1 md:space-y-6 lg:p-12">
+                 <div className={`h-1 w-20 mb-2 md:mb-8 ${isItem ? 'bg-primary' : 'bg-purple-600'}`} />
                  
                  <div className="flex items-center gap-2 mb-2">
                     {!isItem && <span className="text-xs font-bold tracking-widest uppercase text-purple-600 border border-purple-200 px-2 py-1 rounded">Global Trend</span>}
                     {isItem && <span className="text-xs font-bold tracking-widest uppercase text-primary border border-primary/30 px-2 py-1 rounded">Exclusive</span>}
                  </div>
 
-                 <h2 className="text-4xl font-bold text-gray-900 md:text-5xl">{trend.data.title}</h2>
+                 <h2 className="text-xl font-bold text-gray-900 md:text-5xl">{trend.data.title}</h2>
                  <div className="text-lg text-gray-600 leading-relaxed font-light space-y-4">
                     <p>{isItem ? (trend.data.story || trend.data.description) : trend.data.summary}</p>
                  </div>
                  
-                 <div className="pt-8">
+                 <div className="md:pt-8">
                     {isItem ? (
                       <Link
                         to={`/item/${trend.data.id}`}

@@ -1,18 +1,16 @@
 import { Request, Response, NextFunction } from "express";
 import { paymentService } from "../services/paymentService.js";
+import { getUserById } from "../services/authService.js";
 import { logger } from "../utils/logger.js";
-
 import { pool } from "../database/pool.js";
 
 export const createCheckoutSession = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { amount, currency, type, planId, itemId, provider = 'paystack' } = req.body;
-    logger.info(`Payment Request Recieved: ${JSON.stringify(req.body)}`);
+    const { amount, currency, type, planId, itemId, provider = 'paystack', transactionId, installmentNumber } = req.body;
+    logger.info(`Payment Request Received: ${JSON.stringify(req.body)}`);
     const userId = (req as any).user.id;
     
-    // Fetch user email from database
-    const userResult = await pool.query("SELECT email FROM users WHERE id = $1", [userId]);
-    const user = userResult.rows[0];
+    const user = await getUserById(userId);
     
     if (!user || !user.email) {
       throw new Error("User or email not found");
@@ -21,16 +19,47 @@ export const createCheckoutSession = async (req: Request, res: Response, next: N
     const email = user.email;
 
     let session;
-    if (type === 'installment') {
+    if (type === 'installment' && !transactionId) {
+      // Calculate periods dynamically
+      let periods = 3;
+      
+      // Check if student
+      if (user.isStudent) {
+        periods = 6;
+      }
+
+      // Check item category logic if item exists
+      if (itemId) {
+        const itemRes = await pool.query("SELECT category FROM items WHERE id = $1", [itemId]);
+        const itemData = itemRes.rows[0];
+        // If suit, strict 2 months
+        if (itemData && itemData.category && itemData.category.toLowerCase() === 'suit') {
+          periods = 2;
+        }
+      }
+
+      if (periods < 1) {
+        throw new Error("Installment plan not available for this item/user configuration");
+      }
+
       session = await paymentService.createInstallmentPlan(
         userId, 
         email,
         amount, 
         currency || 'USD',
-        3, // Default to 3 periods
+        periods, 
         provider,
         itemId
       );
+    } else if (transactionId && installmentNumber) {
+        // Paying an EXACT existing installment
+        session = await paymentService.initiateInstallmentPayment(
+            userId,
+            email,
+            transactionId,
+            installmentNumber,
+            provider
+        );
     } else {
       session = await paymentService.initiateCheckout({
         userId,

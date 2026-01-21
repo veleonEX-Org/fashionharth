@@ -57,6 +57,11 @@ const StyleMePage: React.FC = () => {
       return;
     }
 
+    if (file.size > 50 * 1024 * 1024) {
+      toast.error("File size should be less than 50MB");
+      return;
+    }
+
     const formData = new FormData();
     formData.append("image", file);
     formData.append("folder", "avatars");

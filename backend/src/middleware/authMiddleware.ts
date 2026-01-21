@@ -18,6 +18,11 @@ export function authenticate(
   next: NextFunction
 ): void {
   const authHeader = req.headers.authorization;
+  if (!authHeader) {
+    console.warn(`[AUTH] Missing Authorization header for ${req.method} ${req.url}`);
+  } else if (!authHeader.startsWith("Bearer ")) {
+    console.warn(`[AUTH] Invalid Authorization header format for ${req.method} ${req.url}: ${authHeader.substring(0, 15)}...`);
+  }
 
   if (!authHeader?.startsWith("Bearer ")) {
     res
@@ -27,7 +32,6 @@ export function authenticate(
   }
 
   const token = authHeader.split(" ")[1];
-
   try {
     const payload = verifyAccessToken(token) as JwtPayload;
     if (payload.type !== "access") {
@@ -36,7 +40,8 @@ export function authenticate(
     }
     req.user = { id: payload.sub, role: payload.role };
     next();
-  } catch {
+  } catch (err: any) {
+    console.error(`[AUTH] Token verification failed for ${req.method} ${req.url}:`, err.message);
     res.status(401).json({ message: "Invalid or expired token." });
   }
 }

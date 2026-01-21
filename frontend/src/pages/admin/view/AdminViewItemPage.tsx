@@ -96,7 +96,7 @@ const AdminViewItemPage: React.FC = () => {
           </div>
           <div>
             <p className="text-xs text-muted-foreground">Price</p>
-            <p className="mt-1 text-sm font-medium">${item.price}</p>
+            <p className="mt-1 text-sm font-medium">₦{item.price}</p>
           </div>
           <div>
             <p className="text-xs text-muted-foreground">Category</p>

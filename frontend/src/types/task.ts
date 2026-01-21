@@ -11,6 +11,7 @@ export interface Task {
   deadline: string | null;
   status: 'pending' | 'in_progress' | 'completed';
   notes: string | null;
+  deliveryDestination: string | null;
   createdAt: string;
   updatedAt: string;
   
@@ -29,4 +30,5 @@ export interface CreateTaskPayload {
   dueDate: string;
   status?: string;
   notes?: string;
+  deliveryDestination?: string;
 }

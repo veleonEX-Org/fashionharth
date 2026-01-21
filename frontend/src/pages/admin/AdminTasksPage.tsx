@@ -26,10 +26,22 @@ const AdminTasksPage: React.FC = () => {
   const [dueDate, setDueDate] = useState("");
   const [notes, setNotes] = useState("");
   const [status, setStatus] = useState("pending");
+  const [deliveryDestination, setDeliveryDestination] = useState("");
+
+  // Filter & Sort State
+  const [filterStatus, setFilterStatus] = useState("");
+  const [filterPayment, setFilterPayment] = useState("");
+  const [sortBy, setSortBy] = useState<'deadline' | 'created_at'>("deadline");
+  const [sortOrder, setSortOrder] = useState<'ASC' | 'DESC'>("ASC");
 
   const { data: tasks, isLoading: tasksLoading } = useQuery({
-    queryKey: ["tasks"],
-    queryFn: () => fetchTasks(),
+    queryKey: ["tasks", filterStatus, filterPayment, sortBy, sortOrder],
+    queryFn: () => fetchTasks({ 
+      status: filterStatus || undefined, 
+      paymentStatus: filterPayment as 'paid' | 'unpaid' | undefined,
+      sortBy,
+      sortOrder
+    }),
   });
 
   const { data: customers } = useQuery({
@@ -48,6 +60,12 @@ const AdminTasksPage: React.FC = () => {
   });
 
   const staffs = users?.filter((u: any) => u.role === "staff" || u.role === "admin") || [];
+
+  const extractOrderTitle = (notes: string | null, category: string) => {
+    if (!notes) return category;
+    const match = notes.match(/item:\s*([^.]+)/);
+    return match ? match[1].trim() : category;
+  };
 
   const createMutation = useMutation({
     mutationFn: createTask,
@@ -89,6 +107,7 @@ const AdminTasksPage: React.FC = () => {
     setAssignedTo("");
     setStartDate(format(new Date(), "yyyy-MM-dd"));
     setStatus("pending");
+    setDeliveryDestination("");
   };
 
   const handleEdit = (task: any) => {
@@ -103,6 +122,7 @@ const AdminTasksPage: React.FC = () => {
     setDueDate(task.dueDate ? format(parseISO(task.dueDate), "yyyy-MM-dd") : "");
     setNotes(task.notes || "");
     setStatus(task.status);
+    setDeliveryDestination(task.deliveryDestination || "");
     setIsAdding(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -122,6 +142,7 @@ const AdminTasksPage: React.FC = () => {
       dueDate,
       notes,
       status: status as any,
+      deliveryDestination,
     };
 
     if (editingTaskId) {
@@ -157,6 +178,57 @@ const AdminTasksPage: React.FC = () => {
             {isAdding ? "CANCEL" : "NEW TASK"}
           </button>
         </div>
+      </div>
+
+      {/* Filters & Sorting */}
+      <div className="flex flex-wrap items-center gap-4 bg-gray-50 p-4 rounded-2xl border border-gray-200">
+         <div className="w-full sm:w-auto">
+            <label className="text-xs font-bold text-gray-500 uppercase ml-1">Status</label>
+            <select 
+               className="w-full mt-1 rounded-lg border-gray-200 text-sm py-2 px-3 focus:ring-black focus:border-black"
+               value={filterStatus}
+               onChange={(e) => setFilterStatus(e.target.value)}
+            >
+               <option value="">All Statuses</option>
+               <option value="pending">Pending</option>
+               <option value="in_progress">In Progress</option>
+               <option value="completed">Completed</option>
+            </select>
+         </div>
+         <div className="w-full sm:w-auto">
+            <label className="text-xs font-bold text-gray-500 uppercase ml-1">Payment</label>
+            <select 
+               className="w-full mt-1 rounded-lg border-gray-200 text-sm py-2 px-3 focus:ring-black focus:border-black"
+               value={filterPayment}
+               onChange={(e) => setFilterPayment(e.target.value)}
+            >
+               <option value="">All Payments</option>
+               <option value="paid">Fully Paid</option>
+               <option value="unpaid">Unpaid / Partial</option>
+            </select>
+         </div>
+         <div className="w-full sm:w-auto">
+            <label className="text-xs font-bold text-gray-500 uppercase ml-1">Sort By</label>
+            <select 
+               className="w-full mt-1 rounded-lg border-gray-200 text-sm py-2 px-3 focus:ring-black focus:border-black"
+               value={sortBy}
+               onChange={(e) => setSortBy(e.target.value as any)}
+            >
+               <option value="deadline">Deadline</option>
+               <option value="created_at">Date Created</option>
+            </select>
+         </div>
+         <div className="w-full sm:w-auto">
+            <label className="text-xs font-bold text-gray-500 uppercase ml-1">Order</label>
+            <select 
+               className="w-full mt-1 rounded-lg border-gray-200 text-sm py-2 px-3 focus:ring-black focus:border-black"
+               value={sortOrder}
+               onChange={(e) => setSortOrder(e.target.value as any)}
+            >
+               <option value="ASC">Ascending (Oldest First)</option>
+               <option value="DESC">Descending (Newest First)</option>
+            </select>
+         </div>
       </div>
 
       {isAdding && (
@@ -222,10 +294,13 @@ const AdminTasksPage: React.FC = () => {
                      ]}
                   />
                </FormField>
-               <FormField label="Notes" name="notes">
-                  <Textarea value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="Additional instructions..." />
-               </FormField>
-            </div>
+                <FormField label="Notes" name="notes">
+                   <Textarea value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="Additional instructions..." />
+                </FormField>
+                <FormField label="Delivery Destination" name="destination">
+                   <Input value={deliveryDestination} onChange={(e) => setDeliveryDestination(e.target.value)} placeholder="Address or delivery point..." />
+                </FormField>
+             </div>
 
             <button
               type="submit"
@@ -244,7 +319,7 @@ const AdminTasksPage: React.FC = () => {
             <tr>
               <th className="px-6 py-4">Customer / Item</th>
               <th className="px-6 py-4">Finance</th>
-              <th className="px-6 py-4">Deadline</th>
+              <th className="px-6 py-4">Dates</th>
               <th className="px-6 py-4">Status / Assignee</th>
               <th className="px-6 py-4 text-right">Actions</th>
             </tr>
@@ -259,7 +334,14 @@ const AdminTasksPage: React.FC = () => {
                   <td className="px-6 py-4">
                     <div className="font-bold text-gray-900">{t.customerName}</div>
                     <div className="text-xs text-gray-500">{t.customerPhone}</div>
-                    <div className="text-xs text-primary uppercase font-bold">{t.category}</div>
+                    <div className="text-[10px] text-primary uppercase font-black tracking-widest mt-0.5">
+                        {extractOrderTitle(t.notes, t.category)}
+                    </div>
+                    {t.deliveryDestination && (
+                      <div className="mt-1 text-[10px] text-gray-400 font-medium">
+                        📍 {t.deliveryDestination}
+                      </div>
+                    )}
                   </td>
                   <td className="px-6 py-4">
                     <div className="text-gray-900 font-medium">₦{t.totalAmount.toLocaleString()}</div>
@@ -268,10 +350,20 @@ const AdminTasksPage: React.FC = () => {
                     </div>
                   </td>
                   <td className="px-6 py-4">
-                    <div className={`font-bold ${isOverdue ? "text-red-600" : "text-gray-900"}`}>
-                       {format(new Date(t.deadline), "MMM d, yyyy")}
+                    <div className="flex flex-col gap-1">
+                        <div className="flex items-center gap-2">
+                           <span className="text-[10px] font-bold text-gray-400 w-12">DUE</span>
+                           <span className={`text-sm font-bold ${isOverdue ? "text-red-600" : "text-gray-900"}`}>
+                              {format(new Date(t.deadline), "MMM d, yyyy")}
+                           </span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                           <span className="text-[10px] font-bold text-gray-400 w-12">CREATED</span>
+                           <span className="text-xs text-gray-500">
+                              {t.createdAt ? format(parseISO(t.createdAt), "MMM d, yyyy") : "-"}
+                           </span>
+                        </div>
                     </div>
-                    <div className="text-xs text-gray-400">Due: {format(new Date(t.dueDate), "MMM d")}</div>
                   </td>
                   <td className="px-6 py-4">
                     <span className={`inline-block rounded-full px-2 py-0.5 text-[10px] font-bold uppercase ${
@@ -318,7 +410,14 @@ const AdminTasksPage: React.FC = () => {
                   <div className="flex items-start justify-between">
                      <div>
                         <div className="font-bold text-gray-900">{t.customerName}</div>
-                        <div className="text-xs text-primary uppercase font-bold mt-0.5">{t.category}</div>
+                        <div className="text-[10px] text-primary uppercase font-black tracking-widest mt-1">
+                            {extractOrderTitle(t.notes, t.category)}
+                        </div>
+                        {t.deliveryDestination && (
+                          <div className="mt-1 text-[10px] text-gray-500 font-semibold italic">
+                            to: {t.deliveryDestination}
+                          </div>
+                        )}
                      </div>
                      <span className={`inline-block rounded-full px-2 py-0.5 text-[10px] font-bold uppercase ${
                         t.status === "completed" ? "bg-green-100 text-green-700" : "bg-yellow-100 text-yellow-700"
@@ -327,18 +426,21 @@ const AdminTasksPage: React.FC = () => {
                      </span>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4 py-3 border-y border-gray-100">
-                     <div>
-                        <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider block">Status</span>
-                        <div className="text-xs text-gray-500 mt-1">@{t.assigneeName || "Unassigned"}</div>
-                     </div>
-                     <div>
-                        <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider block">Deadline</span>
-                        <div className={`text-xs font-bold mt-1 ${isOverdue ? "text-red-600" : "text-gray-900"}`}>
-                           {format(new Date(t.deadline), "MMM d, yyyy")}
-                        </div>
-                     </div>
-                  </div>
+                   <div className="grid grid-cols-2 gap-4 py-3 border-y border-gray-100">
+                      <div>
+                         <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider block">Status</span>
+                         <div className="text-xs text-gray-500 mt-1">@{t.assigneeName || "Unassigned"}</div>
+                      </div>
+                      <div>
+                         <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider block">Timeline</span>
+                         <div className={`text-xs font-bold mt-1 ${isOverdue ? "text-red-600" : "text-gray-900"}`}>
+                            Due: {format(new Date(t.deadline), "MMM d")}
+                         </div>
+                         <div className="text-[10px] text-gray-400">
+                            Created: {t.createdAt ? format(parseISO(t.createdAt), "MMM d") : "-"}
+                         </div>
+                      </div>
+                   </div>
 
                   <div className="flex items-center justify-between">
                      <div>

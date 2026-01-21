@@ -38,7 +38,15 @@ export const fetchCustomer = async (id: number) => {
   return response.data;
 };
 
-export const fetchTasks = async (params?: { assignedTo?: number; status?: string }) => {
+export const fetchTasks = async (params?: { 
+  assignedTo?: number; 
+  status?: string;
+  sortBy?: 'deadline' | 'created_at';
+  sortOrder?: 'ASC' | 'DESC';
+  paymentStatus?: 'paid' | 'unpaid';
+  minDate?: string;
+  maxDate?: string;
+}) => {
   const response = await http.get("/tasks", { params });
   return response.data;
 };

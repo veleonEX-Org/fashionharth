@@ -118,39 +118,102 @@ export class StripeService implements PaymentProvider {
   private async handleCheckoutSessionCompleted(session: Stripe.Checkout.Session) {
     const userId = parseInt(session.metadata?.userId || "0");
     const type = session.metadata?.type;
-    const transactionId = session.metadata?.transactionId;
+    const parentTxIdFromMeta = session.metadata?.transactionId ? parseInt(session.metadata.transactionId) : undefined;
     const providerPaymentId = session.payment_intent as string || session.subscription as string;
+    const currentInstallment = session.metadata?.currentInstallment;
+    
+    let transactionId: number;
+    let description = "Fashion Purchase";
 
-    if (transactionId) {
-        // Update existing transaction created during initiation (e.g., installments)
-        await pool.query(
-            "UPDATE transactions SET status = $1, provider_payment_id = $2, provider_checkout_id = $3, updated_at = NOW() WHERE id = $4",
-            ["succeeded", providerPaymentId, session.id, transactionId]
-        );
-
-        if (type === "installment") {
-            // Mark the first installment as paid
-            await pool.query(
-                "UPDATE installments SET status = 'paid', updated_at = NOW() WHERE transaction_id = $1 AND installment_number = 1",
-                [transactionId]
-            );
+    // Try to get item title for description
+    try {
+        const itemId = session.metadata?.itemId;
+        if (itemId) {
+            const itemRes = await pool.query("SELECT title FROM items WHERE id = $1", [itemId]);
+            if (itemRes.rows.length > 0) {
+                const itemTitle = itemRes.rows[0].title;
+                if (type === 'installment') {
+                    description = `Installment ${currentInstallment || '1'} for ${itemTitle}`;
+                } else {
+                    description = `Payment for ${itemTitle}`;
+                }
+            }
+        } else if (type === 'installment') {
+             description = `Installment ${currentInstallment || '1'} Payment`;
         }
-    } else {
-        // Create new transaction for one-time/simple subscriptions
-        // Use ON CONFLICT to ensure idempotency (System Design: Security & Reliability)
-        await pool.query(
-            "INSERT INTO transactions (user_id, amount, currency, status, type, provider, provider_checkout_id, provider_payment_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) ON CONFLICT (provider_payment_id) DO UPDATE SET status = $4, updated_at = NOW()",
+    } catch (descErr) {
+        logger.warn(`Failed to generate description for Stripe: ${descErr}`);
+    }
+
+    if (parentTxIdFromMeta && currentInstallment !== "1") {
+        // Subsequent installment: INSERT NEW for history
+        logger.info(`[STRIPE CHARGE] Subsequent installment. Inserting new transaction record for history.`);
+        const txResult = await pool.query(
+            "INSERT INTO transactions (user_id, amount, currency, status, type, provider, provider_payment_id, provider_checkout_id, description) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id",
             [
                 userId,
                 (session.amount_total || 0) / 100,
-                session.currency,
+                session.currency || 'USD',
                 "succeeded",
-                type,
+                "installment",
                 "stripe",
+                providerPaymentId || session.id,
                 session.id,
-                providerPaymentId
+                description
             ]
         );
+        transactionId = txResult.rows[0]?.id;
+    } else if (parentTxIdFromMeta) {
+        // First installment or linked: Update existing parent
+        logger.info(`[STRIPE CHARGE] Updating existing transaction ${parentTxIdFromMeta}`);
+        await pool.query(
+            "UPDATE transactions SET status = $1, provider_payment_id = $2, provider_checkout_id = $3, description = $4, updated_at = NOW() WHERE id = $5",
+            ["succeeded", providerPaymentId || session.id, session.id, description, parentTxIdFromMeta]
+        );
+        transactionId = parentTxIdFromMeta;
+    } else {
+        // One-time or generic payment
+        const txResult = await pool.query(
+            "INSERT INTO transactions (user_id, amount, currency, status, type, provider, provider_checkout_id, provider_payment_id, description) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) ON CONFLICT (provider_payment_id) DO UPDATE SET status = 'succeeded', description = $9, updated_at = NOW() RETURNING id",
+            [
+                userId,
+                (session.amount_total || 0) / 100,
+                session.currency || 'USD',
+                "succeeded",
+                type || "one-time",
+                "stripe",
+                session.id,
+                providerPaymentId || session.id,
+                description
+            ]
+        );
+        transactionId = txResult.rows[0]?.id;
+    }
+
+    if (parentTxIdFromMeta && type === "installment") {
+        const instNum = parseInt(currentInstallment || "1");
+        // Mark the installment as paid
+        await pool.query(
+            "UPDATE installments SET status = 'paid', provider_payment_id = $1, updated_at = NOW() WHERE transaction_id = $2 AND installment_number = $3",
+            [providerPaymentId || session.id, parentTxIdFromMeta, instNum]
+        );
+
+        // If not the first installment, find and update the associated task
+        if (instNum > 1) {
+            const taskRes = await pool.query(
+                "SELECT id, amount_paid FROM tasks WHERE notes LIKE $1",
+                [`%parent transaction ID: ${parentTxIdFromMeta}%`]
+            );
+            
+            if (taskRes.rows.length > 0) {
+                const task = taskRes.rows[0];
+                const newAmountPaid = Number(task.amount_paid) + ((session.amount_total || 0) / 100);
+                await pool.query(
+                    "UPDATE tasks SET amount_paid = $1, updated_at = NOW() WHERE id = $2",
+                    [newAmountPaid, task.id]
+                );
+            }
+        }
     }
 
     if (type === "subscription" && session.subscription) {
@@ -217,7 +280,7 @@ export class StripeService implements PaymentProvider {
           dueDate,
           deadline,
           'pending',
-          `Order from checkout for item: ${item.title}. ${isFirstInstallment ? 'Started via Installment Plan.' : 'Paid in Full.'}`
+          `Order from checkout for item: ${item.title}. parent transaction ID: ${transactionId}. ${isFirstInstallment ? 'Started via Installment Plan.' : 'Paid in Full.'}`
         ]
       );
       

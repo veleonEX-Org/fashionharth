@@ -32,9 +32,12 @@ export interface PublicItem {
   isTrending: boolean;
   imageUrl: string | null;
   inspiredImageUrl: string | null;
+  discountPercentage: number;
+  installmentDuration: number | null;
 }
 
 export function toPublicItem(row: Item): PublicItem {
+  const metadata = row.metadata as Record<string, any> || {};
   return {
     id: row.id,
     title: row.title,
@@ -50,6 +53,8 @@ export function toPublicItem(row: Item): PublicItem {
     isTrending: row.is_trending,
     imageUrl: row.image_url,
     inspiredImageUrl: row.inspired_image_url,
+    discountPercentage: Number(metadata.discount_percentage) || 0,
+    installmentDuration: metadata.installment_duration ? Number(metadata.installment_duration) : null,
   };
 }
 
