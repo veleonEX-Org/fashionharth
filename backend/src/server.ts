@@ -72,9 +72,24 @@ async function bootstrap(): Promise<void> {
     })
   );
 
+  // Define allowed origins
+  const allowedOrigins = [
+    "http://localhost:5173",
+    "https://fashionharth.vercel.app",
+    env.appUrl
+  ];
+
   app.use(
     cors({
-      origin: env.appUrl,
+      origin: (origin, callback) => {
+        // Allow requests with no origin (like mobile apps or curl) 
+        // or check if the origin is in our allowed list
+        if (!origin || allowedOrigins.includes(origin)) {
+          callback(null, true);
+        } else {
+          callback(new Error("Not allowed by CORS"));
+        }
+      },
       credentials: true,
     })
   );
