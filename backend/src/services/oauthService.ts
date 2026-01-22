@@ -1,11 +1,11 @@
 import { OAuth2Client } from "google-auth-library";
 import { z } from "zod";
-import { env } from "../config/env";
-import { pool } from "../database/pool";
-import type { PublicUser, User } from "../models/user";
-import { toPublicUser } from "../models/user";
-import { hashPassword } from "../utils/password";
-import { signAccessToken, signRefreshToken } from "../utils/jwt";
+import { env } from "../config/env.js";
+import { pool } from "../database/pool.js";
+import type { PublicUser, User } from "../models/user.js";
+import { toPublicUser } from "../models/user.js";
+import { hashPassword } from "../utils/password.js";
+import { signAccessToken, signRefreshToken } from "../utils/jwt.js";
 
 const googleClient = new OAuth2Client(env.googleClientId);
 

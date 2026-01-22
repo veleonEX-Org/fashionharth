@@ -3069,3 +3069,4 @@
 2026-01-21 12:10:19:1019 [32minfo[39m: [32mDatabase connection established successfully[39m
 2026-01-21 12:14:20:1420 [32minfo[39m: [32mDatabase connection established successfully[39m
 2026-01-21 12:14:20:1420 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-21 13:24:55:2455 [33mwarn[39m: [33mDNS resolution failed (attempt 1/5), retrying in 2000ms...[39m

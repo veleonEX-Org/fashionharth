@@ -1,5 +1,5 @@
 
-import { pool } from "../database/pool";
+import { pool } from "../database/pool.js";
 
 async function migrate() {
   console.log("Starting migration to Fashion Store schema...");

@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer";
-import { env } from "../config/env";
+import { env } from "../config/env.js";
 
 // Create reusable transporter using Brevo SMTP
 const transporter = nodemailer.createTransport({

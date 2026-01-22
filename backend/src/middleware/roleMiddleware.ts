@@ -1,5 +1,5 @@
 import type { Request, Response, NextFunction } from "express";
-import type { UserRole } from "../types/auth";
+import type { UserRole } from "../types/auth.js";
 
 // Ensures the authenticated user has at least one of the allowed roles.
 export function requireRole(allowedRoles: UserRole[]) {

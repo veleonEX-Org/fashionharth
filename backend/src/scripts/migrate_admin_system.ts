@@ -1,4 +1,4 @@
-import { pool } from "../database/pool";
+import { pool } from "../database/pool.js";
 
 export async function migrateAdminSystem() {
   const client = await pool.connect();

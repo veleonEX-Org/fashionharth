@@ -1,5 +1,5 @@
 import { Pool } from "pg";
-import { env } from "../config/env";
+import { env } from "../config/env.js";
 
 // Single shared Postgres connection pool with retry configuration
 export const pool = new Pool({
