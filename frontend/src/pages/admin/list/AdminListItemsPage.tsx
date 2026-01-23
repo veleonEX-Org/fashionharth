@@ -54,13 +54,14 @@ const AdminListItemsPage: React.FC = () => {
   const handleExport = () => {
     if (!data) return;
     const csv = [
-      ["ID", "Title", "Description", "Status", "Created At"].join(","),
+      ["ID", "Title", "Description", "Status", "Image URL", "Created At"].join(","),
       ...data.items.map((item) =>
         [
           item.id,
           `"${item.title}"`,
           `"${item.description || ""}"`,
           item.status,
+          `"${item.imageUrl || ""}"`,
           item.createdAt,
         ].join(",")
       ),
@@ -81,6 +82,28 @@ const AdminListItemsPage: React.FC = () => {
       key: "id",
       header: "ID",
       sortable: true,
+    },
+    {
+      key: "imageUrl",
+      header: "Image",
+      render: (item) => (
+        <div className="h-10 w-10 flex-shrink-0 overflow-hidden rounded-md border border-border bg-muted">
+          {item.imageUrl ? (
+            <img
+              src={item.imageUrl}
+              alt={item.title}
+              className="h-full w-full object-cover"
+              onError={(e) => {
+                (e.target as HTMLImageElement).src = 'https://placehold.co/40x40?text=No+Img';
+              }}
+            />
+          ) : (
+            <div className="flex h-full w-full items-center justify-center text-[10px] text-muted-foreground uppercase">
+              No Img
+            </div>
+          )}
+        </div>
+      ),
     },
     {
       key: "title",
