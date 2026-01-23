@@ -64,33 +64,48 @@ async function bootstrap(): Promise<void> {
   const socketService = SocketService.getInstance();
   socketService.initialize(httpServer, env.appUrl);
 
+  const allowedOrigins = [
+    "http://localhost:5173",
+    "https://fashionharth.vercel.app",
+    env.appUrl
+  ].filter(Boolean);
+
+  // 1. Logging and debugging
+  app.use((req, res, next) => {
+    logger.debug(`[Request] ${req.method} ${req.url} | Origin: ${req.headers.origin}`);
+    next();
+  });
+
+  // 2. CORS - Move to the top and improve logic
+  app.use(
+    cors({
+      origin: (origin, callback) => {
+        // Allow requests with no origin (like mobile apps or curl) 
+        if (!origin) return callback(null, true);
+        
+        // Check if origin matches exactly or without trailing slash
+        const sanitizedOrigin = origin.replace(/\/$/, "");
+        const isAllowed = allowedOrigins.some(ao => ao?.replace(/\/$/, "") === sanitizedOrigin);
+
+        if (isAllowed) {
+          callback(null, true);
+        } else {
+          logger.warn(`[CORS] Rejected origin: ${origin}`);
+          callback(null, false); // Important: pass false, not an error object
+        }
+      },
+      credentials: true,
+      methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+      allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "Accept"],
+    })
+  );
+
+  // morgan should come after CORS if you want to log the response headers correctly
   app.use(
     morgan(":method :url :status :res[content-length] - :response-time ms", {
       stream: {
         write: (message) => logger.http(message.trim()),
       },
-    })
-  );
-
-  // Define allowed origins
-  const allowedOrigins = [
-    "http://localhost:5173",
-    "https://fashionharth.vercel.app",
-    env.appUrl
-  ];
-
-  app.use(
-    cors({
-      origin: (origin, callback) => {
-        // Allow requests with no origin (like mobile apps or curl) 
-        // or check if the origin is in our allowed list
-        if (!origin || allowedOrigins.includes(origin)) {
-          callback(null, true);
-        } else {
-          callback(new Error("Not allowed by CORS"));
-        }
-      },
-      credentials: true,
     })
   );
 
