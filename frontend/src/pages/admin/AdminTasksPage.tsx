@@ -7,13 +7,16 @@ import { Input } from "../../components/forms/Input";
 import { Select } from "../../components/forms/Select";
 import { Textarea } from "../../components/forms/Textarea";
 import { BackButton } from "../../components/ui/BackButton";
+import Modal from "../../components/Modal";
 import toast from "react-hot-toast";
 import { format, parseISO } from "date-fns";
+import { Eye, Clock, CheckCircle2, AlertCircle, MapPin } from "lucide-react";
 
 const AdminTasksPage: React.FC = () => {
   const queryClient = useQueryClient();
   const [isAdding, setIsAdding] = useState(false);
   const [editingTaskId, setEditingTaskId] = useState<number | null>(null);
+  const [viewingTask, setViewingTask] = useState<any | null>(null);
   
   // Form state
   const [customerId, setCustomerId] = useState("");
@@ -375,6 +378,12 @@ const AdminTasksPage: React.FC = () => {
                   </td>
                   <td className="px-6 py-4 text-right space-x-2">
                     <button
+                      onClick={() => setViewingTask(t)}
+                      className="text-xs font-bold text-primary hover:text-black uppercase"
+                    >
+                      View
+                    </button>
+                    <button
                       onClick={() => handleEdit(t)}
                       className="text-xs font-bold text-gray-500 hover:text-black uppercase"
                     >
@@ -451,6 +460,12 @@ const AdminTasksPage: React.FC = () => {
                      </div>
                      <div className="flex gap-2">
                         <button
+                          onClick={() => setViewingTask(t)}
+                          className="rounded-full bg-primary/10 px-4 py-2 text-xs font-bold text-primary hover:bg-primary hover:text-white transition-colors"
+                        >
+                          VIEW
+                        </button>
+                        <button
                           onClick={() => handleEdit(t)}
                           className="rounded-full bg-gray-100 px-4 py-2 text-xs font-bold text-gray-600 hover:bg-gray-200 transition-colors"
                         >
@@ -471,6 +486,152 @@ const AdminTasksPage: React.FC = () => {
          })}
          {tasks?.length === 0 && !tasksLoading && <div className="p-8 text-center text-gray-400">No tasks found.</div>}
       </div>
+
+      {/* Task Detail Modal */}
+      {viewingTask && (
+        <Modal 
+          isOpen={!!viewingTask} 
+          onClose={() => setViewingTask(null)} 
+          title={`Task Details - #${viewingTask.id.toString().padStart(4, '0')}`}
+        >
+          <div className="space-y-3 pt-0">
+            {/* Status & Customer Summary */}
+            <div className="flex items-center justify-between p-3 bg-muted/30 rounded-2xl border border-border/50">
+              <div className="flex items-center gap-3">
+                <div className={`p-2 rounded-xl border ${
+                  viewingTask.status === 'completed' 
+                    ? 'text-green-600 bg-green-50 border-green-100' 
+                    : viewingTask.status === 'in_progress'
+                    ? 'text-blue-600 bg-blue-50 border-blue-100'
+                    : 'text-orange-600 bg-orange-50 border-orange-100'
+                }`}>
+                  {viewingTask.status === 'completed' ? <CheckCircle2 className="w-4 h-4" /> : <Clock className="w-4 h-4 animate-pulse" />}
+                </div>
+                <div>
+                  <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground leading-none">
+                    {extractOrderTitle(viewingTask.notes, viewingTask.category)}
+                  </p>
+                  <p className="text-xs font-black uppercase text-foreground mt-1">{viewingTask.status.replace('_', ' ')}</p>
+                </div>
+              </div>
+              <div className="text-right">
+                <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground leading-none">Task ID</p>
+                <p className="text-xs font-black text-foreground mt-1">#{viewingTask.id.toString().padStart(4, '0')}</p>
+              </div>
+            </div>
+
+            {/* Customer Info */}
+            <div className="p-3 bg-muted/50 rounded-2xl border border-border">
+              <p className="text-[9px] text-muted-foreground font-black uppercase tracking-widest mb-2">Customer</p>
+              <div className="font-bold text-gray-900">{viewingTask.customerName}</div>
+              <div className="text-xs text-gray-500">{viewingTask.customerPhone}</div>
+            </div>
+
+            {/* Finance Grid */}
+            <div className="grid grid-cols-3 gap-3">
+              <div className="p-3 bg-muted/50 rounded-2xl border border-border">
+                <p className="text-[9px] text-muted-foreground font-black uppercase tracking-widest mb-1">Total Value</p>
+                <p className="text-xs font-black text-foreground italic">₦{viewingTask.totalAmount.toLocaleString()}</p>
+              </div>
+              <div className="p-3 bg-muted/50 rounded-2xl border border-border">
+                <p className="text-[9px] text-muted-foreground font-black uppercase tracking-widest mb-1">Paid</p>
+                <p className="text-xs font-black text-approve italic">₦{viewingTask.amountPaid.toLocaleString()}</p>
+              </div>
+              <div className="p-3 bg-muted/50 rounded-2xl border border-border">
+                <p className="text-[9px] text-muted-foreground font-black uppercase tracking-widest mb-1">Balance</p>
+                <p className="text-xs font-black text-red-500 italic">₦{Math.max(0, viewingTask.totalAmount - viewingTask.amountPaid).toLocaleString()}</p>
+              </div>
+            </div>
+
+            {/* Production Cost */}
+            <div className="p-3 bg-muted/50 rounded-2xl border border-border">
+              <p className="text-[9px] text-muted-foreground font-black uppercase tracking-widest mb-1">Production Cost</p>
+              <p className="text-xs font-black text-foreground italic">₦{viewingTask.productionCost?.toLocaleString() || '0'}</p>
+            </div>
+
+            {/* Delivery & Timeline Row */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              {/* Delivery */}
+              <div className="p-3 bg-muted/50 rounded-2xl border border-border">
+                <p className="text-[9px] text-muted-foreground font-black uppercase tracking-widest mb-1">Delivery Destination</p>
+                <div className="flex items-start gap-2">
+                  <MapPin className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
+                  <p className="text-xs font-bold text-foreground leading-tight line-clamp-2">
+                    {viewingTask.deliveryDestination || "No address provided"}
+                  </p>
+                </div>
+              </div>
+
+              {/* Timeline */}
+              <div className="p-3 bg-muted/50 rounded-2xl border border-border">
+                <p className="text-[9px] text-muted-foreground font-black uppercase tracking-widest mb-1">Timeline</p>
+                <div className="space-y-2">
+                  {viewingTask.startDate && (
+                    <div className="flex items-center gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-foreground" />
+                      <p className="text-[10px] font-black text-foreground uppercase italic shrink-0">Started:</p>
+                      <p className="text-[10px] text-muted-foreground">{format(parseISO(viewingTask.startDate), 'dd/MM/yy')}</p>
+                    </div>
+                  )}
+                  <div className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-approve shadow-[0_0_8px_rgba(var(--approve),0.5)]" />
+                    <p className="text-[10px] font-black text-foreground uppercase italic shrink-0">Due:</p>
+                    <p className="text-[10px] text-muted-foreground">{format(new Date(viewingTask.deadline), 'dd/MM/yy')}</p>
+                  </div>
+                  {viewingTask.createdAt && (
+                    <div className="flex items-center gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-gray-400" />
+                      <p className="text-[10px] font-black text-foreground uppercase italic shrink-0">Created:</p>
+                      <p className="text-[10px] text-muted-foreground">{format(parseISO(viewingTask.createdAt), 'dd/MM/yy')}</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/* Assignee */}
+            <div className="p-3 bg-muted/50 rounded-2xl border border-border">
+              <p className="text-[9px] text-muted-foreground font-black uppercase tracking-widest mb-1">Assigned To</p>
+              <p className="text-xs font-bold text-foreground">@{viewingTask.assigneeName || "Unassigned"}</p>
+            </div>
+
+            {/* Production Details */}
+            {(viewingTask.productionNotes || viewingTask.notes) && (
+              <div className="p-3 bg-orange-50/20 rounded-2xl border border-orange-100/30">
+                <div className="flex items-center gap-2 mb-1">
+                  <AlertCircle className="w-3.5 h-3.5 text-orange-600" />
+                  <p className="text-[9px] text-orange-600 font-black uppercase tracking-widest">Production Analysis</p>
+                </div>
+                {viewingTask.productionNotes && (
+                  <div className="mb-2">
+                    <p className="text-[10px] text-orange-800 font-bold uppercase tracking-tight mb-0.5">User Instructions:</p>
+                    <p className="text-[11px] text-orange-900/80 leading-relaxed italic">"{viewingTask.productionNotes}"</p>
+                  </div>
+                )}
+                 {viewingTask.quantity && viewingTask.quantity > 1 && (
+                  <div className="mb-2">
+                    <p className="text-[10px] text-orange-800 font-bold uppercase tracking-tight mb-0.5">Quantity Order:</p>
+                    <p className="text-[11px] text-orange-900/80 leading-relaxed font-bold italic">{viewingTask.quantity} Pieces</p>
+                  </div>
+                )}
+                {viewingTask.notes && (
+                  <div>
+                    <p className="text-[10px] text-orange-800 font-bold uppercase tracking-tight mb-0.5">System Memo:</p>
+                    <p className="text-[11px] text-orange-900/80 leading-relaxed italic line-clamp-3">"{viewingTask.notes}"</p>
+                  </div>
+                )}
+              </div>
+            )}
+
+            <button 
+              onClick={() => setViewingTask(null)}
+              className="w-full py-3.5 rounded-2xl bg-foreground text-card text-[11px] font-black uppercase tracking-widest hover:opacity-90 transition-all transform active:scale-[0.98] mt-2 shadow-lg shadow-foreground/10"
+            >
+              Close Details
+            </button>
+          </div>
+        </Modal>
+      )}
     </div>
   );
 };

@@ -8,6 +8,9 @@ export interface CreateCheckoutSessionOptions {
   itemId?: number;
   successUrl: string;
   cancelUrl: string;
+  deliveryAddress?: string;
+  notes?: string;
+  quantity?: number;
   metadata?: Record<string, any>;
 }
 

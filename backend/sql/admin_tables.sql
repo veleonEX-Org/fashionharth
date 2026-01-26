@@ -6,8 +6,8 @@ CREATE TABLE IF NOT EXISTS customers (
   phone VARCHAR(50),
   user_id INTEGER REFERENCES users(id) ON DELETE SET NULL,
   measurements JSONB DEFAULT '{}'::jsonb,
-  dob TIMESTAMP,
-  anniversary_date TIMESTAMP,
+  dob DATE,
+  anniversary_date DATE,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );

@@ -16,6 +16,12 @@ const ProfilePage: React.FC = () => {
   const { user, refreshProfile } = useAuth();
   const [firstName, setFirstName] = useState(user?.firstName ?? "");
   const [lastName, setLastName] = useState(user?.lastName ?? "");
+  const [phone, setPhone] = useState(user?.phone ?? "");
+  
+  const initialDate = user?.dob ? new Date(user.dob) : null;
+  const [birthMonth, setBirthMonth] = useState(initialDate ? String(initialDate.getUTCMonth() + 1) : "");
+  const [birthDay, setBirthDay] = useState(initialDate ? String(initialDate.getUTCDate()) : "");
+  
   const [validationError, setValidationError] = useState<string | null>(null);
 
   const [currentPassword, setCurrentPassword] = useState("");
@@ -25,7 +31,7 @@ const ProfilePage: React.FC = () => {
   const [showPasswordForm, setShowPasswordForm] = useState(false);
 
   const mutation = useMutation({
-    mutationFn: async (payload: { firstName: string; lastName: string }) => {
+    mutationFn: async (payload: { firstName: string; lastName: string; phone?: string; dob?: string }) => {
       const res = await http.put<User>("/auth/me", payload);
       return res.data;
     },
@@ -56,6 +62,12 @@ const ProfilePage: React.FC = () => {
     if (user) {
       setFirstName(user.firstName);
       setLastName(user.lastName);
+      setPhone(user.phone ?? "");
+      if (user.dob) {
+        const d = new Date(user.dob);
+        setBirthMonth(String(d.getUTCMonth() + 1));
+        setBirthDay(String(d.getUTCDate()));
+      }
     }
   }, [user]);
 
@@ -71,7 +83,13 @@ const ProfilePage: React.FC = () => {
       return;
     }
 
-    mutation.mutate(parsed.data);
+    const dob = (birthMonth && birthDay) ? `2000-${String(birthMonth).padStart(2, '0')}-${String(birthDay).padStart(2, '0')}` : undefined;
+
+    mutation.mutate({ 
+      ...parsed.data, 
+      phone: phone || undefined,
+      dob
+    });
   };
 
   const handlePasswordSubmit = async (e: React.FormEvent) => {
@@ -126,6 +144,41 @@ const ProfilePage: React.FC = () => {
                 onChange={(e) => setLastName(e.target.value)}
                 required
               />
+            </div>
+          </div>
+          <div className="space-y-1">
+            <Label htmlFor="phone">Phone Number</Label>
+            <Input
+              id="phone"
+              type="tel"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              placeholder="+234..."
+            />
+          </div>
+          <div className="space-y-1">
+            <Label>Birthday</Label>
+            <div className="flex gap-2">
+              <select
+                value={birthMonth}
+                onChange={(e) => setBirthMonth(e.target.value)}
+                className="flex-1 rounded-md border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none"
+              >
+                <option value="">Month</option>
+                {["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"].map((m, i) => (
+                  <option key={m} value={i + 1}>{m}</option>
+                ))}
+              </select>
+              <select
+                value={birthDay}
+                onChange={(e) => setBirthDay(e.target.value)}
+                className="w-24 rounded-md border border-border bg-background px-3 py-2 text-sm focus:border-primary focus:outline-none"
+              >
+                <option value="">Day</option>
+                {Array.from({ length: 31 }, (_, i) => i + 1).map(d => (
+                  <option key={d} value={d}>{d}</option>
+                ))}
+              </select>
             </div>
           </div>
           <div className="space-y-1">

@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchMyTransactions, fetchMyTasks } from "../api/users";
 import { UserTransactionsTable } from "../components/Dashboard/UserTransactionsTable";
 import { UserTasksList } from "../components/Dashboard/UserTasksList";
+import { CompleteProfileCard } from "../components/Dashboard/CompleteProfileCard";
 import { Wallet, ShoppingBag } from "lucide-react";
 
 const UserDashboardPage: React.FC = () => {
@@ -45,6 +46,8 @@ const UserDashboardPage: React.FC = () => {
         </p>
       </div>
       
+      <CompleteProfileCard />
+
       {/* Unified Account Overview Card */}
       <div className="rounded-3xl border border-zinc-100 bg-white p-2 shadow-sm overflow-hidden">
         <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-zinc-50">

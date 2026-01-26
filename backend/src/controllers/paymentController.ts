@@ -6,7 +6,19 @@ import { pool } from "../database/pool.js";
 
 export const createCheckoutSession = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { amount, currency, type, planId, itemId, provider = 'paystack', transactionId, installmentNumber } = req.body;
+    const { 
+      amount, 
+      currency, 
+      type, 
+      planId, 
+      itemId, 
+      provider = 'paystack', 
+      transactionId, 
+      installmentNumber,
+      deliveryAddress,
+      notes: productionNotes,
+      quantity = 1
+    } = req.body;
     logger.info(`Payment Request Received: ${JSON.stringify(req.body)}`);
     const userId = (req as any).user.id;
     
@@ -49,7 +61,10 @@ export const createCheckoutSession = async (req: Request, res: Response, next: N
         currency || 'USD',
         periods, 
         provider,
-        itemId
+        itemId,
+        deliveryAddress,
+        productionNotes,
+        quantity
       );
     } else if (transactionId && installmentNumber) {
         // Paying an EXACT existing installment
@@ -69,6 +84,9 @@ export const createCheckoutSession = async (req: Request, res: Response, next: N
         type,
         planId,
         itemId,
+        deliveryAddress,
+        notes: productionNotes,
+        quantity,
         successUrl: provider === 'paystack' 
           ? `${process.env.APP_URL}/payment/success?provider=paystack` 
           : `${process.env.APP_URL}/payment/success?provider=stripe&session_id={CHECKOUT_SESSION_ID}`,

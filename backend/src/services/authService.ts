@@ -14,6 +14,7 @@ import {
   sendVerificationEmail,
   sendPasswordResetEmail,
 } from "./emailService.js";
+import { createCustomer, updateCustomer } from "./customerService.js";
 
 const registerSchema = z.object({
   firstName: z
@@ -114,8 +115,13 @@ export async function loginUser(
 ): Promise<{ user: PublicUser; accessToken: string; refreshToken: string }> {
   const data = loginSchema.parse(input);
 
-  const result = await pool.query<User>(
-    "SELECT * FROM users WHERE email = $1",
+  const result = await pool.query<User & { phone: string | null; dob: Date | null }>(
+    `
+      SELECT u.*, c.phone, c.dob
+      FROM users u
+      LEFT JOIN customers c ON u.customer_id = c.id
+      WHERE u.email = $1
+    `,
     [data.email]
   );
   const user = result.rows[0];
@@ -165,9 +171,15 @@ export async function refreshTokens(
 ): Promise<{ accessToken: string; refreshToken: string }> {
   const payload = verifyRefreshToken(refreshToken);
 
-  const result = await pool.query<User>("SELECT * FROM users WHERE id = $1", [
-    payload.sub,
-  ]);
+  const result = await pool.query<User & { phone: string | null; dob: Date | null }>(
+    `
+      SELECT u.*, c.phone, c.dob
+      FROM users u
+      LEFT JOIN customers c ON u.customer_id = c.id
+      WHERE u.id = $1
+    `,
+    [payload.sub]
+  );
   const user = result.rows[0];
 
   if (!user || user.refresh_token !== refreshToken) {
@@ -306,9 +318,15 @@ export async function logoutUser(userId: number): Promise<void> {
 }
 
 export async function getUserById(id: number): Promise<PublicUser | null> {
-  const result = await pool.query<User>("SELECT * FROM users WHERE id = $1", [
-    id,
-  ]);
+  const result = await pool.query<User & { phone: string | null; dob: Date | null }>(
+    `
+      SELECT u.*, c.phone, c.dob
+      FROM users u
+      LEFT JOIN customers c ON u.customer_id = c.id
+      WHERE u.id = $1
+    `,
+    [id]
+  );
   const user = result.rows[0];
   return user ? toPublicUser(user) : null;
 }
@@ -322,6 +340,8 @@ const profileUpdateSchema = z.object({
     .string()
     .min(1, "Last name is required.")
     .max(100, "Last name must be less than 100 characters."),
+  phone: z.string().optional().nullable(),
+  dob: z.string().optional().nullable(),
 });
 
 export async function updateUserProfile(
@@ -329,28 +349,79 @@ export async function updateUserProfile(
   input: unknown
 ): Promise<PublicUser> {
   const data = profileUpdateSchema.parse(input);
-  const { firstName, lastName } = data;
+  const { firstName, lastName, phone, dob } = data;
 
-  const result = await pool.query<User>(
-    `
-      UPDATE users
-      SET first_name = $1,
-          last_name = $2,
-          updated_at = NOW()
-      WHERE id = $3
-      RETURNING *
-    `,
-    [firstName, lastName, id]
-  );
+  const client = await pool.connect();
+  try {
+    await client.query("BEGIN");
 
-  const user = result.rows[0];
-  if (!user) {
-    const error = new Error("User not found.");
-    (error as any).statusCode = 404;
+    // 1. Update User basic info
+    const userResult = await client.query<User>(
+      `
+        UPDATE users
+        SET first_name = $1,
+            last_name = $2,
+            updated_at = NOW()
+        WHERE id = $3
+        RETURNING *
+      `,
+      [firstName, lastName, id]
+    );
+
+    const user = userResult.rows[0];
+    if (!user) {
+      const error = new Error("User not found.");
+      (error as any).statusCode = 404;
+      throw error;
+    }
+
+    // 2. Handle Customer record for Phone/DOB
+    let customerId = user.customer_id;
+
+    if (customerId) {
+      // Update existing customer
+      await updateCustomer(customerId, {
+        name: `${firstName} ${lastName}`,
+        phone: phone || undefined,
+        dob: dob || undefined,
+      }, client);
+    } else if (phone || dob) {
+      // Create new customer if providing additional info
+      const customer = await createCustomer({
+        name: `${firstName} ${lastName}`,
+        email: user.email,
+        phone: phone || undefined,
+        dob: dob || undefined,
+        userId: user.id,
+      }, client);
+      customerId = customer.id;
+      
+      // Don't need to manually update user.customer_id as createCustomer does it
+      // But we need to refresh our local user object for the return value
+      user.customer_id = customerId;
+    }
+
+    await client.query("COMMIT");
+
+    // 3. Return combined data
+    // We need to fetch the fresh data to ensure we have the correct phone/dob
+    const finalResult = await pool.query<User & { phone: string | null; dob: Date | null }>(
+      `
+        SELECT u.*, c.phone, c.dob
+        FROM users u
+        LEFT JOIN customers c ON u.customer_id = c.id
+        WHERE u.id = $1
+      `,
+      [id]
+    );
+
+    return toPublicUser(finalResult.rows[0]);
+  } catch (error) {
+    await client.query("ROLLBACK");
     throw error;
+  } finally {
+    client.release();
   }
-
-  return toPublicUser(user);
 }
 
 export async function resendVerificationEmail(email: string): Promise<string> {

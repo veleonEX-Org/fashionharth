@@ -20,6 +20,12 @@ const StaffPortalPage: React.FC = () => {
     }),
     enabled: !!user?.id,
   });
+  
+  const extractOrderTitle = (notes: string | null, category: string) => {
+    if (!notes) return category;
+    const match = notes.match(/item:\s*([^.]+)/);
+    return match ? match[1].trim() : category;
+  };
 
   const completeMutation = useMutation({
     mutationFn: (id: number) => updateTask(id, { status: "completed" }),
@@ -79,21 +85,27 @@ const StaffPortalPage: React.FC = () => {
                   
                   <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                      <div className="space-y-1">
-                        <div className="text-xs font-bold text-primary uppercase tracking-widest flex items-center gap-2">
-                           {t.category}
-                           {t.status === "completed" && (
-                              <span className="bg-green-100 text-green-700 px-2 py-0.5 rounded-full text-[10px]">COMPLETED</span>
-                           )}
-                        </div>
-                        <h3 className="text-lg font-bold text-foreground">{t.customerName}</h3>
-                        {t.customerPhone && <p className="text-xs text-muted-foreground">{t.customerPhone}</p>}
-                        {t.deliveryDestination && (
-                           <div className="flex items-center gap-1 text-[10px] text-primary font-bold uppercase mt-1">
-                              📍 {t.deliveryDestination}
-                           </div>
-                        )}
-                        {t.notes && <p className="text-sm text-muted-foreground line-clamp-1 mt-1">{t.notes}</p>}
-                     </div>
+                         <div className="text-[10px] text-primary uppercase font-black tracking-widest mt-0.5">
+                             {extractOrderTitle(t.notes, t.category)}
+                         </div>
+                         <h3 className="text-lg font-bold text-foreground">{t.customerName}</h3>
+                         {t.customerPhone && <p className="text-xs text-muted-foreground">{t.customerPhone}</p>}
+                         {t.deliveryDestination && (
+                            <div className="flex items-center gap-1 text-[10px] text-primary font-bold uppercase mt-1">
+                               📍 {t.deliveryDestination}
+                            </div>
+                         )}
+                         {t.quantity && t.quantity > 1 && (
+                            <p className="text-[10px] font-black text-foreground uppercase mt-1">Qty: {t.quantity}</p>
+                         )}
+                         {t.productionNotes && (
+                            <div className="mt-2 p-2 bg-muted/50 rounded-lg border border-border/50">
+                                <p className="text-[9px] font-black uppercase text-muted-foreground mb-0.5">User Instructions:</p>
+                                <p className="text-xs italic text-foreground leading-tight">"{t.productionNotes}"</p>
+                            </div>
+                         )}
+                         {t.notes && <p className="text-[11px] text-muted-foreground line-clamp-1 mt-1 italic">{t.notes}</p>}
+                      </div>
 
                      <div className="flex items-center gap-8">
                         <div className="md:text-right">

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Item } from "../types/item";
+import { SmartImage } from "./ui/SmartImage";
 
 interface FashionCardProps {
   item: Item;
@@ -13,10 +14,11 @@ const FashionCard: React.FC<FashionCardProps> = ({ item, onFavorite }) => {
       {/* Image Container */}
       <div className="relative aspect-[3/4] overflow-hidden bg-muted">
         {item.imageUrl ? (
-          <img
+          <SmartImage
             src={item.imageUrl}
             alt={item.title}
-            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-100 group-hover:opacity-100"
+            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+            containerClassName="h-full w-full"
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center bg-muted text-muted-foreground">

@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { pool } from "../database/pool.js";
+import { PoolClient } from "pg";
 import { Customer, CreateCustomerPayload, UpdateCustomerPayload } from "../models/customer.js";
 
 const customerSchema = z.object({
@@ -12,6 +13,8 @@ const customerSchema = z.object({
   anniversaryDate: z.string().optional().nullable(),
 });
 
+import { formatDateOnly } from "../utils/dateUtils.js";
+
 function toCustomer(row: any): Customer {
   return {
     id: row.id,
@@ -20,20 +23,21 @@ function toCustomer(row: any): Customer {
     phone: row.phone,
     userId: row.user_id,
     measurements: row.measurements,
-    dob: row.dob,
-    anniversaryDate: row.anniversary_date,
+    dob: formatDateOnly(row.dob),
+    anniversaryDate: formatDateOnly(row.anniversary_date),
     createdAt: row.created_at,
     updatedAt: row.updated_at,
     totalTasks: row.total_tasks ? Number(row.total_tasks) : 0,
   };
 }
 
-export async function createCustomer(input: CreateCustomerPayload): Promise<Customer> {
+export async function createCustomer(input: CreateCustomerPayload, tx?: PoolClient): Promise<Customer> {
   const data = customerSchema.parse(input);
+  const client = tx || await pool.connect();
+  const shouldManageTx = !tx;
 
-  const client = await pool.connect();
   try {
-    await client.query("BEGIN");
+    if (shouldManageTx) await client.query("BEGIN");
 
     const result = await client.query(
       `
@@ -61,13 +65,13 @@ export async function createCustomer(input: CreateCustomerPayload): Promise<Cust
       );
     }
 
-    await client.query("COMMIT");
+    if (shouldManageTx) await client.query("COMMIT");
     return customer;
   } catch (error) {
-    await client.query("ROLLBACK");
+    if (shouldManageTx) await client.query("ROLLBACK");
     throw error;
   } finally {
-    client.release();
+    if (shouldManageTx) client.release();
   }
 }
 
@@ -90,14 +94,15 @@ export async function getCustomers(search?: string): Promise<Customer[]> {
   return result.rows.map(toCustomer);
 }
 
-export async function getCustomerById(id: number): Promise<Customer | null> {
-  const result = await pool.query(`SELECT * FROM customers WHERE id = $1`, [id]);
+export async function getCustomerById(id: number, tx?: PoolClient): Promise<Customer | null> {
+  const client = tx || pool;
+  const result = await client.query(`SELECT * FROM customers WHERE id = $1`, [id]);
   if (result.rows.length === 0) return null;
   return toCustomer(result.rows[0]);
 }
 
-export async function updateCustomer(id: number, input: UpdateCustomerPayload): Promise<Customer> {
-  const current = await getCustomerById(id);
+export async function updateCustomer(id: number, input: UpdateCustomerPayload, tx?: PoolClient): Promise<Customer> {
+  const current = await getCustomerById(id, tx);
   if (!current) throw new Error("Customer not found");
 
   const updates: string[] = [];
@@ -143,9 +148,11 @@ export async function updateCustomer(id: number, input: UpdateCustomerPayload): 
   `;
   params.push(id);
 
-  const client = await pool.connect();
+  const client = tx || await pool.connect();
+  const shouldManageTx = !tx;
+
   try {
-    await client.query("BEGIN");
+    if (shouldManageTx) await client.query("BEGIN");
     
     const result = await client.query(query, params);
     const updated = toCustomer(result.rows[0]);
@@ -162,12 +169,12 @@ export async function updateCustomer(id: number, input: UpdateCustomerPayload): 
       }
     }
 
-    await client.query("COMMIT");
+    if (shouldManageTx) await client.query("COMMIT");
     return updated;
   } catch (error) {
-    await client.query("ROLLBACK");
+    if (shouldManageTx) await client.query("ROLLBACK");
     throw error;
   } finally {
-    client.release();
+    if (shouldManageTx) client.release();
   }
 }

@@ -37,8 +37,10 @@ export const useChat = () => {
     }
   }, []);
 
-  const selectConversation = useCallback((conversationId: number) => {
+  const selectConversation = useCallback((conversationId: number | null) => {
     setActiveConversation(conversationId);
+    if (conversationId === null) return;
+    
     const socket = socketService.getSocket();
     if (socket) {
       socket.emit("join_conversation", conversationId);

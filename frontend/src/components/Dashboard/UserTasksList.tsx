@@ -239,14 +239,31 @@ export const UserTasksList: React.FC<Props> = ({ tasks }) => {
                     </div>
                 </div>
 
-                {/* Notes */}
-                {selectedTask.notes && (
+                {/* Production Notes & Details */}
+                {(selectedTask.productionNotes || selectedTask.notes) && (
                     <div className="p-3 bg-orange-50/20 rounded-2xl border border-orange-100/30">
                         <div className="flex items-center gap-2 mb-1">
                             <AlertCircle className="w-3.5 h-3.5 text-orange-600" />
-                            <p className="text-[9px] text-orange-600 font-black uppercase tracking-widest">Production Notes</p>
+                            <p className="text-[9px] text-orange-600 font-black uppercase tracking-widest">Production Analysis</p>
                         </div>
-                        <p className="text-[11px] text-orange-900/80 leading-relaxed italic line-clamp-3">"{selectedTask.notes}"</p>
+                        {selectedTask.productionNotes && (
+                            <div className="mb-2">
+                                <p className="text-[10px] text-orange-800 font-bold uppercase tracking-tight mb-0.5">User Instructions:</p>
+                                <p className="text-[11px] text-orange-900/80 leading-relaxed italic">"{selectedTask.productionNotes}"</p>
+                            </div>
+                        )}
+                        {selectedTask.quantity && selectedTask.quantity > 1 && (
+                            <div className="mb-2">
+                                <p className="text-[10px] text-orange-800 font-bold uppercase tracking-tight mb-0.5">Quantity:</p>
+                                <p className="text-[11px] text-orange-900/80 leading-relaxed italic">{selectedTask.quantity} Pieces</p>
+                            </div>
+                        )}
+                        {selectedTask.notes && (
+                            <div>
+                                <p className="text-[10px] text-orange-800 font-bold uppercase tracking-tight mb-0.5">System Memo:</p>
+                                <p className="text-[11px] text-orange-900/80 leading-relaxed italic line-clamp-2">"{selectedTask.notes}"</p>
+                            </div>
+                        )}
                     </div>
                 )}
 

@@ -33,6 +33,9 @@ export class PaystackService implements PaymentProvider {
         planId,
         itemId: options.itemId,
         userId: options.userId,
+        deliveryAddress: options.deliveryAddress,
+        notes: options.notes,
+        quantity: options.quantity,
       },
     };
 
@@ -302,18 +305,21 @@ export class PaystackService implements PaymentProvider {
             deadline.setDate(deadline.getDate() - 3);
 
             const taskResult = await pool.query(
-              `INSERT INTO tasks (customer_id, category, total_amount, amount_paid, due_date, deadline, status, notes, transaction_id)
-               VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id`,
+              `INSERT INTO tasks (customer_id, category, total_amount, amount_paid, due_date, deadline, status, notes, transaction_id, delivery_destination, quantity, production_notes)
+               VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING id`,
               [
                 customerId, 
                 item.category || 'General', 
-                parseFloat(item.price), 
+                parseFloat(item.price) * (metadata?.quantity || 1), 
                 data.amount / 100,
                 dueDate,
                 deadline,
                 'pending',
                 `Order via Paystack for item: ${item.title}. Ref: ${data.reference}. parent transaction ID: ${transactionId}. ${isFirstInstallment ? 'Started via Installment Plan.' : 'Paid in Full.'}`,
-                transactionId
+                transactionId,
+                metadata?.deliveryAddress,
+                metadata?.quantity || 1,
+                metadata?.notes
               ]
             );
             

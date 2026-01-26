@@ -20,7 +20,8 @@ const AdminCustomersPage: React.FC = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [userId, setUserId] = useState<string>("");
-  const [dob, setDob] = useState("");
+  const [birthDay, setBirthDay] = useState("");
+  const [birthMonth, setBirthMonth] = useState("");
   const [anniversary, setAnniversary] = useState("");
   const [measurements, setMeasurements] = useState<Record<string, any>>({});
 
@@ -35,7 +36,7 @@ const AdminCustomersPage: React.FC = () => {
   });
 
   const resetForm = () => {
-    setName(""); setEmail(""); setPhone(""); setDob(""); setAnniversary("");
+    setName(""); setEmail(""); setPhone(""); setBirthDay(""); setBirthMonth(""); setAnniversary("");
     setUserId("");
     setMeasurements({});
     setEditingCustomer(null);
@@ -67,7 +68,7 @@ const AdminCustomersPage: React.FC = () => {
       email: email || undefined,
       phone: phone || undefined,
       userId: userId ? parseInt(userId) : undefined,
-      dob: dob || undefined,
+      dob: (birthMonth && birthDay) ? `2000-${String(birthMonth).padStart(2, '0')}-${String(birthDay).padStart(2, '0')}` : undefined,
       anniversaryDate: anniversary || undefined,
       measurements,
     };
@@ -85,7 +86,14 @@ const AdminCustomersPage: React.FC = () => {
     setEmail(customer.email || "");
     setPhone(customer.phone || "");
     setUserId(customer.userId ? String(customer.userId) : "");
-    setDob(customer.dob ? new Date(customer.dob).toISOString().split('T')[0] : "");
+    if (customer.dob) {
+      const d = new Date(customer.dob);
+      setBirthMonth(String(d.getUTCMonth() + 1));
+      setBirthDay(String(d.getUTCDate()));
+    } else {
+      setBirthMonth("");
+      setBirthDay("");
+    }
     setAnniversary(customer.anniversaryDate ? new Date(customer.anniversaryDate).toISOString().split('T')[0] : "");
     setMeasurements(customer.measurements || {});
     setIsAdding(true);
@@ -150,8 +158,29 @@ const AdminCustomersPage: React.FC = () => {
               <FormField label="Phone" name="phone">
                 <Input value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+234..." />
               </FormField>
-              <FormField label="Date of Birth" name="dob">
-                <Input type="date" value={dob} onChange={(e) => setDob(e.target.value)} />
+              <FormField label="Birthday" name="dob">
+                <div className="flex gap-2">
+                  <select
+                    value={birthMonth}
+                    onChange={(e) => setBirthMonth(e.target.value)}
+                    className="flex-1 rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-black focus:outline-none"
+                  >
+                    <option value="">Month</option>
+                    {["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"].map((m, i) => (
+                      <option key={m} value={i + 1}>{m}</option>
+                    ))}
+                  </select>
+                  <select
+                    value={birthDay}
+                    onChange={(e) => setBirthDay(e.target.value)}
+                    className="w-24 rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-black focus:outline-none"
+                  >
+                    <option value="">Day</option>
+                    {Array.from({ length: 31 }, (_, i) => i + 1).map(d => (
+                      <option key={d} value={d}>{d}</option>
+                    ))}
+                  </select>
+                </div>
               </FormField>
               <FormField label="Anniversary Date" name="anniversary">
                 <Input type="date" value={anniversary} onChange={(e) => setAnniversary(e.target.value)} />
@@ -202,12 +231,14 @@ const AdminCustomersPage: React.FC = () => {
               </div>
               <div className="space-y-4">
                 <div>
-                  <label className="text-xs font-bold text-gray-400 uppercase">Date of Birth</label>
-                  <p className="text-gray-600">{viewingCustomer.dob ? new Date(viewingCustomer.dob).toLocaleDateString() : "N/A"}</p>
+                  <label className="text-xs font-bold text-gray-400 uppercase">Birthday</label>
+                  <p className="text-gray-600">
+                    {viewingCustomer.dob ? new Date(viewingCustomer.dob).toLocaleDateString('en-US', { month: 'long', day: 'numeric', timeZone: 'UTC' }) : "N/A"}
+                  </p>
                 </div>
                 <div>
                   <label className="text-xs font-bold text-gray-400 uppercase">Anniversary Date</label>
-                  <p className="text-gray-600">{viewingCustomer.anniversaryDate ? new Date(viewingCustomer.anniversaryDate).toLocaleDateString() : "N/A"}</p>
+                  <p className="text-gray-600">{viewingCustomer.anniversaryDate ? new Date(viewingCustomer.anniversaryDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }) : "N/A"}</p>
                 </div>
               </div>
             </div>

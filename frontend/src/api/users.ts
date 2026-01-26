@@ -21,6 +21,8 @@ export interface UserTask {
   deadline: string;
   dueDate: string;
   notes: string | null;
+  productionNotes: string | null;
+  quantity: number | null;
   deliveryDestination: string | null;
   createdAt: string;
   transactionId?: number;

@@ -11,6 +11,8 @@ export interface User {
   updatedAt: string;
   isEmailVerified: boolean;
   isStudent?: boolean;
+  phone?: string | null;
+  dob?: string | null;
 }
 
 export interface AuthTokens {

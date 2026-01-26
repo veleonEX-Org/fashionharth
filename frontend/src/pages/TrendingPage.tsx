@@ -5,6 +5,7 @@ import { fetchPublicItems } from "../api/items";
 import { fetchTrendingNews, TrendingNews } from "../api/trending";
 import { Item } from "../types/item";
 import { BackButton } from "../components/ui/BackButton";
+import { SmartImage } from "../components/ui/SmartImage";
 
 type CombinedTrend = 
   | { type: "item"; data: Item }
@@ -76,26 +77,28 @@ const TrendingPage: React.FC = () => {
               <div className="flex-1">
                 {isItem ? (
                   <Link to={`/item/${trend.data.id}`} className="block overflow-hidden rounded-2xl group relative aspect-[4/5] shadow-2xl">
-                     {trend.data.imageUrl ? (
-                        <img
-                          src={trend.data.imageUrl}
-                          alt={trend.data.title}
-                          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 filter grayscale group-hover:grayscale-0"
-                        />
-                     ) : (
+                      {trend.data.imageUrl ? (
+                         <SmartImage
+                           src={trend.data.imageUrl}
+                           alt={trend.data.title}
+                           className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 filter grayscale group-hover:grayscale-0"
+                           containerClassName="h-full w-full"
+                         />
+                      ) : (
                         <div className="flex h-full w-full items-center justify-center bg-gray-100 text-gray-400">No Image</div>
                      )}
                      <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500" />
                   </Link>
                 ) : (
                   <a href={trend.data.originalUrl} target="_blank" rel="noopener noreferrer" className="block overflow-hidden rounded-2xl group relative aspect-[4/5] shadow-2xl">
-                     {trend.data.imageUrl ? (
-                        <img
-                          src={trend.data.imageUrl}
-                          alt={trend.data.title}
-                          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                        />
-                     ) : (
+                      {trend.data.imageUrl ? (
+                         <SmartImage
+                           src={trend.data.imageUrl}
+                           alt={trend.data.title}
+                           className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                           containerClassName="h-full w-full"
+                         />
+                      ) : (
                         <div className="flex h-full w-full items-center justify-center bg-gray-100 text-gray-400">No Image</div>
                      )}
                      <div className="absolute bottom-4 left-4 bg-black/70 text-white text-xs px-3 py-1 rounded backdrop-blur-md uppercase tracking-wider">

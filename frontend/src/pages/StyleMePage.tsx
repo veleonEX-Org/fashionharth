@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import { http } from "../api/http";
 import { Loader2 } from "lucide-react";
 import { BackButton } from "../components/ui/BackButton";
+import { SmartImage } from "../components/ui/SmartImage";
 
 const COLOR_PALETTES = [
   { name: "Monochromatic", colors: ["#000000", "#333333", "#666666", "#999999"], description: "Elegant and elongating. Uses different shades of the same hue." },
@@ -150,7 +151,7 @@ const StyleMePage: React.FC = () => {
           <div className="relative aspect-[3/4] rounded-[40px] bg-gray-100 overflow-hidden border-2 border-dashed border-gray-300 flex items-center justify-center group">
                {userPhoto ? (
                  <div className="relative h-full w-full">
-                    <img src={userPhoto} alt="User representation" className="h-full w-full object-cover" />
+                    <SmartImage src={userPhoto} alt="User representation" className="h-full w-full object-cover" containerClassName="h-full w-full" />
                     {isWearing && selectedItem && (
                       <div 
                         className="absolute inset-x-0 bottom-0 top-0 flex items-center justify-center animate-in fade-in zoom-in duration-500"
@@ -160,10 +161,11 @@ const StyleMePage: React.FC = () => {
                         }}
                       >
                          <div className="relative group/overlay">
-                            <img 
+                            <SmartImage 
                               src={selectedItem.imageUrl || selectedItem.image_url} 
                               alt="Overlaid Item" 
-                              className="max-h-[80%] max-w-[80%] object-contain drop-shadow-2xl"
+                              className="max-h-[80%] max-w-[80%] object-contain drop-shadow-2xl mx-auto"
+                              containerClassName="h-full w-full"
                             />
                             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/overlay:opacity-100 transition-opacity">
                                <span className="bg-black text-white px-4 py-2 rounded-full text-xs font-bold">CUSTOMIZED VIEW</span>
@@ -233,7 +235,7 @@ const StyleMePage: React.FC = () => {
                      }`}
                    >
                       <div className="aspect-square rounded-xl overflow-hidden bg-gray-50 mb-3">
-                         <img src={item.imageUrl || item.image_url} alt={item.title} className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                         <SmartImage src={item.imageUrl || item.image_url} alt={item.title} className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-500" containerClassName="h-full w-full" />
                       </div>
                       <h4 className="text-xs font-bold truncate uppercase">{item.title}</h4>
                       <p className="text-[10px] text-gray-400 mt-0.5">{item.category}</p>

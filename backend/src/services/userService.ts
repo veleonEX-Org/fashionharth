@@ -126,6 +126,8 @@ export async function getUserTasks(userId: number) {
     deadline: row.deadline,
     dueDate: row.due_date,
     notes: row.notes,
+    productionNotes: row.production_notes,
+    quantity: row.quantity,
     deliveryDestination: row.delivery_destination,
     createdAt: row.created_at,
     transactionId: row.transaction_id,

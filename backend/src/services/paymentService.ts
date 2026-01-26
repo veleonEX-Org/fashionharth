@@ -82,7 +82,7 @@ export class PaymentService {
     });
   }
 
-  async createInstallmentPlan(userId: number, email: string, totalAmount: number, currency: string, periods: number, provider: 'stripe' | 'paystack' = 'stripe', itemId?: number) {
+  async createInstallmentPlan(userId: number, email: string, totalAmount: number, currency: string, periods: number, provider: 'stripe' | 'paystack' = 'stripe', itemId?: number, deliveryAddress?: string, productionNotes?: string, quantity?: number) {
     logger.info(`Creating installment plan for user ${userId}: ${totalAmount} ${currency} over ${periods} months ${itemId ? `for item ${itemId}` : ''}`);
     
     // 1. Calculate installment amount
@@ -114,6 +114,9 @@ export class PaymentService {
         currency: currency,
         type: 'installment',
         itemId,
+        deliveryAddress,
+        notes: productionNotes,
+        quantity,
         successUrl: provider === 'paystack'
             ? `${process.env.APP_URL}/payment/success?provider=paystack`
             : `${process.env.APP_URL}/payment/success?provider=stripe&session_id={CHECKOUT_SESSION_ID}`,

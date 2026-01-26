@@ -35,9 +35,13 @@ export interface PublicUser {
   tasksAssigned: number;
   tasksCompleted: number;
   isStudent: boolean;
+  phone: string | null;
+  dob: string | null;
 }
 
-export function toPublicUser(row: User): PublicUser {
+import { formatDateOnly } from "../utils/dateUtils.js";
+
+export function toPublicUser(row: User & { phone?: string | null; dob?: Date | string | null }): PublicUser {
   return {
     id: row.id,
     firstName: row.first_name,
@@ -52,6 +56,8 @@ export function toPublicUser(row: User): PublicUser {
     tasksAssigned: row.tasks_assigned ? Number(row.tasks_assigned) : 0,
     tasksCompleted: row.tasks_completed ? Number(row.tasks_completed) : 0,
     isStudent: row.metadata?.is_student === true,
+    phone: row.phone || null,
+    dob: formatDateOnly(row.dob),
   };
 }
 

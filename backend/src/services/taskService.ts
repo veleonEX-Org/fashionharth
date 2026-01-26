@@ -14,6 +14,8 @@ const createTaskSchema = z.object({
   dueDate: z.string(), // ISO Date
   status: z.enum(['pending', 'in_progress', 'completed']).default('pending'),
   notes: z.string().optional(),
+  productionNotes: z.string().optional(),
+  quantity: z.number().optional(),
   deliveryDestination: z.string().optional(),
   transactionId: z.number().optional().nullable(),
 });
@@ -32,6 +34,8 @@ function toTask(row: any): Task {
     deadline: row.deadline,
     status: row.status,
     notes: row.notes,
+    productionNotes: row.production_notes,
+    quantity: row.quantity,
     deliveryDestination: row.delivery_destination,
     createdAt: row.created_at,
     updatedAt: row.updated_at,
@@ -54,9 +58,9 @@ export async function createTask(input: CreateTaskPayload): Promise<Task> {
     `
     INSERT INTO tasks (
       customer_id, category, total_amount, amount_paid, production_cost, 
-      assigned_to, start_date, due_date, deadline, status, notes, delivery_destination, transaction_id
+      assigned_to, start_date, due_date, deadline, status, notes, production_notes, quantity, delivery_destination, transaction_id
     )
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
     RETURNING *
     `,
     [
@@ -71,6 +75,8 @@ export async function createTask(input: CreateTaskPayload): Promise<Task> {
       deadline.toISOString(),
       data.status,
       data.notes || null,
+      data.productionNotes || null,
+      data.quantity || 1,
       data.deliveryDestination || null,
       data.transactionId || null,
     ]
@@ -166,6 +172,8 @@ export async function updateTask(id: number, input: UpdateTaskPayload): Promise<
   if (input.dueDate !== undefined) { updates.push(`due_date = $${idx++}`); params.push(input.dueDate); }
   if (input.status !== undefined) { updates.push(`status = $${idx++}`); params.push(input.status); }
   if (input.notes !== undefined) { updates.push(`notes = $${idx++}`); params.push(input.notes); }
+  if (input.productionNotes !== undefined) { updates.push(`production_notes = $${idx++}`); params.push(input.productionNotes); }
+  if (input.quantity !== undefined) { updates.push(`quantity = $${idx++}`); params.push(input.quantity); }
   if (input.deliveryDestination !== undefined) { updates.push(`delivery_destination = $${idx++}`); params.push(input.deliveryDestination); }
   if (input.transactionId !== undefined) { updates.push(`transaction_id = $${idx++}`); params.push(input.transactionId); }
   

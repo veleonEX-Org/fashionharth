@@ -8,12 +8,14 @@ import App from "./App";
 import "./index.css";
 import { AuthProvider } from "./state/AuthContext";
 import { queryClient } from "./lib/queryClient";
+import { ScrollToTop } from "./components/ScrollToTop";
 
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
+      <ScrollToTop />
       <QueryClientProvider client={queryClient}>
         <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID || ""}>
           <AuthProvider>

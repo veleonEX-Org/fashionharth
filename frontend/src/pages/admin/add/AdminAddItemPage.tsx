@@ -40,7 +40,7 @@ const AdminAddItemPage: React.FC = () => {
 
   const [price, setPrice] = useState("0");
   const [discountPercentage, setDiscountPercentage] = useState("0");
-  const [installmentDuration, setInstallmentDuration] = useState(""); // Empty means default (null)
+  const [installmentDuration, setInstallmentDuration] = useState("0"); // 0 means installments disabled by default
 
   const [category, setCategory] = useState("");
   const [story, setStory] = useState("");

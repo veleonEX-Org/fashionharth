@@ -11,6 +11,8 @@ export interface Task {
   deadline: string | null;
   status: 'pending' | 'in_progress' | 'completed';
   notes: string | null;
+  productionNotes: string | null;
+  quantity: number | null;
   deliveryDestination: string | null;
   createdAt: string;
   updatedAt: string;
@@ -33,6 +35,8 @@ export interface CreateTaskPayload {
   dueDate: string;
   status?: 'pending' | 'in_progress' | 'completed';
   notes?: string;
+  productionNotes?: string;
+  quantity?: number;
   deliveryDestination?: string;
   transactionId?: number;
 }
@@ -48,6 +52,8 @@ export interface UpdateTaskPayload {
   dueDate?: string;
   status?: 'pending' | 'in_progress' | 'completed';
   notes?: string;
+  productionNotes?: string;
+  quantity?: number;
   deliveryDestination?: string;
   transactionId?: number;
 }

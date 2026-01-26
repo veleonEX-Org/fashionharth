@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { http } from "../../../api/http";
 import { BackButton } from "../../../components/ui/BackButton";
 import type { Item } from "../../../types/item";
+import { SmartImage } from "../../../components/ui/SmartImage";
 
 const AdminViewItemPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -121,14 +122,14 @@ const AdminViewItemPage: React.FC = () => {
         {item.imageUrl && (
           <div>
             <p className="text-xs text-muted-foreground">Main Image</p>
-            <img src={item.imageUrl} alt={item.title} className="mt-2 h-40 w-40 rounded-lg object-cover shadow-sm" />
+            <SmartImage src={item.imageUrl} alt={item.title} className="mt-2 h-40 w-40 rounded-lg object-cover shadow-sm" containerClassName="h-40 w-40 mt-2" />
           </div>
         )}
 
         {item.inspiredImageUrl && (
           <div>
             <p className="text-xs text-muted-foreground">Inspired Image</p>
-            <img src={item.inspiredImageUrl} alt="Inspiration" className="mt-2 h-40 w-40 rounded-lg object-cover shadow-sm" />
+            <SmartImage src={item.inspiredImageUrl} alt="Inspiration" className="mt-2 h-40 w-40 rounded-lg object-cover shadow-sm" containerClassName="h-40 w-40 mt-2" />
           </div>
         )}
 

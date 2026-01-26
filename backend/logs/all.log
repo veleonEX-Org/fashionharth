@@ -3070,3 +3070,794 @@
 2026-01-21 12:14:20:1420 [32minfo[39m: [32mDatabase connection established successfully[39m
 2026-01-21 12:14:20:1420 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
 2026-01-21 13:24:55:2455 [33mwarn[39m: [33mDNS resolution failed (attempt 1/5), retrying in 2000ms...[39m
+2026-01-24 00:18:58:1858 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-24 00:18:58:1858 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-24 00:19:08:198 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-26 18:19:04:194 [33mwarn[39m: [33mDNS resolution failed (attempt 1/5), retrying in 2000ms...[39m
+2026-01-26 18:19:06:196 [33mwarn[39m: [33mDNS resolution failed (attempt 2/5), retrying in 4000ms...[39m
+2026-01-26 18:19:11:1911 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-26 18:19:11:1911 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-26 18:19:20:1920 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-26 18:23:01:231 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-26 18:23:01:231 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-26 18:24:33:2433 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-26 18:24:59:2459 [37mdebug[39m: [37m[Request] GET /ads | Origin: http://localhost:5173[39m
+2026-01-26 18:24:59:2459 [35mhttp[39m: [35mGET /ads 404 142 - 7.256 ms[39m
+2026-01-26 18:24:59:2459 [37mdebug[39m: [37m[Request] GET /items/public | Origin: http://localhost:5173[39m
+2026-01-26 18:24:59:2459 [37mdebug[39m: [37m[Request] GET /categories | Origin: http://localhost:5173[39m
+2026-01-26 18:24:59:2459 [35mhttp[39m: [35mGET /items/public 404 151 - 3.154 ms[39m
+2026-01-26 18:24:59:2459 [35mhttp[39m: [35mGET /categories 404 149 - 3.818 ms[39m
+2026-01-26 18:27:13:2713 [37mdebug[39m: [37m[Request] GET /items/public | Origin: http://localhost:5173[39m
+2026-01-26 18:27:13:2713 [35mhttp[39m: [35mGET /items/public 404 151 - 1.239 ms[39m
+2026-01-26 18:27:13:2713 [37mdebug[39m: [37m[Request] GET /categories | Origin: http://localhost:5173[39m
+2026-01-26 18:27:13:2713 [35mhttp[39m: [35mGET /categories 404 149 - 1.964 ms[39m
+2026-01-26 18:27:13:2713 [37mdebug[39m: [37m[Request] GET /ads | Origin: http://localhost:5173[39m
+2026-01-26 18:27:13:2713 [35mhttp[39m: [35mGET /ads 404 142 - 1.493 ms[39m
+2026-01-26 18:27:24:2724 [37mdebug[39m: [37m[Request] GET /ads | Origin: http://localhost:5173[39m
+2026-01-26 18:27:24:2724 [35mhttp[39m: [35mGET /ads 404 142 - 0.797 ms[39m
+2026-01-26 18:27:24:2724 [37mdebug[39m: [37m[Request] GET /items/public | Origin: http://localhost:5173[39m
+2026-01-26 18:27:24:2724 [37mdebug[39m: [37m[Request] GET /categories | Origin: http://localhost:5173[39m
+2026-01-26 18:27:24:2724 [35mhttp[39m: [35mGET /items/public 404 151 - 4.241 ms[39m
+2026-01-26 18:27:24:2724 [35mhttp[39m: [35mGET /categories 404 149 - 5.603 ms[39m
+2026-01-26 18:27:25:2725 [37mdebug[39m: [37m[Request] GET /ads | Origin: http://localhost:5173[39m
+2026-01-26 18:27:25:2725 [35mhttp[39m: [35mGET /ads 404 142 - 0.796 ms[39m
+2026-01-26 18:27:25:2725 [37mdebug[39m: [37m[Request] GET /items/public | Origin: http://localhost:5173[39m
+2026-01-26 18:27:25:2725 [35mhttp[39m: [35mGET /items/public 404 151 - 1.036 ms[39m
+2026-01-26 18:27:25:2725 [37mdebug[39m: [37m[Request] GET /categories | Origin: http://localhost:5173[39m
+2026-01-26 18:27:25:2725 [35mhttp[39m: [35mGET /categories 404 149 - 0.929 ms[39m
+2026-01-26 18:27:41:2741 [37mdebug[39m: [37m[Request] GET /ads | Origin: http://localhost:5173[39m
+2026-01-26 18:27:41:2741 [35mhttp[39m: [35mGET /ads 404 142 - 1.429 ms[39m
+2026-01-26 18:27:41:2741 [37mdebug[39m: [37m[Request] GET /items/public | Origin: http://localhost:5173[39m
+2026-01-26 18:27:41:2741 [37mdebug[39m: [37m[Request] GET /categories | Origin: http://localhost:5173[39m
+2026-01-26 18:27:41:2741 [35mhttp[39m: [35mGET /items/public 404 151 - 2.859 ms[39m
+2026-01-26 18:27:41:2741 [35mhttp[39m: [35mGET /categories 404 149 - 4.031 ms[39m
+2026-01-26 18:27:43:2743 [37mdebug[39m: [37m[Request] GET /ads | Origin: http://localhost:5173[39m
+2026-01-26 18:27:43:2743 [35mhttp[39m: [35mGET /ads 404 142 - 0.558 ms[39m
+2026-01-26 18:27:43:2743 [37mdebug[39m: [37m[Request] GET /items/public | Origin: http://localhost:5173[39m
+2026-01-26 18:27:43:2743 [35mhttp[39m: [35mGET /items/public 404 151 - 1.021 ms[39m
+2026-01-26 18:27:43:2743 [37mdebug[39m: [37m[Request] GET /categories | Origin: http://localhost:5173[39m
+2026-01-26 18:27:43:2743 [35mhttp[39m: [35mGET /categories 404 149 - 0.944 ms[39m
+2026-01-26 18:28:13:2813 [37mdebug[39m: [37m[Request] GET /ads | Origin: http://localhost:5173[39m
+2026-01-26 18:28:13:2813 [35mhttp[39m: [35mGET /ads 404 142 - 1.480 ms[39m
+2026-01-26 18:28:13:2813 [37mdebug[39m: [37m[Request] GET /items/public | Origin: http://localhost:5173[39m
+2026-01-26 18:28:13:2813 [37mdebug[39m: [37m[Request] GET /categories | Origin: http://localhost:5173[39m
+2026-01-26 18:28:13:2813 [35mhttp[39m: [35mGET /items/public 404 151 - 2.025 ms[39m
+2026-01-26 18:28:13:2813 [35mhttp[39m: [35mGET /categories 404 149 - 4.195 ms[39m
+2026-01-26 18:28:14:2814 [37mdebug[39m: [37m[Request] GET /ads | Origin: http://localhost:5173[39m
+2026-01-26 18:28:14:2814 [35mhttp[39m: [35mGET /ads 404 142 - 1.006 ms[39m
+2026-01-26 18:28:14:2814 [37mdebug[39m: [37m[Request] GET /items/public | Origin: http://localhost:5173[39m
+2026-01-26 18:28:14:2814 [37mdebug[39m: [37m[Request] GET /categories | Origin: http://localhost:5173[39m
+2026-01-26 18:28:14:2814 [35mhttp[39m: [35mGET /items/public 404 151 - 2.704 ms[39m
+2026-01-26 18:28:14:2814 [35mhttp[39m: [35mGET /categories 404 149 - 3.271 ms[39m
+2026-01-26 18:29:57:2957 [37mdebug[39m: [37m[Request] GET //api/ads | Origin: http://localhost:5173[39m
+2026-01-26 18:29:57:2957 [35mhttp[39m: [35mGET //api/ads 404 147 - 0.571 ms[39m
+2026-01-26 18:29:57:2957 [37mdebug[39m: [37m[Request] GET //api/items/public | Origin: http://localhost:5173[39m
+2026-01-26 18:29:57:2957 [37mdebug[39m: [37m[Request] GET //api/categories | Origin: http://localhost:5173[39m
+2026-01-26 18:29:57:2957 [35mhttp[39m: [35mGET //api/items/public 404 156 - 2.223 ms[39m
+2026-01-26 18:29:57:2957 [35mhttp[39m: [35mGET //api/categories 404 154 - 3.127 ms[39m
+2026-01-26 18:29:58:2958 [37mdebug[39m: [37m[Request] GET //api/ads | Origin: http://localhost:5173[39m
+2026-01-26 18:29:58:2958 [35mhttp[39m: [35mGET //api/ads 404 147 - 1.272 ms[39m
+2026-01-26 18:29:58:2958 [37mdebug[39m: [37m[Request] GET //api/items/public | Origin: http://localhost:5173[39m
+2026-01-26 18:29:58:2958 [37mdebug[39m: [37m[Request] GET //api/categories | Origin: http://localhost:5173[39m
+2026-01-26 18:29:58:2958 [35mhttp[39m: [35mGET //api/items/public 404 156 - 2.112 ms[39m
+2026-01-26 18:29:58:2958 [35mhttp[39m: [35mGET //api/categories 404 154 - 2.418 ms[39m
+2026-01-26 18:30:00:300 [37mdebug[39m: [37m[Request] GET /api/ads | Origin: http://localhost:5173[39m
+2026-01-26 18:30:00:300 [37mdebug[39m: [37m[Request] GET /api/items/public | Origin: http://localhost:5173[39m
+2026-01-26 18:30:00:300 [37mdebug[39m: [37m[Request] GET /api/categories | Origin: http://localhost:5173[39m
+2026-01-26 18:30:00:300 [35mhttp[39m: [35mGET /api/ads 200 350 - 258.978 ms[39m
+2026-01-26 18:30:01:301 [35mhttp[39m: [35mGET /api/categories 200 858 - 1185.142 ms[39m
+2026-01-26 18:30:02:302 [35mhttp[39m: [35mGET /api/items/public 200 3367 - 1431.481 ms[39m
+2026-01-26 18:30:46:3046 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/login | Origin: http://localhost:5173[39m
+2026-01-26 18:30:46:3046 [37mdebug[39m: [37m[Request] POST /api/auth/login | Origin: http://localhost:5173[39m
+2026-01-26 18:30:48:3048 [35mhttp[39m: [35mPOST /api/auth/login 200 728 - 2008.815 ms[39m
+2026-01-26 18:30:49:3049 [32minfo[39m: [32mUser 4 connected with socket wNk-r-FU7Huz1zbEAAAB[39m
+2026-01-26 18:30:58:3058 [37mdebug[39m: [37m[Request] OPTIONS /api/chat/conversations | Origin: http://localhost:5173[39m
+2026-01-26 18:30:58:3058 [37mdebug[39m: [37m[Request] GET /api/chat/conversations | Origin: http://localhost:5173[39m
+2026-01-26 18:30:59:3059 [35mhttp[39m: [35mGET /api/chat/conversations 200 1160 - 255.881 ms[39m
+2026-01-26 18:30:59:3059 [37mdebug[39m: [37m[Request] GET /api/chat/conversations | Origin: http://localhost:5173[39m
+2026-01-26 18:30:59:3059 [35mhttp[39m: [35mGET /api/chat/conversations 304 - - 235.444 ms[39m
+2026-01-26 18:31:03:313 [37mdebug[39m: [37m[Request] OPTIONS /api/chat/conversations/5/messages | Origin: http://localhost:5173[39m
+2026-01-26 18:31:03:313 [37mdebug[39m: [37m[Request] GET /api/chat/conversations/5/messages | Origin: http://localhost:5173[39m
+2026-01-26 18:31:04:314 [32minfo[39m: [32mSocket wNk-r-FU7Huz1zbEAAAB joined conversation_5[39m
+2026-01-26 18:31:05:315 [35mhttp[39m: [35mGET /api/chat/conversations/5/messages 200 148 - 1391.725 ms[39m
+2026-01-26 18:31:30:3130 [37mdebug[39m: [37m[Request] OPTIONS /api/admin/stats | Origin: http://localhost:5173[39m
+2026-01-26 18:31:30:3130 [37mdebug[39m: [37m[Request] GET /api/admin/stats | Origin: http://localhost:5173[39m
+2026-01-26 18:31:31:3131 [35mhttp[39m: [35mGET /api/admin/stats 200 157 - 1166.221 ms[39m
+2026-01-26 18:31:33:3133 [37mdebug[39m: [37m[Request] OPTIONS /api/tasks?paymentStatus=&sortBy=deadline&sortOrder=ASC | Origin: http://localhost:5173[39m
+2026-01-26 18:31:33:3133 [37mdebug[39m: [37m[Request] OPTIONS /api/customers | Origin: http://localhost:5173[39m
+2026-01-26 18:31:33:3133 [37mdebug[39m: [37m[Request] OPTIONS /api/users | Origin: http://localhost:5173[39m
+2026-01-26 18:31:33:3133 [37mdebug[39m: [37m[Request] OPTIONS /api/categories | Origin: http://localhost:5173[39m
+2026-01-26 18:31:33:3133 [37mdebug[39m: [37m[Request] GET /api/tasks?paymentStatus=&sortBy=deadline&sortOrder=ASC | Origin: http://localhost:5173[39m
+2026-01-26 18:31:33:3133 [37mdebug[39m: [37m[Request] GET /api/customers | Origin: http://localhost:5173[39m
+2026-01-26 18:31:33:3133 [37mdebug[39m: [37m[Request] GET /api/users | Origin: http://localhost:5173[39m
+2026-01-26 18:31:33:3133 [37mdebug[39m: [37m[Request] GET /api/categories | Origin: http://localhost:5173[39m
+2026-01-26 18:31:34:3134 [35mhttp[39m: [35mGET /api/tasks?paymentStatus=&sortBy=deadline&sortOrder=ASC 200 6252 - 249.339 ms[39m
+2026-01-26 18:31:34:3134 [35mhttp[39m: [35mGET /api/customers 200 929 - 245.661 ms[39m
+2026-01-26 18:31:35:3135 [35mhttp[39m: [35mGET /api/categories 304 - - 1171.626 ms[39m
+2026-01-26 18:31:35:3135 [35mhttp[39m: [35mGET /api/users 200 2191 - 1180.694 ms[39m
+2026-01-26 18:32:16:3216 [37mdebug[39m: [37m[Request] OPTIONS /api/ads | Origin: http://localhost:5173[39m
+2026-01-26 18:32:16:3216 [37mdebug[39m: [37m[Request] OPTIONS /api/items/public | Origin: http://localhost:5173[39m
+2026-01-26 18:32:16:3216 [37mdebug[39m: [37m[Request] GET /api/ads | Origin: http://localhost:5173[39m
+2026-01-26 18:32:16:3216 [37mdebug[39m: [37m[Request] GET /api/items/public | Origin: http://localhost:5173[39m
+2026-01-26 18:32:17:3217 [35mhttp[39m: [35mGET /api/ads 304 - - 1145.823 ms[39m
+2026-01-26 18:32:17:3217 [35mhttp[39m: [35mGET /api/items/public 304 - - 1381.935 ms[39m
+2026-01-26 18:32:21:3221 [32minfo[39m: [32mSocket wNk-r-FU7Huz1zbEAAAB disconnected[39m
+2026-01-26 18:32:21:3221 [37mdebug[39m: [37m[Request] OPTIONS /api/ads | Origin: http://localhost:5173[39m
+2026-01-26 18:32:21:3221 [37mdebug[39m: [37m[Request] OPTIONS /api/items/public | Origin: http://localhost:5173[39m
+2026-01-26 18:32:21:3221 [37mdebug[39m: [37m[Request] OPTIONS /api/categories | Origin: http://localhost:5173[39m
+2026-01-26 18:32:21:3221 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 18:32:21:3221 [37mdebug[39m: [37m[Request] GET /api/ads | Origin: http://localhost:5173[39m
+2026-01-26 18:32:21:3221 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 18:32:21:3221 [37mdebug[39m: [37m[Request] GET /api/items/public | Origin: http://localhost:5173[39m
+2026-01-26 18:32:21:3221 [37mdebug[39m: [37m[Request] GET /api/categories | Origin: http://localhost:5173[39m
+2026-01-26 18:32:21:3221 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 18:32:21:3221 [35mhttp[39m: [35mGET /api/ads 304 - - 238.547 ms[39m
+2026-01-26 18:32:21:3221 [35mhttp[39m: [35mGET /api/items/public 304 - - 474.606 ms[39m
+2026-01-26 18:32:22:3222 [35mhttp[39m: [35mGET /api/auth/me 200 312 - 1160.489 ms[39m
+2026-01-26 18:32:22:3222 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 18:32:22:3222 [35mhttp[39m: [35mGET /api/categories 304 - - 1185.047 ms[39m
+2026-01-26 18:32:22:3222 [32minfo[39m: [32mUser 4 connected with socket T669Jv4p0f2cMwLdAAAD[39m
+2026-01-26 18:32:22:3222 [35mhttp[39m: [35mGET /api/auth/me 304 - - 238.456 ms[39m
+2026-01-26 18:32:27:3227 [37mdebug[39m: [37m[Request] OPTIONS /api/items/6 | Origin: http://localhost:5173[39m
+2026-01-26 18:32:27:3227 [37mdebug[39m: [37m[Request] GET /api/items/6 | Origin: http://localhost:5173[39m
+2026-01-26 18:32:27:3227 [35mhttp[39m: [35mGET /api/items/6 200 490 - 238.586 ms[39m
+2026-01-26 18:32:38:3238 [37mdebug[39m: [37m[Request] OPTIONS /api/items/1 | Origin: http://localhost:5173[39m
+2026-01-26 18:32:38:3238 [37mdebug[39m: [37m[Request] GET /api/items/1 | Origin: http://localhost:5173[39m
+2026-01-26 18:32:38:3238 [35mhttp[39m: [35mGET /api/items/1 200 474 - 379.676 ms[39m
+2026-01-26 18:32:43:3243 [37mdebug[39m: [37m[Request] OPTIONS /api/items/3 | Origin: http://localhost:5173[39m
+2026-01-26 18:32:43:3243 [37mdebug[39m: [37m[Request] GET /api/items/3 | Origin: http://localhost:5173[39m
+2026-01-26 18:32:44:3244 [35mhttp[39m: [35mGET /api/items/3 200 465 - 233.547 ms[39m
+2026-01-26 18:33:23:3323 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/login | Origin: http://localhost:5173[39m
+2026-01-26 18:33:23:3323 [37mdebug[39m: [37m[Request] POST /api/auth/login | Origin: http://localhost:5173[39m
+2026-01-26 18:33:24:3324 [35mhttp[39m: [35mPOST /api/auth/login 200 721 - 1535.969 ms[39m
+2026-01-26 18:33:24:3324 [32minfo[39m: [32mUser 3 connected with socket PIWCfKPyFthxg0p6AAAF[39m
+2026-01-26 18:33:35:3335 [37mdebug[39m: [37m[Request] OPTIONS /api/users/me/transactions | Origin: http://localhost:5173[39m
+2026-01-26 18:33:35:3335 [37mdebug[39m: [37m[Request] OPTIONS /api/users/me/tasks | Origin: http://localhost:5173[39m
+2026-01-26 18:33:35:3335 [37mdebug[39m: [37m[Request] GET /api/users/me/transactions | Origin: http://localhost:5173[39m
+2026-01-26 18:33:35:3335 [37mdebug[39m: [37m[Request] GET /api/users/me/tasks | Origin: http://localhost:5173[39m
+2026-01-26 18:33:35:3335 [35mhttp[39m: [35mGET /api/users/me/transactions 200 2784 - 269.087 ms[39m
+2026-01-26 18:33:36:3336 [35mhttp[39m: [35mGET /api/users/me/tasks 200 3681 - 1207.005 ms[39m
+2026-01-26 18:39:52:3952 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 18:39:52:3952 [37mdebug[39m: [37m[Request] PUT /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 18:40:40:4040 [35mhttp[39m: [35mPUT /api/auth/me - - - - ms[39m
+2026-01-26 18:40:40:4040 [32minfo[39m: [32mSocket PIWCfKPyFthxg0p6AAAF disconnected[39m
+2026-01-26 18:40:40:4040 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 18:40:40:4040 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 18:40:40:4040 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 18:40:40:4040 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 18:40:42:4042 [35mhttp[39m: [35mGET /api/auth/me 200 307 - 1255.647 ms[39m
+2026-01-26 18:40:42:4042 [35mhttp[39m: [35mGET /api/auth/me 200 307 - 1263.458 ms[39m
+2026-01-26 18:40:42:4042 [37mdebug[39m: [37m[Request] OPTIONS /api/users/me/transactions | Origin: http://localhost:5173[39m
+2026-01-26 18:40:42:4042 [37mdebug[39m: [37m[Request] OPTIONS /api/users/me/tasks | Origin: http://localhost:5173[39m
+2026-01-26 18:40:42:4042 [37mdebug[39m: [37m[Request] GET /api/users/me/transactions | Origin: http://localhost:5173[39m
+2026-01-26 18:40:42:4042 [37mdebug[39m: [37m[Request] GET /api/users/me/tasks | Origin: http://localhost:5173[39m
+2026-01-26 18:40:42:4042 [32minfo[39m: [32mUser 3 connected with socket qRUebRqUr9RRnW5bAAAH[39m
+2026-01-26 18:40:42:4042 [35mhttp[39m: [35mGET /api/users/me/tasks 200 3681 - 244.897 ms[39m
+2026-01-26 18:40:42:4042 [35mhttp[39m: [35mGET /api/users/me/transactions 200 2784 - 257.497 ms[39m
+2026-01-26 18:41:54:4154 [31merror[39m: [31mError handler caught: canceling statement due to statement timeout[39m
+2026-01-26 18:42:34:4234 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-26 18:42:34:4234 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-26 18:42:35:4235 [32minfo[39m: [32mUser 4 connected with socket CZ44nICiyLYoJgmUAAAB[39m
+2026-01-26 18:42:35:4235 [32minfo[39m: [32mUser 3 connected with socket 1LquhK-cOdRT1ymWAAAD[39m
+2026-01-26 18:42:40:4240 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-26 18:42:40:4240 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-26 18:42:41:4241 [32minfo[39m: [32mUser 3 connected with socket r0yHMMNX1dMkEsRLAAAB[39m
+2026-01-26 18:42:47:4247 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-26 18:42:47:4247 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-26 18:42:47:4247 [32minfo[39m: [32mUser 3 connected with socket -vcP80hpCAgO0P-oAAAB[39m
+2026-01-26 18:42:59:4259 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-26 18:42:59:4259 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-26 18:42:59:4259 [32minfo[39m: [32mUser 4 connected with socket PgHnfLDKdzJIOW8sAAAB[39m
+2026-01-26 18:43:00:430 [32minfo[39m: [32mUser 3 connected with socket For70oI8x19jsdtYAAAD[39m
+2026-01-26 18:43:06:436 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-26 18:43:06:436 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-26 18:43:06:436 [32minfo[39m: [32mUser 3 connected with socket VLlQF0Ne_Ro4JajGAAAB[39m
+2026-01-26 18:43:06:436 [32minfo[39m: [32mUser 4 connected with socket avfJr-9xj2Ff4z5RAAAD[39m
+2026-01-26 18:43:14:4314 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-26 18:43:14:4314 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-26 18:43:14:4314 [32minfo[39m: [32mUser 3 connected with socket j24lITTTeGlW-DvSAAAB[39m
+2026-01-26 18:43:14:4314 [32minfo[39m: [32mUser 4 connected with socket ZIa6TaWrlaV3r66pAAAD[39m
+2026-01-26 18:44:10:4410 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-26 18:44:10:4410 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-26 18:44:10:4410 [32minfo[39m: [32mUser 3 connected with socket rLXQr7DP7fdccQw9AAAB[39m
+2026-01-26 18:44:21:4421 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-26 18:44:26:4426 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-26 18:44:26:4426 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-26 18:44:26:4426 [32minfo[39m: [32mUser 4 connected with socket 2Tl66LiNJjNBp8SXAAAB[39m
+2026-01-26 18:44:30:4430 [32minfo[39m: [32mUser 3 connected with socket 4Eo-CE09SLSd-1bcAAAD[39m
+2026-01-26 18:47:13:4713 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 18:47:13:4713 [37mdebug[39m: [37m[Request] PUT /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 18:48:30:4830 [32minfo[39m: [32mSocket 4Eo-CE09SLSd-1bcAAAD disconnected[39m
+2026-01-26 18:48:30:4830 [35mhttp[39m: [35mPUT /api/auth/me - - - - ms[39m
+2026-01-26 18:48:31:4831 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 18:48:31:4831 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 18:48:31:4831 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 18:48:31:4831 [35mhttp[39m: [35mGET /api/auth/me 401 39 - 12.441 ms[39m
+2026-01-26 18:48:31:4831 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 18:48:31:4831 [35mhttp[39m: [35mGET /api/auth/me 401 39 - 8.987 ms[39m
+2026-01-26 18:48:31:4831 [37mdebug[39m: [37m[Request] POST /api/auth/refresh | Origin: http://localhost:5173[39m
+2026-01-26 18:48:31:4831 [37mdebug[39m: [37m[Request] POST /api/auth/refresh | Origin: http://localhost:5173[39m
+2026-01-26 18:49:13:4913 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 18:49:13:4913 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 18:49:13:4913 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 18:49:13:4913 [35mhttp[39m: [35mGET /api/auth/me 401 39 - 3.859 ms[39m
+2026-01-26 18:49:13:4913 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 18:49:13:4913 [35mhttp[39m: [35mGET /api/auth/me 401 39 - 5.046 ms[39m
+2026-01-26 18:49:13:4913 [37mdebug[39m: [37m[Request] POST /api/auth/refresh | Origin: http://localhost:5173[39m
+2026-01-26 18:49:13:4913 [37mdebug[39m: [37m[Request] POST /api/auth/refresh | Origin: http://localhost:5173[39m
+2026-01-26 18:49:16:4916 [35mhttp[39m: [35mPOST /api/auth/refresh 200 395 - 44429.244 ms[39m
+2026-01-26 18:49:16:4916 [31merror[39m: [31mError handler caught: canceling statement due to statement timeout[39m
+2026-01-26 18:49:16:4916 [35mhttp[39m: [35mPOST /api/auth/refresh 200 395 - 44536.855 ms[39m
+2026-01-26 18:49:16:4916 [35mhttp[39m: [35mPOST /api/auth/refresh 200 395 - 2934.826 ms[39m
+2026-01-26 18:49:16:4916 [35mhttp[39m: [35mPOST /api/auth/refresh 200 395 - 2952.843 ms[39m
+2026-01-26 18:49:16:4916 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 18:49:16:4916 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 18:49:16:4916 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 18:49:16:4916 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 18:49:16:4916 [35mhttp[39m: [35mGET /api/auth/me 200 307 - 243.126 ms[39m
+2026-01-26 18:49:16:4916 [35mhttp[39m: [35mGET /api/auth/me 200 307 - 246.601 ms[39m
+2026-01-26 18:49:16:4916 [37mdebug[39m: [37m[Request] OPTIONS /api/users/me/transactions | Origin: http://localhost:5173[39m
+2026-01-26 18:49:16:4916 [37mdebug[39m: [37m[Request] OPTIONS /api/users/me/tasks | Origin: http://localhost:5173[39m
+2026-01-26 18:49:16:4916 [37mdebug[39m: [37m[Request] GET /api/users/me/transactions | Origin: http://localhost:5173[39m
+2026-01-26 18:49:16:4916 [37mdebug[39m: [37m[Request] GET /api/users/me/tasks | Origin: http://localhost:5173[39m
+2026-01-26 18:49:16:4916 [32minfo[39m: [32mUser 3 connected with socket AWjIOWaVV8T4izRyAAAF[39m
+2026-01-26 18:49:16:4916 [35mhttp[39m: [35mGET /api/users/me/transactions 200 2784 - 236.699 ms[39m
+2026-01-26 18:49:16:4916 [35mhttp[39m: [35mGET /api/users/me/tasks 200 3681 - 242.326 ms[39m
+2026-01-26 18:49:29:4929 [37mdebug[39m: [37m[Request] OPTIONS /api/ads | Origin: http://localhost:5173[39m
+2026-01-26 18:49:29:4929 [37mdebug[39m: [37m[Request] OPTIONS /api/items/public | Origin: http://localhost:5173[39m
+2026-01-26 18:49:29:4929 [37mdebug[39m: [37m[Request] OPTIONS /api/categories | Origin: http://localhost:5173[39m
+2026-01-26 18:49:29:4929 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 18:49:29:4929 [37mdebug[39m: [37m[Request] GET /api/ads | Origin: http://localhost:5173[39m
+2026-01-26 18:49:29:4929 [37mdebug[39m: [37m[Request] GET /api/items/public | Origin: http://localhost:5173[39m
+2026-01-26 18:49:29:4929 [37mdebug[39m: [37m[Request] GET /api/categories | Origin: http://localhost:5173[39m
+2026-01-26 18:49:29:4929 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 18:49:29:4929 [35mhttp[39m: [35mGET /api/ads 200 350 - 233.874 ms[39m
+2026-01-26 18:49:29:4929 [35mhttp[39m: [35mGET /api/categories 200 858 - 231.218 ms[39m
+2026-01-26 18:49:29:4929 [35mhttp[39m: [35mGET /api/auth/me 304 - - 234.634 ms[39m
+2026-01-26 18:49:29:4929 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 18:49:29:4929 [32minfo[39m: [32mUser 3 connected with socket QNzbXGaD658pOXMYAAAH[39m
+2026-01-26 18:49:29:4929 [35mhttp[39m: [35mGET /api/items/public 200 3367 - 451.566 ms[39m
+2026-01-26 18:49:29:4929 [35mhttp[39m: [35mGET /api/auth/me 304 - - 234.847 ms[39m
+2026-01-26 18:49:39:4939 [37mdebug[39m: [37m[Request] OPTIONS /api/items/1 | Origin: http://localhost:5173[39m
+2026-01-26 18:49:39:4939 [37mdebug[39m: [37m[Request] GET /api/items/1 | Origin: http://localhost:5173[39m
+2026-01-26 18:49:39:4939 [35mhttp[39m: [35mGET /api/items/1 200 474 - 221.212 ms[39m
+2026-01-26 18:50:29:5029 [37mdebug[39m: [37m[Request] OPTIONS /api/payments/create-checkout-session | Origin: http://localhost:5173[39m
+2026-01-26 18:50:29:5029 [37mdebug[39m: [37m[Request] POST /api/payments/create-checkout-session | Origin: http://localhost:5173[39m
+2026-01-26 18:50:29:5029 [32minfo[39m: [32mPayment Request Received: {"amount":12000,"currency":"NGN","type":"item","itemId":1,"provider":"paystack","deliveryAddress":"123, budon close","notes":"pls be neat and be fast n","quantity":3}[39m
+2026-01-26 18:50:31:5031 [35mhttp[39m: [35mPOST /api/payments/create-checkout-session 200 80 - 2569.229 ms[39m
+2026-01-26 18:50:32:5032 [32minfo[39m: [32mSocket QNzbXGaD658pOXMYAAAH disconnected[39m
+2026-01-26 18:50:45:5045 [37mdebug[39m: [37m[Request] OPTIONS /api/payments/verify | Origin: http://localhost:5173[39m
+2026-01-26 18:50:45:5045 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 18:50:45:5045 [37mdebug[39m: [37m[Request] POST /api/payments/verify | Origin: http://localhost:5173[39m
+2026-01-26 18:50:45:5045 [32minfo[39m: [32m[VERIFY REQUEST] Received verification request - Provider: paystack, Reference: keaj67r4bk[39m
+2026-01-26 18:50:45:5045 [32minfo[39m: [32m[VERIFY REQUEST] Calling paymentService.verifyTransaction...[39m
+2026-01-26 18:50:45:5045 [32minfo[39m: [32m[PAYMENT SERVICE] verifyTransaction called - Provider: paystack, Reference: keaj67r4bk[39m
+2026-01-26 18:50:45:5045 [32minfo[39m: [32m[PAYMENT SERVICE] Delegating to PaystackService.verifyTransaction[39m
+2026-01-26 18:50:45:5045 [32minfo[39m: [32m[PAYSTACK VERIFY] Starting verification for reference: keaj67r4bk[39m
+2026-01-26 18:50:45:5045 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 18:50:45:5045 [35mhttp[39m: [35mGET /api/auth/me 304 - - 229.033 ms[39m
+2026-01-26 18:50:45:5045 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 18:50:45:5045 [32minfo[39m: [32mUser 3 connected with socket PI48b1uyEeHmV12lAAAJ[39m
+2026-01-26 18:50:45:5045 [35mhttp[39m: [35mGET /api/auth/me 304 - - 237.673 ms[39m
+2026-01-26 18:50:46:5046 [32minfo[39m: [32m[PAYSTACK VERIFY] API Response - Status: success, Amount: 1200000, Currency: NGN[39m
+2026-01-26 18:50:46:5046 [32minfo[39m: [32m[PAYSTACK VERIFY] Metadata: {"type":"item","itemId":"1","userId":"3","deliveryAddress":"123, budon close","notes":"pls be neat and be fast n","quantity":"3","referrer":"http://localhost:5173/"}[39m
+2026-01-26 18:50:46:5046 [32minfo[39m: [32m[PAYSTACK VERIFY] Transaction keaj67r4bk verified successfully. Calling handleChargeSuccess...[39m
+2026-01-26 18:50:46:5046 [32minfo[39m: [32m[PAYSTACK CHARGE] Starting handleChargeSuccess for reference: keaj67r4bk[39m
+2026-01-26 18:50:46:5046 [32minfo[39m: [32m[PAYSTACK CHARGE] Parsed metadata - userId: 3, type: item, itemId: 1, isFirstInstallment: false, metadata: {"type":"item","itemId":"1","userId":"3","deliveryAddress":"123, budon close","notes":"pls be neat and be fast n","quantity":"3","referrer":"http://localhost:5173/"}[39m
+2026-01-26 18:50:46:5046 [32minfo[39m: [32m[PAYSTACK CHARGE] Attempting to insert new transaction into database...[39m
+2026-01-26 18:50:46:5046 [32minfo[39m: [32m[PAYSTACK CHARGE] Transaction processed with ID: 20[39m
+2026-01-26 18:50:46:5046 [32minfo[39m: [32m[PAYSTACK CHARGE] Checking if task creation is needed - type: item, itemIdFromMeta: 1, isFirstInstallment: false[39m
+2026-01-26 18:50:46:5046 [32minfo[39m: [32m[PAYSTACK CHARGE] Task creation conditions met. Proceeding...[39m
+2026-01-26 18:50:47:5047 [37mdebug[39m: [37m[Request] OPTIONS /api/users/me/transactions | Origin: http://localhost:5173[39m
+2026-01-26 18:50:47:5047 [37mdebug[39m: [37m[Request] OPTIONS /api/users/me/tasks | Origin: http://localhost:5173[39m
+2026-01-26 18:50:47:5047 [37mdebug[39m: [37m[Request] GET /api/users/me/transactions | Origin: http://localhost:5173[39m
+2026-01-26 18:50:47:5047 [37mdebug[39m: [37m[Request] GET /api/users/me/tasks | Origin: http://localhost:5173[39m
+2026-01-26 18:50:47:5047 [32minfo[39m: [32m[PAYSTACK CHARGE] Item found: kaftan, Category: Dress, Price: 4000.00[39m
+2026-01-26 18:50:47:5047 [31merror[39m: [31m[PAYSTACK CHARGE] Error in task creation process: column "production_notes" of relation "tasks" does not exist[39m
+2026-01-26 18:50:47:5047 [31merror[39m: [31merror: column "production_notes" of relation "tasks" does not exist[39m
+[31m    at C:\Users\OmiD\Desktop\veleonex\fashion\backend\node_modules\pg-pool\index.js:45:11[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m    at async PaystackService.handleChargeSuccess (C:\Users\OmiD\Desktop\veleonex\fashion\backend\src\services\paystackService.ts:307:32)[39m
+[31m    at async PaystackService.verifyTransaction (C:\Users\OmiD\Desktop\veleonex\fashion\backend\src\services\paystackService.ts:117:9)[39m
+[31m    at async PaymentService.verifyTransaction (C:\Users\OmiD\Desktop\veleonex\fashion\backend\src\services\paymentService.ts:31:14)[39m
+[31m    at async verifyRequest (C:\Users\OmiD\Desktop\veleonex\fashion\backend\src\controllers\paymentController.ts:139:21)[39m
+2026-01-26 18:50:47:5047 [32minfo[39m: [32m[PAYSTACK CHARGE] handleChargeSuccess completed for reference: keaj67r4bk[39m
+2026-01-26 18:50:47:5047 [32minfo[39m: [32m[PAYSTACK VERIFY] handleChargeSuccess completed for keaj67r4bk[39m
+2026-01-26 18:50:47:5047 [32minfo[39m: [32m[VERIFY REQUEST] Verification result: SUCCESS[39m
+2026-01-26 18:50:47:5047 [35mhttp[39m: [35mPOST /api/payments/verify 200 16 - 2669.745 ms[39m
+2026-01-26 18:50:48:5048 [35mhttp[39m: [35mGET /api/users/me/transactions 200 2963 - 1170.238 ms[39m
+2026-01-26 18:50:48:5048 [35mhttp[39m: [35mGET /api/users/me/tasks 304 - - 1169.330 ms[39m
+2026-01-26 18:51:23:5123 [37mdebug[39m: [37m[Request] OPTIONS /api/payments/verify | Origin: http://localhost:5173[39m
+2026-01-26 18:51:23:5123 [37mdebug[39m: [37m[Request] POST /api/payments/verify | Origin: http://localhost:5173[39m
+2026-01-26 18:51:23:5123 [32minfo[39m: [32m[VERIFY REQUEST] Received verification request - Provider: paystack, Reference: keaj67r4bk[39m
+2026-01-26 18:51:23:5123 [32minfo[39m: [32m[VERIFY REQUEST] Calling paymentService.verifyTransaction...[39m
+2026-01-26 18:51:23:5123 [32minfo[39m: [32m[PAYMENT SERVICE] verifyTransaction called - Provider: paystack, Reference: keaj67r4bk[39m
+2026-01-26 18:51:23:5123 [32minfo[39m: [32m[PAYMENT SERVICE] Delegating to PaystackService.verifyTransaction[39m
+2026-01-26 18:51:23:5123 [32minfo[39m: [32m[PAYSTACK VERIFY] Starting verification for reference: keaj67r4bk[39m
+2026-01-26 18:51:24:5124 [32minfo[39m: [32mSocket PI48b1uyEeHmV12lAAAJ disconnected[39m
+2026-01-26 18:51:24:5124 [35mhttp[39m: [35mPOST /api/payments/verify - - - - ms[39m
+2026-01-26 18:51:24:5124 [32minfo[39m: [32m[PAYSTACK VERIFY] API Response - Status: success, Amount: 1200000, Currency: NGN[39m
+2026-01-26 18:51:24:5124 [32minfo[39m: [32m[PAYSTACK VERIFY] Metadata: {"type":"item","itemId":"1","userId":"3","deliveryAddress":"123, budon close","notes":"pls be neat and be fast n","quantity":"3","referrer":"http://localhost:5173/"}[39m
+2026-01-26 18:51:24:5124 [32minfo[39m: [32m[PAYSTACK VERIFY] Transaction keaj67r4bk verified successfully. Calling handleChargeSuccess...[39m
+2026-01-26 18:51:24:5124 [32minfo[39m: [32m[PAYSTACK CHARGE] Starting handleChargeSuccess for reference: keaj67r4bk[39m
+2026-01-26 18:51:24:5124 [32minfo[39m: [32m[PAYSTACK CHARGE] Parsed metadata - userId: 3, type: item, itemId: 1, isFirstInstallment: false, metadata: {"type":"item","itemId":"1","userId":"3","deliveryAddress":"123, budon close","notes":"pls be neat and be fast n","quantity":"3","referrer":"http://localhost:5173/"}[39m
+2026-01-26 18:51:24:5124 [37mdebug[39m: [37m[Request] OPTIONS /api/items/1 | Origin: http://localhost:5173[39m
+2026-01-26 18:51:24:5124 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 18:51:24:5124 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 18:51:24:5124 [32minfo[39m: [32mUser 3 connected with socket q-uzdASJuwS0tvZ9AAAL[39m
+2026-01-26 18:51:24:5124 [32minfo[39m: [32m[PAYSTACK CHARGE] Attempting to insert new transaction into database...[39m
+2026-01-26 18:51:24:5124 [32minfo[39m: [32m[PAYSTACK CHARGE] Transaction processed with ID: 20[39m
+2026-01-26 18:51:24:5124 [32minfo[39m: [32m[PAYSTACK CHARGE] Checking if task creation is needed - type: item, itemIdFromMeta: 1, isFirstInstallment: false[39m
+2026-01-26 18:51:24:5124 [32minfo[39m: [32m[PAYSTACK CHARGE] Task creation conditions met. Proceeding...[39m
+2026-01-26 18:51:24:5124 [32minfo[39m: [32m[PAYSTACK CHARGE] Item found: kaftan, Category: Dress, Price: 4000.00[39m
+2026-01-26 18:51:25:5125 [31merror[39m: [31m[PAYSTACK CHARGE] Error in task creation process: column "production_notes" of relation "tasks" does not exist[39m
+2026-01-26 18:51:25:5125 [31merror[39m: [31merror: column "production_notes" of relation "tasks" does not exist[39m
+[31m    at C:\Users\OmiD\Desktop\veleonex\fashion\backend\node_modules\pg-pool\index.js:45:11[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m    at async PaystackService.handleChargeSuccess (C:\Users\OmiD\Desktop\veleonex\fashion\backend\src\services\paystackService.ts:307:32)[39m
+[31m    at async PaystackService.verifyTransaction (C:\Users\OmiD\Desktop\veleonex\fashion\backend\src\services\paystackService.ts:117:9)[39m
+[31m    at async PaymentService.verifyTransaction (C:\Users\OmiD\Desktop\veleonex\fashion\backend\src\services\paymentService.ts:31:14)[39m
+[31m    at async verifyRequest (C:\Users\OmiD\Desktop\veleonex\fashion\backend\src\controllers\paymentController.ts:139:21)[39m
+2026-01-26 18:51:25:5125 [32minfo[39m: [32m[PAYSTACK CHARGE] handleChargeSuccess completed for reference: keaj67r4bk[39m
+2026-01-26 18:51:25:5125 [32minfo[39m: [32m[PAYSTACK VERIFY] handleChargeSuccess completed for keaj67r4bk[39m
+2026-01-26 18:51:25:5125 [32minfo[39m: [32m[VERIFY REQUEST] Verification result: SUCCESS[39m
+2026-01-26 18:51:37:5137 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 18:51:37:5137 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 18:51:37:5137 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 18:51:38:5138 [35mhttp[39m: [35mGET /api/auth/me 304 - - 223.468 ms[39m
+2026-01-26 18:51:38:5138 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 18:51:38:5138 [32minfo[39m: [32mUser 3 connected with socket tpNibG2kpDGI-bQbAAAN[39m
+2026-01-26 18:51:38:5138 [37mdebug[39m: [37m[Request] OPTIONS /api/users/me/transactions | Origin: http://localhost:5173[39m
+2026-01-26 18:51:38:5138 [37mdebug[39m: [37m[Request] OPTIONS /api/users/me/tasks | Origin: http://localhost:5173[39m
+2026-01-26 18:51:38:5138 [37mdebug[39m: [37m[Request] GET /api/users/me/transactions | Origin: http://localhost:5173[39m
+2026-01-26 18:51:38:5138 [37mdebug[39m: [37m[Request] GET /api/users/me/tasks | Origin: http://localhost:5173[39m
+2026-01-26 18:51:38:5138 [35mhttp[39m: [35mGET /api/auth/me 304 - - 239.627 ms[39m
+2026-01-26 18:51:39:5139 [35mhttp[39m: [35mGET /api/users/me/transactions 304 - - 1195.439 ms[39m
+2026-01-26 18:51:39:5139 [35mhttp[39m: [35mGET /api/users/me/tasks 304 - - 1195.190 ms[39m
+2026-01-26 19:05:02:52 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:05:02:52 [37mdebug[39m: [37m[Request] PUT /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:05:02:52 [35mhttp[39m: [35mPUT /api/auth/me 401 39 - 5.198 ms[39m
+2026-01-26 19:05:02:52 [37mdebug[39m: [37m[Request] POST /api/auth/refresh | Origin: http://localhost:5173[39m
+2026-01-26 19:05:03:53 [35mhttp[39m: [35mPOST /api/auth/refresh 200 395 - 1448.599 ms[39m
+2026-01-26 19:05:03:53 [37mdebug[39m: [37m[Request] PUT /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:05:24:524 [32minfo[39m: [32mSocket tpNibG2kpDGI-bQbAAAN disconnected[39m
+2026-01-26 19:05:24:524 [35mhttp[39m: [35mPUT /api/auth/me - - - - ms[39m
+2026-01-26 19:05:24:524 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:05:24:524 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:05:24:524 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:05:25:525 [35mhttp[39m: [35mGET /api/auth/me 200 307 - 1204.027 ms[39m
+2026-01-26 19:05:25:525 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:05:25:525 [37mdebug[39m: [37m[Request] OPTIONS /api/users/me/transactions | Origin: http://localhost:5173[39m
+2026-01-26 19:05:25:525 [37mdebug[39m: [37m[Request] OPTIONS /api/users/me/tasks | Origin: http://localhost:5173[39m
+2026-01-26 19:05:25:525 [37mdebug[39m: [37m[Request] GET /api/users/me/transactions | Origin: http://localhost:5173[39m
+2026-01-26 19:05:25:525 [37mdebug[39m: [37m[Request] GET /api/users/me/tasks | Origin: http://localhost:5173[39m
+2026-01-26 19:05:25:525 [32minfo[39m: [32mUser 3 connected with socket yE8NFyptBxs1rBtFAAAP[39m
+2026-01-26 19:05:26:526 [35mhttp[39m: [35mGET /api/auth/me 304 - - 285.616 ms[39m
+2026-01-26 19:05:27:527 [35mhttp[39m: [35mGET /api/users/me/transactions 304 - - 1170.059 ms[39m
+2026-01-26 19:05:27:527 [35mhttp[39m: [35mGET /api/users/me/tasks 304 - - 1212.492 ms[39m
+2026-01-26 19:05:36:536 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:05:36:536 [37mdebug[39m: [37m[Request] PUT /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:06:32:632 [37mdebug[39m: [37m[Request] OPTIONS /api/payments/create-checkout-session | Origin: http://localhost:5173[39m
+2026-01-26 19:06:32:632 [37mdebug[39m: [37m[Request] POST /api/payments/create-checkout-session | Origin: http://localhost:5173[39m
+2026-01-26 19:06:32:632 [32minfo[39m: [32mPayment Request Received: {"amount":16000,"currency":"NGN","type":"item","itemId":1,"provider":"paystack","deliveryAddress":"123, budon close","notes":"be fast plssssssssssssssss","quantity":4}[39m
+2026-01-26 19:06:34:634 [35mhttp[39m: [35mPOST /api/payments/create-checkout-session 200 80 - 2080.218 ms[39m
+2026-01-26 19:06:34:634 [32minfo[39m: [32mSocket q-uzdASJuwS0tvZ9AAAL disconnected[39m
+2026-01-26 19:06:46:646 [37mdebug[39m: [37m[Request] OPTIONS /api/payments/verify | Origin: http://localhost:5173[39m
+2026-01-26 19:06:46:646 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:06:46:646 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:06:46:646 [37mdebug[39m: [37m[Request] POST /api/payments/verify | Origin: http://localhost:5173[39m
+2026-01-26 19:06:46:646 [32minfo[39m: [32m[VERIFY REQUEST] Received verification request - Provider: paystack, Reference: 0bv2o6asqj[39m
+2026-01-26 19:06:46:646 [32minfo[39m: [32m[VERIFY REQUEST] Calling paymentService.verifyTransaction...[39m
+2026-01-26 19:06:46:646 [32minfo[39m: [32m[PAYMENT SERVICE] verifyTransaction called - Provider: paystack, Reference: 0bv2o6asqj[39m
+2026-01-26 19:06:46:646 [32minfo[39m: [32m[PAYMENT SERVICE] Delegating to PaystackService.verifyTransaction[39m
+2026-01-26 19:06:46:646 [32minfo[39m: [32m[PAYSTACK VERIFY] Starting verification for reference: 0bv2o6asqj[39m
+2026-01-26 19:06:46:646 [32minfo[39m: [32m[PAYSTACK VERIFY] API Response - Status: success, Amount: 1600000, Currency: NGN[39m
+2026-01-26 19:06:46:646 [32minfo[39m: [32m[PAYSTACK VERIFY] Metadata: {"type":"item","itemId":"1","userId":"3","deliveryAddress":"123, budon close","notes":"be fast plssssssssssssssss","quantity":"4","referrer":"http://localhost:5173/"}[39m
+2026-01-26 19:06:46:646 [32minfo[39m: [32m[PAYSTACK VERIFY] Transaction 0bv2o6asqj verified successfully. Calling handleChargeSuccess...[39m
+2026-01-26 19:06:46:646 [32minfo[39m: [32m[PAYSTACK CHARGE] Starting handleChargeSuccess for reference: 0bv2o6asqj[39m
+2026-01-26 19:06:46:646 [32minfo[39m: [32m[PAYSTACK CHARGE] Parsed metadata - userId: 3, type: item, itemId: 1, isFirstInstallment: false, metadata: {"type":"item","itemId":"1","userId":"3","deliveryAddress":"123, budon close","notes":"be fast plssssssssssssssss","quantity":"4","referrer":"http://localhost:5173/"}[39m
+2026-01-26 19:06:47:647 [32minfo[39m: [32m[PAYSTACK CHARGE] Attempting to insert new transaction into database...[39m
+2026-01-26 19:06:47:647 [32minfo[39m: [32m[PAYSTACK CHARGE] Transaction processed with ID: 22[39m
+2026-01-26 19:06:47:647 [32minfo[39m: [32m[PAYSTACK CHARGE] Checking if task creation is needed - type: item, itemIdFromMeta: 1, isFirstInstallment: false[39m
+2026-01-26 19:06:47:647 [32minfo[39m: [32m[PAYSTACK CHARGE] Task creation conditions met. Proceeding...[39m
+2026-01-26 19:06:47:647 [32minfo[39m: [32m[PAYSTACK CHARGE] Item found: kaftan, Category: Dress, Price: 4000.00[39m
+2026-01-26 19:06:48:648 [32minfo[39m: [32m[PAYSTACK CHARGE] ✅ Production task created with ID: 13[39m
+2026-01-26 19:06:48:648 [32minfo[39m: [32m[PAYSTACK CHARGE] handleChargeSuccess completed for reference: 0bv2o6asqj[39m
+2026-01-26 19:06:48:648 [32minfo[39m: [32m[PAYSTACK VERIFY] handleChargeSuccess completed for 0bv2o6asqj[39m
+2026-01-26 19:06:48:648 [32minfo[39m: [32m[VERIFY REQUEST] Verification result: SUCCESS[39m
+2026-01-26 19:06:48:648 [35mhttp[39m: [35mPOST /api/payments/verify 200 16 - 2414.946 ms[39m
+2026-01-26 19:07:02:72 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:07:02:72 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:07:06:76 [31merror[39m: [31mError handler caught: canceling statement due to statement timeout[39m
+2026-01-26 19:07:12:712 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:07:12:712 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:07:24:724 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:07:24:724 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:07:32:732 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:07:32:732 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:07:39:739 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:07:39:739 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:07:40:740 [37mdebug[39m: [37m[Request] OPTIONS /api/ads | Origin: http://localhost:5173[39m
+2026-01-26 19:07:40:740 [37mdebug[39m: [37m[Request] OPTIONS /api/items/public | Origin: http://localhost:5173[39m
+2026-01-26 19:07:40:740 [37mdebug[39m: [37m[Request] OPTIONS /api/categories | Origin: http://localhost:5173[39m
+2026-01-26 19:07:40:740 [37mdebug[39m: [37m[Request] GET /api/ads | Origin: http://localhost:5173[39m
+2026-01-26 19:07:40:740 [37mdebug[39m: [37m[Request] GET /api/categories | Origin: http://localhost:5173[39m
+2026-01-26 19:07:40:740 [37mdebug[39m: [37m[Request] GET /api/items/public | Origin: http://localhost:5173[39m
+2026-01-26 19:07:41:741 [35mhttp[39m: [35mGET /api/ads 304 - - 1165.773 ms[39m
+2026-01-26 19:07:41:741 [35mhttp[39m: [35mGET /api/categories 304 - - 1164.228 ms[39m
+2026-01-26 19:07:42:742 [35mhttp[39m: [35mGET /api/items/public 304 - - 1407.295 ms[39m
+2026-01-26 19:07:59:759 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/login | Origin: http://localhost:5173[39m
+2026-01-26 19:07:59:759 [37mdebug[39m: [37m[Request] POST /api/auth/login | Origin: http://localhost:5173[39m
+2026-01-26 19:07:59:759 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:07:59:759 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:07:59:759 [35mhttp[39m: [35mGET /api/auth/me 200 307 - 236.080 ms[39m
+2026-01-26 19:07:59:759 [35mhttp[39m: [35mGET /api/auth/me 200 307 - 235.379 ms[39m
+2026-01-26 19:07:59:759 [32minfo[39m: [32mUser 3 connected with socket I0vrrdpRMT9TMSHTAAAR[39m
+2026-01-26 19:08:34:834 [32minfo[39m: [32mSocket I0vrrdpRMT9TMSHTAAAR disconnected[39m
+2026-01-26 19:08:34:834 [35mhttp[39m: [35mPOST /api/auth/login - - - - ms[39m
+2026-01-26 19:08:35:835 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:08:35:835 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:08:35:835 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:08:35:835 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:08:36:836 [35mhttp[39m: [35mGET /api/auth/me 200 307 - 1158.609 ms[39m
+2026-01-26 19:08:36:836 [35mhttp[39m: [35mGET /api/auth/me 200 307 - 1192.093 ms[39m
+2026-01-26 19:08:36:836 [32minfo[39m: [32mUser 3 connected with socket 75SIvLyiLn1skCSLAAAT[39m
+2026-01-26 19:08:45:845 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/login | Origin: http://localhost:5173[39m
+2026-01-26 19:08:45:845 [37mdebug[39m: [37m[Request] POST /api/auth/login | Origin: http://localhost:5173[39m
+2026-01-26 19:09:21:921 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-26 19:09:21:921 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-26 19:09:25:925 [32minfo[39m: [32mUser 3 connected with socket Ai3_urIJ3BKIoxnyAAAD[39m
+2026-01-26 19:09:26:926 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/login | Origin: http://localhost:5173[39m
+2026-01-26 19:09:26:926 [37mdebug[39m: [37m[Request] POST /api/auth/login | Origin: http://localhost:5173[39m
+2026-01-26 19:09:26:926 [32minfo[39m: [32mUser 3 connected with socket hZr67Tj7PDZQNnpFAAAG[39m
+2026-01-26 19:09:27:927 [35mhttp[39m: [35mPOST /api/auth/login 200 721 - 914.801 ms[39m
+2026-01-26 19:09:27:927 [37mdebug[39m: [37m[Request] OPTIONS /api/ads | Origin: http://localhost:5173[39m
+2026-01-26 19:09:27:927 [37mdebug[39m: [37m[Request] GET /api/ads | Origin: http://localhost:5173[39m
+2026-01-26 19:09:27:927 [37mdebug[39m: [37m[Request] OPTIONS /api/items/public | Origin: http://localhost:5173[39m
+2026-01-26 19:09:27:927 [37mdebug[39m: [37m[Request] OPTIONS /api/categories | Origin: http://localhost:5173[39m
+2026-01-26 19:09:27:927 [37mdebug[39m: [37m[Request] GET /api/items/public | Origin: http://localhost:5173[39m
+2026-01-26 19:09:27:927 [37mdebug[39m: [37m[Request] GET /api/categories | Origin: http://localhost:5173[39m
+2026-01-26 19:09:27:927 [35mhttp[39m: [35mGET /api/ads 200 350 - 244.130 ms[39m
+2026-01-26 19:09:28:928 [35mhttp[39m: [35mGET /api/categories 200 858 - 1302.005 ms[39m
+2026-01-26 19:09:28:928 [35mhttp[39m: [35mGET /api/items/public 200 3367 - 1545.119 ms[39m
+2026-01-26 19:09:35:935 [37mdebug[39m: [37m[Request] OPTIONS /api/users/me/transactions | Origin: http://localhost:5173[39m
+2026-01-26 19:09:35:935 [37mdebug[39m: [37m[Request] OPTIONS /api/users/me/tasks | Origin: http://localhost:5173[39m
+2026-01-26 19:09:35:935 [37mdebug[39m: [37m[Request] GET /api/users/me/transactions | Origin: http://localhost:5173[39m
+2026-01-26 19:09:35:935 [37mdebug[39m: [37m[Request] GET /api/users/me/tasks | Origin: http://localhost:5173[39m
+2026-01-26 19:09:35:935 [35mhttp[39m: [35mGET /api/users/me/transactions 200 3142 - 231.285 ms[39m
+2026-01-26 19:09:35:935 [35mhttp[39m: [35mGET /api/users/me/tasks 200 4092 - 235.234 ms[39m
+2026-01-26 19:10:42:1042 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:10:42:1042 [37mdebug[39m: [37m[Request] PUT /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:10:58:1058 [37mdebug[39m: [37m[Request] OPTIONS /api/admin/stats | Origin: http://localhost:5173[39m
+2026-01-26 19:10:58:1058 [37mdebug[39m: [37m[Request] GET /api/admin/stats | Origin: http://localhost:5173[39m
+2026-01-26 19:10:58:1058 [35mhttp[39m: [35mGET /api/admin/stats 401 39 - 5.257 ms[39m
+2026-01-26 19:10:58:1058 [37mdebug[39m: [37m[Request] POST /api/auth/refresh | Origin: http://localhost:5173[39m
+2026-01-26 19:11:00:110 [35mhttp[39m: [35mPOST /api/auth/refresh 200 397 - 1508.751 ms[39m
+2026-01-26 19:11:00:110 [37mdebug[39m: [37m[Request] GET /api/admin/stats | Origin: http://localhost:5173[39m
+2026-01-26 19:11:01:111 [35mhttp[39m: [35mGET /api/admin/stats 200 157 - 1183.828 ms[39m
+2026-01-26 19:11:04:114 [37mdebug[39m: [37m[Request] OPTIONS /api/tasks?paymentStatus=&sortBy=deadline&sortOrder=ASC | Origin: http://localhost:5173[39m
+2026-01-26 19:11:04:114 [37mdebug[39m: [37m[Request] OPTIONS /api/customers | Origin: http://localhost:5173[39m
+2026-01-26 19:11:04:114 [37mdebug[39m: [37m[Request] OPTIONS /api/users | Origin: http://localhost:5173[39m
+2026-01-26 19:11:04:114 [37mdebug[39m: [37m[Request] OPTIONS /api/categories | Origin: http://localhost:5173[39m
+2026-01-26 19:11:04:114 [37mdebug[39m: [37m[Request] GET /api/tasks?paymentStatus=&sortBy=deadline&sortOrder=ASC | Origin: http://localhost:5173[39m
+2026-01-26 19:11:04:114 [37mdebug[39m: [37m[Request] GET /api/customers | Origin: http://localhost:5173[39m
+2026-01-26 19:11:04:114 [37mdebug[39m: [37m[Request] GET /api/users | Origin: http://localhost:5173[39m
+2026-01-26 19:11:04:114 [37mdebug[39m: [37m[Request] GET /api/categories | Origin: http://localhost:5173[39m
+2026-01-26 19:11:04:114 [35mhttp[39m: [35mGET /api/tasks?paymentStatus=&sortBy=deadline&sortOrder=ASC 200 6796 - 247.627 ms[39m
+2026-01-26 19:11:05:115 [35mhttp[39m: [35mGET /api/customers 200 929 - 1418.199 ms[39m
+2026-01-26 19:11:05:115 [35mhttp[39m: [35mGET /api/categories 304 - - 1487.700 ms[39m
+2026-01-26 19:11:05:115 [35mhttp[39m: [35mGET /api/users 200 2191 - 1525.303 ms[39m
+2026-01-26 19:11:47:1147 [37mdebug[39m: [37m[Request] OPTIONS /api/tasks?paymentStatus=&sortBy=deadline&sortOrder=DESC | Origin: http://localhost:5173[39m
+2026-01-26 19:11:47:1147 [37mdebug[39m: [37m[Request] GET /api/tasks?paymentStatus=&sortBy=deadline&sortOrder=DESC | Origin: http://localhost:5173[39m
+2026-01-26 19:11:49:1149 [35mhttp[39m: [35mGET /api/tasks?paymentStatus=&sortBy=deadline&sortOrder=DESC 200 6796 - 1240.685 ms[39m
+2026-01-26 19:12:30:1230 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-26 19:12:30:1230 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-26 19:12:30:1230 [32minfo[39m: [32mUser 3 connected with socket tVKufgIBTGqROmmyAAAB[39m
+2026-01-26 19:12:30:1230 [32minfo[39m: [32mUser 3 connected with socket 6E5iKkzf2mfTav5JAAAD[39m
+2026-01-26 19:12:46:1246 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-26 19:12:46:1246 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-26 19:12:46:1246 [32minfo[39m: [32mUser 3 connected with socket GHzIP1THjMeAJyR_AAAC[39m
+2026-01-26 19:12:46:1246 [32minfo[39m: [32mUser 3 connected with socket w92geTQqqFGTc_W6AAAD[39m
+2026-01-26 19:12:56:1256 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-26 19:12:56:1256 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-26 19:12:56:1256 [32minfo[39m: [32mUser 3 connected with socket 0f9YoqRiE_JYpnuqAAAB[39m
+2026-01-26 19:12:56:1256 [32minfo[39m: [32mUser 3 connected with socket C9diIjerOcCs8F5aAAAD[39m
+2026-01-26 19:13:03:133 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-26 19:13:04:134 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-26 19:13:04:134 [32minfo[39m: [32mUser 3 connected with socket Y9NUZ5YD_VfEJSAFAAAB[39m
+2026-01-26 19:13:05:135 [32minfo[39m: [32mUser 3 connected with socket fk20uivZOmtE8sbdAAAD[39m
+2026-01-26 19:13:55:1355 [32minfo[39m: [32mSocket Y9NUZ5YD_VfEJSAFAAAB disconnected[39m
+2026-01-26 19:13:56:1356 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:13:56:1356 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:13:56:1356 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:13:56:1356 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:13:56:1356 [35mhttp[39m: [35mGET /api/auth/me 200 307 - 263.774 ms[39m
+2026-01-26 19:13:56:1356 [37mdebug[39m: [37m[Request] OPTIONS /api/users/me/transactions | Origin: http://localhost:5173[39m
+2026-01-26 19:13:56:1356 [37mdebug[39m: [37m[Request] OPTIONS /api/users/me/tasks | Origin: http://localhost:5173[39m
+2026-01-26 19:13:56:1356 [37mdebug[39m: [37m[Request] GET /api/users/me/transactions | Origin: http://localhost:5173[39m
+2026-01-26 19:13:56:1356 [32minfo[39m: [32mUser 3 connected with socket qpaPJ5q7mJyYhyoKAAAF[39m
+2026-01-26 19:13:56:1356 [37mdebug[39m: [37m[Request] GET /api/users/me/tasks | Origin: http://localhost:5173[39m
+2026-01-26 19:13:57:1357 [35mhttp[39m: [35mGET /api/users/me/transactions 200 3142 - 233.385 ms[39m
+2026-01-26 19:13:57:1357 [35mhttp[39m: [35mGET /api/auth/me 200 307 - 1219.144 ms[39m
+2026-01-26 19:13:58:1358 [35mhttp[39m: [35mGET /api/users/me/tasks 200 4092 - 1210.943 ms[39m
+2026-01-26 19:14:17:1417 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-26 19:14:17:1417 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-26 19:14:18:1418 [32minfo[39m: [32mUser 3 connected with socket dwOOW6GGu0X2XkZ8AAAB[39m
+2026-01-26 19:14:18:1418 [37mdebug[39m: [37m[Request] OPTIONS /api/users/me/transactions | Origin: http://localhost:5173[39m
+2026-01-26 19:14:18:1418 [37mdebug[39m: [37m[Request] OPTIONS /api/users/me/tasks | Origin: http://localhost:5173[39m
+2026-01-26 19:14:18:1418 [37mdebug[39m: [37m[Request] GET /api/users/me/transactions | Origin: http://localhost:5173[39m
+2026-01-26 19:14:18:1418 [37mdebug[39m: [37m[Request] GET /api/users/me/tasks | Origin: http://localhost:5173[39m
+2026-01-26 19:14:19:1419 [37mdebug[39m: [37m[Request] OPTIONS /api/users/me/transactions | Origin: http://localhost:5173[39m
+2026-01-26 19:14:19:1419 [37mdebug[39m: [37m[Request] OPTIONS /api/users/me/tasks | Origin: http://localhost:5173[39m
+2026-01-26 19:14:19:1419 [37mdebug[39m: [37m[Request] GET /api/users/me/transactions | Origin: http://localhost:5173[39m
+2026-01-26 19:14:19:1419 [37mdebug[39m: [37m[Request] GET /api/users/me/tasks | Origin: http://localhost:5173[39m
+2026-01-26 19:14:19:1419 [35mhttp[39m: [35mGET /api/users/me/transactions 200 3142 - 271.772 ms[39m
+2026-01-26 19:14:19:1419 [32minfo[39m: [32mUser 3 connected with socket uW-zuDqL_2JF8MjmAAAD[39m
+2026-01-26 19:14:20:1420 [35mhttp[39m: [35mGET /api/users/me/tasks 200 4404 - 1191.881 ms[39m
+2026-01-26 19:14:20:1420 [35mhttp[39m: [35mGET /api/users/me/tasks 200 4404 - 1162.540 ms[39m
+2026-01-26 19:14:20:1420 [35mhttp[39m: [35mGET /api/users/me/transactions 200 3142 - 1176.744 ms[39m
+2026-01-26 19:14:27:1427 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:14:27:1427 [37mdebug[39m: [37m[Request] PUT /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:14:29:1429 [35mhttp[39m: [35mPUT /api/auth/me 200 326 - 1520.614 ms[39m
+2026-01-26 19:14:29:1429 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:14:29:1429 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:14:29:1429 [35mhttp[39m: [35mGET /api/auth/me 200 326 - 240.650 ms[39m
+2026-01-26 19:14:38:1438 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:14:38:1438 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:14:38:1438 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:14:38:1438 [35mhttp[39m: [35mGET /api/auth/me 200 312 - 236.041 ms[39m
+2026-01-26 19:14:38:1438 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:14:38:1438 [32minfo[39m: [32mUser 4 connected with socket HxUxSvxpGXCi9F2NAAAF[39m
+2026-01-26 19:14:38:1438 [37mdebug[39m: [37m[Request] OPTIONS /api/admin/stats | Origin: http://localhost:5173[39m
+2026-01-26 19:14:38:1438 [37mdebug[39m: [37m[Request] GET /api/admin/stats | Origin: http://localhost:5173[39m
+2026-01-26 19:14:38:1438 [35mhttp[39m: [35mGET /api/auth/me 304 - - 232.314 ms[39m
+2026-01-26 19:14:40:1440 [35mhttp[39m: [35mGET /api/admin/stats 200 157 - 1269.598 ms[39m
+2026-01-26 19:14:40:1440 [37mdebug[39m: [37m[Request] OPTIONS /api/users | Origin: http://localhost:5173[39m
+2026-01-26 19:14:40:1440 [37mdebug[39m: [37m[Request] OPTIONS /api/customers?search= | Origin: http://localhost:5173[39m
+2026-01-26 19:14:40:1440 [37mdebug[39m: [37m[Request] GET /api/users | Origin: http://localhost:5173[39m
+2026-01-26 19:14:40:1440 [37mdebug[39m: [37m[Request] GET /api/customers?search= | Origin: http://localhost:5173[39m
+2026-01-26 19:14:40:1440 [35mhttp[39m: [35mGET /api/users 200 2188 - 248.811 ms[39m
+2026-01-26 19:14:40:1440 [35mhttp[39m: [35mGET /api/customers?search= 200 1180 - 246.467 ms[39m
+2026-01-26 19:15:12:1512 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-26 19:15:12:1512 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-26 19:15:12:1512 [32minfo[39m: [32mUser 4 connected with socket mvLyGFti6DS4RyOGAAAB[39m
+2026-01-26 19:15:12:1512 [32minfo[39m: [32mUser 3 connected with socket GZKw7G94kamYgEo5AAAD[39m
+2026-01-26 19:15:13:1513 [32minfo[39m: [32mUser 3 connected with socket G-uq4D3-9jRwllRVAAAF[39m
+2026-01-26 19:15:28:1528 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-26 19:15:28:1528 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-26 19:15:28:1528 [32minfo[39m: [32mUser 4 connected with socket 6-JeWBJclGvGbWiEAAAB[39m
+2026-01-26 19:15:28:1528 [32minfo[39m: [32mUser 3 connected with socket f5IKhB86vt6_0eBaAAAD[39m
+2026-01-26 19:15:34:1534 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-26 19:15:34:1534 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-26 19:15:34:1534 [32minfo[39m: [32mUser 3 connected with socket OfKF4rhS5ABnzqcxAAAB[39m
+2026-01-26 19:15:34:1534 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:15:34:1534 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:15:34:1534 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:15:34:1534 [35mhttp[39m: [35mGET /api/auth/me 304 - - 289.159 ms[39m
+2026-01-26 19:15:34:1534 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:15:34:1534 [37mdebug[39m: [37m[Request] OPTIONS /api/users | Origin: http://localhost:5173[39m
+2026-01-26 19:15:34:1534 [37mdebug[39m: [37m[Request] OPTIONS /api/customers?search= | Origin: http://localhost:5173[39m
+2026-01-26 19:15:34:1534 [32minfo[39m: [32mUser 4 connected with socket -cPdP3JggiEBG3KDAAAD[39m
+2026-01-26 19:15:34:1534 [37mdebug[39m: [37m[Request] GET /api/users | Origin: http://localhost:5173[39m
+2026-01-26 19:15:34:1534 [37mdebug[39m: [37m[Request] GET /api/customers?search= | Origin: http://localhost:5173[39m
+2026-01-26 19:15:35:1535 [35mhttp[39m: [35mGET /api/auth/me 304 - - 230.487 ms[39m
+2026-01-26 19:15:36:1536 [35mhttp[39m: [35mGET /api/users 304 - - 1190.110 ms[39m
+2026-01-26 19:15:36:1536 [35mhttp[39m: [35mGET /api/customers?search= 304 - - 1186.192 ms[39m
+2026-01-26 19:15:37:1537 [32minfo[39m: [32mUser 3 connected with socket HuO_FSjmq6SUBcyLAAAF[39m
+2026-01-26 19:15:44:1544 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-26 19:15:44:1544 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-26 19:15:44:1544 [32minfo[39m: [32mUser 4 connected with socket WP32K85qS3MzL_kAAAAB[39m
+2026-01-26 19:15:44:1544 [32minfo[39m: [32mUser 3 connected with socket nBO65MDZ0ko50MUvAAAD[39m
+2026-01-26 19:15:45:1545 [32minfo[39m: [32mUser 3 connected with socket JIYaHHiScRUN0UNIAAAF[39m
+2026-01-26 19:15:48:1548 [37mdebug[39m: [37m[Request] OPTIONS /api/tasks?paymentStatus=&sortBy=deadline&sortOrder=DESC | Origin: http://localhost:5173[39m
+2026-01-26 19:15:48:1548 [37mdebug[39m: [37m[Request] OPTIONS /api/customers | Origin: http://localhost:5173[39m
+2026-01-26 19:15:48:1548 [37mdebug[39m: [37m[Request] OPTIONS /api/users | Origin: http://localhost:5173[39m
+2026-01-26 19:15:48:1548 [37mdebug[39m: [37m[Request] OPTIONS /api/categories | Origin: http://localhost:5173[39m
+2026-01-26 19:15:48:1548 [37mdebug[39m: [37m[Request] GET /api/tasks?paymentStatus=&sortBy=deadline&sortOrder=DESC | Origin: http://localhost:5173[39m
+2026-01-26 19:15:48:1548 [37mdebug[39m: [37m[Request] GET /api/customers | Origin: http://localhost:5173[39m
+2026-01-26 19:15:48:1548 [37mdebug[39m: [37m[Request] GET /api/users | Origin: http://localhost:5173[39m
+2026-01-26 19:15:48:1548 [37mdebug[39m: [37m[Request] GET /api/categories | Origin: http://localhost:5173[39m
+2026-01-26 19:15:49:1549 [35mhttp[39m: [35mGET /api/tasks?paymentStatus=&sortBy=deadline&sortOrder=DESC 200 7288 - 251.396 ms[39m
+2026-01-26 19:15:50:1550 [35mhttp[39m: [35mGET /api/users 304 - - 1185.821 ms[39m
+2026-01-26 19:15:50:1550 [35mhttp[39m: [35mGET /api/categories 304 - - 1198.257 ms[39m
+2026-01-26 19:15:50:1550 [35mhttp[39m: [35mGET /api/customers 200 1180 - 1219.152 ms[39m
+2026-01-26 19:16:05:165 [32minfo[39m: [32mSocket nBO65MDZ0ko50MUvAAAD disconnected[39m
+2026-01-26 19:16:06:166 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:16:06:166 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:16:06:166 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:16:06:166 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:16:06:166 [35mhttp[39m: [35mGET /api/auth/me 200 326 - 236.743 ms[39m
+2026-01-26 19:16:06:166 [35mhttp[39m: [35mGET /api/auth/me 200 326 - 235.775 ms[39m
+2026-01-26 19:16:07:167 [37mdebug[39m: [37m[Request] OPTIONS /api/users/me/transactions | Origin: http://localhost:5173[39m
+2026-01-26 19:16:07:167 [37mdebug[39m: [37m[Request] OPTIONS /api/users/me/tasks | Origin: http://localhost:5173[39m
+2026-01-26 19:16:07:167 [32minfo[39m: [32mUser 3 connected with socket ClXb54nrMxRJVPRJAAAH[39m
+2026-01-26 19:16:07:167 [37mdebug[39m: [37m[Request] GET /api/users/me/transactions | Origin: http://localhost:5173[39m
+2026-01-26 19:16:07:167 [37mdebug[39m: [37m[Request] GET /api/users/me/tasks | Origin: http://localhost:5173[39m
+2026-01-26 19:16:07:167 [35mhttp[39m: [35mGET /api/users/me/transactions 200 3142 - 243.965 ms[39m
+2026-01-26 19:16:07:167 [35mhttp[39m: [35mGET /api/users/me/tasks 200 4404 - 252.500 ms[39m
+2026-01-26 19:16:20:1620 [32minfo[39m: [32mSocket ClXb54nrMxRJVPRJAAAH disconnected[39m
+2026-01-26 19:16:21:1621 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:16:21:1621 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:16:21:1621 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:16:21:1621 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:16:21:1621 [35mhttp[39m: [35mGET /api/auth/me 200 326 - 233.492 ms[39m
+2026-01-26 19:16:21:1621 [35mhttp[39m: [35mGET /api/auth/me 200 326 - 238.709 ms[39m
+2026-01-26 19:16:21:1621 [37mdebug[39m: [37m[Request] OPTIONS /api/users/me/transactions | Origin: http://localhost:5173[39m
+2026-01-26 19:16:21:1621 [37mdebug[39m: [37m[Request] OPTIONS /api/users/me/tasks | Origin: http://localhost:5173[39m
+2026-01-26 19:16:21:1621 [37mdebug[39m: [37m[Request] GET /api/users/me/transactions | Origin: http://localhost:5173[39m
+2026-01-26 19:16:21:1621 [37mdebug[39m: [37m[Request] GET /api/users/me/tasks | Origin: http://localhost:5173[39m
+2026-01-26 19:16:21:1621 [32minfo[39m: [32mUser 3 connected with socket iFq8Dvc6-0H_seSJAAAJ[39m
+2026-01-26 19:16:21:1621 [35mhttp[39m: [35mGET /api/users/me/transactions 200 3142 - 312.394 ms[39m
+2026-01-26 19:16:21:1621 [35mhttp[39m: [35mGET /api/users/me/tasks 200 4404 - 315.511 ms[39m
+2026-01-26 19:18:07:187 [37mdebug[39m: [37m[Request] OPTIONS /api/users | Origin: http://localhost:5173[39m
+2026-01-26 19:18:07:187 [37mdebug[39m: [37m[Request] OPTIONS /api/customers?search= | Origin: http://localhost:5173[39m
+2026-01-26 19:18:07:187 [37mdebug[39m: [37m[Request] GET /api/users | Origin: http://localhost:5173[39m
+2026-01-26 19:18:07:187 [37mdebug[39m: [37m[Request] GET /api/customers?search= | Origin: http://localhost:5173[39m
+2026-01-26 19:18:07:187 [35mhttp[39m: [35mGET /api/users 304 - - 228.049 ms[39m
+2026-01-26 19:18:07:187 [35mhttp[39m: [35mGET /api/customers?search= 304 - - 233.974 ms[39m
+2026-01-26 19:18:23:1823 [37mdebug[39m: [37m[Request] OPTIONS /api/admin/stats | Origin: http://localhost:5173[39m
+2026-01-26 19:18:23:1823 [37mdebug[39m: [37m[Request] GET /api/admin/stats | Origin: http://localhost:5173[39m
+2026-01-26 19:18:24:1824 [35mhttp[39m: [35mGET /api/admin/stats 304 - - 1166.256 ms[39m
+2026-01-26 19:18:25:1825 [37mdebug[39m: [37m[Request] OPTIONS /api/tasks?paymentStatus=&sortBy=deadline&sortOrder=ASC | Origin: http://localhost:5173[39m
+2026-01-26 19:18:25:1825 [37mdebug[39m: [37m[Request] OPTIONS /api/customers | Origin: http://localhost:5173[39m
+2026-01-26 19:18:25:1825 [37mdebug[39m: [37m[Request] OPTIONS /api/users | Origin: http://localhost:5173[39m
+2026-01-26 19:18:25:1825 [37mdebug[39m: [37m[Request] OPTIONS /api/categories | Origin: http://localhost:5173[39m
+2026-01-26 19:18:25:1825 [37mdebug[39m: [37m[Request] GET /api/tasks?paymentStatus=&sortBy=deadline&sortOrder=ASC | Origin: http://localhost:5173[39m
+2026-01-26 19:18:25:1825 [37mdebug[39m: [37m[Request] GET /api/customers | Origin: http://localhost:5173[39m
+2026-01-26 19:18:25:1825 [37mdebug[39m: [37m[Request] GET /api/users | Origin: http://localhost:5173[39m
+2026-01-26 19:18:25:1825 [37mdebug[39m: [37m[Request] GET /api/categories | Origin: http://localhost:5173[39m
+2026-01-26 19:18:26:1826 [35mhttp[39m: [35mGET /api/tasks?paymentStatus=&sortBy=deadline&sortOrder=ASC 200 7288 - 246.273 ms[39m
+2026-01-26 19:18:26:1826 [35mhttp[39m: [35mGET /api/customers 304 - - 240.818 ms[39m
+2026-01-26 19:18:27:1827 [35mhttp[39m: [35mGET /api/users 304 - - 1154.027 ms[39m
+2026-01-26 19:18:27:1827 [35mhttp[39m: [35mGET /api/categories 304 - - 1162.046 ms[39m
+2026-01-26 19:18:58:1858 [37mdebug[39m: [37m[Request] OPTIONS /api/tasks?paymentStatus=&sortBy=deadline&sortOrder=DESC | Origin: http://localhost:5173[39m
+2026-01-26 19:18:58:1858 [37mdebug[39m: [37m[Request] GET /api/tasks?paymentStatus=&sortBy=deadline&sortOrder=DESC | Origin: http://localhost:5173[39m
+2026-01-26 19:19:00:190 [35mhttp[39m: [35mGET /api/tasks?paymentStatus=&sortBy=deadline&sortOrder=DESC 304 - - 1169.400 ms[39m
+2026-01-26 19:19:39:1939 [32minfo[39m: [32mSocket WP32K85qS3MzL_kAAAAB disconnected[39m
+2026-01-26 19:19:39:1939 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:19:39:1939 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:19:39:1939 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:19:40:1940 [35mhttp[39m: [35mGET /api/auth/me 304 - - 248.881 ms[39m
+2026-01-26 19:19:40:1940 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:19:40:1940 [37mdebug[39m: [37m[Request] OPTIONS /api/users | Origin: http://localhost:5173[39m
+2026-01-26 19:19:40:1940 [37mdebug[39m: [37m[Request] OPTIONS /api/customers?search= | Origin: http://localhost:5173[39m
+2026-01-26 19:19:40:1940 [37mdebug[39m: [37m[Request] GET /api/users | Origin: http://localhost:5173[39m
+2026-01-26 19:19:40:1940 [32minfo[39m: [32mUser 4 connected with socket ghrVjAIwIlenJ_G6AAAL[39m
+2026-01-26 19:19:40:1940 [37mdebug[39m: [37m[Request] GET /api/customers?search= | Origin: http://localhost:5173[39m
+2026-01-26 19:19:40:1940 [35mhttp[39m: [35mGET /api/auth/me 304 - - 256.805 ms[39m
+2026-01-26 19:19:41:1941 [35mhttp[39m: [35mGET /api/customers?search= 304 - - 1172.393 ms[39m
+2026-01-26 19:19:41:1941 [35mhttp[39m: [35mGET /api/users 304 - - 1208.419 ms[39m
+2026-01-26 19:19:54:1954 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:19:54:1954 [37mdebug[39m: [37m[Request] PUT /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:19:55:1955 [35mhttp[39m: [35mPUT /api/auth/me 200 326 - 1460.938 ms[39m
+2026-01-26 19:19:55:1955 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:19:55:1955 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:19:55:1955 [35mhttp[39m: [35mGET /api/auth/me 200 326 - 274.853 ms[39m
+2026-01-26 19:20:03:203 [32minfo[39m: [32mSocket ghrVjAIwIlenJ_G6AAAL disconnected[39m
+2026-01-26 19:20:03:203 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:20:03:203 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:20:03:203 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:20:03:203 [35mhttp[39m: [35mGET /api/auth/me 304 - - 234.418 ms[39m
+2026-01-26 19:20:03:203 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:20:04:204 [37mdebug[39m: [37m[Request] OPTIONS /api/users | Origin: http://localhost:5173[39m
+2026-01-26 19:20:04:204 [37mdebug[39m: [37m[Request] OPTIONS /api/customers?search= | Origin: http://localhost:5173[39m
+2026-01-26 19:20:04:204 [32minfo[39m: [32mUser 4 connected with socket fzKYXbRO_cQUr5dpAAAN[39m
+2026-01-26 19:20:04:204 [37mdebug[39m: [37m[Request] GET /api/customers?search= | Origin: http://localhost:5173[39m
+2026-01-26 19:20:04:204 [37mdebug[39m: [37m[Request] GET /api/users | Origin: http://localhost:5173[39m
+2026-01-26 19:20:04:204 [35mhttp[39m: [35mGET /api/auth/me 304 - - 247.718 ms[39m
+2026-01-26 19:20:04:204 [35mhttp[39m: [35mGET /api/users 200 2188 - 229.302 ms[39m
+2026-01-26 19:20:04:204 [35mhttp[39m: [35mGET /api/customers?search= 200 1180 - 244.949 ms[39m
+2026-01-26 19:20:15:2015 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:20:15:2015 [37mdebug[39m: [37m[Request] PUT /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:20:17:2017 [35mhttp[39m: [35mPUT /api/auth/me 200 326 - 1549.808 ms[39m
+2026-01-26 19:20:17:2017 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:20:17:2017 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:20:17:2017 [35mhttp[39m: [35mGET /api/auth/me 200 326 - 439.654 ms[39m
+2026-01-26 19:20:20:2020 [32minfo[39m: [32mSocket fzKYXbRO_cQUr5dpAAAN disconnected[39m
+2026-01-26 19:20:21:2021 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:20:21:2021 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:20:21:2021 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:20:21:2021 [35mhttp[39m: [35mGET /api/auth/me 304 - - 235.224 ms[39m
+2026-01-26 19:20:21:2021 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:20:21:2021 [37mdebug[39m: [37m[Request] OPTIONS /api/users | Origin: http://localhost:5173[39m
+2026-01-26 19:20:21:2021 [37mdebug[39m: [37m[Request] OPTIONS /api/customers?search= | Origin: http://localhost:5173[39m
+2026-01-26 19:20:21:2021 [37mdebug[39m: [37m[Request] GET /api/users | Origin: http://localhost:5173[39m
+2026-01-26 19:20:21:2021 [32minfo[39m: [32mUser 4 connected with socket v9kP314fsioGobmmAAAP[39m
+2026-01-26 19:20:21:2021 [37mdebug[39m: [37m[Request] GET /api/customers?search= | Origin: http://localhost:5173[39m
+2026-01-26 19:20:21:2021 [35mhttp[39m: [35mGET /api/auth/me 304 - - 225.864 ms[39m
+2026-01-26 19:20:21:2021 [35mhttp[39m: [35mGET /api/users 200 2188 - 229.972 ms[39m
+2026-01-26 19:20:22:2022 [35mhttp[39m: [35mGET /api/customers?search= 200 1180 - 267.044 ms[39m
+2026-01-26 19:21:59:2159 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-26 19:22:00:220 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-26 19:22:00:220 [32minfo[39m: [32mUser 3 connected with socket hsgFjr9qXtefZ6FyAAAD[39m
+2026-01-26 19:22:00:220 [32minfo[39m: [32mUser 4 connected with socket fgSb2yUwhkMqFjVQAAAF[39m
+2026-01-26 19:22:09:229 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-26 19:22:09:229 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-26 19:22:09:229 [32minfo[39m: [32mUser 3 connected with socket U1ScrHFdDU4wa6dHAAAB[39m
+2026-01-26 19:22:09:229 [32minfo[39m: [32mUser 4 connected with socket QkzNouegkdHwQxMmAAAD[39m
+2026-01-26 19:22:16:2216 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-26 19:22:16:2216 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-26 19:22:16:2216 [32minfo[39m: [32mUser 4 connected with socket R6OdAZrV0J60C4V4AAAB[39m
+2026-01-26 19:22:16:2216 [32minfo[39m: [32mUser 3 connected with socket kwCuH6E_p0X3i3ehAAAD[39m
+2026-01-26 19:22:57:2257 [32minfo[39m: [32mSocket R6OdAZrV0J60C4V4AAAB disconnected[39m
+2026-01-26 19:22:58:2258 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:22:58:2258 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:22:58:2258 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:22:58:2258 [35mhttp[39m: [35mGET /api/auth/me 304 - - 319.491 ms[39m
+2026-01-26 19:22:58:2258 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:22:58:2258 [37mdebug[39m: [37m[Request] OPTIONS /api/users | Origin: http://localhost:5173[39m
+2026-01-26 19:22:58:2258 [37mdebug[39m: [37m[Request] OPTIONS /api/customers?search= | Origin: http://localhost:5173[39m
+2026-01-26 19:22:58:2258 [32minfo[39m: [32mUser 4 connected with socket 15HU0wVyYfv98egaAAAF[39m
+2026-01-26 19:22:58:2258 [37mdebug[39m: [37m[Request] GET /api/users | Origin: http://localhost:5173[39m
+2026-01-26 19:22:58:2258 [37mdebug[39m: [37m[Request] GET /api/customers?search= | Origin: http://localhost:5173[39m
+2026-01-26 19:22:58:2258 [35mhttp[39m: [35mGET /api/auth/me 304 - - 229.787 ms[39m
+2026-01-26 19:22:59:2259 [35mhttp[39m: [35mGET /api/users 304 - - 1144.996 ms[39m
+2026-01-26 19:22:59:2259 [35mhttp[39m: [35mGET /api/customers?search= 200 1152 - 1265.744 ms[39m
+2026-01-26 19:23:11:2311 [32minfo[39m: [32mSocket kwCuH6E_p0X3i3ehAAAD disconnected[39m
+2026-01-26 19:23:12:2312 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:23:12:2312 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:23:12:2312 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:23:12:2312 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:23:12:2312 [35mhttp[39m: [35mGET /api/auth/me 200 312 - 228.831 ms[39m
+2026-01-26 19:23:12:2312 [35mhttp[39m: [35mGET /api/auth/me 200 312 - 227.920 ms[39m
+2026-01-26 19:23:12:2312 [37mdebug[39m: [37m[Request] OPTIONS /api/users/me/transactions | Origin: http://localhost:5173[39m
+2026-01-26 19:23:12:2312 [37mdebug[39m: [37m[Request] OPTIONS /api/users/me/tasks | Origin: http://localhost:5173[39m
+2026-01-26 19:23:12:2312 [37mdebug[39m: [37m[Request] GET /api/users/me/transactions | Origin: http://localhost:5173[39m
+2026-01-26 19:23:12:2312 [37mdebug[39m: [37m[Request] GET /api/users/me/tasks | Origin: http://localhost:5173[39m
+2026-01-26 19:23:12:2312 [32minfo[39m: [32mUser 3 connected with socket 23eKU5lX13AiKUZsAAAH[39m
+2026-01-26 19:23:12:2312 [35mhttp[39m: [35mGET /api/users/me/transactions 200 3142 - 241.693 ms[39m
+2026-01-26 19:23:12:2312 [35mhttp[39m: [35mGET /api/users/me/tasks 200 4404 - 246.546 ms[39m
+2026-01-26 19:23:19:2319 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:23:19:2319 [37mdebug[39m: [37m[Request] PUT /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:23:21:2321 [35mhttp[39m: [35mPUT /api/auth/me 200 312 - 1587.180 ms[39m
+2026-01-26 19:23:21:2321 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:23:21:2321 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:23:21:2321 [35mhttp[39m: [35mGET /api/auth/me 200 312 - 242.097 ms[39m
+2026-01-26 19:23:28:2328 [32minfo[39m: [32mSocket 15HU0wVyYfv98egaAAAF disconnected[39m
+2026-01-26 19:23:28:2328 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:23:28:2328 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:23:28:2328 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:23:29:2329 [35mhttp[39m: [35mGET /api/auth/me 304 - - 226.610 ms[39m
+2026-01-26 19:23:29:2329 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:23:29:2329 [37mdebug[39m: [37m[Request] OPTIONS /api/users | Origin: http://localhost:5173[39m
+2026-01-26 19:23:29:2329 [37mdebug[39m: [37m[Request] OPTIONS /api/customers?search= | Origin: http://localhost:5173[39m
+2026-01-26 19:23:29:2329 [37mdebug[39m: [37m[Request] GET /api/users | Origin: http://localhost:5173[39m
+2026-01-26 19:23:29:2329 [37mdebug[39m: [37m[Request] GET /api/customers?search= | Origin: http://localhost:5173[39m
+2026-01-26 19:23:29:2329 [32minfo[39m: [32mUser 4 connected with socket ZPn-nzWr4E7NmT3ZAAAJ[39m
+2026-01-26 19:23:29:2329 [35mhttp[39m: [35mGET /api/auth/me 304 - - 226.453 ms[39m
+2026-01-26 19:23:29:2329 [35mhttp[39m: [35mGET /api/users 200 2188 - 241.648 ms[39m
+2026-01-26 19:23:30:2330 [35mhttp[39m: [35mGET /api/customers?search= 200 1152 - 1160.801 ms[39m
+2026-01-26 19:23:36:2336 [32minfo[39m: [32mSocket 23eKU5lX13AiKUZsAAAH disconnected[39m
+2026-01-26 19:23:37:2337 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:23:37:2337 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:23:37:2337 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:23:37:2337 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:23:37:2337 [35mhttp[39m: [35mGET /api/auth/me 200 312 - 313.343 ms[39m
+2026-01-26 19:23:37:2337 [35mhttp[39m: [35mGET /api/auth/me 200 312 - 306.302 ms[39m
+2026-01-26 19:23:37:2337 [37mdebug[39m: [37m[Request] OPTIONS /api/users/me/transactions | Origin: http://localhost:5173[39m
+2026-01-26 19:23:37:2337 [37mdebug[39m: [37m[Request] OPTIONS /api/users/me/tasks | Origin: http://localhost:5173[39m
+2026-01-26 19:23:37:2337 [37mdebug[39m: [37m[Request] GET /api/users/me/transactions | Origin: http://localhost:5173[39m
+2026-01-26 19:23:37:2337 [32minfo[39m: [32mUser 3 connected with socket qtSUF6BFi8b_NVpWAAAL[39m
+2026-01-26 19:23:37:2337 [37mdebug[39m: [37m[Request] GET /api/users/me/tasks | Origin: http://localhost:5173[39m
+2026-01-26 19:23:38:2338 [35mhttp[39m: [35mGET /api/users/me/transactions 200 3142 - 254.426 ms[39m
+2026-01-26 19:23:38:2338 [35mhttp[39m: [35mGET /api/users/me/tasks 200 4404 - 250.857 ms[39m
+2026-01-26 19:23:52:2352 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:23:52:2352 [37mdebug[39m: [37m[Request] PUT /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:23:54:2354 [35mhttp[39m: [35mPUT /api/auth/me 200 312 - 1681.693 ms[39m
+2026-01-26 19:23:54:2354 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:23:54:2354 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:23:55:2355 [35mhttp[39m: [35mGET /api/auth/me 200 312 - 356.461 ms[39m
+2026-01-26 19:24:01:241 [32minfo[39m: [32mSocket qtSUF6BFi8b_NVpWAAAL disconnected[39m
+2026-01-26 19:24:02:242 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:24:02:242 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:24:02:242 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:24:02:242 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-26 19:24:02:242 [35mhttp[39m: [35mGET /api/auth/me 200 312 - 243.128 ms[39m
+2026-01-26 19:24:02:242 [35mhttp[39m: [35mGET /api/auth/me 200 312 - 241.973 ms[39m
+2026-01-26 19:24:02:242 [37mdebug[39m: [37m[Request] OPTIONS /api/users/me/transactions | Origin: http://localhost:5173[39m
+2026-01-26 19:24:02:242 [37mdebug[39m: [37m[Request] OPTIONS /api/users/me/tasks | Origin: http://localhost:5173[39m
+2026-01-26 19:24:02:242 [37mdebug[39m: [37m[Request] GET /api/users/me/transactions | Origin: http://localhost:5173[39m
+2026-01-26 19:24:02:242 [37mdebug[39m: [37m[Request] GET /api/users/me/tasks | Origin: http://localhost:5173[39m
+2026-01-26 19:24:02:242 [32minfo[39m: [32mUser 3 connected with socket NkFtV5c2mPKeQ5NGAAAN[39m
+2026-01-26 19:24:03:243 [35mhttp[39m: [35mGET /api/users/me/transactions 200 3142 - 307.538 ms[39m
+2026-01-26 19:24:03:243 [35mhttp[39m: [35mGET /api/users/me/tasks 200 4404 - 305.741 ms[39m

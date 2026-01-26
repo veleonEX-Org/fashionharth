@@ -8,6 +8,7 @@ import { CheckoutButton } from "../components/Payment/CheckoutButton";
 import { EnquiryModal } from "../components/EnquiryModal";
 import { BackButton } from "../components/ui/BackButton";
 import { calculateInstallmentPeriods } from "../utils/installment";
+import { SmartImage } from "../components/ui/SmartImage";
 
 const ItemDetailsPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -62,10 +63,11 @@ const ItemDetailsPage: React.FC = () => {
         <div className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-zinc-900 shadow-2xl overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
           {item.imageUrl ? (
-            <img
+            <SmartImage
               src={item.imageUrl}
               alt={item.title}
               className="h-full w-full object-cover transition-transform duration-700 hover:scale-110"
+              containerClassName="h-full w-full"
             />
           ) : (
              <div className="flex h-full w-full items-center justify-center text-zinc-700">
@@ -79,10 +81,11 @@ const ItemDetailsPage: React.FC = () => {
           )}
           {item.inspiredImageUrl && (
             <div className="absolute top-6 right-6 z-20 h-24 w-24 overflow-hidden rounded-lg border-2 border-white/20 shadow-xl backdrop-blur-md">
-              <img
+              <SmartImage
                 src={item.inspiredImageUrl}
                 alt="Inspiration"
                 className="h-full w-full object-cover"
+                containerClassName="h-full w-full"
               />
               <div className="absolute bottom-0 left-0 right-0 bg-black/40 py-1 text-center text-[8px] font-black uppercase tracking-widest text-white">
                 Inspiration
@@ -145,10 +148,11 @@ const ItemDetailsPage: React.FC = () => {
                 </p>
                 {item.inspiredImageUrl && (
                   <div className="flex items-start gap-4 rounded-2xl bg-zinc-50 p-4 border border-zinc-100">
-                    <img 
+                    <SmartImage 
                       src={item.inspiredImageUrl} 
                       alt="The Inspiration" 
                       className="h-20 w-20 rounded-xl object-cover shadow-md"
+                      containerClassName="h-20 w-20"
                     />
                     <div>
                       <h4 className="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-1">Inspiration Source</h4>
@@ -204,6 +208,8 @@ const ItemDetailsPage: React.FC = () => {
               itemId={item.id}
               label={paymentMode === "installment" ? "START INSTALLMENTS" : "ORDER NOW"}
               provider="paystack"
+              requiresDetails={true}
+              itemTitle={item.title}
               fullWidth
             />
             <button

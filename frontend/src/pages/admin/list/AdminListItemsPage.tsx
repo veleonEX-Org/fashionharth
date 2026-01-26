@@ -10,6 +10,7 @@ import { getErrorMessage } from "../../../utils/errorHandler";
 import { BackButton } from "../../../components/ui/BackButton";
 import { Input } from "../../../components/forms/Input";
 import { Select } from "../../../components/forms/Select";
+import { SmartImage } from "../../../components/ui/SmartImage";
 
 const AdminListItemsPage: React.FC = () => {
   const navigate = useNavigate();
@@ -89,13 +90,11 @@ const AdminListItemsPage: React.FC = () => {
       render: (item) => (
         <div className="h-10 w-10 flex-shrink-0 overflow-hidden rounded-md border border-border bg-muted">
           {item.imageUrl ? (
-            <img
+            <SmartImage
               src={item.imageUrl}
               alt={item.title}
               className="h-full w-full object-cover"
-              onError={(e) => {
-                (e.target as HTMLImageElement).src = 'https://placehold.co/40x40?text=No+Img';
-              }}
+              containerClassName="h-full w-full"
             />
           ) : (
             <div className="flex h-full w-full items-center justify-center text-[10px] text-muted-foreground uppercase">
