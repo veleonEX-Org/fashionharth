@@ -8,6 +8,7 @@ import { http } from "../api/http";
 import { Loader2 } from "lucide-react";
 import { BackButton } from "../components/ui/BackButton";
 import { SmartImage } from "../components/ui/SmartImage";
+import { FashionLoader } from "../components/ui/FashionLoader";
 
 const COLOR_PALETTES = [
   { name: "Monochromatic", colors: ["#000000", "#333333", "#666666", "#999999"], description: "Elegant and elongating. Uses different shades of the same hue." },
@@ -25,17 +26,21 @@ const StyleMePage: React.FC = () => {
   const [isWearing, setIsWearing] = useState(false);
 
   // Suggested items
-  const { data: suggestedData } = useQuery({
+  const { data: suggestedData, isLoading: suggestedLoading } = useQuery({
     queryKey: ["suggested-items"],
     queryFn: () => fetchPublicItems({ limit: 8 }),
   });
 
   // User Favorites
-  const { data: favoritesData } = useQuery({
+  const { data: favoritesData, isLoading: favoritesLoading } = useQuery({
     queryKey: ["favorites"],
     queryFn: fetchFavorites,
     enabled: !!user,
   });
+
+  if (suggestedLoading || (user && favoritesLoading)) {
+    return <FashionLoader message="Unbundling the latest styles..." />;
+  }
 
   const lookMutation = useMutation({
     mutationFn: saveLook,

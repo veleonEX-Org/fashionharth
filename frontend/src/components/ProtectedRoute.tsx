@@ -2,6 +2,7 @@ import React from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { useAuth } from "../state/AuthContext";
 import type { UserRole } from "../types/auth";
+import { FashionLoader } from "./ui/FashionLoader";
 
 interface ProtectedRouteProps {
   allowedRoles?: UserRole[];
@@ -13,11 +14,7 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ allowedRoles }) 
   const location = useLocation();
 
   if (loading) {
-    return (
-      <div className="flex min-h-screen items-center justify-center">
-        <p className="text-sm text-gray-300">Loading...</p>
-      </div>
-    );
+    return <FashionLoader message="Verifying your access..." />;
   }
 
   if (!user) {

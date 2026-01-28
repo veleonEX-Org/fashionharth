@@ -175,3 +175,5 @@
 [31m    at async PaymentService.verifyTransaction (C:\Users\OmiD\Desktop\veleonex\fashion\backend\src\services\paymentService.ts:31:14)[39m
 [31m    at async verifyRequest (C:\Users\OmiD\Desktop\veleonex\fashion\backend\src\controllers\paymentController.ts:139:21)[39m
 2026-01-26 19:07:06:76 [31merror[39m: [31mError handler caught: canceling statement due to statement timeout[39m
+2026-01-26 19:27:19:2719 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-27 12:50:32:5032 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m

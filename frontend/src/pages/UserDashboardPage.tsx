@@ -6,6 +6,7 @@ import { UserTransactionsTable } from "../components/Dashboard/UserTransactionsT
 import { UserTasksList } from "../components/Dashboard/UserTasksList";
 import { CompleteProfileCard } from "../components/Dashboard/CompleteProfileCard";
 import { Wallet, ShoppingBag } from "lucide-react";
+import { FashionLoader } from "../components/ui/FashionLoader";
 
 const UserDashboardPage: React.FC = () => {
   const { user } = useAuth();
@@ -19,6 +20,10 @@ const UserDashboardPage: React.FC = () => {
     queryKey: ['my-tasks'],
     queryFn: fetchMyTasks
   });
+
+  if (loadingTx || loadingTasks) {
+    return <FashionLoader message="Loading your fashion profile..." />;
+  }
 
   const totalSpent = React.useMemo(() => {
     if (!transactions) return 0;

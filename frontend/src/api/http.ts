@@ -1,4 +1,5 @@
 import axios from "axios";
+import toast from "react-hot-toast";
 import type { AuthTokens } from "../types/auth";
 import {
   getStoredTokens,
@@ -18,18 +19,39 @@ export const http = axios.create({
 http.interceptors.request.use((config) => {
   const tokens = getStoredTokens();
   if (tokens?.accessToken) {
-    console.log(`[HTTP] Attaching token to ${config.url}`);
     config.headers.Authorization = `Bearer ${tokens.accessToken}`;
-  } else {
-    console.warn(`[HTTP] No token found for ${config.url}`);
   }
+  
+  // Custom property to track if toast was shown
+  (config as any)._startTime = Date.now();
+  (config as any)._timeoutId = setTimeout(() => {
+    toast("Waking up our fashion engine... Just a moment! 👗", {
+      icon: "⌛",
+      duration: 10000,
+      id: "server-wake-up" // Use fixed ID to avoid multiple toasts
+    });
+  }, 3000); // Show after 3 seconds of waiting
+
   return config;
 });
 
-// Handle automatic refresh on 401 responses.
+// Clear timeout on response
 http.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    const timeoutId = (response.config as any)._timeoutId;
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+      toast.dismiss("server-wake-up");
+    }
+    return response;
+  },
   async (error) => {
+    const timeoutId = (error.config as any)._timeoutId;
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+      toast.dismiss("server-wake-up");
+    }
+    
     const originalRequest = error.config;
 
     if (error.response?.status === 401 && !originalRequest._retry) {

@@ -9,6 +9,7 @@ import { EnquiryModal } from "../components/EnquiryModal";
 import { BackButton } from "../components/ui/BackButton";
 import { calculateInstallmentPeriods } from "../utils/installment";
 import { SmartImage } from "../components/ui/SmartImage";
+import { FashionLoader } from "../components/ui/FashionLoader";
 
 const ItemDetailsPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -33,11 +34,7 @@ const ItemDetailsPage: React.FC = () => {
   const [paymentMode, setPaymentMode] = useState<"full" | "installment">("full");
 
   if (isLoading) {
-    return (
-      <div className="flex min-h-screen items-center justify-center">
-        <div className="h-10 w-10 animate-spin rounded-full border-4 border-primary border-t-transparent" />
-      </div>
-    );
+    return <FashionLoader message="Unveiling the details..." />;
   }
 
   if (error || !item) {

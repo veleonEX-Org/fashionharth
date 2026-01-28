@@ -6,6 +6,7 @@ import { fetchTrendingNews, TrendingNews } from "../api/trending";
 import { Item } from "../types/item";
 import { BackButton } from "../components/ui/BackButton";
 import { SmartImage } from "../components/ui/SmartImage";
+import { FashionLoader } from "../components/ui/FashionLoader";
 
 type CombinedTrend = 
   | { type: "item"; data: Item }
@@ -41,11 +42,7 @@ const TrendingPage: React.FC = () => {
   const isLoading = itemsLoading || newsLoading;
 
   if (isLoading) {
-    return (
-      <div className="flex min-h-screen items-center justify-center">
-        <div className="h-10 w-10 animate-spin rounded-full border-4 border-primary border-t-transparent" />
-      </div>
-    );
+    return <FashionLoader message="Fetching the latest trends..." />;
   }
 
   return (
