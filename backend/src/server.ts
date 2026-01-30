@@ -116,6 +116,10 @@ async function bootstrap(): Promise<void> {
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
   app.use(cookieParser());
 
+  app.get("/health", (_req, res) => {
+    res.status(200).json({ status: "ok" });
+  });
+
   app.use("/api", rateLimiter);
 
   app.get("/api/health", (_req, res) => {
