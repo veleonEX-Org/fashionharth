@@ -177,3 +177,10 @@
 2026-01-26 19:07:06:76 [31merror[39m: [31mError handler caught: canceling statement due to statement timeout[39m
 2026-01-26 19:27:19:2719 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
 2026-01-27 12:50:32:5032 [31merror[39m: [31mError handler caught: Invalid refresh token.[39m
+2026-01-31 09:59:16:5916 [31merror[39m: [31mError handler caught: getaddrinfo ENOTFOUND aws-1-eu-north-1.pooler.supabase.com[39m
+2026-01-31 09:59:16:5916 [31merror[39m: [31mError handler caught: getaddrinfo ENOTFOUND aws-1-eu-north-1.pooler.supabase.com[39m
+2026-01-31 09:59:16:5916 [31merror[39m: [31mError handler caught: getaddrinfo ENOTFOUND aws-1-eu-north-1.pooler.supabase.com[39m
+2026-01-31 09:59:17:5917 [31merror[39m: [31mError handler caught: getaddrinfo ENOTFOUND aws-1-eu-north-1.pooler.supabase.com[39m
+2026-01-31 21:31:11:3111 [31merror[39m: [31mError handler caught: getaddrinfo EAI_AGAIN aws-1-eu-north-1.pooler.supabase.com[39m
+2026-01-31 21:43:54:4354 [31merror[39m: [31mError handler caught: getaddrinfo EAI_AGAIN aws-1-eu-north-1.pooler.supabase.com[39m
+2026-02-01 00:00:10:010 [31merror[39m: [31mWeekly fashion crawl failed Connection terminated due to connection timeout[39m

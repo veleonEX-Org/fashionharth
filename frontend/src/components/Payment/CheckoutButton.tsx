@@ -16,6 +16,7 @@ interface CheckoutButtonProps {
   fullWidth?: boolean;
   requiresDetails?: boolean;
   itemTitle?: string;
+  className?: string;
 }
 
 export const CheckoutButton: React.FC<CheckoutButtonProps> = ({ 
@@ -28,7 +29,8 @@ export const CheckoutButton: React.FC<CheckoutButtonProps> = ({
   provider = 'paystack',
   fullWidth = false,
   requiresDetails = false,
-  itemTitle = 'Item'
+  itemTitle = 'Item',
+  className = ''
 }) => {
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -88,7 +90,7 @@ export const CheckoutButton: React.FC<CheckoutButtonProps> = ({
       <button
         onClick={handleInitialClick}
         disabled={loading}
-        className={`relative group ${fullWidth ? 'w-full' : 'px-10'} py-4 bg-black text-white rounded-full font-black text-[10px] tracking-[0.2em] uppercase transition-all duration-300 hover:bg-zinc-800 disabled:opacity-50 overflow-hidden shadow-xl hover:shadow-2xl hover:-translate-y-1 active:scale-95 flex items-center justify-center`}
+        className={`relative group ${fullWidth ? 'w-full' : 'px-10'} py-4 bg-black text-white rounded-full font-black text-[10px] tracking-[0.2em] uppercase transition-all duration-300 hover:bg-zinc-800 disabled:opacity-50 overflow-hidden shadow-xl hover:shadow-2xl hover:-translate-y-1 active:scale-95 flex items-center justify-center ${className}`}
       >
         <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-primary/5 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
         {loading ? (

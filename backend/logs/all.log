@@ -4077,3 +4077,140 @@
 2026-01-28 01:36:11:3611 [32minfo[39m: [32mSocket 6vaCB3RZC5rskXCyAAAd disconnected[39m
 2026-01-28 01:40:33:4033 [32minfo[39m: [32mDatabase connection established successfully[39m
 2026-01-28 01:40:33:4033 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-30 17:37:55:3755 [33mwarn[39m: [33mDNS resolution failed (attempt 1/5), retrying in 2000ms...[39m
+2026-01-30 17:37:57:3757 [33mwarn[39m: [33mDNS resolution failed (attempt 2/5), retrying in 4000ms...[39m
+2026-01-30 17:38:02:382 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-30 17:38:02:382 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-30 17:38:29:3829 [37mdebug[39m: [37m[Request] GET /api/ads | Origin: http://localhost:5173[39m
+2026-01-30 17:38:29:3829 [37mdebug[39m: [37m[Request] GET /api/items/public | Origin: http://localhost:5173[39m
+2026-01-30 17:38:29:3829 [37mdebug[39m: [37m[Request] GET /api/categories | Origin: http://localhost:5173[39m
+2026-01-30 17:38:29:3829 [35mhttp[39m: [35mGET /api/ads 304 - - 238.892 ms[39m
+2026-01-30 17:38:30:3830 [35mhttp[39m: [35mGET /api/categories 304 - - 1131.774 ms[39m
+2026-01-30 17:38:30:3830 [35mhttp[39m: [35mGET /api/items/public 304 - - 1367.837 ms[39m
+2026-01-30 17:38:56:3856 [37mdebug[39m: [37m[Request] GET /api/ads | Origin: http://localhost:5173[39m
+2026-01-30 17:38:56:3856 [37mdebug[39m: [37m[Request] GET /api/items/public | Origin: http://localhost:5173[39m
+2026-01-30 17:38:56:3856 [37mdebug[39m: [37m[Request] GET /api/categories | Origin: http://localhost:5173[39m
+2026-01-30 17:38:56:3856 [35mhttp[39m: [35mGET /api/categories 304 - - 217.869 ms[39m
+2026-01-30 17:38:56:3856 [35mhttp[39m: [35mGET /api/ads 304 - - 234.728 ms[39m
+2026-01-30 17:38:56:3856 [35mhttp[39m: [35mGET /api/items/public 304 - - 453.819 ms[39m
+2026-01-30 17:39:52:3952 [37mdebug[39m: [37m[Request] GET /api/health | Origin: undefined[39m
+2026-01-30 17:39:52:3952 [35mhttp[39m: [35mGET /api/health 200 15 - 1.632 ms[39m
+2026-01-30 17:39:52:3952 [37mdebug[39m: [37m[Request] GET /favicon.ico | Origin: undefined[39m
+2026-01-30 17:39:52:3952 [35mhttp[39m: [35mGET /favicon.ico 404 150 - 3.890 ms[39m
+2026-01-30 17:48:28:4828 [37mdebug[39m: [37m[Request] GET /api/ads | Origin: http://localhost:5173[39m
+2026-01-30 17:48:28:4828 [37mdebug[39m: [37m[Request] GET /api/items/public | Origin: http://localhost:5173[39m
+2026-01-30 17:48:28:4828 [37mdebug[39m: [37m[Request] GET /api/categories | Origin: http://localhost:5173[39m
+2026-01-30 17:48:29:4829 [35mhttp[39m: [35mGET /api/categories 304 - - 1056.977 ms[39m
+2026-01-30 17:48:29:4829 [35mhttp[39m: [35mGET /api/ads 304 - - 1125.127 ms[39m
+2026-01-30 17:48:29:4829 [35mhttp[39m: [35mGET /api/items/public 304 - - 1305.144 ms[39m
+2026-01-30 18:57:13:5713 [37mdebug[39m: [37m[Request] GET /api/ads | Origin: http://localhost:5173[39m
+2026-01-30 18:57:13:5713 [37mdebug[39m: [37m[Request] GET /api/items/public | Origin: http://localhost:5173[39m
+2026-01-30 18:57:13:5713 [37mdebug[39m: [37m[Request] GET /api/categories | Origin: http://localhost:5173[39m
+2026-01-30 18:57:14:5714 [35mhttp[39m: [35mGET /api/ads 304 - - 1223.770 ms[39m
+2026-01-30 18:57:14:5714 [35mhttp[39m: [35mGET /api/categories 304 - - 1219.809 ms[39m
+2026-01-30 18:57:14:5714 [35mhttp[39m: [35mGET /api/items/public 304 - - 1472.619 ms[39m
+2026-01-30 18:59:07:597 [37mdebug[39m: [37m[Request] GET /api/ads | Origin: http://localhost:5173[39m
+2026-01-30 18:59:07:597 [37mdebug[39m: [37m[Request] GET /api/items/public | Origin: http://localhost:5173[39m
+2026-01-30 18:59:07:597 [37mdebug[39m: [37m[Request] GET /api/categories | Origin: http://localhost:5173[39m
+2026-01-30 18:59:08:598 [35mhttp[39m: [35mGET /api/categories 304 - - 1207.347 ms[39m
+2026-01-30 18:59:08:598 [35mhttp[39m: [35mGET /api/ads 304 - - 1221.411 ms[39m
+2026-01-30 18:59:08:598 [35mhttp[39m: [35mGET /api/items/public 304 - - 1445.422 ms[39m
+2026-01-30 19:01:56:156 [37mdebug[39m: [37m[Request] GET /api/items/public?category=Corporate | Origin: http://localhost:5173[39m
+2026-01-30 19:01:57:157 [35mhttp[39m: [35mGET /api/items/public?category=Corporate 200 57 - 1368.053 ms[39m
+2026-01-30 19:02:05:25 [37mdebug[39m: [37m[Request] GET /api/items/public?category=Convocation | Origin: http://localhost:5173[39m
+2026-01-30 19:02:06:26 [35mhttp[39m: [35mGET /api/items/public?category=Convocation 200 57 - 445.700 ms[39m
+2026-01-30 19:02:13:213 [37mdebug[39m: [37m[Request] GET /api/items/public?category=Premium | Origin: http://localhost:5173[39m
+2026-01-30 19:02:14:214 [35mhttp[39m: [35mGET /api/items/public?category=Premium 200 57 - 488.252 ms[39m
+2026-01-30 19:04:15:415 [37mdebug[39m: [37m[Request] GET /api/items/public?category=Kaftan | Origin: http://localhost:5173[39m
+2026-01-30 19:04:15:415 [35mhttp[39m: [35mGET /api/items/public?category=Kaftan 200 1476 - 470.774 ms[39m
+2026-01-30 19:04:20:420 [37mdebug[39m: [37m[Request] GET /api/items/6 | Origin: http://localhost:5173[39m
+2026-01-30 19:04:21:421 [35mhttp[39m: [35mGET /api/items/6 304 - - 783.933 ms[39m
+2026-01-30 19:05:30:530 [37mdebug[39m: [37m[Request] GET /api/ads | Origin: http://localhost:5173[39m
+2026-01-30 19:05:30:530 [37mdebug[39m: [37m[Request] GET /api/items/public | Origin: http://localhost:5173[39m
+2026-01-30 19:05:30:530 [37mdebug[39m: [37m[Request] GET /api/categories | Origin: http://localhost:5173[39m
+2026-01-30 19:05:31:531 [35mhttp[39m: [35mGET /api/ads 304 - - 240.649 ms[39m
+2026-01-30 19:05:32:532 [35mhttp[39m: [35mGET /api/categories 304 - - 1174.452 ms[39m
+2026-01-30 19:05:32:532 [35mhttp[39m: [35mGET /api/items/public 304 - - 1369.040 ms[39m
+2026-01-30 19:05:37:537 [37mdebug[39m: [37m[Request] GET /api/items/5 | Origin: http://localhost:5173[39m
+2026-01-30 19:05:37:537 [35mhttp[39m: [35mGET /api/items/5 200 474 - 231.559 ms[39m
+2026-01-30 19:09:53:953 [37mdebug[39m: [37m[Request] GET /api/items/5 | Origin: http://localhost:5173[39m
+2026-01-30 19:09:54:954 [35mhttp[39m: [35mGET /api/items/5 304 - - 1218.078 ms[39m
+2026-01-30 19:15:11:1511 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/login | Origin: http://localhost:5173[39m
+2026-01-30 19:15:11:1511 [37mdebug[39m: [37m[Request] POST /api/auth/login | Origin: http://localhost:5173[39m
+2026-01-30 19:15:12:1512 [35mhttp[39m: [35mPOST /api/auth/login 200 726 - 1075.369 ms[39m
+2026-01-30 19:15:12:1512 [37mdebug[39m: [37m[Request] OPTIONS /api/items/5 | Origin: http://localhost:5173[39m
+2026-01-30 19:15:12:1512 [37mdebug[39m: [37m[Request] GET /api/items/5 | Origin: http://localhost:5173[39m
+2026-01-30 19:15:12:1512 [32minfo[39m: [32mUser 3 connected with socket H0QYLI2FB-4lZ291AAAB[39m
+2026-01-30 19:15:12:1512 [35mhttp[39m: [35mGET /api/items/5 304 - - 335.423 ms[39m
+2026-01-30 19:15:23:1523 [32minfo[39m: [32mSocket H0QYLI2FB-4lZ291AAAB disconnected[39m
+2026-01-30 19:15:24:1524 [37mdebug[39m: [37m[Request] OPTIONS /api/items/5 | Origin: http://localhost:5173[39m
+2026-01-30 19:15:24:1524 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-30 19:15:24:1524 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-30 19:15:24:1524 [37mdebug[39m: [37m[Request] GET /api/items/5 | Origin: http://localhost:5173[39m
+2026-01-30 19:15:24:1524 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-30 19:15:24:1524 [35mhttp[39m: [35mGET /api/items/5 304 - - 247.547 ms[39m
+2026-01-30 19:15:25:1525 [35mhttp[39m: [35mGET /api/auth/me 200 312 - 1170.212 ms[39m
+2026-01-30 19:15:25:1525 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-30 19:15:25:1525 [32minfo[39m: [32mUser 3 connected with socket WLzArnvapRTM9DAvAAAD[39m
+2026-01-30 19:15:25:1525 [35mhttp[39m: [35mGET /api/auth/me 304 - - 311.005 ms[39m
+2026-01-30 19:15:58:1558 [32minfo[39m: [32mDatabase connection established successfully[39m
+2026-01-30 19:15:58:1558 [32minfo[39m: [32mAPI server with Socket.io listening on http://localhost:5000[39m
+2026-01-30 19:15:58:1558 [32minfo[39m: [32mUser 3 connected with socket e58vBHFRGDeLyzOHAAAB[39m
+2026-01-30 19:17:04:174 [37mdebug[39m: [37m[Request] OPTIONS /api/items/5 | Origin: http://localhost:5173[39m
+2026-01-30 19:17:04:174 [37mdebug[39m: [37m[Request] GET /api/items/5 | Origin: http://localhost:5173[39m
+2026-01-30 19:17:05:175 [35mhttp[39m: [35mGET /api/items/5 200 487 - 244.490 ms[39m
+2026-01-30 19:27:47:2747 [37mdebug[39m: [37m[Request] OPTIONS /api/items/5 | Origin: http://localhost:5173[39m
+2026-01-30 19:27:47:2747 [37mdebug[39m: [37m[Request] GET /api/items/5 | Origin: http://localhost:5173[39m
+2026-01-30 19:27:47:2747 [35mhttp[39m: [35mGET /api/items/5 304 - - 233.772 ms[39m
+2026-01-30 19:31:26:3126 [37mdebug[39m: [37m[Request] OPTIONS /api/items/5 | Origin: http://localhost:5173[39m
+2026-01-30 19:31:26:3126 [37mdebug[39m: [37m[Request] GET /api/items/5 | Origin: http://localhost:5173[39m
+2026-01-30 19:31:26:3126 [35mhttp[39m: [35mGET /api/items/5 304 - - 234.207 ms[39m
+2026-01-30 19:31:32:3132 [32minfo[39m: [32mSocket e58vBHFRGDeLyzOHAAAB disconnected[39m
+2026-01-30 19:31:33:3133 [37mdebug[39m: [37m[Request] OPTIONS /api/items/5 | Origin: http://localhost:5173[39m
+2026-01-30 19:31:33:3133 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-30 19:31:33:3133 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-30 19:31:33:3133 [37mdebug[39m: [37m[Request] GET /api/items/5 | Origin: http://localhost:5173[39m
+2026-01-30 19:31:33:3133 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-30 19:31:33:3133 [35mhttp[39m: [35mGET /api/auth/me 401 39 - 8.806 ms[39m
+2026-01-30 19:31:33:3133 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-30 19:31:33:3133 [35mhttp[39m: [35mGET /api/auth/me 401 39 - 13.572 ms[39m
+2026-01-30 19:31:33:3133 [37mdebug[39m: [37m[Request] POST /api/auth/refresh | Origin: http://localhost:5173[39m
+2026-01-30 19:31:33:3133 [37mdebug[39m: [37m[Request] POST /api/auth/refresh | Origin: http://localhost:5173[39m
+2026-01-30 19:31:33:3133 [35mhttp[39m: [35mGET /api/items/5 304 - - 252.491 ms[39m
+2026-01-30 19:31:34:3134 [35mhttp[39m: [35mPOST /api/auth/refresh 200 395 - 1537.224 ms[39m
+2026-01-30 19:31:34:3134 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-30 19:31:35:3135 [35mhttp[39m: [35mPOST /api/auth/refresh 200 395 - 1631.218 ms[39m
+2026-01-30 19:31:35:3135 [35mhttp[39m: [35mGET /api/auth/me 200 312 - 233.226 ms[39m
+2026-01-30 19:31:35:3135 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-30 19:31:35:3135 [32minfo[39m: [32mUser 3 connected with socket aQQwcM3stYjsK7P3AAAD[39m
+2026-01-30 19:31:35:3135 [35mhttp[39m: [35mGET /api/auth/me 304 - - 229.931 ms[39m
+2026-01-31 09:35:03:353 [32minfo[39m: [32mSocket aQQwcM3stYjsK7P3AAAD disconnected[39m
+2026-01-31 09:59:16:5916 [37mdebug[39m: [37m[Request] OPTIONS /api/items/5 | Origin: http://localhost:5173[39m
+2026-01-31 09:59:16:5916 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-31 09:59:16:5916 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-31 09:59:16:5916 [37mdebug[39m: [37m[Request] GET /api/items/5 | Origin: http://localhost:5173[39m
+2026-01-31 09:59:16:5916 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-31 09:59:16:5916 [35mhttp[39m: [35mGET /api/auth/me 401 39 - 11.317 ms[39m
+2026-01-31 09:59:16:5916 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5173[39m
+2026-01-31 09:59:16:5916 [35mhttp[39m: [35mGET /api/auth/me 401 39 - 6.167 ms[39m
+2026-01-31 09:59:16:5916 [31merror[39m: [31mError handler caught: getaddrinfo ENOTFOUND aws-1-eu-north-1.pooler.supabase.com[39m
+2026-01-31 09:59:16:5916 [35mhttp[39m: [35mGET /api/items/5 500 72 - 77.323 ms[39m
+2026-01-31 09:59:16:5916 [37mdebug[39m: [37m[Request] POST /api/auth/refresh | Origin: http://localhost:5173[39m
+2026-01-31 09:59:16:5916 [37mdebug[39m: [37m[Request] POST /api/auth/refresh | Origin: http://localhost:5173[39m
+2026-01-31 09:59:16:5916 [31merror[39m: [31mError handler caught: getaddrinfo ENOTFOUND aws-1-eu-north-1.pooler.supabase.com[39m
+2026-01-31 09:59:16:5916 [35mhttp[39m: [35mPOST /api/auth/refresh 500 72 - 28.928 ms[39m
+2026-01-31 09:59:16:5916 [31merror[39m: [31mError handler caught: getaddrinfo ENOTFOUND aws-1-eu-north-1.pooler.supabase.com[39m
+2026-01-31 09:59:16:5916 [35mhttp[39m: [35mPOST /api/auth/refresh 500 72 - 29.774 ms[39m
+2026-01-31 09:59:17:5917 [37mdebug[39m: [37m[Request] GET /api/items/5 | Origin: http://localhost:5173[39m
+2026-01-31 09:59:17:5917 [31merror[39m: [31mError handler caught: getaddrinfo ENOTFOUND aws-1-eu-north-1.pooler.supabase.com[39m
+2026-01-31 09:59:17:5917 [35mhttp[39m: [35mGET /api/items/5 500 72 - 7.843 ms[39m
+2026-01-31 21:31:10:3110 [37mdebug[39m: [37m[Request] GET /api/items/5 | Origin: http://localhost:5173[39m
+2026-01-31 21:31:11:3111 [31merror[39m: [31mError handler caught: getaddrinfo EAI_AGAIN aws-1-eu-north-1.pooler.supabase.com[39m
+2026-01-31 21:31:11:3111 [35mhttp[39m: [35mGET /api/items/5 500 72 - 163.953 ms[39m
+2026-01-31 21:43:54:4354 [37mdebug[39m: [37m[Request] GET /api/items/5 | Origin: http://localhost:5173[39m
+2026-01-31 21:43:54:4354 [31merror[39m: [31mError handler caught: getaddrinfo EAI_AGAIN aws-1-eu-north-1.pooler.supabase.com[39m
+2026-01-31 21:43:54:4354 [35mhttp[39m: [35mGET /api/items/5 500 72 - 117.013 ms[39m
+2026-02-01 00:00:00:00 [32minfo[39m: [32mRunning weekly fashion crawl...[39m
+2026-02-01 00:00:10:010 [31merror[39m: [31mWeekly fashion crawl failed Connection terminated due to connection timeout[39m
+2026-02-02 11:32:44:3244 [37mdebug[39m: [37m[Request] GET /api/items/5 | Origin: http://localhost:5173[39m
+2026-02-02 11:32:46:3246 [35mhttp[39m: [35mGET /api/items/5 200 487 - 1770.412 ms[39m

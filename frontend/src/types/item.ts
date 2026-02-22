@@ -1,6 +1,13 @@
 
-
 export type ItemStatus = "active" | "inactive" | "archived";
+
+export interface Review {
+  name: string;
+  rating: number;
+  text: string;
+  role?: string;
+  avatar?: string;
+}
 
 export interface Item {
   id: number;
@@ -19,6 +26,7 @@ export interface Item {
   inspiredImageUrl: string | null;
   discountPercentage?: number;
   installmentDuration?: number | null;
+  reviews?: Review[];
 }
 
 export interface PaginatedItems {
@@ -43,6 +51,7 @@ export interface CreateItemPayload {
   inspiredImageUrl?: string | null;
   discountPercentage?: number;
   installmentDuration?: number | null;
+  reviews?: Review[];
 }
 
 export interface UpdateItemPayload {
@@ -59,8 +68,5 @@ export interface UpdateItemPayload {
   inspiredImageUrl?: string | null;
   discountPercentage?: number;
   installmentDuration?: number | null;
+  reviews?: Review[];
 }
-
-
-
-

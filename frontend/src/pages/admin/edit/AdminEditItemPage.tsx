@@ -8,11 +8,11 @@ import { FormField } from "../../../components/forms/FormField";
 import { Input } from "../../../components/forms/Input";
 import { Textarea } from "../../../components/forms/Textarea";
 import { Select } from "../../../components/forms/Select";
-import { MultiSelect } from "../../../components/forms/MultiSelect";
 import { Checkbox } from "../../../components/forms/Checkbox";
 import { ImageUpload } from "../../../components/forms/ImageUpload";
 import { BackButton } from "../../../components/ui/BackButton";
-import type { UpdateItemPayload, Item } from "../../../types/item";
+import { ReviewsManager } from "../../../components/admin/ReviewsManager";
+import type { UpdateItemPayload, Item, Review } from "../../../types/item";
 import { z } from "zod";
 
 const itemSchema = z.object({
@@ -49,6 +49,7 @@ const AdminEditItemPage: React.FC = () => {
   const [isTrending, setIsTrending] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
   const [inspiredImageUrl, setInspiredImageUrl] = useState("");
+  const [reviews, setReviews] = useState<Review[]>([]);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const { data: item, isLoading } = useQuery<Item>({
@@ -80,6 +81,15 @@ const AdminEditItemPage: React.FC = () => {
       
       setDiscountPercentage((item.discountPercentage || 0).toString());
       setInstallmentDuration(item.installmentDuration !== null && item.installmentDuration !== undefined ? item.installmentDuration.toString() : "");
+      
+      // Load reviews if they exist (assuming stored in metadata on backend but served as property on frontend Item type)
+      // Note: Backend 'toPublicItem' maps metadata.reviews -> item.reviews
+      if (item.reviews) {
+        setReviews(item.reviews);
+      } else if (item.metadata && Array.isArray((item.metadata as any).reviews)) {
+         // Fallback if not mapped yet
+         setReviews((item.metadata as any).reviews);
+      }
     }
   }, [item]);
 
@@ -125,7 +135,14 @@ const AdminEditItemPage: React.FC = () => {
       return;
     }
 
-    mutation.mutate(parsed.data);
+    // Include reviews in metadata
+    // We send it as part of 'metadata' payload
+    mutation.mutate({
+      ...parsed.data,
+      metadata: {
+        reviews: reviews
+      }
+    });
   };
 
   if (isLoading) {
@@ -156,135 +173,146 @@ const AdminEditItemPage: React.FC = () => {
         <BackButton />
         <div>
           <h1 className="text-2xl font-semibold">Edit Item</h1>
-          <p className="mt-1 text-sm text-muted-foreground">Update item details.</p>
+          <p className="mt-1 text-sm text-muted-foreground">Update item details and manage content.</p>
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-4 rounded-xl border border-border bg-card p-6">
-        <FormField label="Title" name="title" required error={errors.title}>
-          <Input
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            error={errors.title}
-            placeholder="Enter item title"
-          />
-        </FormField>
-
-        <FormField
-          label="Description"
-          name="description"
-          error={errors.description}
-        >
-          <Textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            error={errors.description}
-            rows={4}
-            placeholder="Enter item description (optional)"
-          />
-        </FormField>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <FormField label="Price (₦)" name="price" required error={errors.price}>
+      <form onSubmit={handleSubmit} className="space-y-8 rounded-xl border border-border bg-card p-6">
+        <div className="space-y-4">
+            <h3 className="font-bold text-lg">Basic Info</h3>
+            <FormField label="Title" name="title" required error={errors.title}>
             <Input
-              type="number"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
-              error={errors.price}
-              placeholder="0.00"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                error={errors.title}
+                placeholder="Enter item title"
             />
-          </FormField>
+            </FormField>
 
-          <FormField label="Category" name="category" required error={errors.category}>
-            <Select
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              options={[
-                { value: "", label: "Select category" },
-                ...(categories?.map((cat) => ({ value: cat.name, label: cat.name })) || []),
-              ]}
-              error={errors.category}
+            <FormField
+            label="Description"
+            name="description"
+            error={errors.description}
+            >
+            <Textarea
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                error={errors.description}
+                rows={4}
+                placeholder="Enter item description (optional)"
             />
-          </FormField>
+            </FormField>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <FormField label="Price (₦)" name="price" required error={errors.price}>
+                <Input
+                type="number"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+                error={errors.price}
+                placeholder="0.00"
+                />
+            </FormField>
+
+            <FormField label="Category" name="category" required error={errors.category}>
+                <Select
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                options={[
+                    { value: "", label: "Select category" },
+                    ...(categories?.map((cat) => ({ value: cat.name, label: cat.name })) || []),
+                ]}
+                error={errors.category}
+                />
+            </FormField>
+            </div>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <FormField label="Discount (%)" name="discountPercentage" error={errors.discountPercentage}>
-            <Input
-              type="number"
-              value={discountPercentage}
-              onChange={(e) => setDiscountPercentage(e.target.value)}
-              error={errors.discountPercentage}
-              placeholder="0"
-              min={0}
-              max={100}
-            />
-          </FormField>
+        <div className="space-y-4 pt-4 border-t border-border">
+             <h3 className="font-bold text-lg">Sales & Trending</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <FormField label="Discount (%)" name="discountPercentage" error={errors.discountPercentage}>
+                <Input
+                type="number"
+                value={discountPercentage}
+                onChange={(e) => setDiscountPercentage(e.target.value)}
+                error={errors.discountPercentage}
+                placeholder="0"
+                min={0}
+                max={100}
+                />
+            </FormField>
 
-          <FormField label="Installment Months" name="installmentDuration" error={errors.installmentDuration}>
-            <Input
-              type="number"
-              value={installmentDuration}
-              onChange={(e) => setInstallmentDuration(e.target.value)}
-              error={errors.installmentDuration}
-              placeholder="(Optional) Default: Dynamic"
-              min={0}
+            <FormField label="Installment Months" name="installmentDuration" error={errors.installmentDuration}>
+                <Input
+                type="number"
+                value={installmentDuration}
+                onChange={(e) => setInstallmentDuration(e.target.value)}
+                error={errors.installmentDuration}
+                placeholder="(Optional) Default: Dynamic"
+                min={0}
+                />
+                <p className="text-[10px] text-muted-foreground mt-1">Set '0' to disable installments. Leave empty for default dynamic logic.</p>
+            </FormField>
+            </div>
+             <Checkbox
+                id="isTrending"
+                label="Show in Trending"
+                checked={isTrending}
+                onChange={(e) => setIsTrending(e.target.checked)}
             />
-             <p className="text-[10px] text-muted-foreground mt-1">Set '0' to disable installments. Leave empty for default dynamic logic.</p>
-          </FormField>
+             <FormField label="Status" name="status" required error={errors.status}>
+                <Select
+                    value={status}
+                    onChange={(e) =>
+                    setStatus(e.target.value as "active" | "inactive" | "archived")
+                    }
+                    options={[
+                    { value: "active", label: "Active" },
+                    { value: "inactive", label: "Inactive" },
+                    { value: "archived", label: "Archived" },
+                    ]}
+                    error={errors.status}
+                />
+            </FormField>
         </div>
 
-        <ImageUpload
-          label="Product Image"
-          value={imageUrl}
-          onChange={setImageUrl}
-          folder="products"
-          error={errors.imageUrl}
-        />
+        <div className="space-y-4 pt-4 border-t border-border">
+            <h3 className="font-bold text-lg">Visuals & Story</h3>
+            <ImageUpload
+            label="Product Image"
+            value={imageUrl}
+            onChange={setImageUrl}
+            folder="products"
+            error={errors.imageUrl}
+            />
 
-        <ImageUpload
-          label="Inspired Image (Overlay)"
-          value={inspiredImageUrl}
-          onChange={setInspiredImageUrl}
-          folder="inspired"
-          error={errors.inspiredImageUrl}
-        />
+            <ImageUpload
+            label="Inspired Image (Overlay)"
+            value={inspiredImageUrl}
+            onChange={setInspiredImageUrl}
+            folder="inspired"
+            error={errors.inspiredImageUrl}
+            />
 
-        <FormField label="The Story" name="story" error={errors.story}>
-          <Textarea
-            value={story}
-            onChange={(e) => setStory(e.target.value)}
-            error={errors.story}
-            rows={4}
-            placeholder="Tell the story behind this design inspired by..."
-          />
-        </FormField>
+            <FormField label="The Story" name="story" error={errors.story}>
+            <Textarea
+                value={story}
+                onChange={(e) => setStory(e.target.value)}
+                error={errors.story}
+                rows={4}
+                placeholder="Tell the story behind this design inspired by..."
+            />
+            </FormField>
+        </div>
+        
+        {/* Social Proof Manager */}
+        <div className="space-y-4 pt-4 border-t border-border">
+            <h3 className="font-bold text-lg">Social Proof</h3>
+            <ReviewsManager reviews={reviews} onChange={setReviews} />
+        </div>
 
-        <Checkbox
-          id="isTrending"
-          label="Show in Trending"
-          checked={isTrending}
-          onChange={(e) => setIsTrending(e.target.checked)}
-        />
-
-        <FormField label="Status" name="status" required error={errors.status}>
-          <Select
-            value={status}
-            onChange={(e) =>
-              setStatus(e.target.value as "active" | "inactive" | "archived")
-            }
-            options={[
-              { value: "active", label: "Active" },
-              { value: "inactive", label: "Inactive" },
-              { value: "archived", label: "Archived" },
-            ]}
-            error={errors.status}
-          />
-        </FormField>
-
-
-
-        <div className="flex gap-3">
+        <div className="flex gap-3 pt-6">
           <button
             type="submit"
             disabled={mutation.isPending}

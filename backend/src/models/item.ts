@@ -34,6 +34,7 @@ export interface PublicItem {
   inspiredImageUrl: string | null;
   discountPercentage: number;
   installmentDuration: number | null;
+  reviews: any[];
 }
 
 export function toPublicItem(row: Item): PublicItem {
@@ -55,9 +56,6 @@ export function toPublicItem(row: Item): PublicItem {
     inspiredImageUrl: row.inspired_image_url,
     discountPercentage: Number(metadata.discount_percentage) || 0,
     installmentDuration: metadata.installment_duration ? Number(metadata.installment_duration) : null,
+    reviews: (metadata.reviews as any[]) || [],
   };
 }
-
-
-
-

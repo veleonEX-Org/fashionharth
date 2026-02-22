@@ -9,6 +9,8 @@ import toast from "react-hot-toast";
 import FashionCard from "../components/FashionCard";
 import { Input } from "../components/forms/Input";
 import AdSection from "../components/AdSection";
+import { TestimonialsSection } from "../components/TestimonialsSection";
+import { GraduationCap, Briefcase, Gem, Sparkles } from "lucide-react";
 
 
 const LandingPage: React.FC = () => {
@@ -61,35 +63,77 @@ const LandingPage: React.FC = () => {
 
   const categories = categoriesData?.map(c => c.name) || [];
 
+  // Occasion/Smart Categories Layout
+  const occasionCategories = [
+    { name: "Graduation", icon: GraduationCap, color: "bg-blue-50 text-blue-600", border: "border-blue-100", query: "Convocation" },
+    { name: "Native Wear", icon: Sparkles, color: "bg-amber-50 text-amber-600", border: "border-amber-100", query: "Native" },
+    { name: "Corporate", icon: Briefcase, color: "bg-zinc-50 text-zinc-600", border: "border-zinc-100", query: "Corporate" },
+    { name: "Premium", icon: Gem, color: "bg-purple-50 text-purple-600", border: "border-purple-100", query: "Premium" },
+  ];
+
   return (
     <div className="space-y-12 pb-20">
       {/* Hero Section */}
-      <section className="relative h-[85vh] w-full overflow-hidden">
+      <section className="relative h-[70vh] md:h-[85vh] w-full overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center">
           <div className="absolute inset-0 bg-black/30 backdrop-blur-[1px]" />
         </div>
         <div className="relative z-10 flex h-full flex-col items-center justify-center text-center px-4">
-          <h1 className="font-heading text-6xl md:text-8xl font-bold text-white tracking-tighter mb-6 drop-shadow-xl">
+          <h1 className="font-heading text-4xl sm:text-6xl md:text-8xl font-bold text-white tracking-tighter mb-4 md:mb-6 drop-shadow-xl">
             MODERN <span className="text-primary italic">ELEGANCE</span>
           </h1>
-          <p className="max-w-xl text-lg md:text-xl text-gray-100 mb-8 font-light drop-shadow-md">
+          <p className="max-w-xl text-base md:text-xl text-gray-100 mb-6 md:mb-8 font-light drop-shadow-md px-2">
             Discover the stories behind the threads. Fashion re-imagined for the bold and the free.
           </p>
-          <Link
-            to="/trending"
-            className="rounded-full bg-white text-black px-10 py-4 font-bold text-sm tracking-widest hover:bg-primary hover:text-white transition-all duration-300 shadow-2xl hover:scale-105 hover:shadow-primary/50"
-          >
-            EXPLORE TRENDING
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 w-full sm:w-auto px-6 sm:px-0">
+             <Link
+                to="/trending"
+                className="w-full sm:w-auto rounded-full bg-white text-black px-8 py-3 md:px-10 md:py-4 font-bold text-xs md:text-sm tracking-widest hover:bg-primary hover:text-white transition-all duration-300 shadow-xl hover:scale-105"
+            >
+                EXPLORE TRENDING
+            </Link>
+             <a
+                href="#collections"
+                className="w-full sm:w-auto rounded-full border-2 border-white text-white px-8 py-3 md:px-10 md:py-4 font-bold text-xs md:text-sm tracking-widest hover:bg-white hover:text-black transition-all duration-300"
+            >
+                SHOP COLLECTIONS
+            </a>
+          </div>
         </div>
       </section>
       
+      {/* Smart Categories / Occasion Shop */}
+      <section className="mx-auto max-w-7xl px-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {occasionCategories.map((occ) => (
+                <button
+                    key={occ.name}
+                    onClick={() => {
+                        setCategory(occ.query);
+                        setSearchParams(prev => {
+                            prev.set("category", occ.query);
+                            return prev;
+                        });
+                        const element = document.getElementById("collections");
+                        element?.scrollIntoView({ behavior: "smooth" });
+                    }}
+                    className={`flex flex-col items-center justify-center gap-3 p-6 rounded-2xl border ${occ.border} ${occ.color} hover:shadow-lg transition-all hover:-translate-y-1 group`}
+                >
+                    <div className="h-12 w-12 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
+                        <occ.icon className="h-6 w-6" />
+                    </div>
+                    <span className="font-bold text-xs uppercase tracking-widest">{occ.name}</span>
+                </button>
+            ))}
+        </div>
+      </section>
+
       {/* Ads Banner */}
       <AdSection />
 
 
       {/* Filter & Search Bar */}
-      <section className="sticky top-4 z-30 mx-auto max-w-6xl rounded-2xl border border-border bg-card/80 backdrop-blur-xl p-4 shadow-xl transition-all">
+      <section id="collections" className="sticky top-4 z-30 mx-auto max-w-6xl rounded-2xl border border-border bg-card/80 backdrop-blur-xl p-4 shadow-xl transition-all">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           {/* Categories */}
           <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-hide">
@@ -229,6 +273,9 @@ const LandingPage: React.FC = () => {
           </div>
         )}
       </section>
+
+      {/* Social Proof Section */}
+      <TestimonialsSection />
     </div>
   );
 };
