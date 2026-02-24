@@ -21,10 +21,6 @@ const UserDashboardPage: React.FC = () => {
     queryFn: fetchMyTasks
   });
 
-  if (loadingTx || loadingTasks) {
-    return <FashionLoader message="Loading your fashion profile..." />;
-  }
-
   const totalSpent = React.useMemo(() => {
     if (!transactions) return 0;
     return transactions.reduce((acc, t) => acc + Number(t.amount), 0);
@@ -39,6 +35,10 @@ const UserDashboardPage: React.FC = () => {
       return acc;
     }, 0);
   }, [tasks]);
+
+  if (loadingTx || loadingTasks) {
+    return <FashionLoader message="Loading your fashion profile..." />;
+  }
 
   if (!user) return null;
 
