@@ -4287,3 +4287,19 @@
 2026-02-24 09:53:51:5351 [37mdebug[39m: [37m[Request] GET /api/users/me/tasks | Origin: http://localhost:5174[39m
 2026-02-24 09:53:51:5351 [35mhttp[39m: [35mGET /api/users/me/transactions 200 3142 - 224.846 ms[39m
 2026-02-24 09:53:51:5351 [35mhttp[39m: [35mGET /api/users/me/tasks 200 4404 - 248.159 ms[39m
+2026-02-24 09:54:59:5459 [32minfo[39m: [32mSocket FxK1fFsAI3g8AKJYAAAK disconnected[39m
+2026-02-24 09:54:59:5459 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5174[39m
+2026-02-24 09:54:59:5459 [37mdebug[39m: [37m[Request] OPTIONS /api/auth/me | Origin: http://localhost:5174[39m
+2026-02-24 09:54:59:5459 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5174[39m
+2026-02-24 09:55:00:550 [35mhttp[39m: [35mGET /api/auth/me 200 312 - 1114.659 ms[39m
+2026-02-24 09:55:00:550 [37mdebug[39m: [37m[Request] GET /api/auth/me | Origin: http://localhost:5174[39m
+2026-02-24 09:55:00:550 [37mdebug[39m: [37m[Request] OPTIONS /api/users/me/transactions | Origin: http://localhost:5174[39m
+2026-02-24 09:55:00:550 [37mdebug[39m: [37m[Request] OPTIONS /api/users/me/tasks | Origin: http://localhost:5174[39m
+2026-02-24 09:55:00:550 [32minfo[39m: [32mUser 3 connected with socket OhG0RWykz8rPFePbAAAz[39m
+2026-02-24 09:55:00:550 [37mdebug[39m: [37m[Request] GET /api/users/me/transactions | Origin: http://localhost:5174[39m
+2026-02-24 09:55:00:550 [37mdebug[39m: [37m[Request] GET /api/users/me/tasks | Origin: http://localhost:5174[39m
+2026-02-24 09:55:00:550 [35mhttp[39m: [35mGET /api/auth/me 304 - - 222.950 ms[39m
+2026-02-24 09:55:01:551 [35mhttp[39m: [35mGET /api/users/me/tasks 304 - - 1137.066 ms[39m
+2026-02-24 09:55:01:551 [35mhttp[39m: [35mGET /api/users/me/transactions 304 - - 1146.900 ms[39m
+2026-02-25 10:39:40:3940 [32minfo[39m: [32mRunning keep-alive table migration...[39m
+2026-02-25 10:39:42:3942 [32minfo[39m: [32mKeep-alive table migration completed successfully.[39m

@@ -26,6 +26,7 @@ import { uploadRouter } from "./routes/uploadRoutes.js";
 import { systemSettingsRouter } from "./routes/systemSettingsRoutes.js";
 import { crawlFashionTrends } from "./services/trendingService.js";
 import adRouter from "./routes/adRoutes.js";
+import { keepAliveRouter } from "./routes/keepAliveRoutes.js";
 
 
 async function bootstrap(): Promise<void> {
@@ -141,6 +142,7 @@ async function bootstrap(): Promise<void> {
   app.use("/api/settings", systemSettingsRouter);
   app.use("/api/ads", adRouter);
   app.use("/api", categoryRouter);
+  app.use("/api/keep-alive", keepAliveRouter);
 
 
   app.use(errorHandler);
